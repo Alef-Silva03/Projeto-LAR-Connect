@@ -5,14 +5,14 @@ body {
   font-size: 14px;
 }
 .v86_176 {
-  width: 100%;
-  height: 1100px;
+  width: 1920;
+  height: 1080px;
   background: url("../images/v86_176.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   padding: 10px 10px;
-  margin: 10px;
+  margin: -10px;
   opacity: 1;
   position: relative;
   top: 0px;
@@ -20,11 +20,11 @@ body {
   overflow: hidden;
 }
 .v83_351 {
-  width: 100%;
+  width: 1920px;
   height: 1080px;
   background: rgba(13,27,42,1);
-  padding: 145px 565px;
-  margin: 10px;
+  padding: 565px 565px;
+  margin: -10px;
   opacity: 1;
   position: absolute;
   top: 10px;
@@ -40,19 +40,20 @@ body {
   top: 145px;
   left: 565px;
   box-shadow: 4px 4px 100px rgba(0, 0, 0, 0.25);
+  border-radius: 5%;
   overflow: hidden;
 }
 .v83_353 {
   width: 293px;
   height: 293px;
-  background: url("../images/v83_353.png");
+  background: url("../Imagem/LogoSemNome.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   opacity: 1;
   position: absolute;
-  top: 57px;
-  left: 66px;
+  top: -57px;
+  left: -66px;
   overflow: hidden;
 }
 .v83_354 {
@@ -81,7 +82,7 @@ body {
   margin: 10px;
   opacity: 1;
   position: absolute;
-  top: 21px;
+  top: 12px;
   left: 45px;
   overflow: hidden;
 }
@@ -100,7 +101,6 @@ body {
 .v83_357 {
   width: 24px;
   height: 24px;
-  background: rgba(255,255,255,1);
   opacity: 1;
   position: absolute;
   top: 30px;
@@ -161,8 +161,8 @@ body {
   width: 92px;
   color: rgba(255,255,255,1);
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 2px;
+  left: 6px;
   font-family: SF Pro;
   font-weight: Bold;
   font-size: 19px;
@@ -172,7 +172,6 @@ body {
 .v83_363 {
   width: 24px;
   height: 24px;
-  background: rgba(255,255,255,1);
   opacity: 1;
   position: absolute;
   top: 31px;
