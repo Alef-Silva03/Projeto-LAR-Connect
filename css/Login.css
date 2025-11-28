@@ -111,6 +111,7 @@ body {
   width: 8px;
   height: 8px;
   background: url("../images/v83_358.png");
+  
   opacity: 1;
   position: absolute;
   top: 8px;
@@ -177,26 +178,6 @@ body {
   top: 31px;
   left: 22px;
   overflow: hidden;
-}
-.v83_364 {
-  width: 18px;
-  height: 11px;
-  background: url("../images/v83_364.png");
-  opacity: 1;
-  position: absolute;
-  top: 11px;
-  left: 3px;
-  border: 2px solid rgba(0,0,0,1);
-}
-.v83_365 {
-  width: 10px;
-  height: 9px;
-  background: url("../images/v83_365.png");
-  opacity: 1;
-  position: absolute;
-  top: 2px;
-  left: 7px;
-  border: 2px solid rgba(0,0,0,1);
 }
 .v83_366 {
   width: 325px;
