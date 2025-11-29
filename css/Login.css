@@ -4,8 +4,8 @@
 body {
   font-size: 14px;
 }
-.v86_176 {
-  width: 1920;
+.telaweb {
+  width: 1920px;
   height: 1080px;
   background: url("../images/v86_176.png");
   background-repeat: no-repeat;
@@ -19,7 +19,7 @@ body {
   left: 0px;
   overflow: hidden;
 }
-.v83_351 {
+.fundo {
   width: 1920px;
   height: 1080px;
   background: rgba(13,27,42,1);
@@ -31,7 +31,7 @@ body {
   left: 10px;
   overflow: hidden;
 }
-.v83_352 {
+.conteudo {
   width: 790px;
   height: 790px;
   background: rgba(27,38,59,1);
@@ -43,7 +43,7 @@ body {
   border-radius: 5%;
   overflow: hidden;
 }
-.v83_353 {
+.logo {
   width: 293px;
   height: 293px;
   background: url("../Imagem/LogoSemNome.png");
@@ -56,7 +56,7 @@ body {
   left: -66px;
   overflow: hidden;
 }
-.v83_354 {
+.caixaemail  {
   width: 539px;
   height: 85px;
   background: rgba(65,90,119,1);
@@ -71,7 +71,7 @@ body {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
   overflow: hidden;
 }
-.v83_355 {
+.posicaoemail {
   width: 72px;
   height: 43px;
   background: url("../images/v83_355.png");
@@ -86,7 +86,7 @@ body {
   left: 45px;
   overflow: hidden;
 }
-.v83_356 {
+.email {
   width: 52px;
   color: rgba(255,255,255,1);
   position: absolute;
@@ -98,7 +98,7 @@ body {
   opacity: 1;
   text-align: center;
 }
-.v83_357 {
+.iconat {
   width: 24px;
   height: 24px;
   opacity: 1;
@@ -128,7 +128,7 @@ body {
   left: 2px;
   border: 2px solid rgba(0,0,0,1);
 }
-.v83_360 {
+.caixapassword {
   width: 539px;
   height: 85px;
   background: rgba(65,90,119,1);
@@ -143,7 +143,7 @@ body {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
   overflow: hidden;
 }
-.v83_361 {
+.posicaopassword {
   width: 112px;
   height: 43px;
   background: url("../images/v83_361.png");
@@ -158,7 +158,7 @@ body {
   left: 46px;
   overflow: hidden;
 }
-.v83_362 {
+.password {
   width: 92px;
   color: rgba(255,255,255,1);
   position: absolute;
@@ -170,7 +170,7 @@ body {
   opacity: 1;
   text-align: center;
 }
-.v83_363 {
+.iconlock {
   width: 24px;
   height: 24px;
   opacity: 1;
@@ -197,7 +197,7 @@ body {
   width: 157px;
   color: rgba(224,225,221,1);
   position: absolute;
-  top: 15px;
+  top: 0%;
   left: 84px;
   font-family: SF Pro;
   font-weight: Bold;
