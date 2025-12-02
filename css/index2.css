@@ -1,0 +1,87 @@
+body{
+    font-size: 14px;
+}
+
+#total{
+    width: 1920px;
+    height: 1080px;
+    background: rgba(13, 27, 42, 1);
+    padding: 565px 565px;
+    margin: -10px;
+    opacity: 1;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    overflow: hidden;
+}
+
+#navbar{
+    width: 1920px;
+    height: 130px;
+    background: #415A77;
+    border-radius: 80px;
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    box-shadow: 4px 4px 70px black;
+}
+
+button{
+    width: auto;
+    height: auto;
+    background-color: #415A77;
+    color: #E0E1DD;
+    position: absolute;
+    border-width: 0px;
+    top: 48px;
+    left: 70px;
+    overflow: hidden;
+}
+
+#logo{
+    width: 200px;
+    height: 200px;
+    background: url("../Imagem/LogoComNome.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 1;
+    position: absolute;
+    top: -36px;
+    left: 870px;
+    overflow: hidden;
+
+}
+
+input[type="text"]{
+    width: 160px;
+    height: 26px;
+    background-color: #415A77;
+    position: absolute;
+    top: 48px;
+    left: 1500px;
+    border-radius: 30px;
+    border-width: 1px;
+    overflow: hidden;
+    outline: none;
+
+}
+
+input[type="text"]::placeholder {
+    color: #E0E1DD; /* Cor do placeholder do texto */
+    padding-left: 30px; /* Mexe na palavra dentro da caixa de pesquisa */
+    opacity: 1;
+
+}
+
+.botao-icon{
+    width: auto;
+    height: auto;
+    background-color: #415A77;
+    color: #E0E1DD;
+    position: absolute;
+    border-width: 0px;
+    top: 48px;
+    left: 1770px;
+    overflow: hidden;
+}
