@@ -7,70 +7,89 @@
     <meta name="keywords" content="HTML, CSS, JavaScript, Java">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/PaineldeControle.css">
     <title>Tela Painel de Controle</title>
 </head>
 
 <body>
     <div id="total">
-        <div id="navbar">
-            <button>MENU</button><br><br>
-            <img src="" alt="Logo do projeto"><br><br> <!--Logo sem o Nome-->
-            <input type="text" placeholder="Search" name="Search" id="search"><br><br>
-            <button>Login</button> <!--Icon do Boneco-->
-        </div>
+        <header id="topo">
+            <nav>
+                <button><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                    </svg></button><!-- button Menu!! -->
+                <h1 id="menu">MENU</h1>
+                <figure id="logotipo">
+                    <img src="Imagem/LogoComNome.png" alt="Logo do projeto" width="200px" height="200px">
+                    <!--Logo sem o Nome-->
+                </figure>
+                <input type="text" placeholder="Search" name="Search" id="search">
+                <button class="botao-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                        fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path
+                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                    </svg></button> <!--Icon do Boneco-->
+            </nav>
+        </header>
+        <div id="bloco">
 
-        <div id="fundo">
-            <h1>GERENCIAR MORADORES</h1><br><br>
-            <button>Adicionar Novos Moradores</button> <!--icons-->
-            <button>REMOVER MORADORES</button> <!--icons-->
+            <article id="conteudo">
+                <h1>GERENCIAR MORADORES</h1>
+                <button class="botao-adicionar">ADICIONAR NOVOS MORADORES</button> <!--icons-->
+                <button class="botao-remover">REMOVER MORADORES</button> <!--icons-->
 
-            <style>
-                table,
-                th,
-                td {
-                    border: 1px solid black;
-                    border-collapse: collapse;
-                }
-            </style>
-            <table style="width:100%">
-                <tr>
-                    <th>NOME COMPLETO</th>
-                    <th>APTO</th>
-                    <th>BLOCO</th>
-                    <th>STATUS</th>
-                </tr>
-                <th>Alef <br>
-                    Yuri <br>
-                    Pedro <br>
-                    Patricia
-                </th>
-                <th>1305 <br>
-                    1305 <br>
-                    1305 <br>
-                    1305 <br>
-                </th>
-                <th>A <br>
-                    A <br>
-                    A <br>
-                    A <br>
-                </th>
-                <th>APTO <br>
-                    APTO <br>
-                    APTO <br>
-                    APTO <br>
-                </th>
+                <style>
+                    table,
+                    th,
+                    td {
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                    }
+                </style>
+                <table style="width:100%">
+                    <tr>
+                        <th>NOME COMPLETO</th>
+                        <th>APTO</th>
+                        <th>BLOCO</th>
+                        <th>STATUS</th>
+                    </tr>
+                    <th>Alef <br>
+                        Yuri <br>
+                        Pedro <br>
+                        Patricia
+                    </th>
+                    <th>1305 <br>
+                        1305 <br>
+                        1305 <br>
+                        1305 <br>
+                    </th>
+                    <th>A <br>
+                        A <br>
+                        A <br>
+                        A <br>
+                    </th>
+                    <th>APTO <br>
+                        APTO <br>
+                        APTO <br>
+                        APTO <br>
+                    </th>
 
-                </tr>
-            </table><br>
+                    </tr>
+                </table><br>
 
-            <!--Botões com numeros para mudar de pagina-->
-            <button>CANCELAR</button>
+                <!--Botões com numeros para mudar de pagina-->
+                <button>CANCELAR</button>
 
+            </article>
         </div>
 
         <div id="rodape">
-            <img src="" alt="Logo do Projeto"> <!--Logo com o Nome-->
-            <ul>
+            <img src="Imagem/LogoComNome.png" alt="Logo do Projeto" id="logorodape"> <!--Logo com o Nome-->
+
+            <ul style="list-style-type:none;" id="conteudo">
+
                 <li>
                     <h1>conteudo</h1>
                     <h2>Home</h2>
@@ -78,19 +97,31 @@
                     <h2>Login</h2>
                     <h2>Cadastro</h2>
                     <h2>Minha Conta</h2><br>
+                </li>
+
+                <li id="contatos">
                     <h1>Contatos</h1>
                     <h2>exemplo@gmail.com</h2>
                     <h2>+55(21)1111-1111</h2><br>
+                </li>
+
+                <li id="apps">
                     <h1>Apps</h1>
                     <h2>iOS</h2>
                     <h2>Android</h2><br>
                 </li>
+
+                <div id="equipe">
+                    <h1>Equipe</h1>
+                    <div id="equipe2">
+                        <img src="Imagem/PessoasFelizes.jpg" alt="foto da equipe">
+                        <img src="Imagem/PessoasFelizes.jpg" alt="foto da equipe">
+                        <img src="Imagem/PessoasFelizes.jpg" alt="foto da equipe">
+                        <img src="Imagem/PessoasFelizes.jpg" alt="foto da equipe">
+                    </div>
+                </div>
             </ul>
-            <h1>Equipe</h1>
-            <img src="" alt="foto da equipe">
-            <img src="" alt="foto da equipe">
-            <img src="" alt="foto da equipe">
-            <img src="" alt="foto da equipe">
+
         </div>
 
     </div>

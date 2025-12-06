@@ -1,0 +1,201 @@
+div#total{
+    width: 1920px;
+    height: 1080px;
+    margin: auto;
+    background-color: #1B263B;
+
+}
+
+header#topo{
+    width: 100%;
+    height: auto;
+    float: left;
+
+}
+
+figure#logotipo {
+    width: 204px;
+    height: 84px;
+    margin: -34px auto;
+
+}
+
+nav{
+    width: 100%;
+    height: 130px;
+    background: #415a77bd;
+    border-radius: 80px;
+    float: left;
+    z-index: 10;
+    box-shadow: 4px 4px 70px black;
+
+}
+
+button {
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    color: #E0E1DD;
+    position: absolute;
+    border-width: 0px;
+    top: 62px;
+    left: 100px;
+
+}
+
+#menu {
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    color: #E0E1DD;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: Bold;
+    font-size: 18px;
+    position: absolute;
+    border-width: 0px;
+    top: 54px;
+    left: 144px;
+    
+
+}
+
+input[type="text"] {
+    width: 160px;
+    height: 26px;
+    padding-left: 8px;
+    background-color: transparent;
+    position: absolute;
+    top: 62px;
+    left: 1490px;
+    border-radius: 30px;
+    border-width: 1px;
+    outline: none;
+
+}
+
+input[type="text"]::placeholder {
+    color: #E0E1DD; /* Cor do placeholder do texto */
+    padding-left: 56px; /* Mexe na palavra dentro da caixa de pesquisa */
+    font-weight: Bold;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    opacity: 1;
+
+}
+
+.botao-icon {
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    color: #E0E1DD;
+    top: 62px;
+    left: 1770px;
+
+}
+
+#bloco{
+    width: 1000px;
+    height: 790px;
+    margin: auto;
+    background: #1B263B;
+    box-shadow: 4px 4px 100px rgba(0, 0, 0, 0.25);
+    border-radius: 5%;
+
+}
+
+article#conteudo{
+    width: 100%;
+    float: left;
+    text-align: center;
+    color: #E0E1DD;
+
+}
+
+.botao-adicionar{
+    width: 60%;
+    height: 380px;
+    float: left;
+
+}
+
+.botao-remover{
+    width: 120%;
+    height: 380px;
+    float: right;
+
+}
+
+table{
+
+}
+
+
+
+
+
+
+
+
+#rodape{
+    width: 1920px;
+    height: 443px;
+    background: #0D1B2A;
+    margin: auto;
+    position: fixed;
+    top: 1080px;
+    left: 8px;
+
+}
+
+#logorodape{
+    width: 200px;
+    height: 200px;
+    top: 30px;
+    left: 120px;
+    display: flex;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+
+}
+
+#conteudo{
+    width: 1300px;
+    height: 130px;
+    position: absolute;
+    top: 30px;
+    left: 400px;
+    display: flex; /* ativa as funções */
+    row-gap: 20px;
+    align-items: stretch; /* alinha de forma vertical a lista*/
+    justify-content: space-between; /* da o espaço de lita pra lista*/
+    white-space: 0;
+    color: #E0E1DD;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#equipe{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+}
+
+#equipe2{
+    width: 90%;
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+    
+}
+
+#equipe2 img{
+    clip-path: circle();
+    width: 40px;
+    height: 40px;
+    margin-left: -10px;
+
+}
