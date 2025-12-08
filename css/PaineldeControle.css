@@ -1,6 +1,10 @@
+body{
+    background-color: #1B263B;
+}
+
 div#total{
-    width: 1920px;
-    height: 1080px;
+    width: 100%;
+    height: auto;
     margin: auto;
     background-color: #1B263B;
 
@@ -9,24 +13,28 @@ div#total{
 header#topo{
     width: 100%;
     height: auto;
-    float: left;
 
 }
 
 figure#logotipo {
     width: 204px;
     height: 84px;
-    margin: -34px auto;
+    position: absolute; /* Use position absolute para centralizar o elemento sobre o nav */
+    left: 50%;
+    transform: translateX(-70%); /* Move o elemento para a esquerda pela metade de sua própria largura */
+    top: -50px; /* Ajuste o top conforme necessário. 4px é um palpite */
+    z-index: 11; /* Certifique-se de que ele esteja acima do nav (que tem z-index: 10) */
 
 }
 
 nav{
     width: 100%;
     height: 130px;
-    background: #415a77bd;
-    border-radius: 80px;
-    float: left;
+    margin: auto;
     z-index: 10;
+    position: relative;
+    border-radius: 80px;
+    background: #415a77bd;
     box-shadow: 4px 4px 70px black;
 
 }
@@ -38,7 +46,7 @@ button {
     color: #E0E1DD;
     position: absolute;
     border-width: 0px;
-    top: 62px;
+    top: 54px;
     left: 100px;
 
 }
@@ -53,7 +61,7 @@ button {
     font-size: 18px;
     position: absolute;
     border-width: 0px;
-    top: 54px;
+    top: 46px;
     left: 144px;
     
 
@@ -65,8 +73,8 @@ input[type="text"] {
     padding-left: 8px;
     background-color: transparent;
     position: absolute;
-    top: 62px;
-    left: 1490px;
+    top: 54px;
+    right: 200px; /* Distância da borda direita (ajuste se necessário) */
     border-radius: 30px;
     border-width: 1px;
     outline: none;
@@ -84,19 +92,20 @@ input[type="text"]::placeholder {
 }
 
 .botao-icon {
-    width: auto;
-    height: auto;
+    top: 54px;
+    right: 40px;
+    transform: translateX(45%); /* Move o elemento para a esquerda pela metade de sua própria largura */
     background-color: transparent;
     color: #E0E1DD;
-    top: 62px;
-    left: 1770px;
+    position: absolute;
 
 }
 
 #bloco{
-    width: 1000px;
-    height: 790px;
-    margin: auto;
+    width: 1339px;
+    height: 745px;
+    margin: 50px auto;
+    clear: both; /* *IMPORTANTE*: Se o 'header#topo' ou 'nav' tiverem 'float: left;', use 'clear: both;'para garantir que o '#bloco' comece ABAIXO dos elementos flutuantes. */
     background: #1B263B;
     box-shadow: 4px 4px 100px rgba(0, 0, 0, 0.25);
     border-radius: 5%;
@@ -137,23 +146,22 @@ table{
 
 
 #rodape{
-    width: 1920px;
+    width: 100%;
     height: 443px;
     background: #0D1B2A;
     margin: auto;
-    position: fixed;
-    top: 1080px;
-    left: 8px;
+    clear: both;
 
 }
 
 #logorodape{
     width: 200px;
     height: 200px;
-    top: 30px;
+    top: 1080px;
     left: 120px;
     display: flex;
-    position: absolute;
+    float: left;
+    margin: auto;
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 1;
@@ -163,9 +171,10 @@ table{
 #conteudo{
     width: 1300px;
     height: 130px;
-    position: absolute;
     top: 30px;
     left: 400px;
+    float: left;
+    margin: auto;
     display: flex; /* ativa as funções */
     row-gap: 20px;
     align-items: stretch; /* alinha de forma vertical a lista*/
