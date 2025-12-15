@@ -2,7 +2,7 @@ body{
     background-color: #1B263B;
 }
 
-div#total{
+#total{
     width: 100%;
     height: auto;
     margin: auto;
@@ -39,7 +39,7 @@ nav{
 
 }
 
-button {
+.menu{
     width: auto;
     height: auto;
     background-color: transparent;
@@ -51,7 +51,7 @@ button {
 
 }
 
-#menu {
+#menu{
     width: auto;
     height: auto;
     background-color: transparent;
@@ -96,6 +96,7 @@ input[type="text"]::placeholder {
     right: 40px;
     transform: translateX(45%); /* Move o elemento para a esquerda pela metade de sua própria largura */
     background-color: transparent;
+    border-width: 0px;
     color: #E0E1DD;
     position: absolute;
 
@@ -112,30 +113,141 @@ input[type="text"]::placeholder {
 
 }
 
-article#conteudo{
+#conteudo1{
     width: 100%;
-    float: left;
-    text-align: center;
+    height: 100%;
+    width: 100%;/* (Se você já fez esta correção na resposta anterior, não precisa repetir) */
+    display: flex;
+    flex-direction: column; /* Empilha os filhos (H1, Botões, Tabela) */
+    align-items: center;    /* Centraliza todos os filhos horizontalmente */
     color: #E0E1DD;
+    justify-content: center;
 
 }
 
-.botao-adicionar{
-    width: 60%;
-    height: 380px;
-    float: left;
+#conteudoheader{
+    width: 100%;
+    height: 40%;
+    text-align: center;
+    padding: 5px;
 
 }
 
-.botao-remover{
-    width: 120%;
-    height: 380px;
-    float: right;
+
+
+.botoes {
+    display: flex; 
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 50px; 
+    margin-bottom: 20px;
+    display: flex; 
+    gap: 30px; 
+}
+
+.botao-adicionar {
+    margin-right: 30px; 
+    background: rgba(255, 255, 255, 0.05); 
+    color: #E0E1DD;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+}
+
+.botao-remover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #E0E1DD;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+}  
+
+#tabela{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
 table{
 
+}
+
+
+
+#botoes2 {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    gap: 20px;
+    position: relative; /* <--- ADICIONE ISSO */
+
+}
+
+.pagina1{
+    background: rgba(255, 255, 255, 0.05);
+    color: #E0E1DD;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.pagina2{
+     background: rgba(255, 255, 255, 0.05);
+    color: #E0E1DD;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.pagina3{
+    background: rgba(255, 255, 255, 0.05);
+    color: #E0E1DD;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.pagina4{
+    background: rgba(255, 255, 255, 0.05);
+    color: #E0E1DD;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+
+
+.cancelar{
+
+    background: rgba(255, 255, 255, 0.05);
+    color: #E0E1DD;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    
 }
 
 

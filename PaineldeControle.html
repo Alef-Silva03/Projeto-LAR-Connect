@@ -15,14 +15,15 @@
     <div id="total">
         <header id="topo">
             <nav>
-                <button><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                <button class="menu"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                         class="bi bi-list" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
                             d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
                     </svg></button><!-- button Menu!! -->
                 <h1 id="menu">MENU</h1>
                 <figure id="logotipo">
-                    <img src="Imagem/LogoComNome.png" alt="Logo do projeto" width="200px" height="200px"> <!--Logo com o Nome-->
+                    <img src="Imagem/LogoComNome.png" alt="Logo do projeto" width="200px" height="200px">
+                    <!--Logo com o Nome-->
                 </figure>
                 <input type="text" placeholder="Search" name="Search" id="search">
                 <button class="botao-icon"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -34,20 +35,19 @@
         </header>
         <div id="bloco">
 
-            <article id="conteudo">
+            <div id="conteudo1">
+                <div id="conteudoheader">
                 <h1>GERENCIAR MORADORES</h1>
-                <button class="botao-adicionar">ADICIONAR NOVOS MORADORES</button> <!--icons-->
-                <button class="botao-remover">REMOVER MORADORES</button> <!--icons-->
 
-                <style>
-                    table,
-                    th,
-                    td {
-                        border: 1px solid black;
-                        border-collapse: collapse;
-                    }
-                </style>
-                <table style="width:100%">
+                <div class="botoes">
+                    <button class="botao-adicionar">ADICIONAR NOVOS MORADORES</button> <!--icons-->
+                    <button class="botao-remover">REMOVER MORADORES</button> <!--icons-->
+                </div>
+
+                </div>
+                
+                <div id="tabela">
+                <table>
                     <tr>
                         <th>NOME COMPLETO</th>
                         <th>APTO</th>
@@ -77,11 +77,21 @@
 
                     </tr>
                 </table><br>
+                </div>
 
-                <!--Botões com numeros para mudar de pagina-->
-                <button>CANCELAR</button>
+                <div id="botoes2">
+                    <div></div>
+                    <div>
+                    <button class="pagina1">1</button>
+                    <button class="pagina2">2</button>
+                    <button class="pagina3">3</button>
+                    <button class="pagina4">4</button>
+                    </div>
+                    <button class="cancelar">CANCELAR</button>
+                
+                </div>
 
-            </article>
+            </div>
         </div>
 
         <div id="rodape">
