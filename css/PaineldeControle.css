@@ -94,7 +94,7 @@ input[type="text"]::placeholder {
 .botao-icon {
     top: 54px;
     right: 40px;
-    transform: translateX(45%); /* Move o elemento para a esquerda pela metade de sua própria largura */
+    transform: translateX(-100%); /* Move o elemento para a esquerda pela metade de sua própria largura */
     background-color: transparent;
     border-width: 0px;
     color: #E0E1DD;
@@ -103,8 +103,9 @@ input[type="text"]::placeholder {
 }
 
 #bloco{
-    width: 1339px;
-    height: 745px;
+    width: 100%;
+    max-width: 1339px;
+    height: auto;
     margin: 50px auto;
     clear: both; /* *IMPORTANTE*: Se o 'header#topo' ou 'nav' tiverem 'float: left;', use 'clear: both;'para garantir que o '#bloco' comece ABAIXO dos elementos flutuantes. */
     background: #1B263B;
@@ -116,20 +117,25 @@ input[type="text"]::placeholder {
 #conteudo1{
     width: 100%;
     height: 100%;
-    width: 100%;/* (Se você já fez esta correção na resposta anterior, não precisa repetir) */
     display: flex;
-    flex-direction: column; /* Empilha os filhos (H1, Botões, Tabela) */
-    align-items: center;    /* Centraliza todos os filhos horizontalmente */
+    flex-direction: column;
+    align-items: center;
     color: #E0E1DD;
-    justify-content: center;
+    /* justify-content: center;  <-- Remova ou mude para flex-start */
+    justify-content: flex-start; 
+    gap: 40px; /* Isso cria o espaço vertical entre os elementos */
+    padding: 20px;
 
 }
 
 #conteudoheader{
-    width: 100%;
-    height: 40%;
+    width: 90%; /* Ajuste para não encostar nas bordas */
+    height: auto;
+    min-height: 100px; /* Reduzi um pouco para equilibrar */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     text-align: center;
-    padding: 5px;
 
 }
 
@@ -150,7 +156,7 @@ input[type="text"]::placeholder {
     background: rgba(255, 255, 255, 0.05); 
     color: #E0E1DD;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: 15px;
     padding: 10px 20px;
     font-size: 14px;
     cursor: pointer;
@@ -162,100 +168,138 @@ input[type="text"]::placeholder {
     background: rgba(255, 255, 255, 0.05);
     color: #E0E1DD;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: 15px;
     padding: 10px 20px;
     font-size: 14px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
-}  
+}
 
-#tabela{
+.botao-adicionar:hover, .botao-remover:hover{
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+#tabela {
     width: 100%;
-    height: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-table{
-
+table {
+    width: 80%; /* Largura da tabela */
+    border-collapse: separate; /* Necessário para o border-radius funcionar */
+    border-spacing: 0; /* Remove espaços entre as células */
+    color: #fff; /* Cor do texto padrão */
 }
 
+/* --- Cabeçalho (NOME, APTO, etc) --- */
+thead th {
+    text-align: left; /* Alinhado à esquerda como na imagem */
+    padding: 15px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #e2e8f0; /* Um branco levemente acinzentado */
+}
 
+/* --- Corpo da Tabela (As linhas coloridas) --- */
+
+/* Estilo geral das células */
+tbody td {
+    padding: 15px 20px;
+    font-weight: 750;
+    color: #0D1B2A; /* Texto escuro para contraste, ou ajuste conforme preferir */
+}
+
+/* Cores Alternadas (Efeito Zebra) */
+/* Linhas ímpares (Azul Claro) */
+tbody tr:nth-child(odd) {
+    background-color: #778DA9; 
+}
+
+/* Linhas pares (Azul Escuro) */
+tbody tr:nth-child(even) {
+    background-color: #415A77; 
+    color: #fff; /* Texto branco nas linhas escuras */
+}
+
+/* --- Arredondando os cantos do bloco de dados --- */
+
+/* Canto superior esquerdo da primeira linha */
+tbody tr:first-child td:first-child {
+    border-top-left-radius: 15px;
+}
+
+/* Canto superior direito da primeira linha */
+tbody tr:first-child td:last-child {
+    border-top-right-radius: 15px;
+}
+
+/* Canto inferior esquerdo da última linha */
+tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+
+/* Canto inferior direito da última linha */
+tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+}
+
+/* Sombra para dar destaque (igual à imagem alvo) */
+tbody {
+    border-radius: 15px;
+    box-shadow: 4px 4px 70px black;
+}
 
 #botoes2 {
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* Centraliza a paginação no meio */
+    align-items: center;
     width: 100%;
     margin-top: 50px;
     margin-bottom: 20px;
-    gap: 20px;
-    position: relative; /* <--- ADICIONE ISSO */
-
+    position: relative; /* Necessário para o cancelar se mover livremente */
 }
 
-.pagina1{
+/* Aplicando a mesma regra para todos os botões de página */
+.pagina1, .pagina2, .pagina3, .pagina4 {
     background: rgba(255, 255, 255, 0.05);
     color: #E0E1DD;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%; /* <--- ISSO DEIXA REDONDO IGUAL À IMAGEM 5 */
+    width: 35px;        /* Tamanho fixo para ser um círculo perfeito */
+    height: 35px;
     font-size: 14px;
     cursor: pointer;
+    margin: 0 5px;
+    display: inline-flex; /* Alinha o número no centro */
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.pagina2{
-     background: rgba(255, 255, 255, 0.05);
-    color: #E0E1DD;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.pagina3{
+.cancelar {
     background: rgba(255, 255, 255, 0.05);
     color: #E0E1DD;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px; /* <--- FORMATO DE PÍLULA IGUAL À IMAGEM 5 */
+    padding: 10px 20px;   /* Aumenta a largura do botão */
     font-size: 14px;
     cursor: pointer;
+    position: absolute;  /* Joga para o canto sem empurrar os números */
+    right: 100px;         /* Distância da borda direita */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.pagina4{
-    background: rgba(255, 255, 255, 0.05);
-    color: #E0E1DD;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+/* Efeito de hover para todos */
+.pagina1:hover, .pagina2:hover, .pagina3:hover, .pagina4:hover, .cancelar:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
 }
-
-
-
-.cancelar{
-
-    background: rgba(255, 255, 255, 0.05);
-    color: #E0E1DD;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    
-}
-
-
-
-
-
-
-
 
 #rodape{
     width: 100%;
@@ -273,7 +317,6 @@ table{
     left: 120px;
     display: flex;
     float: left;
-    margin: auto;
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 1;
@@ -281,16 +324,12 @@ table{
 }
 
 #conteudo{
-    width: 1300px;
+    width: 80%;
     height: 130px;
-    top: 30px;
-    left: 400px;
-    float: left;
-    margin: auto;
     display: flex; /* ativa as funções */
     row-gap: 20px;
     align-items: stretch; /* alinha de forma vertical a lista*/
-    justify-content: space-between; /* da o espaço de lita pra lista*/
+    justify-content: space-around; /* da o espaço de lita pra lista*/
     white-space: 0;
     color: #E0E1DD;
     font-weight: bold;
