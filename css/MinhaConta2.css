@@ -1,0 +1,381 @@
+body{
+    background-color: #1B263B;
+}
+
+#total{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    background-color: #1B263B;
+
+}
+
+header#topo{
+    width: 100%;
+    height: auto;
+
+}
+
+figure#logotipo {
+    width: 204px;
+    height: 84px;
+    position: absolute; /* Use position absolute para centralizar o elemento sobre o nav */
+    left: 50%;
+    transform: translateX(-70%); /* Move o elemento para a esquerda pela metade de sua própria largura */
+    top: -50px; /* Ajuste o top conforme necessário. 4px é um palpite */
+    z-index: 11; /* Certifique-se de que ele esteja acima do nav (que tem z-index: 10) */
+
+}
+
+nav{
+    width: 100%;
+    height: 130px;
+    margin: auto;
+    z-index: 10;
+    position: relative;
+    border-radius: 80px;
+    background: #415a77bd;
+    box-shadow: 4px 4px 30px black;
+
+}
+
+.menu{
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    color: #E0E1DD;
+    position: absolute;
+    border-width: 0px;
+    top: 54px;
+    left: 100px;
+    cursor: pointer;
+
+}
+
+#menu{
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    color: #E0E1DD;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: Bold;
+    font-size: 18px;
+    position: absolute;
+    border-width: 0px;
+    top: 46px;
+    left: 144px;
+    
+}
+
+input[type="text"] {
+    width: 160px;
+    height: 26px;
+    padding-left: 8px;
+    background-color: transparent;
+    position: absolute;
+    top: 54px;
+    right: 200px; /* Distância da borda direita (ajuste se necessário) */
+    border-radius: 30px;
+    border-width: 1px;
+    outline: none;
+
+}
+
+input[type="text"]::placeholder {
+    color: #E0E1DD; /* Cor do placeholder do texto */
+    padding-left: 56px; /* Mexe na palavra dentro da caixa de pesquisa */
+    font-weight: Bold;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    opacity: 1;
+
+}
+
+.botao-icon {
+    top: 54px;
+    right: 40px;
+    transform: translateX(-100%); /* Move o elemento para a esquerda pela metade de sua própria largura */
+    background-color: transparent;
+    border-width: 0px;
+    color: #E0E1DD;
+    position: absolute;
+    cursor: pointer;
+
+}
+
+#bloco{
+    width: 100%;
+    max-width: 1339px;
+    height: auto;
+    margin: 50px auto;
+    clear: both; /* *IMPORTANTE*: Se o 'header#topo' ou 'nav' tiverem 'float: left;', use 'clear: both;'para garantir que o '#bloco' comece ABAIXO dos elementos flutuantes. */
+    background: #1B263B;
+    box-shadow: 4px 4px 70px black;
+    border-radius: 5%;
+
+}
+
+#conteudo1{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: start;
+    color: #E0E1DD;
+    /* --- Adicione as linhas abaixo --- */
+    padding: 40px; /* Cria o espaço entre a borda e o texto */
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total do bloco */
+
+}
+
+#conteudo1 h1 {
+    margin: 0;
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+}
+
+#conteudo1 h2 {
+    margin: 5px 0 0 0; /* Espaço pequeno apenas no topo */
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: 0.8; /* Deixa o subtítulo levemente mais suave */
+}
+
+#botoes{
+    width: auto; /* Deixe o menu ocupar apenas o espaço necessário */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+#botoes button {
+    width: 300px; /* Ajuste este valor para o tamanho desejado */
+    padding: 15px 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Cor escura translúcida */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #E0E1DD;
+    text-align: left; /* Garante que o texto fique à esquerda */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+}
+
+#botoes button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+
+}
+
+#conteudo2 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    /* Aumente de 120px para 180px ou 200px */
+    gap: 180px; 
+    padding: 50px;
+    width: 100%;
+}
+
+.coluna-direita {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinha o card e os botões à esquerda da coluna */
+    gap: 40px; /* Espaço vertical entre o card e os botões APTO/BLOCO */
+
+}
+
+/* Estilização do Card de Perfil */
+#perfil {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    /* Altere o padding para ficar mais comprido */
+    padding: 20px 80px 20px 40px; 
+    /* Mude o gradiente para sumir na direita */
+    background: linear-gradient(to bottom, #415A77, #1B263B); 
+    border-radius: 20px;
+    /* Aumente a largura */
+    width: 500px; 
+    
+
+}
+
+/* Estilização da Imagem de Perfil */
+#perfil img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Deixa a foto redonda */
+    object-fit: cover;
+
+}
+
+/* Estilização do Nome */
+#perfil h1 {
+    color: #E0E1DD;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+
+}
+
+#botoes2 {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Aumente um pouco o espaço entre eles */
+
+}
+
+#botoes2 button {
+    background-color: #3e5266;
+    color: #E0E1DD;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    /* Adicione esta sombra para o efeito "flutuante" */
+    box-shadow: 0px 0px 15px black; 
+    cursor: pointer;
+
+}
+
+#botoes3{
+    width: auto; /* Deixe o menu ocupar apenas o espaço necessário */
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    
+}
+
+#botoes3 button {
+    width: 250px; /* Ajuste este valor para o tamanho desejado */
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Cor escura translúcida */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #E0E1DD;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#rodape{
+    width: 100%;
+    height: 443px;
+    background: #0D1B2A;
+    margin: auto;
+    clear: both;
+
+}
+
+#logorodape{
+    width: 200px;
+    height: 200px;
+    top: 1080px;
+    left: 120px;
+    display: flex;
+    float: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+
+}
+
+#conteudo{
+    width: 80%;
+    height: 130px;
+    display: flex; /* ativa as funções */
+    row-gap: 20px;
+    align-items: stretch; /* alinha de forma vertical a lista*/
+    justify-content: space-around; /* da o espaço de lita pra lista*/
+    white-space: 0;
+    color: #E0E1DD;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#equipe{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+}
+
+#equipe2{
+    width: 90%;
+    display: flex;
+    flex-direction: wrap;
+    justify-content: center;
+    
+}
+
+#equipe2 img{
+    clip-path: circle();
+    width: 40px;
+    height: 40px;
+    margin-left: -10px;
+
+}

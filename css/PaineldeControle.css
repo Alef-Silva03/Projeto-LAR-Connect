@@ -35,7 +35,7 @@ nav{
     position: relative;
     border-radius: 80px;
     background: #415a77bd;
-    box-shadow: 4px 4px 70px black;
+    box-shadow: 4px 4px 30px black;
 
 }
 
@@ -48,6 +48,7 @@ nav{
     border-width: 0px;
     top: 54px;
     left: 100px;
+    cursor: pointer;
 
 }
 
@@ -99,6 +100,7 @@ input[type="text"]::placeholder {
     border-width: 0px;
     color: #E0E1DD;
     position: absolute;
+    cursor: pointer;
 
 }
 
@@ -109,7 +111,7 @@ input[type="text"]::placeholder {
     margin: 50px auto;
     clear: both; /* *IMPORTANTE*: Se o 'header#topo' ou 'nav' tiverem 'float: left;', use 'clear: both;'para garantir que o '#bloco' comece ABAIXO dos elementos flutuantes. */
     background: #1B263B;
-    box-shadow: 4px 4px 100px rgba(0, 0, 0, 0.25);
+    box-shadow: 4px 4px 70px black;
     border-radius: 5%;
 
 }
@@ -121,7 +123,6 @@ input[type="text"]::placeholder {
     flex-direction: column;
     align-items: center;
     color: #E0E1DD;
-    /* justify-content: center;  <-- Remova ou mude para flex-start */
     justify-content: flex-start; 
     gap: 40px; /* Isso cria o espaço vertical entre os elementos */
     padding: 20px;
@@ -146,8 +147,7 @@ input[type="text"]::placeholder {
     justify-content: space-around;
     width: 100%;
     margin-top: 50px; 
-    margin-bottom: 20px;
-    display: flex; 
+    margin-bottom: 20px; 
     gap: 30px; 
 }
 
@@ -293,6 +293,7 @@ tbody {
     position: absolute;  /* Joga para o canto sem empurrar os números */
     right: 100px;         /* Distância da borda direita */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    
 }
 
 /* Efeito de hover para todos */
