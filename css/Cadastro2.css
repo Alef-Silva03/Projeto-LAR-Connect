@@ -1,23 +1,21 @@
 body {
     font-size: 14px;
+    background: #0D1B2A;
 }
 
 #total {
-    width: 1920px;
-    height: 1080px;
-    background: rgba(13, 27, 42, 1);
-    padding: 565px 565px;
-    margin: -10px;
-    opacity: 1;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    overflow: hidden;
+    width: 100%;
+    height: auto;
+    background: #0D1B2A;
+    margin: 0;
+
 }
 
 #fundo {
-    width: 790px;
-    height: 790px;
+   width: 100%;
+    max-width: 790px;
+    height: auto;
+    min-height: 790px;
     background: rgba(27, 38, 59, 1);
     opacity: 1;
     position: absolute;
