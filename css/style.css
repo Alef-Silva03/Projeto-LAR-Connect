@@ -364,16 +364,24 @@ nav .botao-icon {
 
 /* ===== MINHA CONTA ===== */
 
+#minha_conta nav{
+    margin-bottom: 0;
+}
+
+#minha_conta .container-fluid{
+    display: flex;
+    align-items: center;
+}
+
 #minha_conta #bloco {
     width: 100%;
     max-width: 1339px;
     height: auto;
-    margin: 50px auto;
+    margin: 50px 0;
     clear: both;
     background: #1B263B;
     box-shadow: 4px 4px 70px black;
     border-radius: 5%;
-    margin-bottom: 150px;
 }
 
 #minha_conta #conteudo1 {
