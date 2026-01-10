@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-
+    color: #E0E1DD
 }
 
 html body{
@@ -27,11 +27,11 @@ ul {
     list-style: none;
 }
 
-a{
+a, h6, h5, h4, h3, h2, h1, p {
     text-decoration: none;
     color: #E0E1DD;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
-
 
 
 /* ===== BARRA DE NAVEGAÇÃO ===== */
@@ -69,12 +69,10 @@ nav .botao-menu{
     width: 10px !important;
     height: auto;
     background-color: transparent;
-    color: #E0E1DD;
     border-width: 0px;
 }
 
 nav .menu h1{
-    color: #E0E1DD;
     font-weight: Bold;
     font-size: 18px;
     margin-bottom: 0;
@@ -98,17 +96,14 @@ nav input[type="text"] {
 }
 
 nav input[type="text"]::placeholder {
-    color: #E0E1DD;
     padding-left: 56px;
     font-weight: Bold;
     font-size: 12px;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 nav .botao-icon {
     background-color: transparent;
     border-width: 0px;
-    color: #E0E1DD;
 }
 
 @media (max-width: 650px) {
@@ -163,13 +158,11 @@ nav .botao-icon {
 }
 
 #index .titulo1 {
-    color: #E0E1DD;
     font-weight: bold;
     font-size: 40px;
 }
 
 #index .texto1 {
-    color: #E0E1DD;
     word-spacing: -6px;
     font-size: 25px;
     text-align: justify;
@@ -189,13 +182,11 @@ nav .botao-icon {
 }
 
 #index .titulo2{
-    color: #E0E1DD;
     font-weight: bold;
     font-size: 36px;
 }
 
 #index .texto2{
-    color: #E0E1DD;
     word-spacing: -2px;
     font-weight: bold;
     font-size: 26px;
@@ -203,13 +194,11 @@ nav .botao-icon {
 }
 
 #index .texto3{
-    color: #E0E1DD;
     font-size: 26px;
     text-align: justify;
 }
 
 #index .titulo3{
-    color: #E0E1DD;
     font-weight: bold;
     font-size: 36px;
 }
@@ -221,7 +210,6 @@ nav .botao-icon {
 #index .lista{
     display: flex; /* Transforma a lista em um contêiner flexível */
     flex-direction: column; /* Alinha os itens na coluna, verticalmente */
-    color: #E0E1DD;
     font-size: 22px;
     list-style-type: disc;
 }
@@ -285,16 +273,11 @@ nav .botao-icon {
 
 #login input[type="email"], #cadastro input[type="email"] {
     background-color: rgba(65, 90, 119, 1);
-    color: #E0E1DD;
     font-weight: Bold;
     font-size: 18px;
-    border: 0px; /* Cor da borda */
+    border: 0px;
     outline: none; /* Tira a borda ao clicar */
     text-align: left;
-}
-
-#login input[type="email"]::placeholder, #cadastro input[type="email"]::placeholder {
-    color: #E0E1DD; /* Cor do placeholder similar à da imagem */
 }
 
 #login .iconat, #cadastro .iconat {
@@ -313,28 +296,21 @@ nav .botao-icon {
 
 #login input[type="password"], #cadastro input[type="password"] {
     background-color: rgba(65,90,119,1);;
-    color: #E0E1DD;
     font-weight: Bold;
     font-size: 18px;
-    border: 0px; /* Cor da borda */
+    border: 0px;
     outline: none; /* Tira a borda ao clicar */
     text-align: left;
-}
-
-#login input[type="password"]::placeholder, #cadastro input[type="password"]::placeholder {
-    color: #E0E1DD; /* Cor do placeholder similar à da imagem */
 }
 
 #login button, #cadastro button {
     width: 325px;
     height: 51px;
     margin: 0 20px;
-    background: rgba(119,141,169,0.07999999821186066);
+    background: rgba(119,141,169,0.08);
     border-radius: 80px;
     font-weight: bold;
     font-size: 17px;
-    color: #E0E1DD;
-
 }
 
 #login .botao-google, #cadastro .botao-google {
@@ -342,7 +318,7 @@ nav .botao-icon {
     height: 62px;
     background: rgba(13,27,42,1);
     border-radius: 50%;
-    box-shadow: 0px 0px 15px rgba(0.05098039284348488, 0.10588235408067703, 0.16470588743686676, 1);
+    box-shadow: 0px 0px 15px black;
 }
 
 #login .botao-apple, #cadastro .botao-apple {
@@ -350,7 +326,7 @@ nav .botao-icon {
     height: 62px;
     background: rgba(13,27,42,1);
     border-radius: 50%;
-    box-shadow: 0px 0px 15px rgba(0.05098039284348488, 0.10588235408067703, 0.16470588743686676, 1);
+    box-shadow: 0px 0px 15px black;
 }
 
 #login .botao-facebook, #cadastro .botao-facebook {
@@ -358,7 +334,7 @@ nav .botao-icon {
     height: 62px;
     background: rgba(13,27,42,1);
     border-radius: 50%;
-    box-shadow: 0px 0px 15px rgba(0.05098039284348488, 0.10588235408067703, 0.16470588743686676, 1);
+    box-shadow: 0px 0px 15px black;
 }
 
 
@@ -392,14 +368,12 @@ nav .botao-icon {
     flex-direction: column;
     justify-content: flex-start;
     text-align: start;
-    color: #E0E1DD;
     padding: 40px; 
 }
 
 #minha_conta #conteudo1 h1 {
     margin: 0;
     font-size: 24px;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -425,14 +399,12 @@ nav .botao-icon {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    color: #E0E1DD;
     text-align: left;
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: 0.3s;
     font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
@@ -478,8 +450,6 @@ nav .botao-icon {
 }
 
 #minha_conta #perfil h1 {
-    color: #E0E1DD;
-    font-family: sans-serif;
     font-size: 1.5rem;
 }
 
@@ -491,7 +461,6 @@ nav .botao-icon {
 
 #minha_conta #botoes2 button {
     background-color: #3e5266;
-    color: #E0E1DD;
     border: none;
     padding: 10px 20px;
     border-radius: 8px;
@@ -513,14 +482,12 @@ nav .botao-icon {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
-    color: #E0E1DD;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     cursor: pointer;
     transition: 0.3s;
     font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
@@ -530,7 +497,6 @@ nav .botao-icon {
 
 #dashboard article{
     margin: 0px 110px 130px 110px;
-    color: #E0E1DD;
 }
 
 #dashboard .header{
@@ -601,9 +567,10 @@ nav .botao-icon {
 
 
 
-/* ===== PAINEL DE CONTROLE ===== */
+/* ===== PAINEL DE CONTROLE DE MORADORES
+E LISTA DE VAGAS ===== */
 
-#painel_de_controle .container-fluid{
+.painel-e-vagas .container-fluid{
     width: 100%;
     height: auto;
     margin: auto;
@@ -611,31 +578,29 @@ nav .botao-icon {
 
 }
 
-#painel_de_controle #bloco{
+.painel-e-vagas #bloco{
     width: 100%;
     max-width: 1339px;
     height: auto;
     margin: 50px auto;
     margin-bottom: 150px;
-    clear: both; /* *IMPORTANTE*: Se o 'header#topo' ou 'nav' tiverem 'float: left;', use 'clear: both;'para garantir que o '#bloco' comece ABAIXO dos elementos flutuantes. */
     background: #1B263B;
     box-shadow: 4px 4px 70px black;
     border-radius: 5%;
 }
 
-#painel_de_controle #conteudo1{
+.painel-e-vagas #conteudo1{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #E0E1DD;
     justify-content: flex-start; 
-    gap: 40px; /* Isso cria o espaço vertical entre os elementos */
+    gap: 40px;
     padding: 20px;
 }
 
-#painel_de_controle #conteudoheader{
+.painel-e-vagas #conteudoheader{
     width: 90%; /* Ajuste para não encostar nas bordas */
     height: auto;
     min-height: 100px; /* Reduzi um pouco para equilibrar */
@@ -646,7 +611,7 @@ nav .botao-icon {
 
 }
 
-#painel_de_controle .botoes {
+.painel-e-vagas .botoes {
     display: flex; 
     justify-content: space-around;
     width: 100%;
@@ -655,22 +620,8 @@ nav .botao-icon {
     gap: 30px; 
 }
 
-#painel_de_controle .botao-adicionar {
-    margin-right: 30px; 
-    background: rgba(255, 255, 255, 0.05); 
-    color: #E0E1DD;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-
-}
-
-#painel_de_controle .botao-remover {
+.painel-e-vagas article button {
     background: rgba(255, 255, 255, 0.05);
-    color: #E0E1DD;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 10px 20px;
@@ -680,104 +631,111 @@ nav .botao-icon {
 
 }
 
-#painel_de_controle .botao-adicionar:hover, #painel_de_controle .botao-remover:hover{
+.painel-e-vagas button:hover{
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-#painel_de_controle #tabela {
+.painel-e-vagas #tabela {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-#painel_de_controle table {
-    width: 80%; /* Largura da tabela */
+@media (max-width: 750px) {
+    .painel-e-vagas #tabela table thead th {
+        font-size: 0.8rem;
+        padding: 0 30px 0 0;
+    }
+    .painel-e-vagas #tabela table tbody td {
+        font-size: 0.8rem;
+        padding: 10px 0px 10px 10px;
+       
+    }
+    .painel-e-vagas #tabela button {
+        padding: 8px 3px;
+        font-size: 12px;
+         margin-right: 5px;
+    }
+}
+
+.painel-e-vagas .vaga-status, .painel-e-vagas .vaga-botao {
+    width: 0px;
+}
+
+.painel-e-vagas .botao-comprar{
+    margin-right: 30px; 
+    background: #1B263B;; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.painel-e-vagas table {
+    width: 80%;
     border-collapse: separate; /* Necessário para o border-radius funcionar */
-    border-spacing: 0; /* Remove espaços entre as células */
-    color: #fff; /* Cor do texto padrão */
+    border-spacing: 0;
+    color: #fff;
 }
 
 /* --- Cabeçalho (NOME, APTO, etc) --- */
-#painel_de_controle thead th {
+.painel-e-vagas thead th {
     text-align: left; /* Alinhado à esquerda como na imagem */
     padding: 15px 20px;
-    font-size: 14px;
+    font-size: 1.2rem;
     font-weight: bold;
     text-transform: uppercase;
-    color: #e2e8f0; /* Um branco levemente acinzentado */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* --- Corpo da Tabela (As linhas coloridas) --- */
 
 /* Estilo geral das células */
-#painel_de_controle tbody td {
+.painel-e-vagas tbody td {
     padding: 15px 20px;
-    font-weight: 750;
-    color: #0D1B2A; /* Texto escuro para contraste, ou ajuste conforme preferir */
+    font-weight: bold;
+    color: #0D1B2A;
+    font-family:Arial, sans-serif;
+    font-size: 1.1rem;
 }
 
 /* Cores Alternadas (Efeito Zebra) */
 /* Linhas ímpares (Azul Claro) */
-#painel_de_controle tbody tr:nth-child(odd) {
+.painel-e-vagas tbody tr:nth-child(odd) {
     background-color: #778DA9; 
 }
 
 /* Linhas pares (Azul Escuro) */
-#painel_de_controle tbody tr:nth-child(even) {
+.painel-e-vagas tbody tr:nth-child(even) {
     background-color: #415A77; 
     color: #fff; /* Texto branco nas linhas escuras */
 }
 
-/* --- Arredondando os cantos do bloco de dados --- */
-
-/* Canto superior esquerdo da primeira linha */
-#painel_de_controle tbody tr:first-child td:first-child {
-    border-top-left-radius: 15px;
-}
-
-/* Canto superior direito da primeira linha */
-#painel_de_controle tbody tr:first-child td:last-child {
-    border-top-right-radius: 15px;
-}
-
-/* Canto inferior esquerdo da última linha */
-#painel_de_controle tbody tr:last-child td:first-child {
-    border-bottom-left-radius: 15px;
-}
-
-/* Canto inferior direito da última linha */
-#painel_de_controle tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 15px;
-}
-
-/* Sombra para dar destaque (igual à imagem alvo) */
-#painel_de_controle tbody {
-    border-radius: 15px;
+/* Sombra para dar destaque (igual à imagem) */
+.painel-e-vagas tbody {
     box-shadow: 4px 4px 70px black;
 }
 
-#painel_de_controle #botoes2 {
+.painel-e-vagas #botoes2 {
     display: flex;
-    justify-content: center; /* Centraliza a paginação no meio */
+    justify-content: center;
     align-items: center;
     width: 100%;
     margin-bottom: 20px;
 }
 
-
-#painel_de_controle #botoes2 .row{
-    justify-content: center; /* Centraliza a paginação no meio */
+.painel-e-vagas #botoes2 .row{
+    justify-content: center;
     align-items: center;
     margin: 20px 0;
 }
 
-/* Aplicando a mesma regra para todos os botões de página */
-#painel_de_controle .pagina {
+.painel-e-vagas .pagina {
     background: rgba(255, 255, 255, 0.05);
-    color: #E0E1DD;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%; /* <--- ISSO DEIXA REDONDO IGUAL À IMAGEM 5 */
     width: 35px;        /* Tamanho fixo para ser um círculo perfeito */
@@ -791,9 +749,8 @@ nav .botao-icon {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-#painel_de_controle .cancelar {
+.painel-e-vagas .cancelar {
     background: rgba(255, 255, 255, 0.05);
-    color: #E0E1DD;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px; /* <--- FORMATO DE PÍLULA IGUAL À IMAGEM 5 */
     padding: 10px 20px;   /* Aumenta a largura do botão */
@@ -803,11 +760,11 @@ nav .botao-icon {
     width: 200px;
 }
 
-/* Efeito de hover para todos */
-#painel_de_controle #botoes2 button:hover {
+.painel-e-vagas #botoes2 button:hover {
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.5);
 }
+
 
 
 /* ===== PÁGINA DE ENVIO DE MENSAGENS AO SÍNDICO, 
@@ -815,7 +772,6 @@ PÁGINA DE ENVIO DE COMUNICADOS AOS MORADORES E
 PÁGINA DE POSTAGEM DE ANÚNCIO DE VENDA OU ALUGUEL DE IMÓVEL ===== */
 
 .pagina-form article{
-    color: #E0E1DD;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -892,7 +848,6 @@ PÁGINA DE POSTAGEM DE ANÚNCIO DE VENDA OU ALUGUEL DE IMÓVEL ===== */
 
 .pagina-form article form button {
     background-color: #1B263B;
-    color: #E0E1DD;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     margin-top: 30px;
@@ -909,6 +864,57 @@ PÁGINA DE POSTAGEM DE ANÚNCIO DE VENDA OU ALUGUEL DE IMÓVEL ===== */
 }
 
 
+/* ===== PAINEL DE COMUNICADOS ===== */
+
+#painel_comunicados article {
+    color: #dddfe1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#painel_comunicados article h1{
+    margin-bottom: 25px;
+    font-size: 2.9rem;
+    text-align: center;
+}
+
+#painel_comunicados article h2{
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+#painel_comunicados .painel {
+    height: 100%;
+    width: 100%;
+    max-width: 1200px;
+    gap: 40px;
+    padding: 20px;
+    margin: 50px auto;
+    margin-bottom: 100px;
+    background: #415A77;
+    box-shadow: 4px 4px 70px black;
+    border-radius: 10px;
+}
+
+#painel_comunicados .painel h3 {
+    text-align: center;
+    font-size: 2.4rem;
+} 
+
+#painel_comunicados .painel h4 {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    margin-top: -10px;
+    opacity: 0.6;   
+    font-weight: bold;
+} 
+
+
+#painel_comunicados .painel p {
+    text-align: justify;
+}
+
 
 /* ===== RODAPÉ ===== */
 
@@ -917,7 +923,6 @@ footer {
     height: auto;
     min-height: 20vh;
     background: #0D1B2A;
-    color: #E0E1DD;
     margin-top: 50px;
     padding: 20px;
     align-items: start;
@@ -947,9 +952,9 @@ footer li{
 }
 
 footer a{
-    color: #E0E1DD;
     text-decoration: none;
     font-size: 17px;
+    color: #E0E1DD;
 }
 
 footer a:hover{
