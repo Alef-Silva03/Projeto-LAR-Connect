@@ -47,7 +47,7 @@ nav{
     display: flex;
     align-content: baseline;
     justify-content: space-between;
-    position: fixed;
+    position: absolute;
     left: 0;
     margin-bottom: 60px;
 }
@@ -993,5 +993,309 @@ footer .equipe-fotos img{
     }
     footer .equipe li h3{
         margin-left: 0px;
+    }
+}
+/* =========================================
+   ESTILOS ESPECÍFICOS DA PÁGINA DE CHAT
+   ========================================= */
+
+/* Ajuste para o conteúdo não ficar escondido atrás da Navbar fixa */
+#chat_moradores article {
+    margin-top: 150px; /* Compensa a altura da nav fixa */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+/* O Bloco Principal do Chat (Estilo similar ao #minha_conta #bloco) */
+#chat_moradores #bloco_chat {
+    width: 100%;
+    max-width: 1300px;
+    height: 750px; /* Altura fixa para o chat */
+    background: #1B263B;
+    box-shadow: 4px 4px 70px black;
+    border-radius: 30px;
+    border: 1px solid #415A77;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+
+/* Header interno (Perfil do usuário logado) */
+.chat-header-inner {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(65, 90, 119, 0.3);
+}
+
+.user-profile-header {
+    display: flex;
+    align-items: center;
+    background: #415A77;
+    padding: 8px 20px;
+    border-radius: 50px;
+    gap: 15px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+.user-profile-header span {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.avatar-small {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #E0E1DD;
+}
+
+/* Área Flexível (Sidebar + Mensagens) */
+.chat-content-area {
+    display: flex;
+    flex: 1; /* Ocupa o resto da altura */
+    gap: 20px;
+    overflow: hidden;
+}
+
+/* --- SIDEBAR ESQUERDA --- */
+.sidebar {
+    width: 30%;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(224, 225, 221, 0.1);
+    padding-right: 20px;
+}
+
+/* Busca Lateral customizada para o tema */
+.search-chat-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+.input-chat-search {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #778DA9;
+    padding: 10px 10px 10px 40px;
+    border-radius: 20px;
+    color: #E0E1DD;
+    outline: none;
+}
+.icon-search-chat {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #778DA9;
+}
+
+.sidebar-menu {
+    flex-direction: row; /* Sobrescreve o column global */
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-left: 5px;
+}
+
+.sidebar-menu li {
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+    font-size: 1.1rem;
+}
+.sidebar-menu li.active, .sidebar-menu li:hover {
+    opacity: 1;
+    border-bottom: 2px solid #E0E1DD;
+}
+
+.btn-novo-grupo {
+    background: #415A77;
+    border: none;
+    color: #E0E1DD;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px black;
+    transition: 0.3s;
+}
+.btn-novo-grupo:hover {
+    background: #778DA9;
+    color: #1B263B;
+}
+
+.contact-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    background: rgba(255,255,255,0.02);
+}
+
+.contact-card:hover, .contact-card.active {
+    background: #415A77;
+}
+
+.contact-card .info .name {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.contact-card .info .last-msg {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* --- ÁREA DE MENSAGENS (DIREITA) --- */
+.message-area-container {
+    width: 70%;
+    background: #0D1B2A; /* Fundo mais escuro para contraste */
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.messages-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.date-divider {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 0.8rem;
+    color: #778DA9;
+    position: relative;
+}
+.date-divider::before, .date-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #415A77;
+}
+.date-divider::before { left: 0; }
+.date-divider::after { right: 0; }
+
+/* Balões de Mensagem */
+.message-row {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.message-row.incoming { justify-content: flex-start; }
+.message-row.outgoing { justify-content: flex-end; }
+
+.bubble {
+    max-width: 60%;
+    padding: 12px 18px;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.4;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.bubble-incoming {
+    background-color: #415A77; /* Azul médio */
+    color: #E0E1DD;
+    border-radius: 20px 20px 20px 0;
+}
+
+.bubble-outgoing {
+    background-color: #778DA9; /* Azul claro */
+    color: #0D1B2A; /* Texto escuro para leitura */
+    border-radius: 20px 20px 0 20px;
+    font-weight: 500;
+}
+
+.msg-sender {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+.check-read {
+    font-size: 1.2rem;
+    vertical-align: middle;
+    margin-left: 5px;
+    color: #1B263B;
+}
+
+/* Input Area */
+.chat-input-area {
+    margin-top: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.chat-input {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background: #1B263B;
+    border: 1px solid #415A77;
+    color: #E0E1DD;
+    padding: 0 60px 0 20px;
+    font-size: 1rem;
+    outline: none;
+    box-shadow: 0px 4px 10px black;
+}
+
+.send-btn {
+    position: absolute;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #778DA9;
+    border: none;
+    color: #0D1B2A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.send-btn:hover {
+    background: #E0E1DD;
+    transform: scale(1.1);
+}
+
+/* Responsividade Básica do Chat */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none; /* Em telas pequenas, esconde a sidebar (ideal seria um botão para alternar) */
+    }
+    .message-area-container {
+        width: 100%;
     }
 }
