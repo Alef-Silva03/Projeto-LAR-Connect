@@ -1725,3 +1725,81 @@ footer .equipe-fotos img{
         max-width: 300px;
     }
 }
+/* =========================================
+   ESTILOS ESPECÍFICOS - NOTIFICAÇÕES MORADOR
+   ========================================= */
+
+/* Ajuste do topo da página (igual às outras) */
+#pagina_notificacoes_morador article {
+    margin-top: 180px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+/* Avatar no Header do Painel */
+.painel-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #E0E1DD;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.seta-baixo {
+    font-size: 0.8rem;
+    color: #E0E1DD;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+/* Ajuste específico para o Card de Encomenda do Morador */
+/* No HTML do morador, mudamos a estrutura interna para o botão ficar na ponta */
+
+#pagina_notificacoes_morador .card-encomenda {
+    justify-content: space-between; /* Espalha os itens (Ícone/Texto na esq, Botão na dir) */
+}
+
+#pagina_notificacoes_morador .info-encomenda {
+    flex: none; /* Tira o flex grow para o texto não empurrar demais */
+    margin-right: auto; /* Empurra o botão para a direita */
+    margin-left: 20px;
+}
+
+/* Estilo do Botão "Confirmar Recebimento" */
+.btn-confirmar {
+    background-color: #1B263B;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.btn-confirmar:hover {
+    background-color: #0D1B2A;
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+/* Responsividade para celular */
+@media (max-width: 700px) {
+    #pagina_notificacoes_morador .card-encomenda {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    #pagina_notificacoes_morador .info-encomenda {
+        margin: 0;
+    }
+    .btn-confirmar {
+        width: 100%;
+    }
+}
