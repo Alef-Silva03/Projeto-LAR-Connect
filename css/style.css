@@ -247,10 +247,16 @@ nav .botao-icon {
     align-items: center;
 }
 
-#login form .row, #cadastro form .row {
+#login form .row{
     justify-content: center;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
+}
+
+#cadastro form .row{
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
 }
 
 #login form figure, #cadastro form figure {
