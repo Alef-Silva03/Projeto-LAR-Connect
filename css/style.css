@@ -229,22 +229,26 @@ nav .botao-icon {
 }
 
 #login #fundo, #cadastro #fundo {
-    width: 40%;
-    min-width: 350px;
-    height: 790px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza logo e form */
+    padding: 40px;
+    border-radius: 40px;
     background: rgba(27, 38, 59, 1);
     box-shadow: 4px 4px 100px rgba(0, 0, 0, 0.25);
-    border-radius: 5%;
+  
 }
 
  #cadastro #fundo {
     height: 900px;
+    width: 900px;
 }
 
 #login form, #cadastro form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 #login form .row{
@@ -266,9 +270,10 @@ nav .botao-icon {
 #login .logo, #cadastro .logo {
     width: 100px;
     height: 130px;
+    margin-bottom: 30px;
 }
 
-#login #email, #cadastro #email {
+#login #email{
     width: 80%;
     height: 85px;
     background: rgba(65, 90, 119, 1);
@@ -277,7 +282,19 @@ nav .botao-icon {
     
 }
 
-#login input[type="email"], #cadastro input[type="email"] {
+#cadastro #email, #nome, #cpf, #telefone, #apartamento, #password {
+    width: 70%;
+    height: 80px; /* Reduzi um pouco para não ficar tão alto */
+    background: rgba(65, 90, 119, 1);
+    border-radius: 30px;
+    border: none;
+    margin-bottom: 15px;
+    padding: 0 20px;
+    color: white;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 1);
+}
+
+#login input[type="email"], #cadastro input {
     background-color: rgba(65, 90, 119, 1);
     font-weight: Bold;
     font-size: 18px;
@@ -292,7 +309,7 @@ nav .botao-icon {
     margin-right: 20px;
 }
 
-#login #password, #cadastro #password {
+#login #password {
     width: 80%;
     height: 85px;
     background: rgba(65,90,119,1);
@@ -319,7 +336,7 @@ nav .botao-icon {
     font-size: 17px;
 }
 
-#login .botao-google, #cadastro .botao-google {
+/*#login .botao-google, #cadastro .botao-google {
     width: 62px;
     height: 62px;
     background: rgba(13,27,42,1);
@@ -341,7 +358,7 @@ nav .botao-icon {
     background: rgba(13,27,42,1);
     border-radius: 50%;
     box-shadow: 0px 0px 15px black;
-}
+}*/
 
 
 
