@@ -72,13 +72,5 @@ public class AuthController {
 	        return "redirect:/login";
 	    }
 	}
-	
-	@GetMapping("/minha_conta")
-	public String redirecionarParaMinhaConta(Authentication auth) {
-	    if (auth != null) {
-	    	return "/minha_conta";
-	    } else {
-	        return "redirect:/login";
-	    }
-	}
 }
+	

@@ -5,14 +5,19 @@
 
 package com.projeto.larconnect.controllerPaginas;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MinhaContaController {
 
-    @GetMapping("/minha_conta")
-    public String minha_conta() {
-        return "minha_conta";
-    }
+	@GetMapping("/minha_conta")
+	public String redirecionarParaMinhaConta(Authentication auth) {
+	    if (auth != null) {
+	    	return "/minha_conta";
+	    } else {
+	        return "redirect:/login";
+	    }
+	}
 }
