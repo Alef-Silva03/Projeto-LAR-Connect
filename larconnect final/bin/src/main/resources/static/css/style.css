@@ -324,7 +324,7 @@ nav .botao-icon {
 }
 
 #login #password {
-    width: 100%;
+    width: 80%;
     height: 85px;
     background: rgba(65,90,119,1);
     border-radius: 30px;
