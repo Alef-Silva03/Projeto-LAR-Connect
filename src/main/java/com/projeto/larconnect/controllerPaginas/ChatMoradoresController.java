@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ChatMoradoresController {
 
-    @GetMapping("/chat_moradores")
-    public String chatMoradores() {
-        return "chat_moradores";
+    @GetMapping("/chat")
+    public String chat() {
+        return "chat";
     }
 }
