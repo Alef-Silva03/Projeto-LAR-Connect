@@ -23,22 +23,20 @@
             <form th:action="@{/usuarios/salvar}" method="post" enctype="multipart/form-data" id="cadastroForm" class="col">
                 <div th:if="${erro}" class="alert alert-danger" th:text="${erro}"></div>
                 
-                <div id="registro">
-                
 	                <div class="row">
-	                    <div class="col-11 mb-4 ">
-	                        <label class="form-label fw-bold">Perfil</label>
+	                    <div id="perfil" class="col-12 col-xl-5">
 	                        <select id="cadPerfil" name="perfil" class="form-select" onchange="toggleCampos()" required>
+	                          	<option value="" style="font-weight:0" disabled selected hidden>Selecione seu perfil</option>
 	                            <option value="PROPRIETARIO">Proprietario</option>
 	                            <option value="INQUILINO">Inquilino</option>
 	                            <option value="SINDICO">Sindico</option>
 	                            <option value="FUNCIONARIO">Funcionario</option>
 	                        </select>
 	                    </div>
-	                </div>
+
                 
 
-                    <div id="nome" class="row">
+                    <div id="nome" class="col-12 col-xl-5">
                         <div class="col-1 iconat">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="bi bi-person" viewBox="0 0 16 16">
@@ -48,8 +46,9 @@
                         </div>
                         <input type="text" name="nome" id="cadNome" class="col-10" placeholder="Nome" required>
                     </div>
-
-                    <div id="email" class="row">
+                    </div>
+					<div class="row">
+                    <div id="email" class="col-12 col-xl-5">
                         <div class="col-1 iconat">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="icon at" viewBox="0 0 16 16">
@@ -60,7 +59,7 @@
                         <input type="email" name="email" id="cadEmail" class="col-10" placeholder="Email" required>
                     </div>
 
-                    <div id="password" class="row">
+                    <div id="password" class="col-12 col-xl-5">
                         <div class="col-1 iconat">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 class="icon lock" viewBox="0 0 16 16">
@@ -70,8 +69,9 @@
                         </div>
                         <input type="password" name="senha" id="cadSenha" class="col-10" placeholder="Senha" required>
                     </div>
-
-                    <div id="cpf" class="row">
+                    </div>
+					<div class="row">
+                    <div id="cpf" class="col-12 col-xl-5">
                         <div class="col-1 iconat">
                             <svg width="24" height="24" viewBox="0 0 100 100" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -94,8 +94,7 @@
                         </div>
                         <input type="text" name="cpf" id="cadCpf" class="col-10" placeholder="CPF">
                     </div>
-
-                    <div id="telefone" class="row">
+                    <div id="telefone" class="col-12 col-xl-5">
                         <div class="col-1 iconat">
                             <svg width="24" height="24" viewBox="0 0 100 100" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -113,6 +112,7 @@
                         </div>
                         <input type="tel" name="telefone" id="cadTelefone" class="col-10" placeholder="Telefone">
                     </div>
+                    </div>
 
 
                     <!--<div class="row">
@@ -121,11 +121,14 @@
                     <button class="botao-facebook col-3"></button>
                     </div>-->
 
-                    <button class="row">CADASTRE-SE</button>
+                    <div class="row">
+                    	<button>CADASTRE-SE</button>
+                    </div>
 
-                </div>
             </form>
-            <div class="login-row row"><button  onclick="history.back()" class="login">LOGIN</button></div>
+            <div class="row">
+            	<div class="login-row row"><button  onclick="history.back()" class="login">LOGIN</button></div>
+            </div>
         </div>
     </div>
 	<script src="../static/js/script.js"></script>

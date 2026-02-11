@@ -253,20 +253,7 @@ nav .botao-icon {
   
 }
 
- #cadastro #fundo {
-    height: 700px;
-    width: 900px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; /* Centraliza logo e form */
-    padding: 40px;
-    border-radius: 40px;
-    background: rgba(27, 38, 59, 1);
-    box-shadow: 4px 4px 100px rgba(0, 0, 0, 0.25);
-}
-
-#login form, #cadastro form {
+#login form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -277,12 +264,6 @@ nav .botao-icon {
     justify-content: center;
     align-items: center;
     margin-bottom: 40px;
-}
-
-#cadastro form .row{
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0px;
 }
 
 #login form figure, #cadastro form figure {
@@ -302,29 +283,10 @@ nav .botao-icon {
     border-radius: 30px;
 }
 
-#registro{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, auto);
-    margin: 0 auto;
-    gap: 30px;
-    align-items: center;
-}
-
-#email, #nome, #cpf, #telefone, #apartamento, #password {
-    width: 100%;
-    height: 70px;
-    background: rgba(65, 90, 119, 1);
-    border-radius: 30px;
-    border: none;
-    margin-left: 1px;
-    color: white;
-}
-
 #login #email {
 	width: 80%;
 	height: 30px;
+	margin: 0;
 }
 
 #login input[type="email"], #cadastro input {
@@ -366,32 +328,71 @@ nav .botao-icon {
     border-radius: 80px;
     font-weight: bold;
     font-size: 17px;
+    	display: flex;
+	justify-content: center;
+    align-items: center;
 }
 
-#login a .cadastrar{
+#email, #perfil, #nome, #cpf, #telefone, #apartamento, #password, #email-row {
+    height: 70px;
+    background: rgba(65, 90, 119, 1);
+    border-radius: 30px;
+    border: none;
+    margin-left: 1px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    
+}
+
+ #cadastro #fundo {
+    height: 750px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centraliza logo e form */
+    padding: 40px;
+    border-radius: 40px;
+    background: rgba(27, 38, 59, 1);
+    box-shadow: 4px 4px 100px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 1200px){
+	 #cadastro #fundo {
+	 height: 1100px;
+	 width: 90%;
+	 max-width: 700px
+	}
+}
+
+#cadastro form {
+	width: 100%;
+}
+
+#cadastro form .row{
+    justify-content: center;
+    align-items: baseline;
+    column-gap: 40px;
+}
+
+#cadastro button{
 	display: flex;
 	justify-content: center;
     align-items: center;
 }
 
-#cadastro a .login{
-	display: flex;
-	justify-content: center;
-    align-items: center;
-}
-
-#cadastro .form-select {
+#cadastro .form-select, #cadastro option {
 	width: 100%;
 	background-color:rgba(65, 90, 119, 1);
 	color: white;
 	border: none;
-	    font-weight: Bold;
+	font-family: sans-serif;
+	font-weight: bold;
 }
 
-#cadastro option{
-	color: white;
-	    font-weight: Bold;
-}
 #cadastro .login-row{
 	width: 100%;
 	margin-top: 30px;
