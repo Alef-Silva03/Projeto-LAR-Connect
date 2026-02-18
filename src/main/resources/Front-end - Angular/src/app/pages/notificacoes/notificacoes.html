@@ -1,0 +1,71 @@
+<article class="minha-conta-container">
+    <div class="container glass-card shadow-lg p-0 overflow-hidden">
+        
+        <header class="painel-header-tabs d-flex">
+            <button class="tab-btn" [class.active]="abaAtiva === 'entregas'" (click)="setAba('entregas')">
+                <i class="bi bi-box-seam me-2"></i> Entregas Ativas
+            </button>
+            <button class="tab-btn" [class.active]="abaAtiva === 'historico'" (click)="setAba('historico')">
+                <i class="bi bi-clock-history me-2"></i> Histórico
+            </button>
+            <button class="tab-btn" [class.active]="abaAtiva === 'config'" (click)="setAba('config')">
+                <i class="bi bi-gear me-2"></i> Preferências
+            </button>
+        </header>
+
+        <div class="p-4">
+            <section *ngIf="abaAtiva === 'entregas'" class="animate-in">
+                <div class="card-encomenda-modern mb-3" *ngFor="let item of encomendas">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex align-items-center gap-4">
+                            <div class="icone-caixa-modern shadow-neon"><i class="bi bi-box-seam fs-2"></i></div>
+                            <div>
+                                <span class="d-block fw-bold h5 mb-1">{{ item.descricao }}</span>
+                                <small class="text-cyan opacity-75">Chegada: {{ item.hora }}</small>
+                            </div>
+                        </div>
+                        <button class="btn-confirmar-pill" (click)="confirmarRecebimento(item.id)">
+                            Confirmar Recebimento
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section *ngIf="abaAtiva === 'historico'" class="animate-in">
+                <h4 class="mb-4 text-cyan fw-bold">Últimos Recebimentos</h4>
+                <table class="table table-dark table-hover custom-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            <th>Responsável</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let h of historico">
+                            <td>{{ h.data }}</td>
+                            <td>{{ h.descricao }}</td>
+                            <td>{{ h.entreguePor }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section *ngIf="abaAtiva === 'config'" class="animate-in">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="mb-4 text-cyan fw-bold">Alertas e Notificações</h4>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" checked>
+                            <label class="form-check-label ms-2">Notificar por E-mail</label>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" checked>
+                            <label class="form-check-label ms-2">Notificações Push (PWA)</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</article>
