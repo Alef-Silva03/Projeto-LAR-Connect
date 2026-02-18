@@ -1,0 +1,158 @@
+/* Container Principal do Chat */
+.chat-page-container {
+    height: 100vh;
+    padding-top: 120px; /* Compensa a Navbar Pílula fixa */
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+}
+/* Estilização para anexos no chat */
+.img-anexo-chat {
+    border-radius: 15px; /* Bordas arredondadas seguindo o padrão pílula */
+    margin-top: 8px;
+    border: 1px solid rgba(0, 180, 216, 0.2); /* Brilho ciano sutil */
+    max-width: 100%; /* Garante que a imagem não "vaze" do balão */
+    display: block;
+    object-fit: contain; /* Mantém a imagem inteira sem cortes */
+}
+
+/* Card de Vidro (Glassmorphism) */
+.glass-chat-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    height: 80vh;
+    width: 95%;
+    max-width: 1300px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Sidebar e Abas Estilo Pílula */
+.sidebar-glass {
+    background: rgba(13, 27, 42, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-tabs-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    padding: 5px;
+}
+
+.chat-tabs-pill button {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: rgba(224, 225, 221, 0.5);
+    padding: 10px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.chat-tabs-pill button.active {
+    background: #00B4D8; /* Ciano Neon */
+    color: #0D1B2A;
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+}
+
+/* Balões de Mensagem Estilo Pílula Assimétrica */
+.message-row {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.message-row.sent { justify-content: flex-end; }
+.message-row.received { justify-content: flex-start; }
+
+.bubble {
+    max-width: 70%;
+    padding: 15px 20px;
+    position: relative;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.bubble-received {
+    background: rgba(65, 90, 119, 0.5);
+    color: white;
+    border-radius: 25px 25px 25px 5px;
+}
+
+.bubble-sent {
+    background: #00B4D8;
+    color: #0D1B2A;
+    font-weight: 500;
+    border-radius: 25px 25px 5px 25px;
+}
+
+/* Efeito Neon na Mensagem Enviada */
+.shadow-neon {
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+}
+
+/* Área de Input */
+.input-wrapper-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.input-wrapper-pill:focus-within {
+    border-color: #00B4D8;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.send-btn-neon {
+    background: #00B4D8;
+    color: #0D1B2A;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.send-btn-neon:hover {
+    transform: scale(1.1);
+    background: #90E0EF;
+}
+
+/* Scrollbar Personalizada */
+.custom-scrollbar {
+    overflow-y: auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 180, 216, 0.3);
+    border-radius: 10px;
+}
+
+/* Animações de Entrada de Mensagem */
+.message-row {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Utilitários */
+.text-cyan { color: #00B4D8 !important; }
+.circular-border { border: 2px solid #00B4D8; padding: 2px; border-radius: 50%; }

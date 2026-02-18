@@ -1,0 +1,58 @@
+<div class="chat-page-container">
+    <div class="glass-chat-card row g-0 shadow-lg">
+        
+        <aside class="col-md-3 sidebar-glass border-end">
+            <div class="p-4 h-100 d-flex flex-column">
+                <div class="chat-tabs-pill d-flex mb-4">
+                    <button [class.active]="abaAtiva === 'moradores'" (click)="setAba('moradores')">Moradores</button>
+                    <button [class.active]="abaAtiva === 'grupos'" (click)="setAba('grupos')">Grupos</button>
+                </div>
+
+                <div class="contact-list flex-grow-1">
+                    <div *ngIf="abaAtiva === 'moradores'" class="contact-item active-pill">
+                        <img src="assets/imagem/Julia.png" class="avatar-sm circular-border" height= 50px width= 50px>
+                        <div class="ms-3">
+                            <h6 class="m-0">Júlia (Apto 402)</h6>
+                            <small class="text-cyan" *ngIf="digitando">digitando...</small>
+                        </div>
+                    </div>
+                    <div *ngIf="abaAtiva === 'grupos'" class="p-3 opacity-50 text-center">Nenhum grupo ativo.</div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="col-md-9 d-flex flex-grow-1 flex-column bg-chat-dark">
+            <header class="chat-header p-3 border-bottom d-flex align-items-center">
+                <img src="assets/imagem/Julia.png" class="avatar-md circular-border" height= 50px width= 50px>
+                <div class="ms-3">
+                    <h5 class="m-0 fw-bold">Júlia</h5>
+                    <small [class.text-cyan]="digitando">{{ digitando ? 'digitando...' : 'online' }}</small>
+                </div>
+            </header>
+<div class="message-display p-4 flex-grow-1 custom-scrollbar d-flex flex-column gap-3">
+    <div *ngFor="let msg of mensagens" [ngClass]="msg.enviada ? 'sent' : 'received'" class="message-row">
+        <div class="bubble" [ngClass]="msg.enviada ? 'bubble-sent shadow-neon' : 'bubble-received'">
+            
+            <img *ngIf="msg.anexo" 
+                 [src]="msg.anexo" 
+                 [style.width]="msg.width || '200px'" 
+                 [style.height]="msg.height || 'auto'"
+                 class="img-attachment rounded-4 mb-2">
+
+            <p class="m-0">{{ msg.texto }}</p>
+            <span class="time">{{ msg.hora }}</span>
+        </div>
+    </div>
+</div>
+
+            <footer class="p-3">
+                <div class="input-wrapper-pill d-flex align-items-center px-3 gap-2">
+                    <input #msgInput (keyup.enter)="enviar(msgInput)" placeholder="Escreva sua mensagem..." class="flex-grow-1 py-3 border-0 bg-transparent text-white outline-none">
+                    <button (click)="enviar(msgInput)" class="send-btn-neon shadow-neon">
+                        <i class="bi bi-send-fill"></i>
+                    </button>
+                </div>
+            </footer>
+        </section>
+    </div>
+</div>
