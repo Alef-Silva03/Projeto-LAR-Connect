@@ -1,0 +1,38 @@
+.article {
+    padding-top: 150px; /* Aumentado para acomodar a nova navbar */
+}
+
+/* Espaçamento para Navbar Fixa */
+.article {
+    padding-top: 140px; 
+    background-color: #1B263B;
+    color: #E0E1DD;
+}
+
+/* Estilização dos títulos com a paleta de cores do projeto */
+.titulo1, .titulo2 {
+    color: #778DA9;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Background levemente diferente para criar separação visual */
+.bg-contrast {
+    background-color: rgba(13, 27, 42, 0.4);
+}
+
+/* Ícones da lista */
+.bi-check2-circle {
+    color: #415A77;
+    font-size: 1.2rem;
+}
+
+/* Efeito nas imagens */
+.img-fluid {
+    border-radius: 30px;
+    transition: transform 0.3s ease;
+}
+
+.img-fluid:hover {
+    transform: translateY(-10px);
+}
