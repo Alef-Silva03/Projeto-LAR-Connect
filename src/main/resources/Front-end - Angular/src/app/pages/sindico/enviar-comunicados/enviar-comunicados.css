@@ -1,0 +1,77 @@
+.enviar-comunicados-container {
+    padding-top: 140px;
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 60px;
+}
+
+.glass-card {
+    width: 95%;
+    max-width: 900px;
+    background: rgba(27, 38, 59, 0.7);
+    backdrop-filter: blur(25px);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #00B4D8, #90E0EF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.form-label-custom {
+    color: #00B4D8;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Inputs e Selects Estilo Pílula */
+.form-select-pill, .form-input-pill, .form-textarea-pill {
+    background: rgba(65, 90, 119, 0.2) !important;
+    border: 1px solid rgba(0, 180, 216, 0.3) !important;
+    border-radius: 20px !important;
+    color: white !important;
+    padding: 15px 25px !important;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.form-select-pill:focus, .form-input-pill:focus, .form-textarea-pill:focus {
+    background: rgba(65, 90, 119, 0.3) !important;
+    border-color: #00B4D8 !important;
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+    outline: none;
+}
+
+.form-textarea-pill {
+    border-radius: 30px !important;
+    resize: none;
+}
+
+/* Botão Neon */
+.btn-enviar-neon {
+    background: #00B4D8;
+    color: #0D1B2A;
+    border: none;
+    padding: 15px 50px;
+    border-radius: 50px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    box-shadow: 0 5px 20px rgba(0, 180, 216, 0.4);
+}
+
+.btn-enviar-neon:hover {
+    background: #90E0EF;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 180, 216, 0.6);
+}

@@ -1,0 +1,39 @@
+<article class="enviar-comunicados-container">
+    <div class="glass-card shadow-lg p-5">
+        <header class="text-center mb-5">
+            <h1 class="text-gradient display-5 fw-bold">ENVIAR COMUNICADOS</h1>
+            <p class="subtitulo">Envie avisos e notícias aos moradores de seu condomínio</p>
+        </header>
+
+        <form (submit)="enviarComunicado()" class="form-comunicado">
+            <div class="mb-4">
+                <label class="form-label-custom">Tipo de Comunicado</label>
+                <select name="tipo" [(ngModel)]="comunicado.tipo" class="form-select-pill" required>
+                    <option value="" disabled selected>Escolha uma opção</option>
+                    <option value="noticia">Notícia</option>
+                    <option value="aviso">Aviso</option>
+                    <option value="pedido">Pedido</option>
+                    <option value="outros">Outros</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label-custom">Assunto do Comunicado</label>
+                <input type="text" name="assunto" [(ngModel)]="comunicado.assunto" 
+                       class="form-input-pill" placeholder="Ex: Manutenção do Elevador" required>
+            </div>
+
+            <div class="mb-5">
+                <label class="form-label-custom">Texto Detalhado</label>
+                <textarea name="texto" [(ngModel)]="comunicado.texto" rows="5"
+                          class="form-textarea-pill" placeholder="Escreva aqui os detalhes para os moradores..." required></textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn-enviar-neon">
+                    <i class="bi bi-send-fill me-2"></i> ENVIAR COMUNICADO
+                </button>
+            </div>
+        </form>
+    </div>
+</article>
