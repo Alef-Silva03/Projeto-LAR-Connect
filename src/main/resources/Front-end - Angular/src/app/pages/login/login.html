@@ -1,0 +1,36 @@
+<div class="container-fluid" id="login">
+    <div id="fundo" class="d-flex align-items-center justify-content-center min-vh-100">
+        
+        <form class="login-box p-4 shadow-lg">
+            <figure class="text-center mb-4">
+                <img src="assets/imagem/LogoSemNome.png" alt="LAR Connect" class="logo img-fluid">
+            </figure>
+
+            <div id="email-row" class="input-group-custom mb-3">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-at" viewBox="0 0 16 16">
+                        <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.834-1.034-1.738-1.034-1.584 0-2.735 1.44-2.735 3.583 0 2.046 1.067 3.574 2.712 3.574 1.066 0 1.69-.562 1.914-1.161h.11c.133.344.44.633.956.633 1.19 0 2.156-1.398 2.156-3.411zM7.93 10.067c-.945 0-1.633-.844-1.633-2.612 0-1.672.656-2.64 1.633-2.64.953 0 1.633.953 1.633 2.64 0 1.664-.672 2.612-1.633 2.612z"/>
+                    </svg>
+                </div>
+                <input type="email" placeholder="Email" class="form-control-custom" required>
+            </div>
+
+            <div id="password-row" class="input-group-custom mb-4">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                        <path d="M8 1a3 3 0 0 0-3 3v2H4.5A1.5 1.5 0 0 0 3 7.5v7A1.5 1.5 0 0 0 4.5 16h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 6H11V4a3 3 0 0 0-3-3zM5 4a3 3 0 1 1 6 0v2H5V4zm6 3v2H5V7h6z"/>
+                    </svg>
+                </div>
+                <input type="password" placeholder="Senha" class="form-control-custom" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn-entrar w-100 py-2">ENTRAR</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <button routerLink="/cadastro" class="btn-link-cadastro">NÃO TEM CONTA? CADASTRE-SE</button>
+        </div>
+    </div>
+</div>
