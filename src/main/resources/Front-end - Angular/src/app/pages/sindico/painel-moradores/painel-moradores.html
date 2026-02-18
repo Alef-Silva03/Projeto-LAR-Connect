@@ -1,0 +1,55 @@
+<article class="painel-moradores-container">
+    <div class="glass-container shadow-lg animate__animated animate__fadeIn">
+        <header class="header-admin d-flex justify-content-between align-items-end mb-5">
+            <div class="title-section">
+                <span class="badge-admin">PAINEL ADMINISTRATIVO</span>
+                <h1 class="text-gradient">GERENCIAR MORADORES</h1>
+                <p class="subtitulo">Controle total de acessos e unidades do condomínio</p>
+            </div>
+            <div class="botoes-topo d-flex gap-3">
+                <button class="btn-neon-cyan"><i class="bi bi-person-plus-fill me-2"></i>ADICIONAR</button>
+                <button class="btn-neon-outline"><i class="bi bi-person-dash-fill me-2"></i>REMOVER</button>
+            </div>
+        </header>
+
+        <section id="tabela-glass" class="custom-scrollbar-table">
+            <table class="table-modern">
+                <thead>
+                    <tr>
+                        <th>Membro</th>
+                        <th>Unidade</th>
+                        <th>Bloco</th>
+                        <th>Status</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let morador of moradoresFiltrados" class="row-hover">
+                        <td class="nome-morador">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="avatar-mini">{{ morador.nome.charAt(0) }}</div>
+                                <span>{{ morador.nome }}</span>
+                            </div>
+                        </td>
+                        <td><span class="badge-pill-dark">{{ morador.apto }}</span></td>
+                        <td class="text-secondary-light">{{ morador.bloco }}</td>
+                        <td>
+                            <div class="status-wrapper" [ngClass]="morador.status === 'Ativo' ? 'ativo' : 'inativo'">
+                                <span class="dot"></span>
+                                {{ morador.status }}
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn-action-icon" title="Editar Morador">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button class="btn-action-icon ms-2" title="Ver Detalhes">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</article>

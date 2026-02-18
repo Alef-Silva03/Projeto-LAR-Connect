@@ -1,0 +1,91 @@
+/* Efeito de Vidro e Profundidade */
+.glass-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(13, 27, 42, 0.8);
+    backdrop-filter: blur(30px);
+    border-radius: 40px;
+    padding: 50px;
+    border: 1px solid rgba(0, 180, 216, 0.1);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+}
+
+/* Badge Superior Administrativo */
+.badge-admin {
+    color: #00B4D8;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Tabela em Estilo Pílula Flutuante */
+.table-modern {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px; /* Espaço entre as linhas para parecerem pílulas */
+}
+
+.table-modern tbody tr {
+    background: rgba(255, 255, 255, 0.03) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 20px;
+}
+
+.table-modern tbody tr:hover {
+    background: rgba(0, 180, 216, 0.08) !important;
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Avatar Mini */
+.avatar-mini {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #00B4D8, #03045E);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: white;
+}
+
+/* Status com Glow (Brilho) */
+.status-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-wrapper .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-wrapper.ativo { color: #00B4D8; }
+.status-wrapper.ativo .dot { background: #00B4D8; box-shadow: 0 0 10px #00B4D8; }
+
+.status-wrapper.inativo { color: #FF4D6D; }
+.status-wrapper.inativo .dot { background: #FF4D6D; box-shadow: 0 0 10px #FF4D6D; }
+
+/* Botões de Ação de Vidro */
+.btn-action-icon {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: #90E0EF;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-action-icon:hover {
+    background: #00B4D8;
+    color: #0D1B2A;
+}
