@@ -1,0 +1,44 @@
+<div class="container-fluid" id="cadastro">
+    <div id="fundo" class="py-5">
+        <figure class="text-center">
+            <img src="assets/imagem/LogoSemNome.png" alt="LAR Connect" class="logo img-fluid">
+        </figure>
+        
+        <form id="cadastroForm" class="container mt-4">
+            <div class="row justify-content-center g-3">
+                <div class="col-12 col-xl-5">
+                    <select id="cadPerfil" class="form-select custom-select" required>
+                        <option value="" disabled selected hidden>Selecione seu perfil</option>
+                        <option value="PROPRIETARIO">Proprietário</option>
+                        <option value="INQUILINO">Inquilino</option>
+                        <option value="SINDICO">Síndico</option>
+                        <option value="FUNCIONARIO">Funcionário</option>
+                    </select>
+                </div>
+
+                <div class="col-12 col-xl-5 input-group-custom">
+                    <span class="icon-at"><i class="bi bi-person fs-4"></i></span>
+                    <input type="text" placeholder="Nome completo" class="form-control-custom" required>
+                </div>
+
+                <div class="col-12 col-xl-5 input-group-custom">
+                    <span class="icon-at"><i class="bi bi-at fs-4"></i></span>
+                    <input type="email" placeholder="Email" class="form-control-custom" required>
+                </div>
+
+                <div class="col-12 col-xl-5 input-group-custom">
+                    <span class="icon-at"><i class="bi bi-lock fs-4"></i></span>
+                    <input type="password" placeholder="Senha" class="form-control-custom" required>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <button class="btn-principal px-5 py-2">CADASTRE-SE</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <button routerLink="/login" class="btn-link">JÁ TENHO CONTA (LOGIN)</button>
+        </div>
+    </div>
+</div>

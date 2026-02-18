@@ -1,0 +1,136 @@
+/* ===== PÁGINA DE CADASTRO REFINADA ===== */
+
+.container-fluid {
+    background: #0D1B2A; /* Azul marinho profundo para contraste */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+#fundo {
+    width: 100%;
+    max-width: 850px;
+    background: rgba(27, 38, 59, 0.95);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo com proporção corrigida */
+.logo {
+    width: auto;
+    height: 100px;
+    margin-bottom: 40px;
+    filter: drop-shadow(0 0 10px rgba(0, 180, 216, 0.3));
+}
+
+form {
+    width: 100%;
+}
+
+form .row {
+    margin-bottom: 0;
+    column-gap: 20px; /* Gap reduzido para melhor equilíbrio visual */
+}
+
+/* Grid de Inputs (Campos lado a lado) */
+.input-group-custom {
+    height: 65px;
+    background: rgba(65, 90, 119, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Efeito de foco neon sutil ao clicar */
+.input-group-custom:focus-within {
+    background: rgba(65, 90, 119, 0.5);
+    border-color: #00B4D8;
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);
+}
+
+/* Estilo dos Inputs e Selects */
+input, .form-select {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #E0E1DD !important;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 100%;
+    outline: none;
+}
+
+/* Ajuste para o placeholder */
+input::placeholder {
+    color: rgba(224, 225, 221, 0.5);
+}
+
+/* Ícones alinhados */
+.iconat {
+    color: #00B4D8;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* Botão de Ação Principal */
+.btn-cadastro {
+    width: 100%;
+    max-width: 350px;
+    height: 55px;
+    background: #00B4D8;
+    color: #0D1B2A;
+    border: none;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 20px auto 0 auto;
+}
+
+.btn-cadastro:hover {
+    background: #90E0EF;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 180, 216, 0.4);
+}
+
+/* Botão de Voltar (Login) */
+.btn-voltar {
+    background: transparent;
+    color: #E0E1DD;
+    border: 1px solid rgba(224, 225, 221, 0.3);
+    margin-top: 15px;
+}
+
+.btn-voltar:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: white;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #fundo {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    
+    .input-group-custom {
+        height: 60px;
+    }
+}
