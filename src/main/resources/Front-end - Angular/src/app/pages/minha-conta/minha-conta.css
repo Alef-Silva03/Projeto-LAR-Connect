@@ -1,0 +1,128 @@
+/* ===== PÁGINA MINHA CONTA - LAR CONNECT ===== */
+
+.minha-conta-container {
+    padding-top: 150px; 
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.glass-card {
+    background: rgba(27, 38, 59, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 40px;
+    padding: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* --- DESTAQUE DA FOTO DE PERFIL (MOLDURA NEON) --- */
+
+.profile-image-wrapper {
+    position: relative;
+    width: 220px; /* Tamanho ajustado para a moldura externa */
+    height: 220px;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    /* Brilho neon externo que vaza da moldura */
+    box-shadow: 0 0 30px rgba(0, 180, 216, 0.5);
+    transition: box-shadow 0.3s ease;
+}
+
+/* O Anel Neon (Moldura colorida) */
+.profile-image-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* Ocupa todo o wrapper */
+    border-radius: 50%;
+    padding: 6px; /* Espessura da moldura neon */
+    background: linear-gradient(135deg, #00B4D8, #90E0EF, #00B4D8);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.profile-img-real {
+    width: 90%; /* Ajustado para preencher a moldura corretamente */
+    height: 90%;
+    border-radius: 50%;
+    object-fit: cover;
+    /* Linha escura de contraste entre a foto e o neon */
+    border: 5px solid #1B263B; 
+    transition: transform 0.3s ease;
+}
+
+/* Interações */
+.profile-image-wrapper:hover {
+    box-shadow: 0 0 50px rgba(0, 180, 216, 0.8);
+}
+
+.profile-image-wrapper:hover .profile-img-real {
+    transform: scale(1.05);
+}
+
+/* --- ELEMENTOS DE NAVEGAÇÃO E INFO --- */
+
+.nav-pill-item {
+    background: rgba(65, 90, 119, 0.2);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    border-radius: 20px;
+    color: #E0E1DD;
+    padding: 15px 25px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.nav-pill-item:hover {
+    background: rgba(0, 180, 216, 0.2);
+    border-color: #00B4D8;
+    color: white;
+    transform: translateX(10px);
+}
+
+.info-badge {
+    background: linear-gradient(90deg, rgba(0, 180, 216, 0.2), rgba(0, 180, 216, 0.05));
+    border: 1px solid #00B4D8;
+    color: #00B4D8;
+    border-radius: 50px;
+    padding: 10px 25px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-sair-pill {
+    margin-top: 30px;
+    background: rgba(230, 57, 70, 0.1);
+    border: 1px solid #e63946;
+    color: #e63946;
+    border-radius: 30px;
+    padding: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+}
+
+.btn-sair-pill:hover {
+    background: #e63946;
+    color: white;
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.4);
+}

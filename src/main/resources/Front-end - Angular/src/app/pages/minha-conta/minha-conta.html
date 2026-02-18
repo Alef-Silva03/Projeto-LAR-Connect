@@ -1,0 +1,39 @@
+<article class="minha-conta-container">
+    <div class="glass-card shadow-lg">
+        <header class="text-center mb-5">
+            <h1 class="titulo-pagina">MINHA CONTA</h1>
+            <p class="subtitulo">GERENCIE SUAS INFORMAÇÕES PESSOAIS</p>
+        </header>
+
+        <div class="row align-items-center">
+            <div class="col-md-6 d-flex flex-column gap-3">
+                <button class="nav-pill-item"><i class="bi bi-person-circle"></i> Dados Pessoais</button>
+                <button class="nav-pill-item"><i class="bi bi-shield-lock"></i> Segurança</button>
+                <button class="nav-pill-item"><i class="bi bi-wallet2"></i> Contas</button>
+                <button class="nav-pill-item"><i class="bi bi-bell"></i> Notificações</button>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <div class="profile-section-highlight">
+                    <div class="profile-image-wrapper mx-auto">
+                        <div class="neon-ring">
+                            <img src="assets/imagem/pessoa.avif" alt="Alef Silva" class="profile-img-real">
+                        </div>
+                    </div>
+                    
+                    <h2 class="user-name mt-4 fw-bold text-white h1">Alef Silva</h2>
+                    
+                    <div class="badges-group d-flex justify-content-center gap-2 mt-3">
+                        <span class="info-badge">APTO 1305</span>
+                        <span class="info-badge">BLOCO A</span>
+                        <span class="info-badge">GARAGEM 5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <button (click)="logout()" class="btn-sair-pill">SAIR DA CONTA</button>
+        </div>
+    </div>
+</article>
