@@ -1,0 +1,92 @@
+/* ===== RODAPÉ ===== */
+
+footer {
+    width: 100vw;
+    height: auto;
+    min-height: 20vh;
+    background: #0D1B2A;
+    margin-top: 50px;
+    padding: 20px;
+    display: flex; /* Garante o alinhamento das colunas */
+    align-items: flex-start;
+    justify-content: space-around;
+    box-shadow: 0px 2px 20px black;
+}
+
+footer .logo-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+footer .logo-rodape img {
+    width: 100px;
+    height: auto;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+    font-weight: bolder;
+}
+
+footer li {
+    margin-bottom: 5px;
+    list-style: none; /* Remove as bolinhas se não estiver no styles.css */
+}
+
+footer a {
+    text-decoration: none;
+    font-size: 17px;
+    color: #E0E1DD;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #778da9;
+}
+
+footer .equipe li h3 {
+    margin-left: -20px;
+}
+
+footer .equipe-fotos img {
+    clip-path: circle();
+    width: 55px;
+    margin-left: -30px;
+    border: 2px solid #1B263B;
+}
+
+/* Responsividade do Rodapé */
+@media (max-width: 850px) {
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    footer .logo-rodape img {
+        margin-left: 0px;
+        width: 80px;
+    }
+    footer h3 {
+        margin-left: 0;
+    }
+    footer a {
+        font-size: 18px;
+    }
+    footer .equipe-fotos img {
+        margin: 0px;
+    }
+    footer .equipe li h3 {
+        margin-left: 0px;
+    }
+}
+.equipe-fotos img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: -15px; /* Efeito de sobreposição das fotos */
+    border: 2px solid #1B263B;
+}
