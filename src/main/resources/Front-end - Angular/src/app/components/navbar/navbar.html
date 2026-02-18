@@ -1,0 +1,52 @@
+<div class="menu-overlay" [class.active]="menuAberto" (click)="toggleMenu()"></div>
+
+<div class="side-menu-classic" [class.active]="menuAberto">
+   <div class="menu-header-top p-4 d-flex justify-content-between align-items-center">
+        <h2 class="brand-title m-0">LAR <span>Connect</span></h2>
+        <i class="bi bi-x-lg close-icon" (click)="toggleMenu()"></i>
+    </div>
+
+    <nav class="side-nav-content">
+        <ul class="list-unstyled p-4">
+            <li><a routerLink="/" (click)="toggleMenu()"><i class="bi bi-house-door"></i> Início </a></li>
+            <li><a routerLink="/login" (click)="toggleMenu()"><i class="bi bi-house-door"></i> Login</a></li>
+            <li><a routerLink="/cadastro" (click)="toggleMenu()"><i class="bi bi-house-door"></i> Cadastro </a></li>
+            <li><a routerLink="/notificacoes" (click)="toggleMenu()"><i class="bi bi-house-door"></i> Notificações</a></li>
+            <li><a routerLink="/chat" (click)="toggleMenu()"><i class="bi bi-chat-left-dots"></i> Chat de Moradores</a>
+            </li>
+            <li><a routerLink="/vaga-garagem" (click)="toggleMenu()"><i class="bi bi-car-front"></i> Vagas de
+                    Garagem</a></li>
+            <hr class="border-secondary opacity-25">
+            <li><a routerLink="/minha-conta" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Meu Perfil</a>
+            </li>
+            <hr class="border-secondary opacity-25">
+            <li><a routerLink="/dashboard-sindico" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Síndico</a>
+            </li>
+            <li><a (click)="logout()" class="text-danger"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+        </ul>
+    </nav>
+</div>
+
+<nav class="navbar-wrapper fixed-top">
+    <div class="navbar-pill d-flex justify-content-between align-items-center px-5">
+
+        <div class="nav-trigger" (click)="toggleMenu()">
+            <i class="bi bi-list fs-2 text-white"></i>
+            <span class="menu-label">MENU</span>
+        </div>
+
+        <div class="nav-logo">
+            <a routerLink="/">
+                <img src="assets/imagem/LogoComNome.png" alt="LAR Connect" class="logo-img">
+            </a>
+        </div>
+
+        <div class="nav-actions d-none d-md-flex align-items-center gap-4">
+            <div class="search-bar px-3">
+                <i class="bi bi-search text-white opacity-50"></i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <a routerLink="/minha-conta" class="account-link">Minha Conta</a>
+        </div>
+    </div>
+</nav>
