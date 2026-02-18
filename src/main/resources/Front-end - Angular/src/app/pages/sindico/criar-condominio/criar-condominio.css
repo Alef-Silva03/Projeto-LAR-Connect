@@ -1,0 +1,86 @@
+.cadastro-container {
+    padding-top: 140px;
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+
+.glass-form-card {
+    width: 95%;
+    max-width: 650px;
+    background: rgba(13, 27, 42, 0.85);
+    backdrop-filter: blur(25px);
+    border-radius: 40px;
+    padding: 60px;
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+}
+
+.badge-step {
+    color: #00B4D8;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Inputs em Formato de Pílula Neon */
+.pill-input-group {
+    display: flex;
+    align-items: center;
+    background: rgba(65, 90, 119, 0.2);
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    border-radius: 50px;
+    transition: 0.3s ease;
+}
+
+.pill-input-group:focus-within {
+    border-color: #00B4D8;
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+}
+
+.pill-input-group input, .pill-textarea {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    width: 100%;
+    outline: none;
+}
+
+.pill-textarea {
+    background: rgba(65, 90, 119, 0.2);
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.label-neon {
+    color: #90E0EF;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 20px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.btn-neon-large {
+    background: #00B4D8;
+    color: #0D1B2A;
+    border: none;
+    padding: 18px 60px;
+    border-radius: 50px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(0, 180, 216, 0.4);
+    transition: 0.3s;
+}
+
+.btn-neon-large:hover {
+    background: #90E0EF;
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(0, 180, 216, 0.6);
+}

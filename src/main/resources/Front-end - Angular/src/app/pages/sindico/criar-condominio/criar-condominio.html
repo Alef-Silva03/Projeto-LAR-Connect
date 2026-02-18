@@ -1,0 +1,41 @@
+<article class="cadastro-container">
+    <div class="glass-form-card shadow-lg animate__animated animate__fadeIn">
+        <header class="text-center mb-5">
+            <span class="badge-step">CONFIGURAÇÃO INICIAL</span>
+            <h1 class="text-gradient">CRIAR CONDOMÍNIO</h1>
+            <p class="subtitulo">Cadastre as informações básicas para começar a gestão</p>
+        </header>
+
+        <form (submit)="salvarCondominio()">
+            <div class="mb-4">
+                <label class="label-neon">Nome do Condomínio</label>
+                <div class="pill-input-group">
+                    <i class="bi bi-building-fill ms-3 text-cyan"></i>
+                    <input type="text" name="nome" [(ngModel)]="dados.nome" 
+                           placeholder="Ex: Residencial Blue Horizon" required>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="label-neon">Endereço Completo</label>
+                <div class="pill-input-group">
+                    <i class="bi bi-geo-alt-fill ms-3 text-cyan"></i>
+                    <input type="text" name="endereco" [(ngModel)]="dados.endereco" 
+                           placeholder="Rua, Número, Bairro e Cidade" required>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <label class="label-neon">Descrição Adicional</label>
+                <textarea name="desc" [(ngModel)]="dados.descricao" rows="3"
+                          class="pill-textarea" placeholder="Informações extras para os moradores..."></textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn-neon-large">
+                    <i class="bi bi-check-circle-fill me-2"></i> FINALIZAR E CRIAR
+                </button>
+            </div>
+        </form>
+    </div>
+</article>
