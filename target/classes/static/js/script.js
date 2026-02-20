@@ -1,80 +1,64 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	// ===== DETECTAR QUAL PÁGINA ESTÁ ABERTA =====
-	const loginForm = document.getElementById("loginForm");
-	const cadastroForm = document.getElementById("cadastroForm");
-	const dashboardPage = document.getElementById("dashboardPage");
-
-	// ================= LOGIN =================
-	if (loginForm) {
-		loginForm.onsubmit = async (e) => {
-			e.preventDefault();
+    // ===== LOGIN =====
+    const loginForm = document.getElementById("loginForm");
+    if (loginForm) {
+        loginForm.onsubmit = async (e) => {
+            e.preventDefault();
 
 			try {
-				const payload = {
-					email: document.getElementById("email").value,
-					senha: document.getElementById("senha").value
-				};
+			    const payload = {
+			        email: document.getElementById("email").value,
+			        senha: document.getElementById("senha").value
+			    };
 
-				const res = await fetch("/api/auth/login", {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(payload)
-				});
+			    const res = await fetch("/api/auth/login", {
+			        method: "POST",
+			        headers: { "Content-Type": "application/json" },
+			        body: JSON.stringify(payload)
+			    });
 
-				if (!res.ok) {
-					throw new Error();
-				} else {
-					const usuario = await res.json();
-					localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+			    if (!res.ok) {
+			        throw new Error("Erro no login");
+			    }
 
-					localStorage.setItem("perfil", usuario.perfil);
-					localStorage.setItem("nome", usuario.nome);
-					localStorage.setItem("email", usuario.email);
-					localStorage.setItem("cpf", usuario.cpf);
-					localStorage.setItem("telefone", usuario.telefone);
-					localStorage.setItem("condominio", usuario.condominio);
+			    const usuario = await res.json();
 
-					const perfil = usuario.perfil;
-					const nome = usuario.nome;
-					const email = usuario.email;
-					const cpf = usuario.cpf;
+	            localStorage.setItem('usuario', JSON.stringify(usuario));
+	            localStorage.setItem("perfil", usuario.perfil);
+	            localStorage.setItem("nome", usuario.nome);
+	            localStorage.setItem("email", usuario.email);
+	            localStorage.setItem("cpf", usuario.cpf);
+	            localStorage.setItem("telefone", usuario.telefone);
+	            localStorage.setItem("condominio", usuario.condominio || "");
+				localStorage.setItem("apartamento", usuario.apartamento || "");
+				localStorage.setItem("cargo", usuario.cargo || "");
 
-					if (usuario.condominio == null) {
-						window.location.href = "/chat";
-					} else {
-						const usuario = await res.json();
-						localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+				// Depois de salvar no localStorage
+				console.log("User Data:", usuario);
+				console.log("Perfil:", usuario.perfil);
 
-						localStorage.setItem("perfil", usuario.perfil);
-						localStorage.setItem("nome", usuario.nome);
-						localStorage.setItem("email", usuario.email);
-						localStorage.setItem("cpf", usuario.cpf);
-						localStorage.setItem("telefone", usuario.telefone);
-						localStorage.setItem("condominio", usuario.condominio);
+	            if (usuario.perfil == "SINDICO" && !usuario.condominio) {
+	                window.location.href = "/sindico/criar_condominio";
+				} else if (usuario.perfil == "PROPRIETARIO" && !usuario.condominio || usuario.perfil == "INQUILINO" && !usuario.condominio || usuario.perfil == "FUNCIONARIO" && !usuario.condominio) {
+					window.location.href = "/inserir_condominio"
+				} else if (usuario.perfil == "SINDICO") {
+					window.location.href = "/sindico/dashboard-sindico";
+				} else if (usuario.perfil == "PROPRIETARIO") {
+					window.location.href = "/proprietario/dashboard-proprietario";
+				} else if (usuario.perfil == "INQUILINO") {
+					window.location.href = "/inquilino/dashboard-inquilino";
+	            } else if (usuario.perfil == "FUNCIONARIO") {
+	                window.location.href = "/funcionario/dashboard-funcionario";
+	            } else {
+					window.location.href = "/login";
+				}
 
-						const perfil = usuario.perfil;
-						const nome = usuario.nome;
-						const email = usuario.email;
-						const cpf = usuario.cpf;
-
-						if (usuario.condominio == null) {
-							window.location.href = "/chat";
-						} else {
-							window.location.href = "/cadastro";
-						}
-
-						console.log("User Data:");
-						console.log("Perfil:", perfil);
-						console.log("Nome:", nome);
-						console.log("Email:", email);
-						console.log("CPF:", cpf);
-					}
-			} 
-			}		catch {
-						alert("Login inválido");
-		}
-		}
+	        }	catch (error) {
+			    console.error("Erro detalhado:", error);
+			    alert(error.message || "Erro ao fazer login. Tente novamente.");
+			}
+	    }
 	}
 
 	
@@ -83,6 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Função para esconder o campo Apartamento caso queira simplificar o cadastro de FUNCIONARIO
 	
 	// Máscara para CPF
+	const cadastroForm = document.getElementById("cadastroForm");
+	if (cadastroForm){
 	const aplicarMascaraCPF = (value) => {
 	    return value
 	        .replace(/\D/g, '') 
@@ -92,8 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	        .replace(/(-\d{2})\d+?$/, '$1');
 	};
 
-	// Ouvintes de eventos para os campos
-	document.addEventListener('DOMContentLoaded', () => {
 	    const cpfInput = document.querySelector('input[name="cpf"]');
 
 	    if (cpfInput) {
@@ -101,26 +85,26 @@ document.addEventListener("DOMContentLoaded", () => {
 	            e.target.value = aplicarMascaraCPF(e.target.value);
 	        });
 	    }
-	
-	});
+	};
 
 	// ================= DASHBOARD =================
-	if (dashboardPage) {
-
-		const PERFIL = localStorage.getItem("perfil");
-		const NOME = localStorage.getItem("nomeUsuario");
-
-		if (!PERFIL) {
-			window.location.href = "login.html";
-			return;
-		}
-
-		configurarInterface(PERFIL, NOME);
-		carregarDadosServidor();
-	}
-
-	document.getElementById('nomeDoUsuario').innerText = NOME;
-});
+	    const dashboardPage = document.getElementById("dashboard");
+	    if (dashboardPage) {
+	        const nome = localStorage.getItem("nome");
+	        const perfil = localStorage.getItem("perfil");
+	        
+	        if (!nome || !perfil) {
+	            window.location.href = "/login";
+	            return;
+	        }
+	        
+	        // Update the welcome message
+	        const nomeElement = document.getElementById('nomeDoUsuario');
+	        if (nomeElement) {
+	            nomeElement.innerText = nome;
+	        }
+	    }
+	});
 
 
 // ================= INTERFACE =================
