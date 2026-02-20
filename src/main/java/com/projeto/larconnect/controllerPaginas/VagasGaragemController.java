@@ -5,6 +5,7 @@
 
 package com.projeto.larconnect.controllerPaginas;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class VagasGaragemController {
 
     @GetMapping("/vagas_garagem")
-    public String vagasGaragem() {
-        return "vagas_garagem";
-    }
+	public String redirecionar(Authentication auth) {
+	    if (auth != null) {
+	    	return "/vagas_garagem";
+	    } else {
+	        return "redirect:/login";
+	    }
+	}
 }

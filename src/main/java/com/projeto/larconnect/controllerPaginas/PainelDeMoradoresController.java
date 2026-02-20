@@ -5,6 +5,7 @@
 
 package com.projeto.larconnect.controllerPaginas;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PainelDeMoradoresController {
 
     @GetMapping("/painel_de_moradores")
-    public String painelDeMoradores() {
-        return "painel_de_moradores";
-    }
+	public String redirecionar(Authentication auth) {
+	    if (auth != null) {
+	    	return "/painel_de_moradores";
+	    } else {
+	        return "redirect:/login";
+	    }
+	}
 }

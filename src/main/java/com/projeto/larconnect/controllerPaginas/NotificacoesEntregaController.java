@@ -5,6 +5,7 @@
 
 package com.projeto.larconnect.controllerPaginas;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class NotificacoesEntregaController {
 
     @GetMapping("/notificacoes_entrega")
-    public String notificacoesEntrega() {
-        return "notificacoes_entrega";
-    }
+	public String redirecionar(Authentication auth) {
+	    if (auth != null) {
+	    	return "/notificacoes_entrega";
+	    } else {
+	        return "redirect:/login";
+	    }
+	}
 }

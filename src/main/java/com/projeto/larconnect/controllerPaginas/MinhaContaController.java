@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MinhaContaController {
 
 	@GetMapping("/minha_conta")
-	public String redirecionarParaMinhaConta(Authentication auth) {
+	public String redirecionar(Authentication auth) {
 	    if (auth != null) {
 	    	return "/minha_conta";
 	    } else {

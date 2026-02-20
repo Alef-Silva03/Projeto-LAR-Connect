@@ -3,6 +3,13 @@
 package com.projeto.larconnect.model;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +35,7 @@ public class Usuario {										//Cria a classe Usuario
 	private String senha;
 	private String cpf;
 	private String telefone;
-	private Perfil perfil;
+	private String perfil;
 
 	@Column(nullable = true)	
 	private String condominio;
@@ -90,11 +97,16 @@ public class Usuario {										//Cria a classe Usuario
 		this.telefone = telefone;
 	}
 
-	public Perfil getPerfil() {
-		return perfil;
+	public String getPerfil() {
+	    return perfil;
 	}
 
-	public void setPerfil(Perfil perfil) {
+	// Método específico para Spring Security
+	/*public String getAuthority() {
+	    return "ROLE_" + perfil.name(); // Adiciona o prefixo ROLE_
+	}*/
+
+	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
 
@@ -121,5 +133,4 @@ public class Usuario {										//Cria a classe Usuario
 	public void setTokenExpiration(LocalDateTime tokenExpiration) {
 		this.tokenExpiration = tokenExpiration;
 	}
-
 }

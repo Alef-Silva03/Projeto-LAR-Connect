@@ -33,7 +33,7 @@ a, h6, h5, h4, h3, h2, h1, p {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
-textarea, option{
+input, option{
 	color: black;
 }
 
@@ -854,7 +854,9 @@ E LISTA DE VAGAS ===== */
 
 /* ===== PÁGINA DE ENVIO DE MENSAGENS AO SÍNDICO, 
 PÁGINA DE ENVIO DE COMUNICADOS AOS MORADORES E
-PÁGINA DE POSTAGEM DE ANÚNCIO DE VENDA OU ALUGUEL DE IMÓVEL ===== */
+PÁGINA DE POSTAGEM DE ANÚNCIO DE VENDA OU ALUGUEL DE IMÓVEL 
+PÁGINA DE CRIAÇÃO DE CONDOMÍNIO
+PÁGINA DE INSCRIÇÃO EM CONDOMÍNIO ===== */
 
 .pagina-form article{
     display: flex;
@@ -918,6 +920,7 @@ PÁGINA DE POSTAGEM DE ANÚNCIO DE VENDA OU ALUGUEL DE IMÓVEL ===== */
     border-radius: 8px;
     resize: none;
     padding: 12px;
+    margin: 0 15px;
 }
 
 .pagina-form article form .texto-msg {
@@ -948,6 +951,13 @@ PÁGINA DE POSTAGEM DE ANÚNCIO DE VENDA OU ALUGUEL DE IMÓVEL ===== */
     transition-duration: 0.3s;
 }
 
+.pagina-form form {
+	gap: 20px;
+}
+
+.pagina-form form input {
+	flex-shrink: 1;
+}
 
 /* ===== PAINEL DE COMUNICADOS ===== */
 

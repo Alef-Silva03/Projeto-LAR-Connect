@@ -10,12 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class EnviarNotificacaoEntregaController {
+public class CriarCondominioController {
 
-    @GetMapping("/enviar_notificacao_entrega")
+	@GetMapping("/criar_condominio")
 	public String redirecionar(Authentication auth) {
 	    if (auth != null) {
-	    	return "/enviar_notificacao_entrega";
+	    	return "/criar_condominio";
 	    } else {
 	        return "redirect:/login";
 	    }

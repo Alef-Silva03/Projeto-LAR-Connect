@@ -22,20 +22,59 @@ document.addEventListener("DOMContentLoaded", () => {
 					body: JSON.stringify(payload)
 				});
 
-				if (!res.ok) throw new Error();
+				if (!res.ok) {
+					throw new Error();
+				} else {
+					const usuario = await res.json();
+					localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
 
-				const user = await res.json();
+					localStorage.setItem("perfil", usuario.perfil);
+					localStorage.setItem("nome", usuario.nome);
+					localStorage.setItem("email", usuario.email);
+					localStorage.setItem("cpf", usuario.cpf);
+					localStorage.setItem("telefone", usuario.telefone);
+					localStorage.setItem("condominio", usuario.condominio);
 
-				localStorage.setItem("perfil", user.perfil);
-				localStorage.setItem("nomeUsuario", user.nome);
+					const perfil = usuario.perfil;
+					const nome = usuario.nome;
+					const email = usuario.email;
+					const cpf = usuario.cpf;
 
-				window.location.href = "/dashboard-sindico.html";
-				
+					if (usuario.condominio == null) {
+						window.location.href = "/chat";
+					} else {
+						const usuario = await res.json();
+						localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
 
-			} catch {
-				alert("Login inválido");
-			}
-		};
+						localStorage.setItem("perfil", usuario.perfil);
+						localStorage.setItem("nome", usuario.nome);
+						localStorage.setItem("email", usuario.email);
+						localStorage.setItem("cpf", usuario.cpf);
+						localStorage.setItem("telefone", usuario.telefone);
+						localStorage.setItem("condominio", usuario.condominio);
+
+						const perfil = usuario.perfil;
+						const nome = usuario.nome;
+						const email = usuario.email;
+						const cpf = usuario.cpf;
+
+						if (usuario.condominio == null) {
+							window.location.href = "/chat";
+						} else {
+							window.location.href = "/cadastro";
+						}
+
+						console.log("User Data:");
+						console.log("Perfil:", perfil);
+						console.log("Nome:", nome);
+						console.log("Email:", email);
+						console.log("CPF:", cpf);
+					}
+			} 
+			}		catch {
+						alert("Login inválido");
+		}
+		}
 	}
 
 	
@@ -62,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	            e.target.value = aplicarMascaraCPF(e.target.value);
 	        });
 	    }
+	
 	});
 
 	// ================= DASHBOARD =================

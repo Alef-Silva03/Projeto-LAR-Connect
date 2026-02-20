@@ -1,11 +1,12 @@
 // Este arquivo diz para que página o usuário será redirecionado após fazer login.
 
-package com.projeto.larconnect.config;
+/*package com.projeto.larconnect.config;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +17,7 @@ import java.util.Set;
 @Component
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
-    @Override
+    /*@Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         
@@ -34,4 +35,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
             response.sendRedirect("/login");
         }
     }
-}
+    
+
+}*/

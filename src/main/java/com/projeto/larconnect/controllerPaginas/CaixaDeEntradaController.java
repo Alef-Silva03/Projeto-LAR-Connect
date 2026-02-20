@@ -5,6 +5,7 @@
 
 package com.projeto.larconnect.controllerPaginas;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CaixaDeEntradaController {
 
     @GetMapping("/caixa_de_entrada")
-    public String caixaDeEntrada() {
-        return "caixa_de_entrada";
-    }
+	public String redirecionar(Authentication auth) {
+	    if (auth != null) {
+	    	return "/caixa_de_entrada";
+	    } else {
+	        return "redirect:/login";
+	    }
+	}
 }

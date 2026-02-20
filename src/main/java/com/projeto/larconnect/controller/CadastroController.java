@@ -2,7 +2,6 @@ package com.projeto.larconnect.controller;
 
 import com.projeto.larconnect.model.Funcionario;
 import com.projeto.larconnect.model.Morador;
-import com.projeto.larconnect.model.Perfil;
 import com.projeto.larconnect.model.Usuario;
 import com.projeto.larconnect.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +24,21 @@ public class CadastroController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-
+    // Exibe a página cadastro.html quando o usuário acessa a URL /cadastro
     @GetMapping("/cadastro")
     public String exibirCadastro() {
         return "cadastro";
     }
 
+    //Ativa o método salvarNovoUsuario quando o usuário acessa a URL "/usuarios/salvar" ao clicar no botão do formulário de cadastro
     @PostMapping("/usuarios/salvar")
     public String salvarNovoUsuario(HttpServletRequest request, 
-                                   @RequestParam("perfil") Perfil perfil,
+                                   @RequestParam("perfil") String perfil,
                                    RedirectAttributes attr) {
         try {
             Usuario usuario;
 
-            if ("INQUILINO".equals(perfil.name()) || "PROPRIETARIO".equals(perfil.name()) || "SINDICO".equals(perfil.name())) {
+            if (perfil == "INQUILINO" || perfil == "PROPRIETARIO" || perfil == "SINDICO") {
                 usuario = new Morador();
             } else {
                 usuario = new Funcionario();

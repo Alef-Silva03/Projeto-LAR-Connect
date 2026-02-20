@@ -1,20 +1,20 @@
 /* Container Invisível para não criar fundo azul indesejado */
 .navbar-wrapper {
     background: transparent !important;
-    padding: 25px 0;
+    padding: 15px 0;
     display: flex;
     justify-content: center;
 }
 
 /* Navbar Pílula Estilo Clássico */
 .navbar-pill {
-    background: rgba(13, 27, 42, 0.9);
+    background: #1B263B;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 80px;
     width: 95%;
-    max-width: 1350px;
-    height: 75px;
+    max-width: 1550px;
+    height: 85px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     z-index: 999;
 }
@@ -73,7 +73,13 @@
     padding-left: 10px;
 }
 
+.botao-icon {
+    background-color: transparent;
+    border-width: 0px;
+}
+
 /* Logo e Tipografia */
 .brand-title span { color: #00B4D8; font-weight: 300; }
-.logo-img { height: 45px; }
+.logo-img { height: 75px; }
 .nav-trigger { cursor: pointer; color: white; display: flex; align-items: center; }
+.account-link { font-size: 1.2rem; }
