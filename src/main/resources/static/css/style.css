@@ -120,6 +120,16 @@ nav .botao-icon {
     border-width: 0px;
 }
 
+nav .botao-logout{
+	background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
 @media (max-width: 650px) {
     nav{
         padding: 0px 10px;
@@ -713,7 +723,6 @@ E LISTA DE VAGAS ===== */
     font-size: 14px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-
 }
 
 .painel-e-vagas button:hover{

@@ -4,6 +4,10 @@ import com.projeto.larconnect.dto.LoginDTO;
 import com.projeto.larconnect.dto.LoginResponseDTO;
 import com.projeto.larconnect.model.Usuario;
 import com.projeto.larconnect.repository.UsuarioRepository;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +54,7 @@ public class AuthController {
             response.setEmail(usuario.getEmail());
             response.setCpf(usuario.getCpf());
             response.setTelefone(usuario.getTelefone());
-            response.setPerfil(usuario.getPerfil()); // Vai retornar "PROPRIETARIO", etc.
+            response.setPerfil(usuario.getPerfil());
             response.setCondominio(usuario.getCondominio());
             
             return ResponseEntity.ok(response);
@@ -82,5 +86,18 @@ public class AuthController {
                 }
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autenticado");
+    }
+    
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        SecurityContextHolder.clearContext();
+        
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Logout realizado com sucesso");
+        return ResponseEntity.ok(response);
     }
 }

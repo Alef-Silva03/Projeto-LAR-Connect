@@ -1,5 +1,7 @@
 package com.projeto.larconnect.dto;
 
+import com.projeto.larconnect.model.Condominio;
+
 public class LoginResponseDTO {
     private Long id;
     private String nome;
@@ -7,14 +9,14 @@ public class LoginResponseDTO {
     private String cpf;
     private String telefone;
     private String perfil;
-    private String condominio;
+    private Condominio condominio;
 
     // Default constructor
     public LoginResponseDTO() {}
 
     // Constructor with all fields
     public LoginResponseDTO(Long id, String nome, String email, String cpf, 
-                           String telefone, String perfil, String condominio) {
+                           String telefone, String perfil, Condominio condominio) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -43,6 +45,6 @@ public class LoginResponseDTO {
     public String getPerfil() { return perfil; }
     public void setPerfil(String perfil) { this.perfil = perfil; }
 
-    public String getCondominio() { return condominio; }
-    public void setCondominio(String condominio) { this.condominio = condominio; }
+    public Condominio getCondominio() { return condominio; }
+    public void setCondominio(Condominio condominio) { this.condominio = condominio; }
 }

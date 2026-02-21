@@ -1,16 +1,17 @@
 package com.projeto.larconnect.controller;
 
-import com.projeto.larconnect.model.Funcionario;
-import com.projeto.larconnect.model.Morador;
 import com.projeto.larconnect.model.Usuario;
 import com.projeto.larconnect.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,19 +39,19 @@ public class CadastroController {
         try {
             Usuario usuario;
 
-            if (perfil == "INQUILINO" || perfil == "PROPRIETARIO" || perfil == "SINDICO") {
-                usuario = new Morador();
-            } else {
-                usuario = new Funcionario();
-            }
+            // CORREÇÃO: SÍNDICO É UM MORADOR? NÃO! SÍNDICO É UM TIPO DE PERFIL, NÃO UMA CLASSE
+            // O correto é sempre criar Usuario, e o perfil define o papel
+            usuario = new Usuario(); // Crie sempre um Usuario base
+            
+            // OU, se você quer manter a separação Morador/Funcionário:
 
-            // Dados comuns a ambos (Morador e Funcionário)
+            // Dados comuns
             usuario.setNome(request.getParameter("nome"));
             usuario.setEmail(request.getParameter("email"));
             usuario.setSenha(passwordEncoder.encode(request.getParameter("senha")));
             usuario.setCpf(request.getParameter("cpf"));
             usuario.setTelefone(request.getParameter("telefone"));
-            usuario.setPerfil(perfil);
+            usuario.setPerfil(perfil); // O perfil é apenas uma string, não determina a classe
 
             usuarioRepository.save(usuario);
 
@@ -61,5 +62,19 @@ public class CadastroController {
             attr.addFlashAttribute("erro", "Erro ao cadastrar: " + e.getMessage());
             return "redirect:/cadastro";
         }
-    }
+ 
+        }
+        @Bean
+        public WebMvcConfigurer corsConfigurer() {
+            return new WebMvcConfigurer() {
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+                    registry.addMapping("/api/**")
+                            .allowedOrigins("http://localhost:8080") // ou sua origem
+                            .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+                            .allowedHeaders("*")
+                            .allowCredentials(true);
+	        }
+	    };
+	};
 }

@@ -17,28 +17,33 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity														//Informa que a classe criada aqui é uma entidade, ou seja, um tipo de usuário
-@Table(name = "usuario")									//Informa que a classe aqui será transformada em uma tabela do banco de dados chamada "usuario"
-@Inheritance(strategy = InheritanceType.JOINED)				//Informa que outras classes podem herdar os atributos e métodos desta classe por meio de união de colunas
-public class Usuario {										//Cria a classe Usuario
-	@Id														//Informa que a chave principal desta classe é um Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)		//Ativa a geração automática de Id
-	private Long id;										//Cria o atributo id. Abaixo, são definidos os outros atibutos desta classe que todos os objetos desta classe terão, como nome, email, senha, etc.
-	private String nome;
-
-	@Column(unique = true, nullable = false)				//Informa que o atributo e-mail, declarado abaixo, deve ser único (não pode haver um e-mail igual já salvo no banco de dados) e não pode ser vazio.
-	private String email;
-
-	@Column(nullable = false)								//Informa que o atributo senha abaixo não pode ser vazio. Todos os objetos Usuario criados devem ter uma senha.
-	private String senha;
-	private String cpf;
-	private String telefone;
-	private String perfil;
-
-	@Column(nullable = true)	
-	private String condominio;
+@Table(name = "usuario")
+public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String nome;
+    private String email;
+    private String senha;
+    private String cpf;
+    private String telefone;
+    private String perfil; // SINDICO, PROPRIETARIO, INQUILINO, FUNCIONARIO
+    
+    // Campos específicos de morador
+    private String apartamento;
+    
+    // Campos específicos de funcionário
+    private String cargo;
+    
+    @ManyToOne
+    @JoinColumn(name = "idCondominio", referencedColumnName = "id")
+    private Condominio condominio;
 	
 	@Column(name = "reset_token")							//Cria um atributo que é um token que será baixado no PC do usuário quando ele logar. Será usado para checar o tempo todo se o usuário está logado.
 	private String resetToken;
@@ -101,20 +106,15 @@ public class Usuario {										//Cria a classe Usuario
 	    return perfil;
 	}
 
-	// Método específico para Spring Security
-	/*public String getAuthority() {
-	    return "ROLE_" + perfil.name(); // Adiciona o prefixo ROLE_
-	}*/
-
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
 
-	public String getCondominio() {
+	public Condominio getCondominio() {
 		return condominio;
 	}
 
-	public void setCondominio(String condominio) {
+	public void setCondominio(Condominio condominio) {
 		this.condominio = condominio;
 	}
 	

@@ -15,6 +15,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -48,15 +50,21 @@ public class SecurityConfig {
         http
             .authenticationProvider(authenticationProvider())
             .csrf(csrf -> csrf
-                .ignoringRequestMatchers("/h2-console/**", "/usuarios/salvar", "/api/auth/**")
+                .ignoringRequestMatchers("/h2-console/**", "/usuarios/salvar", "/api/auth/**", "/sindico/api/**", "/api/**")
             )
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/", "/login", "/cadastro", "/usuarios/salvar", "/nova_senha", "/minha_conta").permitAll()
+                
+                // PERMITIR ACESSO AOS ENDPOINTS DE USUÁRIO PARA USUÁRIOS AUTENTICADOS
+                .requestMatchers("/api/usuarios/**").authenticated()
+                
                 // Usando hasRole (que já espera o prefixo ROLE_)
                 .requestMatchers("/proprietario/**").hasRole("PROPRIETARIO")
                 .requestMatchers("/sindico/**").hasRole("SINDICO")
+                .requestMatchers("/api/condominio/**").hasRole("SINDICO")
+                .requestMatchers("/sindico/api/**").hasRole("SINDICO")
                 .requestMatchers("/inquilino/**").hasRole("INQUILINO")
                 .requestMatchers("/funcionario/**").hasRole("FUNCIONARIO")
                 .anyRequest().authenticated()
@@ -64,34 +72,29 @@ public class SecurityConfig {
             .exceptionHandling(exception -> exception
                 .accessDeniedHandler((request, response, accessDeniedException) -> {
                     logger.error("Acesso negado: {}", accessDeniedException.getMessage());
-                    response.sendRedirect("/login?error=acesso-negado");
+                    
+                    // Verificar se é uma requisição de API
+                    if (request.getRequestURI().startsWith("/api/") || request.getRequestURI().startsWith("/sindico/api/")) {
+                        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                        response.setContentType("application/json");
+                        response.getWriter().write("{\"error\":\"Acesso negado\",\"message\":\"Você não tem permissão para acessar este recurso\"}");
+                    } else {
+                        response.sendRedirect("/login?error=acesso-negado");
+                    }
                 })
                 .authenticationEntryPoint((request, response, authException) -> {
                     logger.error("Erro de autenticação: {}", authException.getMessage());
-                    response.sendRedirect("/login?error=nao-autenticado");
+                    
+                    // Verificar se é uma requisição de API
+                    if (request.getRequestURI().startsWith("/api/") || request.getRequestURI().startsWith("/sindico/api/")) {
+                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                        response.setContentType("application/json");
+                        response.getWriter().write("{\"error\":\"Não autenticado\",\"message\":\"Faça login para acessar este recurso\"}");
+                    } else {
+                        response.sendRedirect("/login?error=nao-autenticado");
+                    }
                 })
             )
-            
-            // Trocamos o sistema de formulário de login por uma API REST, então o código abaixo não é mais necessário e causaria conflito
-            /*
-            .formLogin(form -> form
-                .loginPage("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .successHandler(successHandler)
-                .failureUrl("/login?error=true")
-                .permitAll()
-            )
-            */
-            
-            .logout(logout -> logout
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/login?logout=true")
-                    .deleteCookies("JSESSIONID")
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .permitAll()
-                )
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
             
             return http.build();

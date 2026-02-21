@@ -5,47 +5,42 @@
 
 package com.projeto.larconnect.controller;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import com.projeto.larconnect.model.Morador;
 import com.projeto.larconnect.model.Usuario;
 
 @Controller
 public class SindicoController {
-    public void mostrarUsuario() {
-
-    }
 
     @GetMapping("/sindico")
     public String raizSindico() {
-        org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = auth.getPrincipal();
-        if (principal instanceof Usuario) {
-            Usuario usuario = (Usuario) principal;
-
-            if (usuario.getCondominio() != null) {
-                return "redirect:/sindico/dashboard-sindico";
-            } else {
-                return "redirect:/sindico/criar_condominio";
-            }
+        Usuario usuario = getCurrentUser();
+        
+        if (usuario == null) {
+            return "redirect:/login";
         }
-		return "redirect:/login";
+        
+        return usuario.getCondominio() != null 
+            ? "redirect:/sindico/dashboard-sindico" 
+            : "redirect:/sindico/criar_condominio";
     }
 
     @GetMapping("/sindico/dashboard-sindico")
     public String dashboardSindico() {
-        // Retorna a view Thymeleaf localizada em templates/sindico/dashboard-sindico.html
         return "sindico/dashboard-sindico";
     }
     
     @GetMapping("/sindico/criar_condominio")
     public String criarCondominio() {
-        // Retorna a view Thymeleaf localizada em templates/sindico/dashboard-sindico.html
         return "sindico/criar_condominio";
+    }
+    
+    private Usuario getCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = auth.getPrincipal();
+        return principal instanceof Usuario ? (Usuario) principal : null;
     }
 }
