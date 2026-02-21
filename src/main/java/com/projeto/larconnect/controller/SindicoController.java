@@ -19,10 +19,9 @@ public class SindicoController {
     public String raizSindico() {
         Usuario usuario = getCurrentUser();
         
-        if (usuario == null) {
+        if (usuario == null || !usuario.getPerfil().equals("SINDICO")) {
             return "redirect:/login";
         }
-        
         return usuario.getCondominio() != null 
             ? "redirect:/sindico/dashboard-sindico" 
             : "redirect:/sindico/criar_condominio";
@@ -36,6 +35,16 @@ public class SindicoController {
     @GetMapping("/sindico/criar_condominio")
     public String criarCondominio() {
         return "sindico/criar_condominio";
+    }
+    
+    @GetMapping("/sindico/painel_de_moradores")
+    public String painelDeMoradores() {
+        return "sindico/painel_de_moradores";
+    }
+    
+    @GetMapping("/sindico/enviar_comunicados")
+    public String enviarComunicados() {
+        return "sindico/enviar_comunicados";
     }
     
     private Usuario getCurrentUser() {

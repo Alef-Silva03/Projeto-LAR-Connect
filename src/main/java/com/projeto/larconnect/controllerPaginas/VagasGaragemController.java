@@ -15,7 +15,7 @@ public class VagasGaragemController {
     @GetMapping("/vagas_garagem")
 	public String redirecionar(Authentication auth) {
 	    if (auth != null) {
-	    	return "/vagas_garagem";
+	    	return "vagas_garagem";
 	    } else {
 	        return "redirect:/login";
 	    }

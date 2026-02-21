@@ -15,7 +15,7 @@ public class PainelDeComunicadosController {
     @GetMapping("/painel_comunicados")
 	public String redirecionar(Authentication auth) {
 	    if (auth != null) {
-	    	return "/painel_comunicados";
+	    	return "painel_comunicados";
 	    } else {
 	        return "redirect:/login";
 	    }

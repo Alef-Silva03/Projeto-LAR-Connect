@@ -15,7 +15,7 @@ public class MinhaContaController {
 	@GetMapping("/minha_conta")
 	public String redirecionar(Authentication auth) {
 	    if (auth != null) {
-	    	return "/minha_conta";
+	    	return "minha_conta";
 	    } else {
 	        return "redirect:/login";
 	    }

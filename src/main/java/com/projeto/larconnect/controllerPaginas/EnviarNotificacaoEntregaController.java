@@ -15,7 +15,7 @@ public class EnviarNotificacaoEntregaController {
     @GetMapping("/enviar_notificacao_entrega")
 	public String redirecionar(Authentication auth) {
 	    if (auth != null) {
-	    	return "/enviar_notificacao_entrega";
+	    	return "enviar_notificacao_entrega";
 	    } else {
 	        return "redirect:/login";
 	    }

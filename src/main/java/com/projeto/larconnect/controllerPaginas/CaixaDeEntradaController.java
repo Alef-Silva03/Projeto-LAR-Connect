@@ -15,7 +15,7 @@ public class CaixaDeEntradaController {
     @GetMapping("/caixa_de_entrada")
 	public String redirecionar(Authentication auth) {
 	    if (auth != null) {
-	    	return "/caixa_de_entrada";
+	    	return "caixa_de_entrada";
 	    } else {
 	        return "redirect:/login";
 	    }

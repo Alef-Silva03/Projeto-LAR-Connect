@@ -15,7 +15,7 @@ public class EnviarMensagensController {
     @GetMapping("/enviar_mensagens")
 	public String redirecionar(Authentication auth) {
 	    if (auth != null) {
-	    	return "/enviar_mensagens";
+	    	return "enviar_mensagens";
 	    } else {
 	        return "redirect:/login";
 	    }

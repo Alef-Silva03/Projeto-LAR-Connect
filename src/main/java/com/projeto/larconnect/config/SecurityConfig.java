@@ -72,27 +72,7 @@ public class SecurityConfig {
             .exceptionHandling(exception -> exception
                 .accessDeniedHandler((request, response, accessDeniedException) -> {
                     logger.error("Acesso negado: {}", accessDeniedException.getMessage());
-                    
-                    // Verificar se é uma requisição de API
-                    if (request.getRequestURI().startsWith("/api/") || request.getRequestURI().startsWith("/sindico/api/")) {
-                        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-                        response.setContentType("application/json");
-                        response.getWriter().write("{\"error\":\"Acesso negado\",\"message\":\"Você não tem permissão para acessar este recurso\"}");
-                    } else {
-                        response.sendRedirect("/login?error=acesso-negado");
-                    }
-                })
-                .authenticationEntryPoint((request, response, authException) -> {
-                    logger.error("Erro de autenticação: {}", authException.getMessage());
-                    
-                    // Verificar se é uma requisição de API
-                    if (request.getRequestURI().startsWith("/api/") || request.getRequestURI().startsWith("/sindico/api/")) {
-                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                        response.setContentType("application/json");
-                        response.getWriter().write("{\"error\":\"Não autenticado\",\"message\":\"Faça login para acessar este recurso\"}");
-                    } else {
-                        response.sendRedirect("/login?error=nao-autenticado");
-                    }
+                    response.sendError(HttpServletResponse.SC_FORBIDDEN, "Acesso negado: " + accessDeniedException.getMessage());
                 })
             )
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
