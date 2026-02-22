@@ -10,11 +10,19 @@ import { DashboardSindico } from './pages/sindico/dashboard-sindico/dashboard-si
 import { EnviarComunicados } from './pages/sindico/enviar-comunicados/enviar-comunicados';
 import { PainelMoradores } from './pages/sindico/painel-moradores/painel-moradores';
 import { CriarCondominio } from './pages/sindico/criar-condominio/criar-condominio';
+import { ReservaEspacos } from './pages/sindico/reserva-espacos/reserva-espacos';
+import { CriarEnquete } from './pages/sindico/criar-enquete/criar-enquete';
+import { AnunciosImoveis } from './pages/sindico/anuncios-imoveis/anuncios-imoveis';
+import { EnviarMensagens } from './pages/sindico/enviar-mensagens/enviar-mensagens';
+import { CaixaEntrada } from './pages/sindico/caixa-entrada/caixa-entrada';
+import { DashboardFuncionario } from './pages/funcionario/dashboard-funcionario/dashboard-funcionario';
+import { GestaoEncomendas } from './pages/funcionario/gestao-encomendas/gestao-encomendas';
 
 export const routes: Routes = [
   // Rotas Públicas
   { path: '', component: Home },
   { path: 'login', component: Login },
+  
   { path: 'cadastro', component: Cadastro },
   
   // Rotas de Usuário (Acesso Livre por enquanto)
@@ -30,12 +38,20 @@ export const routes: Routes = [
   { path: 'enviar-comunicados', component: EnviarComunicados },
   { path: 'painel-moradores', component: PainelMoradores },
   { path: 'criar-condominio', component: CriarCondominio },
+  { path: 'reserva-espacos', component: ReservaEspacos },
+  { path: 'criar-enquete', component: CriarEnquete },
+  { path: 'anuncios-imoveis', component: AnunciosImoveis },
+  { path: 'enviar-mensagens', component: EnviarMensagens },
+  { path: 'caixa-entrada', component: CaixaEntrada },
+  
+  { path: 'dashboard-funcionario', component: DashboardFuncionario },
+  { path: 'gestao-encomendas', component: GestaoEncomendas },
 
   // Redirecionamento Final (DEVE SER A ÚLTIMA LINHA)
   { path: '**', redirectTo: '' }
 ];
 
-  /*----------------- Rotas Protegidas (Exigem o perfil no localStorage via AuthGuard)
+  /*-------- Rotas Protegidas (Exigem o perfil no localStorage via AuthGuard)
   { 
     path: 'minha-conta', 
     component: MinhaConta, 
@@ -56,4 +72,4 @@ export const routes: Routes = [
   },
 
   // Redirecionamento para rotas inexistentes (Sempre por último)
-  { path: '**', redirectTo: '' } ------------*/
+  { path: '**', redirectTo: '' } ---*/
