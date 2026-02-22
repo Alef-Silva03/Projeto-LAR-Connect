@@ -1,0 +1,71 @@
+<article class="portaria-container">
+    <div class="glass-main shadow-lg animate__animated animate__fadeIn">
+        <header class="d-flex justify-content-between align-items-center mb-5">
+            <div class="header-info">
+                <span class="badge-neon">CONTROLE DE PORTARIA</span>
+                <h1 class="text-gradient">OPERADOR: {{ nomeFuncionario }}</h1>
+                <p class="subtitulo">Monitoramento de acessos e entregas em tempo real</p>
+            </div>
+            <div class="relogio-digital">
+                <h2 class="text-cyan">{{ horaAtual }}</h2>
+                <span class="badge-status-ponto">PONTO ATIVO</span>
+            </div>
+        </header>
+
+        <section class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card-acao-portaria" (click)="abrirModalAcesso('visitante')">
+                    <div class="icon-circle bg-cyan">
+                        <i class="bi bi-person-plus-fill"></i>
+                    </div>
+                    <h3>Liberar Visitante</h3>
+                    <p>Cadastro rápido de entrada</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-acao-portaria" (click)="abrirModalAcesso('prestador')">
+                    <div class="icon-circle bg-purple">
+                        <i class="bi bi-tools"></i>
+                    </div>
+                    <h3>Prestador Serviço</h3>
+                    <p>Empresas e técnicos</p>
+                </div>
+            </div>
+            <div class="col-md-4" routerLink="/gestao-encomendas">
+                <div class="card-acao-portaria highlight-gold">
+                    <div class="icon-circle bg-gold">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                    <h3>Encomendas</h3>
+                    <p>{{ encomendasPendentes }} pacotes para retirar</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="monitor-acessos">
+            <h4 class="text-white mb-4"><i class="bi bi-clock-history me-2"></i>Últimos Movimentos</h4>
+            <div class="tabela-glass-scroll">
+                <table class="table-portaria">
+                    <thead>
+                        <tr>
+                            <th>Hora</th>
+                            <th>Nome/Identificação</th>
+                            <th>Tipo</th>
+                            <th>Destino</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let acesso of acessosRecentes" class="row-acesso">
+                            <td class="text-cyan">{{ acesso.hora }}</td>
+                            <td class="text-white fw-bold">{{ acesso.nome }}</td>
+                            <td><span class="badge-tipo">{{ acesso.tipo }}</span></td>
+                            <td>{{ acesso.unidade }}</td>
+                            <td><span class="status-dot" [ngClass]="acesso.status"></span> {{ acesso.status }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</article>
