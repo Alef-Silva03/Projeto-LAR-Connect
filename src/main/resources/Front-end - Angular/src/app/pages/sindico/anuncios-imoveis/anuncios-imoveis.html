@@ -1,0 +1,41 @@
+<article class="marketplace-container">
+    <div class="container py-5">
+        <header class="text-center mb-5 mt-5">
+            <span class="badge-neon">OPORTUNIDADES NO CONDOMÍNIO</span>
+            <h1 class="text-gradient display-4 fw-bold">VENDA E ALUGUEL</h1>
+            <p class="subtitulo">Encontre o seu novo lar ou invista em unidades exclusivas</p>
+        </header>
+
+        <div class="d-flex justify-content-center gap-3 mb-5">
+            <button class="btn-filter" [class.active]="filtro === 'todos'" (click)="filtrar('todos')">Todos</button>
+            <button class="btn-filter" [class.active]="filtro === 'venda'" (click)="filtrar('venda')">Venda</button>
+            <button class="btn-filter" [class.active]="filtro === 'aluguel'" (click)="filtrar('aluguel')">Aluguel</button>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4" *ngFor="let imovel of imoveisFiltrados">
+                <div class="card-imovel-glass">
+                    <div class="image-wrapper">
+                        <img [src]="imovel.imagem" [alt]="imovel.titulo" class="img-fluid">
+                        <span class="type-badge" [ngClass]="imovel.tipo">{{ imovel.tipo | uppercase }}</span>
+                    </div>
+                    
+                    <div class="p-4">
+                        <h3 class="h5 text-white mb-2">{{ imovel.titulo }}</h3>
+                        <p class="text-cyan fw-bold h4 mb-3">{{ imovel.preco }}</p>
+                        
+                        <div class="details-grid d-flex justify-content-between text-secondary-light mb-4">
+                            <span><i class="bi bi-door-open me-1"></i> {{ imovel.quartos }} Qts</span>
+                            <span><i class="bi bi-aspect-ratio me-1"></i> {{ imovel.area }}m²</span>
+                            <span><i class="bi bi-p-circle me-1"></i> {{ imovel.vagas }} Vagas</span>
+                        </div>
+
+                        <button class="btn-contato-neon w-100">
+                            <i class="bi bi-whatsapp me-2"></i> CONTATAR ANUNCIANTE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
