@@ -1,0 +1,44 @@
+<article class="comunicacao-container">
+    <div class="glass-card shadow-lg p-5 animate__animated animate__fadeIn">
+        <header class="text-center mb-5">
+            <span class="badge-neon">CENTRAL DE COMUNICAÇÃO</span>
+            <h1 class="text-gradient">ENVIAR MENSAGENS E DOCS</h1>
+            <p class="subtitulo">Envie comunicados, atas de reunião ou boletos para os moradores</p>
+        </header>
+
+        <form class="form-comunicacao">
+            <div class="mb-4">
+                <label class="label-neon">Enviar para:</label>
+                <div class="d-flex gap-3 flex-wrap">
+                    <button type="button" class="btn-pill-filter" [class.active]="destino === 'todos'" (click)="setDestino('todos')">Todos os Moradores</button>
+                    <button type="button" class="btn-pill-filter" [class.active]="destino === 'blocoA'" (click)="setDestino('blocoA')">Bloco A</button>
+                    <button type="button" class="btn-pill-filter" [class.active]="destino === 'blocoB'" (click)="setDestino('blocoB')">Bloco B</button>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="pill-input-group mb-3">
+                    <i class="bi bi-chat-left-dots ms-3 text-cyan"></i>
+                    <input type="text" placeholder="Assunto do comunicado..." class="form-input-pill">
+                </div>
+                <textarea class="pill-textarea w-100" rows="5" placeholder="Escreva aqui a sua mensagem importante..."></textarea>
+            </div>
+
+            <div class="mb-5">
+                <label class="label-neon">Anexar Documentos (PDF, Imagens)</label>
+                <div class="upload-dropzone" (click)="fileInput.click()">
+                    <input type="file" #fileInput hidden (change)="onFileSelected($event)">
+                    <i class="bi bi-cloud-arrow-up display-4 text-cyan"></i>
+                    <p class="mt-2" *ngIf="!arquivoNome">Clique ou arraste ficheiros para aqui</p>
+                    <p class="mt-2 text-success" *ngIf="arquivoNome"><strong>Selecionado:</strong> {{ arquivoNome }}</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="button" class="btn-neon-large w-100">
+                    <i class="bi bi-send-fill me-2"></i> DISPARAR COMUNICADO
+                </button>
+            </div>
+        </form>
+    </div>
+</article>
