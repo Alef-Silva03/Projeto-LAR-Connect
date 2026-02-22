@@ -1,0 +1,36 @@
+<article class="reservas-container">
+    <div class="glass-card shadow-lg p-5">
+        <header class="text-center mb-5">
+            <span class="badge-neon">GESTÃO DE ÁREAS COMUNS</span>
+            <h1 class="text-gradient">RESERVAR ESPAÇOS</h1>
+            <p class="subtitulo">Consulte a disponibilidade e gerencie as datas do seu condomínio</p>
+        </header>
+
+        <div class="date-picker-section mb-5 d-flex justify-content-center">
+            <div class="pill-input-group w-50">
+                <i class="bi bi-calendar-event ms-3 text-cyan"></i>
+                <input type="date" [(ngModel)]="dataSelecionada" (change)="verificarDisponibilidade()" class="form-input-pill">
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4" *ngFor="let espaco of espacos">
+                <div class="card-espaco-glass">
+                    <div class="icon-area">
+                        <i class="bi {{ espaco.icone }}"></i>
+                    </div>
+                    <h3 class="mt-3">{{ espaco.nome }}</h3>
+                    
+                    <div class="status-indicator-pill" [ngClass]="espaco.disponivel ? 'disponivel' : 'indisponivel'">
+                        <span class="led"></span>
+                        {{ espaco.disponivel ? 'Disponível' : 'Indisponível' }}
+                    </div>
+
+                    <button class="btn-reserva-neon mt-4" [disabled]="!espaco.disponivel">
+                        {{ espaco.disponivel ? 'RESERVAR AGORA' : 'INDISPONÍVEL' }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

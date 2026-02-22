@@ -1,0 +1,65 @@
+<article class="encomendas-page">
+    <div class="glass-container shadow-lg animate__animated animate__fadeIn">
+        
+        <header class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <button routerLink="/dashboard-funcionario" class="btn-back">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </button>
+                <h1 class="text-gradient mt-3">GESTÃO DE ENCOMENDAS</h1>
+            </div>
+            <div class="package-stats">
+                <span class="badge-neon">{{ encomendasPendentes.length }} PENDENTES</span>
+            </div>
+        </header>
+
+        <section class="card-registro-encomenda mb-5">
+            <h3 class="h5 text-white mb-4"><i class="bi bi-plus-circle me-2 text-cyan"></i>Nova Entrada</h3>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <input type="text" [(ngModel)]="novaEntrega.apto" placeholder="Apto (Ex: 101)" class="form-input-pill">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" [(ngModel)]="novaEntrega.bloco" placeholder="Bloco" class="form-input-pill">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" [(ngModel)]="novaEntrega.morador" placeholder="Nome do Morador" class="form-input-pill">
+                </div>
+                <div class="col-md-3">
+                    <button (click)="salvarEncomenda()" class="btn-neon-confirm w-100">
+                        NOTIFICAR MORADOR
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="lista-encomendas">
+            <h3 class="h5 text-white mb-4"><i class="bi bi-box-seam me-2 text-cyan"></i>Pacotes na Prateleira</h3>
+            
+            <div *ngIf="encomendasPendentes.length === 0" class="text-center py-5 text-secondary">
+                <i class="bi bi-check2-circle display-1"></i>
+                <p class="mt-3">Nenhuma encomenda pendente!</p>
+            </div>
+
+            <div *ngFor="let item of encomendasPendentes" class="item-encomenda-glass animate__animated animate__slideInUp">
+                <div class="d-flex align-items-center gap-4">
+                    <div class="package-icon">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5 class="m-0 text-white">{{ item.morador }}</h5>
+                            <span class="time-tag">{{ item.dataChegada }}</span>
+                        </div>
+                        <p class="text-cyan mb-0">Unidade: {{ item.apto }} - Bloco: {{ item.bloco }}</p>
+                    </div>
+                    <div class="actions">
+                        <button (click)="marcarComoEntregue(item)" class="btn-entregar-pill">
+                            BAIXAR ENTREGA
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>

@@ -1,0 +1,79 @@
+.inbox-container {
+    padding-top: 140px;
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+
+.glass-card {
+    width: 95%;
+    max-width: 1000px;
+    background: rgba(13, 27, 42, 0.8);
+    backdrop-filter: blur(25px);
+    border-radius: 40px;
+    border: 1px solid rgba(0, 180, 216, 0.15);
+}
+
+/* Item da Mensagem */
+.message-item-glass {
+    background: rgba(65, 90, 119, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 25px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.message-item-glass:hover {
+    transform: scale(1.02);
+    background: rgba(0, 180, 216, 0.08);
+    border-color: #00B4D8;
+}
+
+.message-item-glass.unread {
+    border-left: 4px solid #00B4D8;
+    background: rgba(0, 180, 216, 0.05);
+}
+
+/* Avatar e Tags */
+.user-avatar {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #00B4D8, #03045E);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+.apto-tag {
+    font-size: 0.75rem;
+    color: #90E0EF;
+    background: rgba(0, 180, 216, 0.15);
+    padding: 2px 8px;
+    border-radius: 8px;
+    margin-left: 10px;
+}
+
+/* Prioridades Neon */
+.badge-status {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+.badge-status.Urgente { color: #FF4D6D; border: 1px solid #FF4D6D; box-shadow: 0 0 10px rgba(255, 77, 109, 0.3); }
+.badge-status.Normal { color: #00B4D8; border: 1px solid #00B4D8; }
+
+.btn-action-view {
+    background: transparent;
+    border: none;
+    color: #00B4D8;
+    font-size: 1.2rem;
+}

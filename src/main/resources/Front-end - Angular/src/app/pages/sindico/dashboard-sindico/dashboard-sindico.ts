@@ -23,13 +23,13 @@ export class DashboardSindico implements OnInit {
   // Lista de todas as 11 funcionalidades conforme a referência
   acoesSindico: AcaoCard[] = [
     { titulo: 'Minha Conta', icone: 'bi-person-fill', rota: '/minha-conta' },
-    { titulo: 'Mensagens e Pedidos', icone: 'bi-envelope-fill', rota: '/caixa-de-entrada' },
-    { titulo: 'Enviar Mensagens e Docs', icone: 'bi-file-earmark-medical-fill', rota: '/enviar-documentos' },
+    { titulo: 'Mensagens e Pedidos', icone: 'bi-envelope-fill', rota: '/caixa-entrada' },
+    { titulo: 'Enviar Mensagens e Docs', icone: 'bi-file-earmark-medical-fill', rota: '/enviar-mensagens' },
     { titulo: 'Criar Enquete ou Votação', icone: 'bi-ui-checks', rota: '/enquete-votacao' },
     { titulo: 'Chat', icone: 'bi-chat-dots-fill', rota: '/chat' },
     { titulo: 'Postar Comunicado', icone: 'bi-megaphone-fill', rota: '/enviar-comunicados' },
     { titulo: 'Correspondências e Entregas', icone: 'bi-box-seam-fill', rota: '/notificacoes-entrega' },
-    { titulo: 'Anúncios de Venda e Aluguel', icone: 'bi-house-door-fill', rota: '/vaga-garagem' },
+    { titulo: 'Anúncios de Venda e Aluguel', icone: 'bi-house-door-fill', rota: '/anuncios-imoveis' },
     { titulo: 'Vagas de Estacionamento', icone: 'bi-car-front-fill', rota: '/vaga-garagem' },
     { titulo: 'Reservar Espaços e Pedidos', icone: 'bi-calendar-check-fill', rota: '/reserva-espacos' },
     { titulo: 'Adicionar ou Remover Membros', icone: 'bi-person-plus-fill', rota: '/painel-moradores', destaque: true }

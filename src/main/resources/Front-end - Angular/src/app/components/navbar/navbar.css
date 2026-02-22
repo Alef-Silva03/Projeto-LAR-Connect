@@ -1,25 +1,64 @@
 /* Container Invisível para não criar fundo azul indesejado */
 .navbar-wrapper {
     background: transparent !important;
-    padding: 15px 0;
+    padding: 25px 0;
     display: flex;
     justify-content: center;
 }
 
 /* Navbar Pílula Estilo Clássico */
 .navbar-pill {
-    background: #1B263B;
+    background: rgba(13, 27, 42, 0.9);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 80px;
     width: 95%;
-    max-width: 1550px;
-    height: 85px;
+    max-width: 1350px;
+    height: 75px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     z-index: 999;
 }
 
 /* Menu Lateral (Side Menu) */
+
+/* Menu Lateral (Side Menu) */
+.side-menu-classic {
+    position: fixed;
+    top: 0;
+    left: -320px; 
+    width: 300px;
+    height: 100vh;
+    background: #0D1B2A;
+    z-index: 10001;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 15px 0 40px rgba(0,0,0,0.6);
+
+    /* --- NOVAS PROPRIEDADES DE ROLAGEM --- */
+    overflow-y: auto; /* Habilita a rolagem vertical se o conteúdo crescer */
+    overflow-x: hidden; /* Garante que nada escape para os lados */
+    scrollbar-width: thin; /* Para Firefox: barra fininha */
+    scrollbar-color: #00B4D8 transparent; /* Para Firefox: cor ciano */
+}
+
+/* --- ESTILIZAÇÃO PERSONALIZADA DA BARRA (Chrome, Edge, Safari) --- */
+.side-menu-classic::-webkit-scrollbar {
+    width: 5px; /* Largura da barra */
+}
+
+.side-menu-classic::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05); /* Fundo sutil */
+}
+
+.side-menu-classic::-webkit-scrollbar-thumb {
+    background: #00B4D8; /* Ciano Neon */
+    border-radius: 10px;
+}
+
+.side-menu-classic::-webkit-scrollbar-thumb:hover {
+    background: #90E0EF; /* Brilho maior ao passar o mouse */
+}
+
+
 .side-menu-classic {
     position: fixed;
     top: 0;
@@ -35,6 +74,9 @@
 .side-menu-classic.active {
     left: 0; /* Aparece após o clique */
 }
+
+
+
 
 /* Overlay (Fundo de desfoque) */
 .menu-overlay {
@@ -73,13 +115,7 @@
     padding-left: 10px;
 }
 
-.botao-icon {
-    background-color: transparent;
-    border-width: 0px;
-}
-
 /* Logo e Tipografia */
 .brand-title span { color: #00B4D8; font-weight: 300; }
-.logo-img { height: 75px; }
+.logo-img { height: 45px; }
 .nav-trigger { cursor: pointer; color: white; display: flex; align-items: center; }
-.account-link { font-size: 1.2rem; }

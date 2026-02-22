@@ -1,0 +1,80 @@
+.portaria-container {
+    padding-top: 120px;
+    background: radial-gradient(circle at top, #0D1B2A 0%, #000814 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.glass-main {
+    width: 95%;
+    max-width: 1250px;
+    background: rgba(13, 27, 42, 0.8);
+    backdrop-filter: blur(25px);
+    border-radius: 40px;
+    padding: 50px;
+    border: 1px solid rgba(0, 180, 216, 0.1);
+}
+
+/* Cards de Ação Portaria */
+.card-acao-portaria {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card-acao-portaria:hover {
+    background: rgba(0, 180, 216, 0.1);
+    transform: translateY(-8px);
+    border-color: #00B4D8;
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.bg-cyan { background: #00B4D8; box-shadow: 0 0 20px rgba(0, 180, 216, 0.4); }
+.bg-purple { background: #7209B7; box-shadow: 0 0 20px rgba(114, 9, 183, 0.4); }
+.bg-gold { background: #FFD60A; color: #000; box-shadow: 0 0 20px rgba(255, 214, 10, 0.4); }
+
+/* Tabela de Monitoramento */
+.table-portaria {
+    width: 100%;
+    color: #90E0EF;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.row-acesso {
+    background: rgba(255, 255, 255, 0.02);
+    transition: 0.3s;
+}
+
+.row-acesso td {
+    padding: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+.status-dot.Entrada { background: #00F5D4; box-shadow: 0 0 10px #00F5D4; }
+.status-dot.Saída { background: #FF4D6D; }
