@@ -81,7 +81,6 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 	</dependencies>
 
 	<build>
@@ -109,6 +108,13 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-resources-plugin</artifactId>
+			    <configuration>
+			        <addDefaultExcludes>true</addDefaultExcludes>
+			        </configuration>
 			</plugin>
 		</plugins>
 	</build>

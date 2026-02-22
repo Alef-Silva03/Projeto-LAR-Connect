@@ -5,16 +5,23 @@
 
 package com.projeto.larconnect.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import com.projeto.larconnect.model.Usuario;
+import com.projeto.larconnect.repository.UsuarioRepository;
 
 @Controller
 public class SindicoController {
 
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
     @GetMapping("/sindico")
     public String raizSindico() {
         Usuario usuario = getCurrentUser();
@@ -38,8 +45,42 @@ public class SindicoController {
     }
     
     @GetMapping("/sindico/painel_de_moradores")
-    public String painelDeMoradores() {
+    public String painelDeMoradores(Model model) {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String email = auth.getName();
+            
+            Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+            
+            if (usuario.getCondominio() != null) {
+                List<Usuario> moradores = usuarioRepository.findMoradoresByCondominioId(usuario.getCondominio().getId());
+                model.addAttribute("moradores", moradores);
+            }
+        } catch (Exception e) {
+            model.addAttribute("moradores", List.of());
+        }
+        
         return "sindico/painel_de_moradores";
+    }
+    
+    @GetMapping("/sindico/painel_de_funcionarios")
+    public String painelDeFuncionarios(Model model) {
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String email = auth.getName();
+            
+            Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+            
+            if (usuario.getCondominio() != null) {
+                List<Usuario> funcionarios = usuarioRepository.findMoradoresByCondominioId(usuario.getCondominio().getId());
+                model.addAttribute("funcionarios", funcionarios);
+            }
+        } catch (Exception e) {
+            model.addAttribute("funcionarios", List.of());
+        }
+        return "sindico/painel_de_funcionarios";
     }
     
     @GetMapping("/sindico/enviar_comunicados")

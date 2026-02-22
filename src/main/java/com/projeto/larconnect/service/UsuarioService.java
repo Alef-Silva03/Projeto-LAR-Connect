@@ -26,14 +26,9 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email)
             .orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado com e-mail: " + email));
         
-        // Verifique se o ID do condomínio está sendo recebido
-        System.out.println("ID do condomínio recebido: " + usuarioUpdateDto.getIdCondominio());
-        
         if (usuarioUpdateDto.getIdCondominio() != null) {
             Condominio condominio = condominioRepository.findById(usuarioUpdateDto.getIdCondominio())
                 .orElseThrow(() -> new EntityNotFoundException("Condomínio não encontrado com ID: " + usuarioUpdateDto.getIdCondominio()));
-            
-            System.out.println("Condomínio encontrado: " + condominio.getNomeCondominio() + " (ID: " + condominio.getId() + ")");
             
             usuario.setCondominio(condominio);
         }
@@ -50,6 +45,24 @@ public class UsuarioService {
         if (usuarioUpdateDto.getTelefone() != null) {
             usuario.setTelefone(usuarioUpdateDto.getTelefone());
         }
+        
+        if (usuarioUpdateDto.getSenha() != null) {
+			usuario.setSenha(usuarioUpdateDto.getSenha());
+		}
+        
+        if (usuarioUpdateDto.getEmail() != null) {
+			usuario.setEmail(usuarioUpdateDto.getEmail());
+        }
+        
+        if (usuarioUpdateDto.getApartamento() != null) {
+			usuario.setApartamento(usuarioUpdateDto.getApartamento());
+        }
+        
+        if (usuarioUpdateDto.getCargo() != null) {
+        	usuario.setCargo(usuarioUpdateDto.getCargo());
+        }
+        
+    
         
         // Salva e retorna
         Usuario usuarioSalvo = usuarioRepository.save(usuario);

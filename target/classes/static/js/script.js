@@ -115,38 +115,25 @@ document.addEventListener("DOMContentLoaded", () => {
 	            }
 
 	            const condominioCriado = await res.json();
-	            console.log("Condomínio criado com ID:", condominioCriado.id);
 
 	            const email = localStorage.getItem("email");
-	            console.log("Email do usuário:", email);
 	            
 	            const payload2 = {
 	                idCondominio: condominioCriado.id
 	            };
-	            
-	            console.log("Payload de atualização:", payload2);
 
-	            // IMPORTANTE: Incluir credentials para enviar o cookie de sessão
 				const res2 = await fetch(`/api/usuarios/${email}`, {
 				    method: "PATCH",
 				    headers: { 
 				        "Content-Type": "application/json",
 				    },
-				    credentials: 'include', // Mude de 'same-origin' para 'include'
+				    credentials: 'include',
 				    body: JSON.stringify(payload2),
 				});
 
 	            if (!res2.ok) {
 	                const errorText = await res2.text();
 	                console.error("Erro na atualização do usuário:", res2.status, errorText);
-	                
-	                if (res2.status === 401) {
-	                    throw new Error("Sessão expirada. Faça login novamente.");
-	                } else if (res2.status === 403) {
-	                    throw new Error("Você não tem permissão para esta ação.");
-	                } else {
-	                    throw new Error(`Erro ${res2.status}: ${errorText}`);
-	                }
 	            }
 
 	            const usuarioAtualizado = await res2.json();
@@ -167,98 +154,194 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // ================= DASHBOARD =================
     const dashboardPage = document.getElementById("dashboard");
-    if (dashboardPage) {
+	const aguardarPage = document.getElementById("aguardar_condominio");
+    if (dashboardPage || aguardarPage) {
         const nome = localStorage.getItem("nome");
-        const perfil = localStorage.getItem("perfil");
-        
-        if (!nome || !perfil) {
-            window.location.href = "/login";
-            return;
-        }
-        
         const nomeElement = document.getElementById('nomeDoUsuario');
+		
         if (nomeElement) {
             nomeElement.innerText = nome;
         }
     }
+
+// ================= PAINEL DE MORADORES (ADICIONAR MORADORES) =================
+	const adicionarMoradorForm = document.getElementById("adicionarMoradorForm");
+	if (adicionarMoradorForm) {
+	    adicionarMoradorForm.onsubmit = async (e) => {
+	        e.preventDefault();
+	
+	        try {
+				const usuarioString = localStorage.getItem("usuario");
+				const emailMorador = document.getElementById("emailMorador").value;
+				const apartamento = document.getElementById("apartamentoMorador").value;
+				const usuario = JSON.parse(usuarioString);
+				const idCondominio = usuario.condominio.id;
+
+				const payload = {
+		    	    idCondominio: idCondominio,
+					apartamento: apartamento
+				};
+				
+				const res = await fetch(`/api/usuarios/${emailMorador}`, {
+				    method: "PATCH",
+				    headers: { 
+				        "Content-Type": "application/json",
+				    },
+				    credentials: 'include',
+				    body: JSON.stringify(payload),
+				});
+	            if (!res.ok) {
+	                const errorText = await res.text();
+	                console.error("Erro na adição do morador:", res.status, errorText);
+	            } else {
+				carregarMoradores(); // Atualiza a lista de moradores após a adição
+	        	}
+			} catch (error) {
+	            alert(error.message || "Erro ao adicionar morador. Tente novamente.");
+	        }
+	    };
+	}
+
+// ================= PAINEL DE FUNCIONÁRIOS (ADICIONAR FUNCIONÁRIOS) =================
+	const adicionarFuncionarioForm = document.getElementById("adicionarFuncionarioForm");
+	if (adicionarFuncionarioForm) {
+	    adicionarFuncionarioForm.onsubmit = async (e) => {
+	        e.preventDefault();
+	
+	        try {
+				const usuarioString = localStorage.getItem("usuario");
+				const emailFuncionario = document.getElementById("emailMorador").value;
+				const cargo = document.getElementById("cargoFuncionario").value;
+				const usuario = JSON.parse(usuarioString);
+				const idCondominio = usuario.condominio.id;
+
+				const payload = {
+		    	    idCondominio: idCondominio,
+					cargo: cargo
+				};
+				
+				const res = await fetch(`/api/usuarios/${emailFuncionario}`, {
+				    method: "PATCH",
+				    headers: { 
+				        "Content-Type": "application/json",
+				    },
+				    credentials: 'include',
+				    body: JSON.stringify(payload),
+				});
+	            if (!res.ok) {
+	                const errorText = await res.text();
+	                console.error("Erro na adição do funcionário:", res.status, errorText);
+	            } else {
+				carregarFuncionarios(); // Atualiza a lista de moradores após a adição
+	        	}
+			} catch (error) {
+	            alert(error.message || "Erro ao adicionar funcionário. Tente novamente.");
+	        }
+	    };
+	}
 });
 
-// ================= INTERFACE =================
-function configurarInterface(PERFIL, NOME) {
-    const userName = document.getElementById("userName");
-    if (userName) userName.textContent = NOME;
-
-    if (PERFIL === "ADMIN") {
-        document.querySelectorAll(".admin-only")
-            .forEach(el => el.style.display = "block");
-
-        const perfilLabel = document.getElementById("perfilLabel");
-        if (perfilLabel)
-            perfilLabel.innerHTML = '<span class="admin-badge">ADMINISTRADOR</span>';
-
-    } else {
-        const banner = document.getElementById("moradorBanner");
-        if (banner) banner.style.display = "block";
-
-        const perfilLabel = document.getElementById("perfilLabel");
-        if (perfilLabel)
-            perfilLabel.innerHTML = '<span class="client-badge">CLIENTE</span>';
-    }
-}
-
-// ================= DADOS DO SERVIDOR =================
-async function carregarDadosServidor() {
+// ================= PAINEL DE MORADORES (CARREGAR MORADORES) =================
+async function carregarMoradores() {
     try {
-        const res = await fetch("/api/dashboard/perfil");
+        const response = await fetch('/api/moradores/condominio', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'
+        });
 
-        if (res.status === 401 || res.status === 403) {
-            window.location.href = "login.html";
-            return;
+        if (!response.ok) {
+            throw new Error('Erro ao carregar moradores');
         }
 
-        if (!res.ok) throw new Error();
-
-        const user = await res.json();
-
-        setText("infoNome", user.nome);
-        setText("infoEmail", user.email);
-        setText("infoTelefone", user.telefone);
-        setText("infoApartamento", user.apartamento);
-        setText("infoPerfil", user.perfil);
-        setText("infoID", user.id);
-
-    } catch {
-        console.error("Erro ao carregar dados");
+        const moradores = await response.json();
+        const tabelaBody = document.querySelector('#tabela tbody');
+        
+        if (tabelaBody) {
+            tabelaBody.innerHTML = '';
+            
+            moradores.forEach(morador => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${morador.nome}</td>
+                    <td>${morador.apartamento || 'Não definido'}</td>
+					<td>${morador.email}</td>
+					<td>${morador.perfil}</td>
+					<td>${morador.cargo || 'N/A'}</td>
+                `;
+                tabelaBody.appendChild(row);
+            });
+        }
+    } catch (error) {
+        console.error('Erro ao carregar moradores:', error);
     }
 }
 
-function setText(id, value) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = value || "-";
+// Chama esta função quando a página carregar
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById('painel_de_moradores')) {
+        carregarMoradores();
+    }
+});
+
+
+
+// ================= PAINEL DE FUNCIONÁRIOS (CARREGAR FUNCIONÁRIOS) =================
+async function carregarFuncionarios() {
+    try {
+        const response = await fetch('/api/funcionarios/condominio', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao carregar funcionários');
+        }
+
+        const funcionarios = await response.json();
+        const tabelaBody = document.querySelector('#tabela tbody');
+        
+        if (tabelaBody) {
+            tabelaBody.innerHTML = '';
+            
+            funcionarios.forEach(funcionario => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${funcionario.nome}</td>
+                    <td>${funcionario.cargo || 'Não definido'}</td>
+					<td>${funcionario.email}</td>
+                `;
+                tabelaBody.appendChild(row);
+            });
+        }
+    } catch (error) {
+        console.error('Erro ao carregar funcionários:', error);
+    }
 }
+
+// Chama esta função quando a página carregar
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById('painel_de_moradores')) {
+        carregarMoradores();
+    }
+	
+	if	(document.getElementById('painel_de_funcionarios')) {
+	        carregarFuncionarios();
+	    }
+});
 
 // ================= LOGOUT =================
 async function logout() {
-    if (confirm("Deseja encerrar sua sessão segura?")) {
-        try {
-            const res = await fetch("/api/auth/logout", { 
-                method: "POST",
-                headers: { "Content-Type": "application/json" }
-            });
-            
-            if (!res.ok) {
-                console.error("Erro no logout:", await res.text());
-            }
-        } catch (error) {
-            console.error("Erro na requisição de logout:", error);
-        } finally {
-            localStorage.clear();
-            window.location.href = "/login";
-        }
-    }
-}
-
-// ================= TOGGLE PERFIL =================
-function toggleCampos() {
-    console.log("Perfil alterado");
+    const res = await fetch("/api/auth/logout", { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+    });
+	
+    localStorage.clear();
+    window.location.href = "/login";
 }

@@ -133,4 +133,20 @@ public class Usuario {
 	public void setTokenExpiration(LocalDateTime tokenExpiration) {
 		this.tokenExpiration = tokenExpiration;
 	}
+	
+	public String getApartamento() {
+		return apartamento;
+	}
+	
+	public void setApartamento(String apartamento) {
+		this.apartamento = apartamento;
+	}
+	
+	public String getCargo() {
+		return cargo;
+	}
+	
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
 }

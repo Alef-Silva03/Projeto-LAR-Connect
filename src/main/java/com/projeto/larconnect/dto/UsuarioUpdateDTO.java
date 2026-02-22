@@ -10,6 +10,8 @@ public class UsuarioUpdateDTO {
 	private String perfil;
 	private String condominio;
 	private Long idCondominio;
+	private String apartamento;
+	private String cargo;
 	
 	public String getNome() {
 		return nome;
@@ -56,8 +58,20 @@ public class UsuarioUpdateDTO {
 	public Long getIdCondominio() {
 	    return idCondominio;
 	}
-
 	public void setIdCondominio(Long idCondominio) {
 	    this.idCondominio = idCondominio;
+	}	
+	public String getCargo() {
+		return cargo;
 	}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+	public String getApartamento() {
+		return apartamento;
+	}
+	public void setApartamento(String apartamento) {
+		this.apartamento = apartamento;
+	}
+	
 }

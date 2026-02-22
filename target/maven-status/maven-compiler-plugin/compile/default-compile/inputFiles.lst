@@ -1,10 +1,10 @@
-C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\config\CustomLoginSuccessHandler.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\config\SecurityConfig.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\AuthController.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\CadastroController.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\CondominioController.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\FuncionarioController.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\InquilinoController.java
+C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\MoradorController.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\ProprietarioController.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\SindicoController.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\UsuarioController.java
@@ -23,6 +23,7 @@ C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\Cond
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\CondominioResponseDTO.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\LoginDTO.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\LoginResponseDTO.java
+C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\MoradorResponseDTO.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\UsuarioResponseDTO.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\UsuarioUpdateDTO.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\LarconnectApplication.java
@@ -32,4 +33,5 @@ C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\reposito
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\repository\UsuarioRepository.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\service\CondominioService.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\service\CustomUserDetailsService.java
+C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\service\MoradorService.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\service\UsuarioService.java

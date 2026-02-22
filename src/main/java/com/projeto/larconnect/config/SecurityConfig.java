@@ -56,9 +56,7 @@ public class SecurityConfig {
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/", "/login", "/cadastro", "/usuarios/salvar", "/nova_senha", "/minha_conta").permitAll()
-                
-                // PERMITIR ACESSO AOS ENDPOINTS DE USUÁRIO PARA USUÁRIOS AUTENTICADOS
-                .requestMatchers("/api/usuarios/**").authenticated()
+                .requestMatchers("/api/usuarios/**", "/api/moradores/**",  "/api/funcionarios/**").authenticated()
                 
                 // Usando hasRole (que já espera o prefixo ROLE_)
                 .requestMatchers("/proprietario/**").hasRole("PROPRIETARIO")
@@ -74,7 +72,14 @@ public class SecurityConfig {
                     logger.error("Acesso negado: {}", accessDeniedException.getMessage());
                     response.sendError(HttpServletResponse.SC_FORBIDDEN, "Acesso negado: " + accessDeniedException.getMessage());
                 })
+                
             )
+            .formLogin(form -> form
+				.loginPage("/login")
+				.defaultSuccessUrl("/", true)
+				.permitAll()
+				)
+            
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
             
             return http.build();

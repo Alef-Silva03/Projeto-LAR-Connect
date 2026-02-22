@@ -32,76 +32,48 @@
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
                     </svg>
                 </button>
-<br><button class="botao-logout" onclick="logout()">SAIR</button>
+			<br><button class="botao-logout" onclick="logout()">SAIR</button>
             </div>
         </nav>
 
         <div id="bloco">
             <article id="conteudo1">
-                <section id="conteudoheader">
-                    <h1>GERENCIAR MORADORES</h1>
-                    <div class="botoes">
-                        <button class="botao-adicionar">ADICIONAR NOVOS MORADORES</button> <!--icons-->
-                        <button class="botao-remover">REMOVER MORADORES</button> <!--icons-->
-                    </div>
-                </section>
-
+                <h1>PAINEL MORADORES</h1>
+				<form id="adicionarMoradorForm" class="row" style="gap: 10px;">
+                   <input type="email" name="emailMorador" id="emailMorador" class="col-5 input-generico" placeholder="Email do novo morador" required>
+                   <input type="text" name="apartamentoMorador" id="apartamentoMorador" class="col-4 input-generico" placeholder="Apartamento/Casa" required>
+                   <button type="submit" class="col-2">ADICIONAR MORADOR</button>
+				</form>
+				
                 <section id="tabela">
                     <table>
                         <thead>
                             <tr>
-                                <th>NOME COMPLETO</th>
-                                <th>APTO</th>
-                                <th>BLOCO</th>
-                                <th>STATUS</th>
+                                <th>NOME</th>
+                                <th>APARTAMENTO</th>
+                                <th>EMAIL</th>
+                                <th>PERFIL</th>
+                                <!-- <th>AÇÕES</th>-->
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Alef Silva</td>
-                                <td>1320</td>
-                                <td>A</td>
-                                <td>Ativo</td>
-                            </tr>
-                            <tr>
-                                <td>Yuri</td>
-                                <td>1320</td>
-                                <td>A</td>
-                                <td>Ativo</td>
-                            </tr>
-                            <tr>
-                                <td>Pedro</td>
-                                <td>1320</td>
-                                <td>A</td>
-                                <td>Ativo</td>
-                            </tr>
-                            <tr>
-                                <td>Patricia</td>
-                                <td>1320</td>
-                                <td>A</td>
-                                <td>Ativo</td>
-                            </tr>
-                            <tr>
-                                <td>João</td>
-                                <td>1320</td>
-                                <td>A</td>
-                                <td>Ativo</td>
+                            <tr th:each="morador : ${moradores}">
+		                            <td th:text="${morador.nome}">Nome do Morador</td>
+		                            <td th:text="${morador.apartamento}">Email do Morador</td>
+		                            <td th:text="${morador.email}">Número do Apartamento</td>
+		                            <td th:text="${morador.perfil}">Perfil do Morador</td>
+	                            <!-- <td>
+                                    <button class="btn-editar" th:onclick="'editarMorador(' + ${morador.id} + ')'">Editar</button>
+                                    <button class="btn-excluir" th:onclick="'excluirMorador(' + ${morador.id} + ')'">Excluir</button>
+                                </td> -->
                             </tr>
                         </tbody>
                     </table>
                 </section>
-
-                <section id="botoes2" class="row">
-                    <div class="row">
-                        <button class="pagina">1</button>
-                        <button class="pagina">2</button>
-                        <button class="pagina">3</button>
-                        <button class="pagina">4</button>
-                    </div>
-                    <div class="row">
-                    <button class="cancelar">CANCELAR</button>
-                    </div>
-                </section>
+                <br>
+                <button onclick="history.back()">VOLTAR</button>
+                <br>
+                
             </article>
         </div>
     </div>

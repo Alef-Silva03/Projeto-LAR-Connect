@@ -40,19 +40,8 @@ public class UsuarioController {
      @PatchMapping("/{email}")
      public ResponseEntity<UsuarioResponseDTO> updateUsuario(@PathVariable String email, 
                                                              @RequestBody UsuarioUpdateDTO usuarioUpdateDto) {
-         System.out.println("=== INÍCIO DA ATUALIZAÇÃO ===");
-         System.out.println("Email recebido: " + email);
-         System.out.println("ID Condomínio recebido no DTO: " + usuarioUpdateDto.getIdCondominio());
-         
          try {
              Usuario usuarioAtualizado = usuarioService.update(email, usuarioUpdateDto);
-             
-             System.out.println("Usuário após atualização - ID: " + usuarioAtualizado.getId());
-             System.out.println("Condomínio no usuário atualizado: " + 
-                 (usuarioAtualizado.getCondominio() != null ? 
-                     usuarioAtualizado.getCondominio().getId() + " - " + usuarioAtualizado.getCondominio().getNomeCondominio() 
-                     : "NULL"));
-             
              UsuarioResponseDTO usuarioResponseDto = new UsuarioResponseDTO(usuarioAtualizado);
              return ResponseEntity.ok(usuarioResponseDto);
          } catch (Exception e) {

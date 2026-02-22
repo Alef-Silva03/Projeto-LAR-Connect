@@ -7,13 +7,13 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/img/LogoSemNome.png" />
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <title>Caixa de Entrada</title>
+    <title>Painel de Controle</title>
 </head>
 
-<body id="painel_comunicados">
+<body id="painel_de_funcionarios" class="painel-e-vagas">
     <div class="container-fluid">
         <nav class="navbar row">
             <div class="menu col-1 d-flex justify-content-start align-items-center">
@@ -32,21 +32,49 @@
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
                     </svg>
                 </button>
-<br><button class="botao-logout" onclick="logout()">SAIR</button>
+			<br><button class="botao-logout" onclick="logout()">SAIR</button>
             </div>
         </nav>
 
-        <article>
-            <h1>Caixa de Entrada</h1>
-            <h2>Veja abaixo as mensagens enviadas a você</h2>
-
-            <div class="painel">
-                <h3>Título do Comunicado</h3>
-                <hr>
-                <h4>Postado no dia: <span>data</span></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus iusto illum modi quod ad eveniet voluptatum tenetur iure, nesciunt ullam quas et delectus. Delectus a dignissimos nihil provident voluptates deserunt. ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu turpis  lorem. Nulla sodales vehicula tristique. Aenean feugiat, magna eget  aliquet vestibulum, odio eros lacinia eros, eget feugiat libero ex eget  est. Proin venenatis, elit eget vulputate lobortis, lacus massa  efficitur nulla, vel tincidunt elit dui at ligula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc  at cursus ligula, in malesuada ligula. Vestibulum ante ipsum primis in  faucibus orci luctus et ultrices posuere cubilia curae; Praesent ut eros sem. Pellentesque non bibendum ante, non vehicula lectus. Mauris  dignissim posuere nulla, quis sagittis neque tempor non. </p>       
-            </div>
-        </article>
+        <div id="bloco">
+            <article id="conteudo1">
+                <h1>PAINEL DE FUNCIONÁRIOS</h1>
+				<form id="adicionarFuncionarioForm" class="row" style="gap: 10px;">
+                   <input type="email" name="emailFuncionario" id="emailFuncionario" class="col-5 input-generico" placeholder="Email do novo funcionario" required>
+                   <input type="text" name="cargoFuncionario" id="cargoFuncionario" class="col-5 input-generico" placeholder="Cargo do novo funcionario" required>
+                   <button type="submit" class="col-2">ADICIONAR MORADOR</button>
+				</form>
+				
+                <section id="tabela">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>NOME</th>
+                                <th>CARGO</th>
+                                <th>EMAIL</th>
+                                <!-- <th>AÇÕES</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="funcionario : funcionarios">
+		                            <td th:text="${funcionario.nome}">Nome do Funcionário</td>
+		                            <td th:text="${funcionario.cargo}">Cargo do Funcionário</td>
+		                            <td th:text="${funcionario.email}">E-mail do Funcionário</td>
+	                            <!-- <td>
+                                    <button class="btn-editar" th:onclick="'editarFuncionario(' + ${funcionario.id} + ')'">Editar</button>
+                                    <button class="btn-excluir" th:onclick="'excluirFuncionario(' + ${funcionario.id} + ')'">Excluir</button>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <br>
+                <button onclick="history.back()">VOLTAR</button>
+                <br>
+                
+            </article>
+        </div>
+    </div>
 
     <footer class="footer row">
         <figure class="col logo-rodape">
@@ -84,8 +112,7 @@
                 </figure></li>
             </ul>
         </footer>
-    </div>
-    	<script src="../js/script.js"></script>
+	<script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

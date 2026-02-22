@@ -2,18 +2,25 @@
 
 package com.projeto.larconnect.repository;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.projeto.larconnect.model.Usuario;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {		//Cria a classe UsuarioRepository, que herda métodos da classe JpaRepository, como findByEmail.
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-	Optional<Usuario> findByEmailIgnoreCase(String email);						//Busca o e-mail informado no banco de dados. Se encontrar, o valor desse atributo é o email encontrado.
-
-	Optional<Usuario> findByResetToken(String resetToken);						//Busca o token informado pelo usuário. Se encontrar, o valor desse atributo é o email encontrado.
-
-	boolean existsByEmailIgnoreCase(String email);								//Se o e-mail informado não for encontrado no banco de dados, esse atributo assume o valor False para informar que o e-mail informado no login está incorreto.
-
+    Optional<Usuario> findByEmailIgnoreCase(String email);
+    Optional<Usuario> findByResetToken(String resetToken);
+    boolean existsByEmailIgnoreCase(String email);
+    
+    // Novo método para buscar moradores por ID do condomínio
+    List<Usuario> findByCondominioId(Long condominioId);
+    
+    // Ou com JPQL para mais controle
+    @Query("SELECT u FROM Usuario u WHERE u.condominio.id = :condominioId")
+    List<Usuario> findMoradoresByCondominioId(@Param("condominioId") Long condominioId);
 }
