@@ -4,10 +4,11 @@
             <img src="assets/imagem/LogoSemNome.png" alt="LAR Connect" class="logo img-fluid">
         </figure>
         
-        <form id="cadastroForm" class="container mt-4">
+        <form id="cadastroForm" class="container mt-4" (submit)="$event.preventDefault()">
             <div class="row justify-content-center g-3">
+                
                 <div class="col-12 col-xl-5">
-                    <select id="cadPerfil" class="form-select custom-select" required>
+                    <select name="perfil" [(ngModel)]="usuario.perfil" id="cadPerfil" class="form-select custom-select" required>
                         <option value="" disabled selected hidden>Selecione seu perfil</option>
                         <option value="PROPRIETARIO">Proprietário</option>
                         <option value="INQUILINO">Inquilino</option>
@@ -18,22 +19,22 @@
 
                 <div class="col-12 col-xl-5 input-group-custom">
                     <span class="icon-at"><i class="bi bi-person fs-4"></i></span>
-                    <input type="text" placeholder="Nome completo" class="form-control-custom" required>
+                    <input type="text" name="nome" [(ngModel)]="usuario.nome" placeholder="Nome completo" class="form-control-custom" required>
                 </div>
 
                 <div class="col-12 col-xl-5 input-group-custom">
                     <span class="icon-at"><i class="bi bi-at fs-4"></i></span>
-                    <input type="email" placeholder="Email" class="form-control-custom" required>
+                    <input type="email" name="login" [(ngModel)]="usuario.login" placeholder="Email" class="form-control-custom" required>
                 </div>
 
                 <div class="col-12 col-xl-5 input-group-custom">
                     <span class="icon-at"><i class="bi bi-lock fs-4"></i></span>
-                    <input type="password" placeholder="Senha" class="form-control-custom" required>
+                    <input type="password" name="senha" [(ngModel)]="usuario.senha" placeholder="Senha" class="form-control-custom" required>
                 </div>
             </div>
 
             <div class="text-center mt-5">
-                <button class="btn-principal px-5 py-2">CADASTRE-SE</button>
+                <button type="button" (click)="realizarCadastro()" class="btn-principal px-5 py-2">CADASTRE-SE</button>
             </div>
         </form>
 
