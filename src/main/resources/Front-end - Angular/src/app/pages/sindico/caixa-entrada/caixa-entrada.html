@@ -1,0 +1,44 @@
+<article class="inbox-container">
+    <div class="glass-card shadow-lg p-5 animate__animated animate__fadeIn">
+        <header class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <span class="badge-neon">CENTRAL DE ATENDIMENTO</span>
+                <h1 class="text-gradient">MENSAGENS E PEDIDOS</h1>
+                <p class="subtitulo">Gerencie as solicitações dos moradores em tempo real</p>
+            </div>
+            <div class="stats-pills d-flex gap-2">
+                <span class="pill-info">Novos: 3</span>
+                <span class="pill-info">Pendentes: 5</span>
+            </div>
+        </header>
+
+        <div class="filters-scroll d-flex gap-3 mb-4 overflow-auto pb-2">
+            <button class="btn-filter-pill active">Todas</button>
+            <button class="btn-filter-pill">Manutenção</button>
+            <button class="btn-filter-pill">Reclamações</button>
+            <button class="btn-filter-pill">Sugestões</button>
+        </div>
+
+        <section class="messages-list">
+            <div *ngFor="let msg of mensagens" class="message-item-glass" [class.unread]="msg.lida === false">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="user-avatar">{{ msg.morador.charAt(0) }}</div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-1 text-white fw-bold">{{ msg.morador }} <span class="apto-tag">Apto {{ msg.apto }}</span></h5>
+                            <small class="text-secondary-light">{{ msg.data }}</small>
+                        </div>
+                        <h6 class="text-cyan mb-2">{{ msg.assunto }}</h6>
+                        <p class="text-truncate-2 text-secondary-light">{{ msg.preview }}</p>
+                    </div>
+                    <div class="actions-area d-flex flex-column align-items-end gap-2">
+                        <span class="badge-status" [ngClass]="msg.prioridade">{{ msg.prioridade }}</span>
+                        <button class="btn-action-view" (click)="abrirMensagem(msg)">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>
