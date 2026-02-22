@@ -1,0 +1,80 @@
+.reservas-container {
+    padding-top: 140px;
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+
+.glass-card {
+    width: 95%;
+    max-width: 1200px;
+    background: rgba(13, 27, 42, 0.8);
+    backdrop-filter: blur(30px);
+    border-radius: 40px;
+    border: 1px solid rgba(0, 180, 216, 0.1);
+}
+
+/* Card de Espaço Individual */
+.card-espaco-glass {
+    background: rgba(65, 90, 119, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 30px;
+    text-align: center;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-espaco-glass:hover {
+    transform: translateY(-10px);
+    background: rgba(0, 180, 216, 0.05);
+    border-color: #00B4D8;
+}
+
+.icon-area i {
+    font-size: 3rem;
+    color: #90E0EF;
+    text-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
+}
+
+/* Indicador de Status LED */
+.status-indicator-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.status-indicator-pill.disponivel { background: rgba(0, 180, 216, 0.1); color: #00B4D8; }
+.status-indicator-pill.indisponivel { background: rgba(255, 77, 109, 0.1); color: #FF4D6D; }
+
+.led {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.disponivel .led { background: #00B4D8; box-shadow: 0 0 10px #00B4D8; }
+.indisponivel .led { background: #FF4D6D; box-shadow: 0 0 10px #FF4D6D; }
+
+.btn-reserva-neon {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #00B4D8;
+    color: #00B4D8;
+    padding: 12px;
+    border-radius: 50px;
+    font-weight: 800;
+    transition: 0.3s;
+}
+
+.btn-reserva-neon:hover:not(:disabled) {
+    background: #00B4D8;
+    color: #0D1B2A;
+    box-shadow: 0 0 30px rgba(0, 180, 216, 0.5);
+}
