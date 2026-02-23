@@ -16,9 +16,9 @@ interface AcaoCard {
   templateUrl: './dashboard-sindico.html',
   styleUrls: ['./dashboard-sindico.css']
 })
-export class DashboardSindico implements OnInit {
+export class DashboardSindico {
   // Nome que será exibido no header
-  nomeSindico: string = 'Alef Silva'; 
+    nomeDoUsuario: string = localStorage.getItem('nome') || 'Síndico';
 
   // Lista de todas as 11 funcionalidades conforme a referência
   acoesSindico: AcaoCard[] = [
@@ -36,12 +36,5 @@ export class DashboardSindico implements OnInit {
   ];
 
   constructor() {}
-
-  ngOnInit(): void {
-    // Aqui você poderá buscar o nome real do usuário no localStorage ou via Service futuramente
-    const usuarioLogado = localStorage.getItem('usuario');
-    if (usuarioLogado) {
-      this.nomeSindico = JSON.parse(usuarioLogado).nome;
-    }
-  }
+  
 }
