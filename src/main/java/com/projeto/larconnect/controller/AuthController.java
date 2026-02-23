@@ -36,8 +36,6 @@ public class AuthController {
     public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginDto, HttpServletRequest request) {
         try {
 
-            // 🔥 COLOQUE O TESTE AQUI (ANTES DO authenticate)
-
             Usuario usuarioTeste = usuarioRepository
                     .findByEmailIgnoreCase(loginDto.getEmail())
                     .orElse(null);
@@ -51,11 +49,9 @@ public class AuthController {
 
                 boolean confere = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder()
                         .matches(loginDto.getSenha(), usuarioTeste.getSenha());
-
-                System.out.println("Senha confere? " + confere);
             }
 
-            // 🔥 LINHA ORIGINAL
+
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getSenha())
             );
@@ -75,6 +71,8 @@ public class AuthController {
             response.setCpf(usuario.getCpf());
             response.setTelefone(usuario.getTelefone());
             response.setPerfil(usuario.getPerfil());
+            response.setCargo(usuario.getCargo());
+            response.setApartamento(usuario.getApartamento());
             response.setCondominio(usuario.getCondominio());
 
             return ResponseEntity.ok(response);
@@ -99,6 +97,8 @@ public class AuthController {
                         usuario.getCpf(),
                         usuario.getTelefone(),
                         usuario.getPerfil().toString(),
+                        usuario.getCargo(),
+                        usuario.getApartamento(),
                         usuario.getCondominio()
                     );
                     

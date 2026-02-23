@@ -10,15 +10,16 @@ import { RouterModule } from '@angular/router'; // Importe para o routerLink fun
   styleUrls: ['./dashboard-funcionario.css']
 })
 export class DashboardFuncionario implements OnInit {
-  nomeFuncionario = 'Marcos Oliveira';
+  nomeFuncionario = localStorage.getItem('nome') || 'Funcionário';
+  cargoFuncionario = localStorage.getItem('cargo') || 'Cargo Desconecido';
   encomendasPendentes = 12;
   horaAtual: string = '';
 
-  acessosRecentes = [
+  /*acessosRecentes = [
     { hora: '10:45', nome: 'João Silva (Uber)', tipo: 'Visitante', unidade: 'Apto 402-A', status: 'Entrada' },
     { hora: '10:30', nome: 'Loggi Entregas', tipo: 'Prestador', unidade: 'Portaria', status: 'Saída' },
     { hora: '10:15', nome: 'Ricardo M. (Técnico Vivo)', tipo: 'Prestador', unidade: 'Apto 101-B', status: 'Entrada' }
-  ];
+  ];*/
 
   ngOnInit() {
     this.atualizarRelogio();

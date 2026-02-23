@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.loggedIn.asObservable();
-  private readonly API = 'http://localhost:8080/api/auth'; // Usando proxy, não localhost
+  private readonly API = 'http://localhost:8080/api/auth';
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +19,12 @@ export class AuthService {
             localStorage.setItem('perfil', response.perfil);
             localStorage.setItem('nome', response.nome);
             localStorage.setItem('email', response.email);
+            localStorage.setItem('cpf', response.cpf);
+            localStorage.setItem('telefone', response.telefone);
+            localStorage.setItem('perfil', response.perfil);
+            localStorage.setItem('cargo', response.cargo);
+            localStorage.setItem('apartamento', response.apartamento);
+            localStorage.setItem('condominio', response.condominio ? response.condominio.nomeCondominio : '');
             localStorage.setItem('token', response.reset_token); // ← Note: reset_token
             this.loggedIn.next(true);
         })
@@ -35,6 +41,9 @@ export class AuthService {
     localStorage.removeItem('perfil');
     localStorage.removeItem('nome');
     localStorage.removeItem('email');
+    localStorage.removeItem('cpf');
+    localStorage.removeItem('telefone');
+    localStorage.removeItem('condominio');
     this.loggedIn.next(false);
   }
 

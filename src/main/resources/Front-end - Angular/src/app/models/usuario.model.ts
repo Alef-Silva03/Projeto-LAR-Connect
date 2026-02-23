@@ -39,5 +39,7 @@ export interface LoginResponse {
   telefone: string;
   perfil: string;
   condominio: Condominio | null;
+  cargo: string;
+  apartamento: string;
   reset_token: string;
 }

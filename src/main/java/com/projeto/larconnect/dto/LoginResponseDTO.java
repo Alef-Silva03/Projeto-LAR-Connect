@@ -9,6 +9,8 @@ public class LoginResponseDTO {
     private String cpf;
     private String telefone;
     private String perfil;
+    private String cargo;
+    private String apartamento;
     private Condominio condominio;
 
     // Default constructor
@@ -16,13 +18,15 @@ public class LoginResponseDTO {
 
     // Constructor with all fields
     public LoginResponseDTO(Long id, String nome, String email, String cpf, 
-                           String telefone, String perfil, Condominio condominio) {
+                           String telefone, String perfil, String cargo, String apartamento, Condominio condominio) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.telefone = telefone;
         this.perfil = perfil;
+        this.cargo = cargo;
+        this.apartamento = apartamento;
         this.condominio = condominio;
     }
 
@@ -44,6 +48,12 @@ public class LoginResponseDTO {
 
     public String getPerfil() { return perfil; }
     public void setPerfil(String perfil) { this.perfil = perfil; }
+    
+    public String getCargo() { return cargo; }
+    public void setCargo(String cargo) { this.cargo = cargo; }
+    
+    public String getApartamento() { return apartamento; }
+    public void setApartamento(String apartamento) { this.apartamento = apartamento; }
 
     public Condominio getCondominio() { return condominio; }
     public void setCondominio(Condominio condominio) { this.condominio = condominio; }
