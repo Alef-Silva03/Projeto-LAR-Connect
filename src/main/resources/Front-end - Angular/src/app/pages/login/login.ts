@@ -1,4 +1,4 @@
-import { AuthService } from './../../services/auth';  
+import { AuthService } from '../../services/auth.service';
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Adicione nos imports
@@ -17,7 +17,7 @@ export class Login {
 constructor(private authService: AuthService, private router: Router) {}
 
 fazerLogin() {
-  this.authService.login(this.dadosLogin).subscribe({
+  this.authService.login(this.dadosLogin.login, this.dadosLogin.senha).subscribe({
   next: (usuarioLogado) => {
     alert(`Bem-vindo, ${usuarioLogado.nome}!`);
     localStorage.setItem('usuario', JSON.stringify(usuarioLogado));

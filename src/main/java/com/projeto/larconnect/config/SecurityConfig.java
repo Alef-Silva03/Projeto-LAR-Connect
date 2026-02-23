@@ -9,18 +9,19 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
-    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
-
+    
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
@@ -39,71 +40,59 @@ public class SecurityConfig {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
-        authProvider.setHideUserNotFoundExceptions(false);
         return authProvider;
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
+        
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authenticationProvider(authenticationProvider())
-
-            // ✅ CORREÇÃO DO CSRF
-            .csrf(csrf -> csrf
-                .ignoringRequestMatchers(
-                    "/h2-console/**",
-                    "/usuarios/salvar",
-                    "/api/auth/**",
-                    "/sindico/api/**",
-                    "/api/**",
-                    "/redefinir_senha",
-                    "/nova_senha"
-                )
-            )
-
+            // Desabilita CSRF completamente para APIs
+            .csrf(csrf -> csrf.disable())
+            // Usa a configuração CORS unificada
+            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+            
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
+                // Rotas públicas
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers(
-                        "/",
-                        "/login",
-                        "/cadastro",
-                        "/usuarios/salvar",
-                        "/redefinir_senha",
-                        "/nova_senha",
-                        "/minha_conta"
-                ).permitAll()
-                .requestMatchers("/api/usuarios/**", "/api/moradores/**", "/api/funcionarios/**").authenticated()
-
-                .requestMatchers("/proprietario/**").hasRole("PROPRIETARIO")
+                .requestMatchers("/usuarios/salvar").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
+                .requestMatchers("/", "/login", "/cadastro", "/nova_senha").permitAll()
+                
+                // Rotas protegidas por perfil
                 .requestMatchers("/sindico/**").hasRole("SINDICO")
                 .requestMatchers("/api/condominio/**").hasRole("SINDICO")
                 .requestMatchers("/sindico/api/**").hasRole("SINDICO")
+                .requestMatchers("/proprietario/**").hasRole("PROPRIETARIO")
                 .requestMatchers("/inquilino/**").hasRole("INQUILINO")
                 .requestMatchers("/funcionario/**").hasRole("FUNCIONARIO")
-
+                
+                // Qualquer outra rota precisa de autenticação
                 .anyRequest().authenticated()
             )
-
-            .exceptionHandling(exception -> exception
-                .accessDeniedHandler((request, response, accessDeniedException) -> {
-                    logger.error("Acesso negado: {}", accessDeniedException.getMessage());
-                    response.sendError(HttpServletResponse.SC_FORBIDDEN,
-                            "Acesso negado: " + accessDeniedException.getMessage());
-                })
-            )
-
-            .formLogin(form -> form
-                .loginPage("/login")
-                .defaultSuccessUrl("/", true)
-                .permitAll()
-            )
-
-            .headers(headers -> headers
-                .frameOptions(frame -> frame.sameOrigin())
+            
+            // Remove formLogin e httpBasic para API
+            .formLogin(form -> form.disable())
+            .httpBasic(basic -> basic.disable())
+            
+            // Configuração de sessão - importante para APIs
+            .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
             );
-
+        
         return http.build();
     }
 }

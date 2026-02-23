@@ -12,19 +12,18 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, senha: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.API}/login`, { email, senha }, {
-      withCredentials: true // Importante para enviar/receber cookies de sessão
-    }).pipe(
-      tap(response => {
-        localStorage.setItem('perfil', response.perfil);
-        localStorage.setItem('nome', response.nome);
-        localStorage.setItem('email', response.email);
-        localStorage.setItem('token', response.reset_token || '');
-        this.loggedIn.next(true);
-      })
-    );
-  }
+    login(email: string, senha: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.API}/login`, { email, senha })
+        .pipe(
+        tap(response => {
+            localStorage.setItem('perfil', response.perfil);
+            localStorage.setItem('nome', response.nome);
+            localStorage.setItem('email', response.email);
+            localStorage.setItem('token', response.reset_token); // ← Note: reset_token
+            this.loggedIn.next(true);
+        })
+        );
+    }
 
     getCurrentUser(): LoginResponse | null {
     const userStr = localStorage.getItem('perfil');
