@@ -35,19 +35,39 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginDto, HttpServletRequest request) {
         try {
+
+            // 🔥 COLOQUE O TESTE AQUI (ANTES DO authenticate)
+
+            Usuario usuarioTeste = usuarioRepository
+                    .findByEmailIgnoreCase(loginDto.getEmail())
+                    .orElse(null);
+
+            if (usuarioTeste == null) {
+                System.out.println("Usuário NÃO encontrado");
+            } else {
+                System.out.println("Usuário encontrado");
+                System.out.println("Senha digitada: " + loginDto.getSenha());
+                System.out.println("Hash no banco: " + usuarioTeste.getSenha());
+
+                boolean confere = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder()
+                        .matches(loginDto.getSenha(), usuarioTeste.getSenha());
+
+                System.out.println("Senha confere? " + confere);
+            }
+
+            // 🔥 LINHA ORIGINAL
             Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getSenha())
+                    new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getSenha())
             );
-            
+
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            // Persistir o SecurityContext na sessão para que o navegador mantenha a autenticação
             HttpSession session = request.getSession(true);
             session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
-            
+
             Usuario usuario = usuarioRepository.findByEmailIgnoreCase(loginDto.getEmail())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-            
+                    .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
             LoginResponseDTO response = new LoginResponseDTO();
             response.setId(usuario.getId());
             response.setNome(usuario.getNome());
@@ -56,9 +76,9 @@ public class AuthController {
             response.setTelefone(usuario.getTelefone());
             response.setPerfil(usuario.getPerfil());
             response.setCondominio(usuario.getCondominio());
-            
+
             return ResponseEntity.ok(response);
-            
+
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Email ou senha inválidos");
         }

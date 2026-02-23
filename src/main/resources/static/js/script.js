@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // ================= CADASTRO =================
     const cadastroForm = document.getElementById("cadastroForm");
     if (cadastroForm) {
@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const cpfInput = document.querySelector('input[name="cpf"]');
-
         if (cpfInput) {
             cpfInput.addEventListener('input', (e) => {
                 e.target.value = aplicarMascaraCPF(e.target.value);
@@ -21,12 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ===== LOGIN =====
+    // ================= LOGIN =================
     const loginForm = document.getElementById("loginForm");
     if (loginForm) {
         loginForm.onsubmit = async (e) => {
             e.preventDefault();
-
             try {
                 const payload = {
                     email: document.getElementById("email").value,
@@ -36,15 +34,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 const res = await fetch("/api/auth/login", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
+                    credentials: "include",
                     body: JSON.stringify(payload),
                 });
 
                 if (!res.ok) {
-                    throw new Error("Erro no login");
+                    const errorText = await res.text();
+                    throw new Error(errorText);
                 }
 
                 const usuario = await res.json();
 
+                // Salva dados no localStorage
                 localStorage.setItem('usuario', JSON.stringify(usuario));
                 localStorage.setItem("perfil", usuario.perfil);
                 localStorage.setItem("nome", usuario.nome);
@@ -55,22 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("apartamento", usuario.apartamento || "");
                 localStorage.setItem("cargo", usuario.cargo || "");
 
-                console.log("User Data:", usuario);
-                console.log("Perfil:", usuario.perfil);
-
-                if (usuario.perfil == "SINDICO" && !usuario.condominio) {
+                // Redirecionamento por perfil
+                if (usuario.perfil === "SINDICO" && !usuario.condominio) {
                     window.location.href = "/sindico/criar_condominio";
-                } else if (usuario.perfil == "PROPRIETARIO" && !usuario.condominio || 
-                           usuario.perfil == "INQUILINO" && !usuario.condominio || 
-                           usuario.perfil == "FUNCIONARIO" && !usuario.condominio) {
+                } else if (["PROPRIETARIO", "INQUILINO", "FUNCIONARIO"].includes(usuario.perfil) && !usuario.condominio) {
                     window.location.href = "/aguardar_condominio";
-                } else if (usuario.perfil == "SINDICO") {
+                } else if (usuario.perfil === "SINDICO") {
                     window.location.href = "/sindico/dashboard-sindico";
-                } else if (usuario.perfil == "PROPRIETARIO") {
+                } else if (usuario.perfil === "PROPRIETARIO") {
                     window.location.href = "/proprietario/dashboard-proprietario";
-                } else if (usuario.perfil == "INQUILINO") {
+                } else if (usuario.perfil === "INQUILINO") {
                     window.location.href = "/inquilino/dashboard-inquilino";
-                } else if (usuario.perfil == "FUNCIONARIO") {
+                } else if (usuario.perfil === "FUNCIONARIO") {
                     window.location.href = "/funcionario/dashboard-funcionario";
                 } else {
                     window.location.href = "/login";
@@ -83,265 +80,223 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-	// ================= CRIAR CONDOMÍNIO =================
-	const condominioForm = document.getElementById("condominioForm");
-	if (condominioForm) {
-	    condominioForm.onsubmit = async (e) => {
-	        e.preventDefault();
+    // ================= CRIAR CONDOMÍNIO =================
+    const condominioForm = document.getElementById("condominioForm");
+    if (condominioForm) {
+        condominioForm.onsubmit = async (e) => {
+            e.preventDefault();
+            try {
+                const payload = {
+                    nomeCondominio: document.getElementById("nomeCondominio").value,
+                    cep: document.getElementById("cep").value,
+                    pais: document.getElementById("pais").value,
+                    estado: document.getElementById("estado").value,
+                    cidade: document.getElementById("cidade").value,
+                    logradouro: document.getElementById("logradouro").value,
+                    numeroCondominio: parseInt(document.getElementById("numeroCondominio").value) || 0,
+                    blocos: parseInt(document.getElementById("blocos").value) || 0,
+                    apartamentos: parseInt(document.getElementById("apartamentos").value) || 0,
+                };
 
-	        try {
-	            const payload = {
-	                nomeCondominio: document.getElementById("nomeCondominio").value,
-	                cep: document.getElementById("cep").value,
-	                pais: document.getElementById("pais").value,
-	                estado: document.getElementById("estado").value,
-	                cidade: document.getElementById("cidade").value,
-	                logradouro: document.getElementById("logradouro").value,
-	                numeroCondominio: parseInt(document.getElementById("numeroCondominio").value) || 0,
-	                blocos: parseInt(document.getElementById("blocos").value) || 0,
-	                apartamentos: parseInt(document.getElementById("apartamentos").value) || 0,
-	            };
+                const res = await fetch("/sindico/api/condominio/create", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                });
 
-	            const res = await fetch("/sindico/api/condominio/create", {
-	                method: "POST",
-	                headers: { "Content-Type": "application/json" },
-	                body: JSON.stringify(payload),
-	            });
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error("Erro ao criar condomínio: " + errorText);
+                }
 
-	            if (!res.ok) {
-	                const errorText = await res.text();
-	                console.error("Erro na criação do condomínio:", res.status, errorText);
-	                throw new Error("Erro ao criar condomínio");
-	            }
+                const condominioCriado = await res.json();
+                const email = localStorage.getItem("email");
 
-	            const condominioCriado = await res.json();
+                const payload2 = { idCondominio: condominioCriado.id };
 
-	            const email = localStorage.getItem("email");
-	            
-	            const payload2 = {
-	                idCondominio: condominioCriado.id
-	            };
+                const res2 = await fetch(`/api/usuarios/${email}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: 'include',
+                    body: JSON.stringify(payload2),
+                });
 
-				const res2 = await fetch(`/api/usuarios/${email}`, {
-				    method: "PATCH",
-				    headers: { 
-				        "Content-Type": "application/json",
-				    },
-				    credentials: 'include',
-				    body: JSON.stringify(payload2),
-				});
+                if (!res2.ok) {
+                    const errorText = await res2.text();
+                    console.error("Erro na atualização do usuário:", errorText);
+                }
 
-	            if (!res2.ok) {
-	                const errorText = await res2.text();
-	                console.error("Erro na atualização do usuário:", res2.status, errorText);
-	            }
+                localStorage.setItem("condominio", condominioCriado.nomeCondominio);
+                alert("Condomínio criado com sucesso!");
+                window.location.href = "/sindico/dashboard-sindico";
 
-	            const usuarioAtualizado = await res2.json();
-	            console.log("Usuário atualizado:", usuarioAtualizado);
-	            
-	            // Atualizar o localStorage com os novos dados
-	            localStorage.setItem("condominio", condominioCriado.nomeCondominio);
-	            
-	            alert("Condomínio criado com sucesso!");
-	            window.location.href = "/sindico/dashboard-sindico";
-	            
-	        } catch (error) {
-	            console.error("Erro detalhado:", error);
-	            alert(error.message || "Erro ao criar condomínio. Tente novamente.");
-	        }
-	    };
-	}
-    
+            } catch (error) {
+                console.error(error);
+                alert(error.message || "Erro ao criar condomínio. Tente novamente.");
+            }
+        };
+    }
+
+    // ================= NOVA SENHA =================
+    const novaSenhaForm = document.getElementById("novaSenhaForm");
+    if (novaSenhaForm) {
+        novaSenhaForm.addEventListener('submit', e => {
+            const senha = document.getElementById('novaSenha').value;
+            const confirmar = document.getElementById('confirmarSenha').value;
+
+            if (senha !== confirmar) {
+                e.preventDefault();
+                alert("As senhas não coincidem!");
+            }
+        });
+
+        // Preenche token do URL
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get("token");
+        const tokenInput = document.querySelector("input[name='token']");
+        if (tokenInput) tokenInput.value = token;
+    }
+
     // ================= DASHBOARD =================
-    const dashboardPage = document.getElementById("dashboard");
-	const aguardarPage = document.getElementById("aguardar_condominio");
-    if (dashboardPage || aguardarPage) {
+    const nomeElement = document.getElementById('nomeDoUsuario');
+    if (nomeElement) {
         const nome = localStorage.getItem("nome");
-        const nomeElement = document.getElementById('nomeDoUsuario');
-		
-        if (nomeElement) {
-            nomeElement.innerText = nome;
-        }
+        nomeElement.innerText = nome || "";
     }
 
-// ================= PAINEL DE MORADORES (ADICIONAR MORADORES) =================
-	const adicionarMoradorForm = document.getElementById("adicionarMoradorForm");
-	if (adicionarMoradorForm) {
-	    adicionarMoradorForm.onsubmit = async (e) => {
-	        e.preventDefault();
-	
-	        try {
-				const usuarioString = localStorage.getItem("usuario");
-				const emailMorador = document.getElementById("emailMorador").value;
-				const apartamento = document.getElementById("apartamentoMorador").value;
-				const usuario = JSON.parse(usuarioString);
-				const idCondominio = usuario.condominio.id;
+    // ================= PAINEL DE MORADORES =================
+    const adicionarMoradorForm = document.getElementById("adicionarMoradorForm");
+    if (adicionarMoradorForm) {
+        adicionarMoradorForm.onsubmit = async (e) => {
+            e.preventDefault();
+            try {
+                const usuario = JSON.parse(localStorage.getItem("usuario"));
+                const emailMorador = document.getElementById("emailMorador").value;
+                const apartamento = document.getElementById("apartamentoMorador").value;
 
-				const payload = {
-		    	    idCondominio: idCondominio,
-					apartamento: apartamento
-				};
-				
-				const res = await fetch(`/api/usuarios/${emailMorador}`, {
-				    method: "PATCH",
-				    headers: { 
-				        "Content-Type": "application/json",
-				    },
-				    credentials: 'include',
-				    body: JSON.stringify(payload),
-				});
-	            if (!res.ok) {
-	                const errorText = await res.text();
-	                console.error("Erro na adição do morador:", res.status, errorText);
-	            } else {
-				carregarMoradores(); // Atualiza a lista de moradores após a adição
-	        	}
-			} catch (error) {
-	            alert(error.message || "Erro ao adicionar morador. Tente novamente.");
-	        }
-	    };
-	}
+                const payload = {
+                    idCondominio: usuario.condominio.id,
+                    apartamento: apartamento
+                };
 
-// ================= PAINEL DE FUNCIONÁRIOS (ADICIONAR FUNCIONÁRIOS) =================
-	const adicionarFuncionarioForm = document.getElementById("adicionarFuncionarioForm");
-	if (adicionarFuncionarioForm) {
-	    adicionarFuncionarioForm.onsubmit = async (e) => {
-	        e.preventDefault();
-	
-	        try {
-				const usuarioString = localStorage.getItem("usuario");
-				const emailFuncionario = document.getElementById("emailMorador").value;
-				const cargo = document.getElementById("cargoFuncionario").value;
-				const usuario = JSON.parse(usuarioString);
-				const idCondominio = usuario.condominio.id;
+                const res = await fetch(`/api/usuarios/${emailMorador}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: 'include',
+                    body: JSON.stringify(payload),
+                });
 
-				const payload = {
-		    	    idCondominio: idCondominio,
-					cargo: cargo
-				};
-				
-				const res = await fetch(`/api/usuarios/${emailFuncionario}`, {
-				    method: "PATCH",
-				    headers: { 
-				        "Content-Type": "application/json",
-				    },
-				    credentials: 'include',
-				    body: JSON.stringify(payload),
-				});
-	            if (!res.ok) {
-	                const errorText = await res.text();
-	                console.error("Erro na adição do funcionário:", res.status, errorText);
-	            } else {
-				carregarFuncionarios(); // Atualiza a lista de moradores após a adição
-	        	}
-			} catch (error) {
-	            alert(error.message || "Erro ao adicionar funcionário. Tente novamente.");
-	        }
-	    };
-	}
-});
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(errorText);
+                }
 
-// ================= PAINEL DE MORADORES (CARREGAR MORADORES) =================
-async function carregarMoradores() {
-    try {
-        const response = await fetch('/api/moradores/condominio', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include'
-        });
+                carregarMoradores(); // Atualiza tabela
+            } catch (error) {
+                alert(error.message || "Erro ao adicionar morador.");
+            }
+        };
+    }
 
-        if (!response.ok) {
-            throw new Error('Erro ao carregar moradores');
-        }
-
-        const moradores = await response.json();
-        const tabelaBody = document.querySelector('#tabela tbody');
-        
-        if (tabelaBody) {
-            tabelaBody.innerHTML = '';
-            
-            moradores.forEach(morador => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${morador.nome}</td>
-                    <td>${morador.apartamento || 'Não definido'}</td>
-					<td>${morador.email}</td>
-					<td>${morador.perfil}</td>
-					<td>${morador.cargo || 'N/A'}</td>
-                `;
-                tabelaBody.appendChild(row);
+    async function carregarMoradores() {
+        try {
+            const response = await fetch('/api/moradores/condominio', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include'
             });
+            if (!response.ok) throw new Error("Erro ao carregar moradores");
+            const moradores = await response.json();
+            const tabelaBody = document.querySelector('#tabela tbody');
+            if (tabelaBody) {
+                tabelaBody.innerHTML = '';
+                moradores.forEach(m => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${m.nome}</td>
+                        <td>${m.apartamento || 'Não definido'}</td>
+                        <td>${m.email}</td>
+                        <td>${m.perfil}</td>
+                        <td>${m.cargo || 'N/A'}</td>
+                    `;
+                    tabelaBody.appendChild(row);
+                });
+            }
+        } catch (error) {
+            console.error(error);
         }
-    } catch (error) {
-        console.error('Erro ao carregar moradores:', error);
     }
-}
 
-// Chama esta função quando a página carregar
-document.addEventListener("DOMContentLoaded", () => {
-    if (document.getElementById('painel_de_moradores')) {
-        carregarMoradores();
+    // ================= PAINEL DE FUNCIONÁRIOS =================
+    const adicionarFuncionarioForm = document.getElementById("adicionarFuncionarioForm");
+    if (adicionarFuncionarioForm) {
+        adicionarFuncionarioForm.onsubmit = async (e) => {
+            e.preventDefault();
+            try {
+                const usuario = JSON.parse(localStorage.getItem("usuario"));
+                const emailFuncionario = document.getElementById("emailFuncionario").value;
+                const cargo = document.getElementById("cargoFuncionario").value;
+
+                const payload = {
+                    idCondominio: usuario.condominio.id,
+                    cargo: cargo
+                };
+
+                const res = await fetch(`/api/usuarios/${emailFuncionario}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: 'include',
+                    body: JSON.stringify(payload),
+                });
+
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(errorText);
+                }
+
+                carregarFuncionarios();
+            } catch (error) {
+                alert(error.message || "Erro ao adicionar funcionário.");
+            }
+        };
     }
-});
 
-
-
-// ================= PAINEL DE FUNCIONÁRIOS (CARREGAR FUNCIONÁRIOS) =================
-async function carregarFuncionarios() {
-    try {
-        const response = await fetch('/api/funcionarios/condominio', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include'
-        });
-
-        if (!response.ok) {
-            throw new Error('Erro ao carregar funcionários');
-        }
-
-        const funcionarios = await response.json();
-        const tabelaBody = document.querySelector('#tabela tbody');
-        
-        if (tabelaBody) {
-            tabelaBody.innerHTML = '';
-            
-            funcionarios.forEach(funcionario => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${funcionario.nome}</td>
-                    <td>${funcionario.cargo || 'Não definido'}</td>
-					<td>${funcionario.email}</td>
-                `;
-                tabelaBody.appendChild(row);
+    async function carregarFuncionarios() {
+        try {
+            const response = await fetch('/api/funcionarios/condominio', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include'
             });
+            if (!response.ok) throw new Error("Erro ao carregar funcionários");
+            const funcionarios = await response.json();
+            const tabelaBody = document.querySelector('#tabela tbody');
+            if (tabelaBody) {
+                tabelaBody.innerHTML = '';
+                funcionarios.forEach(f => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${f.nome}</td>
+                        <td>${f.cargo || 'Não definido'}</td>
+                        <td>${f.email}</td>
+                    `;
+                    tabelaBody.appendChild(row);
+                });
+            }
+        } catch (error) {
+            console.error(error);
         }
-    } catch (error) {
-        console.error('Erro ao carregar funcionários:', error);
     }
-}
 
-// Chama esta função quando a página carregar
-document.addEventListener("DOMContentLoaded", () => {
-    if (document.getElementById('painel_de_moradores')) {
-        carregarMoradores();
-    }
-	
-	if	(document.getElementById('painel_de_funcionarios')) {
-	        carregarFuncionarios();
-	    }
-});
+}); // Fim DOMContentLoaded
 
 // ================= LOGOUT =================
 async function logout() {
-    const res = await fetch("/api/auth/logout", { 
+    await fetch("/api/auth/logout", { 
         method: "POST",
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
+        credentials: "include"
     });
-	
     localStorage.clear();
     window.location.href = "/login";
 }

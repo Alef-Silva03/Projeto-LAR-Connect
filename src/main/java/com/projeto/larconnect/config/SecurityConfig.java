@@ -11,16 +11,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
 
     @Autowired
@@ -47,41 +45,65 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
         http
             .authenticationProvider(authenticationProvider())
+
+            // ✅ CORREÇÃO DO CSRF
             .csrf(csrf -> csrf
-                .ignoringRequestMatchers("/h2-console/**", "/usuarios/salvar", "/api/auth/**", "/sindico/api/**", "/api/**")
+                .ignoringRequestMatchers(
+                    "/h2-console/**",
+                    "/usuarios/salvar",
+                    "/api/auth/**",
+                    "/sindico/api/**",
+                    "/api/**",
+                    "/redefinir_senha",
+                    "/nova_senha"
+                )
             )
+
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/", "/login", "/cadastro", "/usuarios/salvar", "/nova_senha", "/minha_conta").permitAll()
-                .requestMatchers("/api/usuarios/**", "/api/moradores/**",  "/api/funcionarios/**").authenticated()
-                
-                // Usando hasRole (que já espera o prefixo ROLE_)
+                .requestMatchers(
+                        "/",
+                        "/login",
+                        "/cadastro",
+                        "/usuarios/salvar",
+                        "/redefinir_senha",
+                        "/nova_senha",
+                        "/minha_conta"
+                ).permitAll()
+                .requestMatchers("/api/usuarios/**", "/api/moradores/**", "/api/funcionarios/**").authenticated()
+
                 .requestMatchers("/proprietario/**").hasRole("PROPRIETARIO")
                 .requestMatchers("/sindico/**").hasRole("SINDICO")
                 .requestMatchers("/api/condominio/**").hasRole("SINDICO")
                 .requestMatchers("/sindico/api/**").hasRole("SINDICO")
                 .requestMatchers("/inquilino/**").hasRole("INQUILINO")
                 .requestMatchers("/funcionario/**").hasRole("FUNCIONARIO")
+
                 .anyRequest().authenticated()
             )
+
             .exceptionHandling(exception -> exception
                 .accessDeniedHandler((request, response, accessDeniedException) -> {
                     logger.error("Acesso negado: {}", accessDeniedException.getMessage());
-                    response.sendError(HttpServletResponse.SC_FORBIDDEN, "Acesso negado: " + accessDeniedException.getMessage());
+                    response.sendError(HttpServletResponse.SC_FORBIDDEN,
+                            "Acesso negado: " + accessDeniedException.getMessage());
                 })
-                
             )
+
             .formLogin(form -> form
-				.loginPage("/login")
-				.defaultSuccessUrl("/", true)
-				.permitAll()
-				)
-            
-                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
-            
-            return http.build();
-        }
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true)
+                .permitAll()
+            )
+
+            .headers(headers -> headers
+                .frameOptions(frame -> frame.sameOrigin())
+            );
+
+        return http.build();
     }
+}

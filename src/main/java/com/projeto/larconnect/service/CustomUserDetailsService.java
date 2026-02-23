@@ -32,9 +32,9 @@ public class CustomUserDetailsService implements UserDetailsService {
             usuario.getEmail(), usuario.getPerfil());
         
         return org.springframework.security.core.userdetails.User.builder()
-			.username(usuario.getEmail())
-			.password(usuario.getSenha())
-			.roles(usuario.getPerfil()) // Define o perfil como a role do usuário
-			.build();
+                .username(usuario.getEmail())
+                .password(usuario.getSenha())
+                .roles(usuario.getPerfil().trim().toUpperCase()) // Define o perfil como a role do usuário
+                .build();      
     }
 }
