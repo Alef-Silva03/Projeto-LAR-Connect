@@ -12,4 +12,13 @@ export interface CondominioRequest {
 
 export interface CondominioResponse extends CondominioRequest {
   id: number;
+  nomeCondominio: string;
+  cep: string;
+  pais: string;
+  estado: string;
+  cidade: string;
+  logradouro: string;
+  numeroCondominio: number;
+  blocos: number;
+  apartamentos: number;
 }

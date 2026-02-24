@@ -35,23 +35,6 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginDto, HttpServletRequest request) {
         try {
-
-            Usuario usuarioTeste = usuarioRepository
-                    .findByEmailIgnoreCase(loginDto.getEmail())
-                    .orElse(null);
-
-            if (usuarioTeste == null) {
-                System.out.println("Usuário NÃO encontrado");
-            } else {
-                System.out.println("Usuário encontrado");
-                System.out.println("Senha digitada: " + loginDto.getSenha());
-                System.out.println("Hash no banco: " + usuarioTeste.getSenha());
-
-                boolean confere = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder()
-                        .matches(loginDto.getSenha(), usuarioTeste.getSenha());
-            }
-
-
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getSenha())
             );

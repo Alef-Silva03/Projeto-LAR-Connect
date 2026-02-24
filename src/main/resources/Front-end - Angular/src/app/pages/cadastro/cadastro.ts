@@ -12,13 +12,13 @@ import { CadastroService } from '../../services/cadastro.service'; // Você prec
   styleUrl: './cadastro.css',
 })
 export class Cadastro {
-  // Interface CORRETA com todos os campos do formulário
+
   usuario = {
     nome: '',
-    email: '',    // ← Mudado de 'login' para 'email'
+    email: '', 
     senha: '',
-    cpf: '',      // ← Novo campo
-    telefone: '', // ← Novo campo
+    cpf: '',  
+    telefone: '', 
     perfil: ''
   };
 

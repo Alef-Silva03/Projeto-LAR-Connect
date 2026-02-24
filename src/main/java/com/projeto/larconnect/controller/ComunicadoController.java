@@ -31,7 +31,7 @@ public class ComunicadoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     
-    //O método abaixo é usado pelo método acima para converter o comunicado para o formato DTO
+    @GetMapping("/comunicados/listar")
     private ComunicadoResponseDTO convertToDTO(Comunicado novoComunicado) {
         ComunicadoResponseDTO novoComunicadoDto = new ComunicadoResponseDTO();
         novoComunicadoDto.setId(novoComunicado.getId());

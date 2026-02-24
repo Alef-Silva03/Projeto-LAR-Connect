@@ -1,11 +1,11 @@
 <article class="enviar-comunicados-container">
-    <div class="glass-card shadow-lg p-5">
-        <header class="text-center mb-5">
-            <h1 class="text-gradient display-5 fw-bold">ENVIAR COMUNICADOS</h1>
-            <p class="subtitulo">Envie avisos e notícias aos moradores de seu condomínio</p>
-        </header>
+  <div class="glass-card shadow-lg p-5">
+    <header class="text-center mb-5">
+      <h1 class="text-gradient display-5 fw-bold">ENVIAR COMUNICADOS</h1>
+      <p class="subtitulo">Envie avisos e notícias aos moradores de seu condomínio</p>
+    </header>
 
-        <form (submit)="enviarComunicado()" class="form-comunicado">
+    <form (ngSubmit)="enviarComunicado()" #comunicadoForm="ngForm" class="form-comunicado">
             <div class="mb-4">
                 <label class="form-label-custom">Tipo de Comunicado</label>
                 <select name="tipo" [(ngModel)]="comunicado.tipo" class="form-select-pill" required>
@@ -35,5 +35,23 @@
                 </button>
             </div>
         </form>
+        <br>
+        <hr>
+        <section class="mt-5">
+            <h2 class="text-gradient h3 mb-4 text-center">PAINEL DE COMUNICADOS</h2>
+            <div *ngIf="comunicados.length === 0" class="text-center text-muted">
+                Nenhum comunicado encontrado.
+            </div>
+            <div class="row g-4">
+                <div *ngFor="let c of comunicados" class="col-12">
+                <div class="painel">   <!-- usa a classe original 'painel' -->
+                    <h3>{{ c.titulo }}</h3>
+                    <hr>
+                    <h4>Postado em: {{ c.data }}</h4>
+                    <p>{{ c.texto }}</p>
+                </div>
+                </div>
+            </div>
+        </section>
     </div>
-</article>
+    </article>

@@ -13,22 +13,22 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
     login(email: string, senha: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.API}/login`, { email, senha })
-        .pipe(
+    return this.http.post<LoginResponse>(`${this.API}/login`, { email, senha }, {
+        withCredentials: true  // ← ESSENCIAL
+    }).pipe(
         tap(response => {
-            localStorage.setItem('perfil', response.perfil);
-            localStorage.setItem('nome', response.nome);
-            localStorage.setItem('email', response.email);
-            localStorage.setItem('cpf', response.cpf);
-            localStorage.setItem('telefone', response.telefone);
-            localStorage.setItem('perfil', response.perfil);
-            localStorage.setItem('cargo', response.cargo);
-            localStorage.setItem('apartamento', response.apartamento);
-            localStorage.setItem('condominio', response.condominio ? response.condominio.nomeCondominio : '');
-            localStorage.setItem('token', response.reset_token); // ← Note: reset_token
-            this.loggedIn.next(true);
+        localStorage.setItem('perfil', response.perfil);
+        localStorage.setItem('nome', response.nome);
+        localStorage.setItem('email', response.email);
+        localStorage.setItem('cpf', response.cpf);
+        localStorage.setItem('telefone', response.telefone);
+        localStorage.setItem('cargo', response.cargo);
+        localStorage.setItem('apartamento', response.apartamento);
+        localStorage.setItem('condominio', response.condominio ? response.condominio.nomeCondominio : '');
+        localStorage.setItem('token', response.reset_token); // se necessário
+        this.loggedIn.next(true);
         })
-        );
+    );
     }
 
     getCurrentUser(): LoginResponse | null {
