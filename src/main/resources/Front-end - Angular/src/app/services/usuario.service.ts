@@ -17,6 +17,9 @@ export interface UsuarioUpdate {
   providedIn: 'root'
 })
 export class UsuarioService {
+  static getCondominioId() {
+      throw new Error('Method not implemented.');
+  }
   private apiUrl = '/api/usuarios';
 
   constructor(private http: HttpClient) {}

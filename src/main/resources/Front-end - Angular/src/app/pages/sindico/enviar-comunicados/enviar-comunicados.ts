@@ -1,81 +1,65 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+// src/app/components/enviar-comunicados/enviar-comunicados.component.ts
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ComunicadoService } from '../../../services/comunicado.service';
+import { Comunicado } from '../../../models/comunicado.model';
 
 @Component({
-  selector: 'app-enviar-comunicado',
+  selector: 'app-enviar-comunicados',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule], // HttpClient não precisa ser importado aqui se fornecido globalmente
   templateUrl: './enviar-comunicados.html',
   styleUrls: ['./enviar-comunicados.css']
 })
-export class EnviarComunicados implements OnInit {
-  comunicado = {
+export class EnviarComunicadosComponent implements OnInit {
+  comunicado: Comunicado = {
     tipo: '',
-    assunto: '',
-    texto: ''
+    titulo: '',
+    texto: '',
+    idCondominio: 0,
   };
 
-  comunicados: any[] = [];
+  comunicados: Comunicado[] = [];
 
- constructor(
-    private http: HttpClient, 
-    private router: Router
+  constructor(
+    private comunicadoService: ComunicadoService,
+    private cdr: ChangeDetectorRef   // <-- injete
   ) {}
 
   ngOnInit(): void {
     this.carregarComunicados();
   }
 
-  carregarComunicados() {
-    this.http.get<any[]>('http://localhost:8080/sindico/api/comunicados/listar', {
-      withCredentials: true
-    }).subscribe({
-      next: (dados) => {
-        this.comunicados = dados;
-      },
-      error: (err) => {
-        console.error('Erro ao carregar comunicados:', err);
-      }
-    });
-  }
-
-  enviarComunicado() {
+  enviarComunicado(): void {
     const usuarioString = localStorage.getItem('usuario');
     if (!usuarioString) {
       alert('Usuário não encontrado. Faça login novamente.');
       return;
     }
-
     const usuario = JSON.parse(usuarioString);
-    const idCondominio = usuario.condominio?.id;
-    if (!idCondominio) {
-      alert('Condomínio não identificado.');
-      return;
-    }
 
-    const payload = {
-      tipo: this.comunicado.tipo,
-      titulo: this.comunicado.assunto,
-      texto: this.comunicado.texto,
-      idCondominio: idCondominio
-    };
-
-    this.http.post('http://localhost:8080/sindico/api/comunicados/create', payload, {
-      withCredentials: true,
-      headers: { 'Content-Type': 'application/json' }
-    }).subscribe({
-      next: (res) => {
+    this.comunicado.idCondominio = usuario.condominio?.id;
+    this.comunicadoService.enviarComunicado(this.comunicado).subscribe({
+      next: () => {
         alert('Comunicado postado com sucesso!');
-        this.comunicado = { tipo: '', assunto: '', texto: '' };
-        this.carregarComunicados();
+        this.comunicado = { tipo: '', titulo: '', texto: '', idCondominio: this.comunicado.idCondominio }; // limpa formulário
+        this.carregarComunicados(); // atualiza a lista
       },
       error: (err) => {
-        console.error('Erro na postagem:', err);
+        console.error('Erro ao enviar comunicado', err);
         alert('Erro ao postar comunicado. Verifique o console.');
       }
+    });
+  }
+
+  carregarComunicados(): void {
+    this.comunicadoService.listarComunicados().subscribe({
+      next: (lista) => {
+        this.comunicados = lista;
+        this.cdr.detectChanges();   // <-- força a atualização da view
+      },
+      error: (err) => console.error('Erro ao carregar comunicados', err)
     });
   }
 }

@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'; // Importe HttpH
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CondominioRequest, CondominioResponse } from '../../../models/condominio.model';
+import { error } from 'console';
 
 @Component({
   selector: 'app-criar-condominio',
@@ -42,21 +43,33 @@ export class CriarCondominio {
     });
   }
 
-  salvarCondominio() {
+  async salvarCondominio() {
     this.criarCondominio(this.condominio).subscribe({
-      next: (res) => {
-        alert('Cadastro realizado com sucesso!');
-        this.router.navigate(['/dashboard-sindico']);
-      },
-      error: (err) => {
-        console.error('Erro completo:', err);
-        if (err.status === 403) {
-          alert('Acesso negado. Verifique se você está logado como síndico.');
-        } else if (err.status === 400) {
-          alert('Dados inválidos. Verifique todos os campos.');
-        } else {
-          alert('Erro ao cadastrar. Tente novamente mais tarde.');
+      next: async (res: CondominioResponse) => {
+        const condominioCriado = res;
+        const email = localStorage.getItem("email");
+
+        const payload2 = { idCondominio: condominioCriado.id };
+
+        const res2 = await fetch(`/api/usuarios/${email}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          credentials: 'include',
+          body: JSON.stringify(payload2),
+        });
+
+        if (!res2.ok) {
+          const errorText = await res2.text();
+          console.error("Erro na atualização do usuário:", errorText);
         }
+
+        localStorage.setItem("condominio", condominioCriado.nomeCondominio);
+        alert("Condomínio criado com sucesso!");
+        window.location.href = "/sindico/dashboard-sindico";
+      },
+      error: (err: any) => {
+        console.error('Erro ao criar condomínio', err);
+        alert('Erro ao criar condomínio. Verifique os dados e tente novamente.');
       }
     });
   }

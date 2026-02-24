@@ -10,7 +10,7 @@ public class ComunicadoResponseDTO {
 	private String titulo;
 	private String texto;
 	
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "America/Sao_Paulo")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private LocalDateTime data;
 	
     public ComunicadoResponseDTO() {}

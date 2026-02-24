@@ -34,7 +34,7 @@ public class Comunicado {
     private String texto;
     
     @CreatedDate
-    @Column(name = "data", nullable = false, updatable = false)
+    @Column(name = "data", updatable = false)
     private LocalDateTime  data;
     
     @ManyToOne

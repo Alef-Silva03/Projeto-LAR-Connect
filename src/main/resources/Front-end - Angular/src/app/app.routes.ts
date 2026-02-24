@@ -7,7 +7,7 @@ import { Chat } from './pages/chat/chat';
 import { Notificacoes } from './pages/notificacoes/notificacoes';
 import { vagagaragem } from './pages/vaga-garagem/vaga-garagem'; 
 import { DashboardSindico } from './pages/sindico/dashboard-sindico/dashboard-sindico';
-import { EnviarComunicados } from './pages/sindico/enviar-comunicados/enviar-comunicados';
+import { EnviarComunicadosComponent} from './pages/sindico/enviar-comunicados/enviar-comunicados';
 import { PainelMoradores } from './pages/sindico/painel-moradores/painel-moradores';
 import { CriarCondominio } from './pages/sindico/criar-condominio/criar-condominio';
 import { ReservaEspacos } from './pages/sindico/reserva-espacos/reserva-espacos';
@@ -16,7 +16,7 @@ import { AnunciosImoveis } from './pages/sindico/anuncios-imoveis/anuncios-imove
 import { EnviarMensagens } from './pages/sindico/enviar-mensagens/enviar-mensagens';
 import { CaixaEntrada } from './pages/sindico/caixa-entrada/caixa-entrada';
 import { DashboardFuncionario } from './pages/funcionario/dashboard-funcionario/dashboard-funcionario';
-import { GestaoEncomendas } from './pages/funcionario/gestao-encomendas/gestao-encomendas';
+//import { GestaoEncomendas } from './pages/funcionario/gestao-encomendas/gestao-encomendas';
 
 export const routes: Routes = [
   // Rotas Públicas
@@ -35,7 +35,7 @@ export const routes: Routes = [
   { path: 'vaga-garagem', component: vagagaragem },
   { path: 'dashboard-sindico', component: DashboardSindico },
   // Rotas de Funcionalidades Administrativas
-  { path: 'enviar-comunicados', component: EnviarComunicados },
+  { path: 'enviar-comunicados', component: EnviarComunicadosComponent },
   { path: 'painel-moradores', component: PainelMoradores },
   { path: 'criar-condominio', component: CriarCondominio },
   { path: 'reserva-espacos', component: ReservaEspacos },
@@ -45,7 +45,7 @@ export const routes: Routes = [
   { path: 'caixa-entrada', component: CaixaEntrada },
   
   { path: 'dashboard-funcionario', component: DashboardFuncionario },
-  { path: 'gestao-encomendas', component: GestaoEncomendas },
+  //{ path: 'gestao-encomendas', component: GestaoEncomendas },
 
   // Redirecionamento Final (DEVE SER A ÚLTIMA LINHA)
   { path: '**', redirectTo: '' }

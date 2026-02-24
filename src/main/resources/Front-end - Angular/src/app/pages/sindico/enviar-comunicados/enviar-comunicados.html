@@ -1,3 +1,4 @@
+
 <article class="enviar-comunicados-container">
   <div class="glass-card shadow-lg p-5">
     <header class="text-center mb-5">
@@ -6,52 +7,53 @@
     </header>
 
     <form (ngSubmit)="enviarComunicado()" #comunicadoForm="ngForm" class="form-comunicado">
-            <div class="mb-4">
-                <label class="form-label-custom">Tipo de Comunicado</label>
-                <select name="tipo" [(ngModel)]="comunicado.tipo" class="form-select-pill" required>
-                    <option value="" disabled selected>Escolha uma opção</option>
-                    <option value="noticia">Notícia</option>
-                    <option value="aviso">Aviso</option>
-                    <option value="pedido">Pedido</option>
-                    <option value="outros">Outros</option>
-                </select>
-            </div>
+      <div class="mb-4">
+        <label class="form-label-custom">Tipo de Comunicado</label>
+        <select name="tipo" [(ngModel)]="comunicado.tipo" class="form-select-pill" required>
+          <option value="" disabled selected>Escolha uma opção</option>
+          <option value="noticia">Notícia</option>
+          <option value="aviso">Aviso</option>
+          <option value="pedido">Pedido</option>
+          <option value="outros">Outros</option>
+        </select>
+      </div>
 
-            <div class="mb-4">
-                <label class="form-label-custom">Assunto do Comunicado</label>
-                <input type="text" name="assunto" [(ngModel)]="comunicado.assunto" 
-                       class="form-input-pill" placeholder="Ex: Manutenção do Elevador" required>
-            </div>
+      <div class="mb-4">
+        <label class="form-label-custom">Assunto do Comunicado</label>
 
-            <div class="mb-5">
-                <label class="form-label-custom">Texto Detalhado</label>
-                <textarea name="texto" [(ngModel)]="comunicado.texto" rows="5"
-                          class="form-textarea-pill" placeholder="Escreva aqui os detalhes para os moradores..." required></textarea>
-            </div>
+        <input type="text" name="titulo" [(ngModel)]="comunicado.titulo"
+               class="form-input-pill" placeholder="Ex: Manutenção do Elevador" required>
+      </div>
 
-            <div class="text-center">
-                <button type="submit" class="btn-enviar-neon">
-                    <i class="bi bi-send-fill me-2"></i> ENVIAR COMUNICADO
-                </button>
-            </div>
-        </form>
-        <br>
-        <hr>
-        <section class="mt-5">
-            <h2 class="text-gradient h3 mb-4 text-center">PAINEL DE COMUNICADOS</h2>
-            <div *ngIf="comunicados.length === 0" class="text-center text-muted">
-                Nenhum comunicado encontrado.
-            </div>
-            <div class="row g-4">
-                <div *ngFor="let c of comunicados" class="col-12">
-                <div class="painel">   <!-- usa a classe original 'painel' -->
-                    <h3>{{ c.titulo }}</h3>
-                    <hr>
-                    <h4>Postado em: {{ c.data }}</h4>
-                    <p>{{ c.texto }}</p>
-                </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    </article>
+      <div class="mb-5">
+        <label class="form-label-custom">Texto Detalhado</label>
+        <textarea name="texto" [(ngModel)]="comunicado.texto" rows="5"
+                  class="form-textarea-pill" placeholder="Escreva aqui os detalhes para os moradores..." required></textarea>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn-enviar-neon" [disabled]="comunicadoForm.invalid">
+          <i class="bi bi-send-fill me-2"></i> ENVIAR COMUNICADO
+        </button>
+      </div>
+    </form>
+    <br>
+    <hr>
+    <section class="mt-5">
+      <h2 class="text-gradient h3 mb-4 text-center">PAINEL DE COMUNICADOS</h2>
+      <div *ngIf="comunicados.length === 0" class="text-center text-muted">
+        Nenhum comunicado encontrado.
+      </div>
+      <div class="row g-4">
+        <div *ngFor="let c of comunicados" class="col-12">
+          <div class="painel">
+            <h3>{{ c.titulo }}</h3>
+            <hr>
+            <h4>Postado em: {{ c.data | date:'dd/MM/yyyy HH:mm:ss' }}</h4>
+            <p>{{ c.texto }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</article>

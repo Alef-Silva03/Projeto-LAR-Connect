@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.projeto.larconnect.dto.ComunicadoRequestDTO;
 import com.projeto.larconnect.dto.ComunicadoResponseDTO;
 import com.projeto.larconnect.dto.CondominioDTO;
 import com.projeto.larconnect.model.Comunicado;
@@ -28,7 +29,7 @@ public class ComunicadoService {
     private ComunicadoRepository comunicadoRepository;
 
     @Transactional
-    public Comunicado create(Comunicado comunicadoPostado) {
+    public Comunicado create(ComunicadoRequestDTO request) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         Usuario usuarioLogado = usuarioRepository.findByEmailIgnoreCase(email)
@@ -37,12 +38,10 @@ public class ComunicadoService {
         Condominio condominio = usuarioLogado.getCondominio();
             
         Comunicado novoComunicado = new Comunicado();
-        novoComunicado.setTipo(comunicadoPostado.getTipo());
-        novoComunicado.setTitulo(comunicadoPostado.getTitulo());
-        novoComunicado.setTexto(comunicadoPostado.getTexto());
+        novoComunicado.setTipo(request.getTipo());
+        novoComunicado.setTitulo(request.getTitulo());
+        novoComunicado.setTexto(request.getTexto());
         novoComunicado.setCondominio(condominio);
-        
-        // Salva novo comunicado no banco de dados
         
         return comunicadoRepository.save(novoComunicado);
     }

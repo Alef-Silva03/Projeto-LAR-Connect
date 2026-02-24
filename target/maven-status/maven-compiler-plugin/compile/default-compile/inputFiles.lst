@@ -1,4 +1,5 @@
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\config\CorsConfig.java
+C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\config\JpaConfig.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\config\SecurityConfig.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\AuthController.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controller\CadastroController.java
@@ -25,6 +26,7 @@ C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controll
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controllerPaginas\PainelDeComunicadosController.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controllerPaginas\RedefinirSenhaController.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\controllerPaginas\VagasGaragemController.java
+C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\ComunicadoRequestDTO.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\ComunicadoResponseDTO.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\CondominioDTO.java
 C:\Users\psena\Desktop\LAR-Connect\src\main\java\com\projeto\larconnect\dto\CondominioResponseDTO.java
