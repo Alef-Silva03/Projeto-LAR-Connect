@@ -33,8 +33,27 @@ public class EncomendaService {
         enc.setDescricao("Encomenda recebida na portaria");
         enc.setDataChegada("Hoje, " + java.time.LocalTime.now().toString().substring(0,5));
         enc.setEntregue(false);
+        enc.setCondominio();
         
         // Salva a encomenda no MySQL
         return encomendaRepo.save(enc);
     }
+    
+    public List<Encomenda> getEncomendasDoCondominio() {
+        // Pega o usuário logado atual
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        
+        // Busca o usuário logado
+        Usuario usuarioLogado = usuarioRepository.findByEmailIgnoreCase(email)
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        
+        // Busca todos os comunicados do condomínio do usuário
+        Long condominioId = usuarioLogado.getCondominio().getId();
+        List<Encomenda> encomenda = encomendaRepo.findByCondominioIdOrderByIdDesc(condominioId);
+        
+        // Converte para DTO
+        return encomenda;
+    }
+    
 }

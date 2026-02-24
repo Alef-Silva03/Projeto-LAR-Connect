@@ -21,6 +21,10 @@ public class Encomenda {
     private String bloco;
     private String dataChegada;
     private boolean entregue = false;
+    
+    @ManyToOne
+    @JoinColumn(name = "idCondominio", referencedColumnName = "id")
+    private Condominio condominio;
 
 	
     public void setEntregue(boolean b) {

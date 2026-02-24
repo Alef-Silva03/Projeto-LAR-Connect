@@ -23,13 +23,15 @@ public class EncomendaController {
 
     @Autowired
     private EncomendaRepository repository;
+    
+    @Autowired
+    private EncomendaService encomendaService;
 
     @GetMapping
     public List<Encomenda> listar() {
         // Retorna apenas encomendas que ainda não foram entregues
-        return repository.findAll().stream()
-                .filter(e -> !e.isEntregue())
-                .collect(Collectors.toList());
+        List<Encomenda> encomenda = encomendaService.getEncomendasDoCondominio();
+        return ResponseEntity.ok(encomenda);
     }
 
     @PostMapping
