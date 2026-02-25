@@ -3,23 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { LoginResponse } from '../models/usuario.model';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    finalizarEntrega(id: any) {
-        throw new Error('Method not implemented.');
-    }
-    registrarEncomenda(novaEntrega: { apto: string; bloco: string; moradorNome: string; descricao: string; }) {
-        throw new Error('Method not implemented.');
-    }
-    listarEncomendas() {
-        throw new Error('Method not implemented.');
-    }
-  private loggedIn = new BehaviorSubject<boolean>(false);
-  isLoggedIn$ = this.loggedIn.asObservable();
-  private readonly API = 'http://localhost:8080/api/auth';
+    private loggedIn = new BehaviorSubject<boolean>(false);
+    isLoggedIn$ = this.loggedIn.asObservable();
+    private readonly API = 'http://localhost:8080/api/auth';
 
-  constructor(private http: HttpClient) {}
+    constructor(private router: Router, private http: HttpClient) {}
 
     login(email: string, senha: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.API}/login`, { email, senha }, {
@@ -41,23 +33,12 @@ export class AuthService {
     }
 
     getCurrentUser(): LoginResponse | null {
-    const userStr = localStorage.getItem('perfil');
-    return userStr ? JSON.parse(userStr) : null;
-  }
+    const usuarioJson = localStorage.getItem('usuario');
+    return usuarioJson ? JSON.parse(usuarioJson) : null;
+    }
 
     getPerfil(): String | null {
     return localStorage.getItem('perfil');
-  }
-  
-  logout(): void {
-    localStorage.removeItem('token'); 
-    localStorage.removeItem('perfil');
-    localStorage.removeItem('nome');
-    localStorage.removeItem('email');
-    localStorage.removeItem('cpf');
-    localStorage.removeItem('telefone');
-    localStorage.removeItem('condominio');
-    this.loggedIn.next(false);
   }
 
   getToken(): string | null {
@@ -67,57 +48,26 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
+    
+  logout(): void {
+    fetch("http://localhost:8080/api/auth/logout", { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include"
+    });
+    localStorage.clear();
+    this.router.navigate(['/']); 
+
+    this.loggedIn.next(false);
+    }
+
+    finalizarEntrega(id: any) {
+        throw new Error('Method not implemented.');
+    }
+    registrarEncomenda(novaEntrega: { apto: string; bloco: string; moradorNome: string; descricao: string; }) {
+        throw new Error('Method not implemented.');
+    }
+    listarEncomendas() {
+        throw new Error('Method not implemented.');
+    }
 }
-
-/*
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthService {
-  private apiUrl = '/api/auth';
-  private usuarioKey = 'usuario';
-
-  constructor(private http: HttpClient) {}
-
-  login(credentials: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials)
-      .pipe(
-        tap(response => {
-          localStorage.setItem(this.usuarioKey, JSON.stringify(response));
-          localStorage.setItem('perfil', response.perfil);
-          localStorage.setItem('nome', response.nome);
-          localStorage.setItem('email', response.email);
-          if (response.condominio) {
-            localStorage.setItem('condominio', response.condominio.nomeCondominio);
-          }
-        })
-      );
-  }
-
-  logout(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/logout`, {})
-      .pipe(
-        tap(() => {
-          localStorage.clear();
-        })
-      );
-  }
-
-  getCurrentUser(): LoginResponse | null {
-    const userStr = localStorage.getItem(this.usuarioKey);
-    return userStr ? JSON.parse(userStr) : null;
-  }
-
-  isAuthenticated(): boolean {
-    return !!this.getCurrentUser();
-  }
-
-  getPerfil(): string | null {
-    return localStorage.getItem('perfil');
-  }
-
-  hasCondominio(): boolean {
-    const user = this.getCurrentUser();
-    return !!user?.condominio;
-  }
-}*/

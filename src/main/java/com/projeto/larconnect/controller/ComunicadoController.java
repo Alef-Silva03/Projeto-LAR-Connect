@@ -36,11 +36,6 @@ public class ComunicadoController {
         novoComunicadoDto.setData(novoComunicado.getData());
         return ResponseEntity.status(HttpStatus.CREATED).body(novoComunicadoDto);
     }
-    
-    @GetMapping("/comunicados/listar")
-    public ResponseEntity<List<ComunicadoResponseDTO>> listar() {
-        List<ComunicadoResponseDTO> comunicados = comunicadoService.getComunicadosDoCondominio();
-        return ResponseEntity.ok(comunicados);
-    }
+
     
 }

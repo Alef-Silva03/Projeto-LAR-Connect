@@ -20,7 +20,7 @@
             <li *ngIf="authService.isAuthenticated() && authService.getPerfil() == 'PROPRIETARIO'"><a routerLink="/dashboard-proprietario" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Dashboard</a></li>
             <li *ngIf="authService.isAuthenticated() && authService.getPerfil() == 'INQUILINO'"><a routerLink="/dashboard-inquilino" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Dashboard</a></li>
             <li *ngIf="authService.isAuthenticated() && authService.getPerfil() == 'FUNCIONARIO'"><a routerLink="/dashboard-funcionario" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Dashboard</a></li>
-            <li *ngIf="authService.isAuthenticated()"><a (click)="logout()" class="text-danger"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+            <li *ngIf="authService.isAuthenticated()"><a (click)="authService.logout()" class="text-danger"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
         </ul>
     </nav>
 </div>
@@ -45,7 +45,7 @@
                 <input type="text" placeholder="Buscar...">
             </div>-->
                 <a *ngIf="!authService.isAuthenticated()" routerLink="/login"><i class="bi bi-house-door"></i> Login</a>
-                <a *ngIf="authService.isAuthenticated()" (click)="logout()"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                <a *ngIf="authService.isAuthenticated()" (click)="authService.logout()"><i class="bi bi-box-arrow-right"></i> Sair</a>
         </div>
     </div>
 </nav>

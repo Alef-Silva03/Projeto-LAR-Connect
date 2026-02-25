@@ -21,7 +21,7 @@ export class ComunicadoService {
 
   // Listar todos os comunicados do condomínio do usuário logado
   listarComunicados(): Observable<Comunicado[]> {
-    return this.http.get<Comunicado[]>(`${this.baseUrl}/listar`, {
+    return this.http.get<Comunicado[]>('http://localhost:8080/comunicados/listar', {
       withCredentials: true
     });
   }

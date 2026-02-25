@@ -2,11 +2,11 @@
 <article class="enviar-comunicados-container">
   <div class="glass-card shadow-lg p-5">
     <header class="text-center mb-5">
-      <h1 class="text-gradient display-5 fw-bold">ENVIAR COMUNICADOS</h1>
-      <p class="subtitulo">Envie avisos e notícias aos moradores de seu condomínio</p>
+      <h1 *ngIf="authService.getPerfil() === 'SINDICO'" class="text-gradient display-5 fw-bold">ENVIAR COMUNICADOS</h1>
+      <p *ngIf="authService.getPerfil() === 'SINDICO'" class="subtitulo">Envie avisos e notícias aos moradores de seu condomínio</p>
     </header>
 
-    <form (ngSubmit)="enviarComunicado()" #comunicadoForm="ngForm" class="form-comunicado">
+    <form *ngIf="authService.getPerfil() === 'SINDICO'" (ngSubmit)="enviarComunicado()" #comunicadoForm="ngForm" class="form-comunicado">
       <div class="mb-4">
         <label class="form-label-custom">Tipo de Comunicado</label>
         <select name="tipo" [(ngModel)]="comunicado.tipo" class="form-select-pill" required>
@@ -36,21 +36,25 @@
           <i class="bi bi-send-fill me-2"></i> ENVIAR COMUNICADO
         </button>
       </div>
+      <br>
+      <hr>
     </form>
-    <br>
-    <hr>
+
     <section class="mt-5">
-      <h2 class="text-gradient h3 mb-4 text-center">PAINEL DE COMUNICADOS</h2>
+    <header class="text-center mb-5">
+      <h1 class="text-gradient display-5 fw-bold text-gradient h3 mb-4 text-center">PAINEL DE COMUNICADOS</h1>
+      <h3 class="subtitulo">Veja abaixo as notícias e avisos do seu condomínio!</h3>
+    </header>
       <div *ngIf="comunicados.length === 0" class="text-center text-muted">
         Nenhum comunicado encontrado.
       </div>
       <div class="row g-4">
-        <div *ngFor="let c of comunicados" class="col-12">
-          <div class="painel">
-            <h3>{{ c.titulo }}</h3>
+        <div *ngFor="let c of comunicados" class="col-12  mb-4">
+          <div class="painel card shadow-sm p-4 h-100 animate__animated animate__fadeIn animate__slow" style="background: rgba(5, 18, 43, 0.7); color: white; border-radius: 15px;">
+            <h6 class="text-gradient text-gradient" >Postado em: {{ c.data | date:'dd/MM/yyyy HH:mm:ss' }}</h6>
+            <h3 class="text-gradient display-6 fw-bold text-gradient h3 mb-4 text-center">{{ c.titulo }}</h3>
             <hr>
-            <h4>Postado em: {{ c.data | date:'dd/MM/yyyy HH:mm:ss' }}</h4>
-            <p>{{ c.texto }}</p>
+            <p style="word-wrap: break-word; margin-top:10px">{{ c.texto }}</p>
           </div>
         </div>
       </div>

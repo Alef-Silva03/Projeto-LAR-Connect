@@ -19,18 +19,18 @@ constructor(private authService: AuthService, private router: Router) {}
 fazerLogin() {
   this.authService.login(this.dadosLogin.login, this.dadosLogin.senha).subscribe({
   next: (usuarioLogado) => {
-    alert(`Bem-vindo, ${usuarioLogado.nome}!`);
     localStorage.setItem('usuario', JSON.stringify(usuarioLogado));
 
     // Redirecionamento baseado no perfil que vem do banco
     if (usuarioLogado.perfil === 'SINDICO' && usuarioLogado.condominio == null){
       this.router.navigate(['/criar-condominio']);
-    } else if (usuarioLogado.perfil === 'SINDICO') {
-      this.router.navigate(['/dashboard-sindico']);
-    } else if (usuarioLogado.perfil === 'FUNCIONARIO') {
+    } else if (usuarioLogado.condominio === null) {
+      this.router.navigate(['/dashboard']);
+      alert(`Olá ${usuarioLogado.nome}! Lembre de pedir a seu síndico para te adicionar ao grupo do seu condomínio para que você possa usar todas as funcionalidades da plataforma!`)
+    } else if (usuarioLogado.perfil === 'FUNCIONARIO'){
       this.router.navigate(['/dashboard-funcionario']);
     } else {
-      this.router.navigate(['/home-morador']);
+      this.router.navigate(['/dashboard']);
     }
   },
   error: (err) => {

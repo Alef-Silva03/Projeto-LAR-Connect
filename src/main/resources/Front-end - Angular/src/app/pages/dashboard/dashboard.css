@@ -1,0 +1,88 @@
+/* Container Principal */
+.painel-sindico-container {
+    padding-top: 140px;
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+
+/* Card de Vidro Fumê */
+.glass-card {
+    width: 95%;
+    max-width: 1200px;
+    background: rgba(27, 38, 59, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 40px;
+    padding: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo das Pílulas de Ação */
+.nav-pill-item {
+    background: rgba(65, 90, 119, 0.2);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    border-radius: 25px;
+    padding: 30px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: #E0E1DD;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-pill-item i {
+    font-size: 2.5rem;
+    color: #00B4D8;
+    text-shadow: 0 0 10px rgba(0, 180, 216, 0.3);
+}
+
+.nav-pill-item span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+/* Efeito Hover Neon */
+.nav-pill-item:hover {
+    background: rgba(0, 180, 216, 0.15);
+    border-color: #00B4D8;
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
+}
+
+.nav-pill-item:hover i {
+    transform: scale(1.1);
+    color: #90E0EF;
+}
+
+/* Destaque Administrativo */
+.destaque-admin {
+    border-color: #90E0EF;
+    background: rgba(144, 224, 239, 0.05);
+}
+
+/* Títulos */
+.text-gradient {
+    background: linear-gradient(90deg, #00B4D8, #90E0EF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.subtitulo {
+    color: rgba(224, 225, 221, 0.6);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}

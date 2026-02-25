@@ -1,31 +1,72 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MoradoresService, Morador } from '../../../services/moradores';
+import { AuthService } from '../../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-painel-moradores',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './painel-moradores.html',
   styleUrls: ['./painel-moradores.css']
 })
 export class PainelMoradores implements OnInit {
-  // Dados iniciais baseados na sua referência
-  moradores: any[] = [
-    { nome: 'Alef Silva', apto: '1320', bloco: 'A', status: 'Ativo' },
-    { nome: 'Yuri', apto: '1321', bloco: 'A', status: 'Ativo' },
-    { nome: 'Pedro', apto: '402', bloco: 'B', status: 'Inativo' },
-    { nome: 'Patricia Stampa', apto: '402', bloco: 'C', status: 'Ativo' },
-    { nome: 'João', apto: '101', bloco: 'A', status: 'Ativo' }
-  ];
+  moradores: Morador[] = [];
+  formData = {
+    emailMorador: '',
+    apartamentoMorador: ''
+  };
 
-  moradoresFiltrados = [...this.moradores];
+  constructor(
+    private moradoresService: MoradoresService,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
+) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.carregarMoradores();
+  }
 
-  filtrar(valor: string) {
-    const termo = valor.toLowerCase();
-    this.moradoresFiltrados = this.moradores.filter(m => 
-      m.nome.toLowerCase().includes(termo) || m.apto.includes(termo)
-    );
+carregarMoradores(): void {
+  this.moradoresService.listarMoradores().subscribe({
+    next: (data) => {
+      this.moradores = data;
+      this.cdr.detectChanges(); // força a atualização da view
+    },
+    error: (err) => console.error('Erro ao carregar moradores', err)
+  });
+}
+
+  onSubmit(): void {
+    const usuarioString = localStorage.getItem('usuario');
+    if (!usuarioString) {
+      alert('Usuário não encontrado. Faça login novamente.');
+      return;
+    }
+    const usuario = JSON.parse(usuarioString);
+    if (usuario.condominio == '') {
+      alert('Usuário não autenticado ou sem condomínio vinculado.');
+      return;
+    }
+
+    const { emailMorador, apartamentoMorador } = this.formData;
+    if (!emailMorador || !apartamentoMorador) {
+      alert('Preencha todos os campos.');
+      return;
+    }
+
+    this.moradoresService.adicionarMorador(
+      emailMorador,
+      apartamentoMorador,
+      usuario.condominio?.id
+    ).subscribe({
+      next: () => {
+        this.carregarMoradores(); // recarrega a tabela
+        this.formData = { emailMorador: '', apartamentoMorador: '' }; // limpa o formulário
+      },
+      error: (err) => alert(err.error?.message || 'Erro ao adicionar morador.')
+    });
+    this.cdr.detectChanges(); // força a atualização da view
   }
 }

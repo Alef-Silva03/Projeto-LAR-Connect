@@ -1,44 +1,49 @@
 <article class="painel-moradores-container">
-    <div class="glass-container shadow-lg animate__animated animate__fadeIn">
-        <header class="header-admin d-flex justify-content-between align-items-end mb-5">
-            <div class="title-section">
+    <div class="glass-container shadow-lg animate__animated animate__fadeIn mt-5">
+        <header class="header-admin d-flex justify-content-between align-items-baseline mb-3">
+            <div class="col-12 col-lg-6">
                 <span class="badge-admin">PAINEL ADMINISTRATIVO</span>
-                <h1 class="text-gradient">GERENCIAR MORADORES</h1>
-                <p class="subtitulo">Controle total de acessos e unidades do condomínio</p>
+                <h1 class="text-gradient">GERENCIAMENTO DE MORADORES</h1>
             </div>
-            <div class="botoes-topo d-flex gap-3">
-                <button class="btn-neon-cyan"><i class="bi bi-person-plus-fill me-2"></i>ADICIONAR</button>
-                <button class="btn-neon-outline"><i class="bi bi-person-dash-fill me-2"></i>REMOVER</button>
+
+            <section class="card-body glass-card shadow-sm p-4">
+            <form (ngSubmit)="onSubmit()" #moradorForm="ngForm">
+            <h3 class="text-gradient m-3 mb-4">Adicionar Novo Morador</h3>
+            <div>
+                <label for="emailMorador" class="form-label-custom">E-mail do Morador:</label>
+                <input type="email" id="emailMorador" name="emailMorador" class="form-input-pill" [(ngModel)]="formData.emailMorador" required>
             </div>
-        </header>
+            <div>
+                <label for="apartamentoMorador" class="form-label-custom">Cargo:</label>
+                <input type="text" id="apartamentoMorador" name="apartamentoMorador" class="form-input-pill" [(ngModel)]="formData.apartamentoMorador" required>
+            </div>
+            <button type="submit" [disabled]="moradorForm.invalid" class="btn-enviar-neon mt-4">Adicionar</button>
+            </form>
+            </section>
+            </header>
+        <br>
 
         <section id="tabela-glass" class="custom-scrollbar-table">
-            <table class="table-modern">
+                <table id="tabela" class="table-modern">
                 <thead>
                     <tr>
-                        <th>Membro</th>
-                        <th>Unidade</th>
-                        <th>Bloco</th>
-                        <th>Status</th>
-                        <th class="text-center">Ações</th>
+                    <th>Nome</th>
+                    <th>Apartamento</th>
+                    <th>E-mail</th>
+                    <th>Perfil</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let morador of moradoresFiltrados" class="row-hover">
+                    <tr *ngFor="let morador of moradores" class="row-hover">
                         <td class="nome-morador">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="avatar-mini">{{ morador.nome.charAt(0) }}</div>
                                 <span>{{ morador.nome }}</span>
                             </div>
                         </td>
-                        <td><span class="badge-pill-dark">{{ morador.apto }}</span></td>
-                        <td class="text-secondary-light">{{ morador.bloco }}</td>
-                        <td>
-                            <div class="status-wrapper" [ngClass]="morador.status === 'Ativo' ? 'ativo' : 'inativo'">
-                                <span class="dot"></span>
-                                {{ morador.status }}
-                            </div>
-                        </td>
+                        <td><span class="badge-pill-dark">{{ morador.apartamento }}</span></td>
+                        <td class="text-secondary-light">{{ morador.email }}</td>
+                        <td class="text-secondary-light">{{ morador.perfil }}</td>
                         <td class="text-center">
                             <button class="btn-action-icon" title="Editar Morador">
                                 <i class="bi bi-pencil-square"></i>

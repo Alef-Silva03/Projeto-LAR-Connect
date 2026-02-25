@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComunicadoService } from '../../../services/comunicado.service';
 import { Comunicado } from '../../../models/comunicado.model';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-enviar-comunicados',
@@ -24,11 +25,13 @@ export class EnviarComunicadosComponent implements OnInit {
 
   constructor(
     private comunicadoService: ComunicadoService,
-    private cdr: ChangeDetectorRef   // <-- injete
+    private cdr: ChangeDetectorRef,
+    public authService: AuthService,
   ) {}
 
   ngOnInit(): void {
     this.carregarComunicados();
+    this.cdr.detectChanges();
   }
 
   enviarComunicado(): void {

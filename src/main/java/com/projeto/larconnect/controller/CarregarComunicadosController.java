@@ -15,13 +15,11 @@ public class CarregarComunicadosController {
     @Autowired
     private ComunicadoService comunicadoService;
     
-    @GetMapping("/painel_comunicados/listar")
-    public ResponseEntity<List<ComunicadoResponseDTO>> getComunicadosDoCondominio() {
-        try {
-            List<ComunicadoResponseDTO> comunicados = comunicadoService.getComunicadosDoCondominio();
-            return ResponseEntity.ok(comunicados);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
-        }
+    
+    @GetMapping("/comunicados/listar")
+    public ResponseEntity<List<ComunicadoResponseDTO>> listar() {
+        List<ComunicadoResponseDTO> comunicados = comunicadoService.getComunicadosDoCondominio();
+        return ResponseEntity.ok(comunicados);
     }
+
 }
