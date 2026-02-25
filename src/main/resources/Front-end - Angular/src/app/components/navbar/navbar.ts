@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,17 +11,22 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./navbar.css']
 })
 export class Navbar {
-  menuAberto = false; // O menu nasce escondido
+  menuAberto = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public authService: AuthService) {}
 
   toggleMenu() {
-    this.menuAberto = !this.menuAberto; // Alterna entre aberto e fechado
+    this.menuAberto = !this.menuAberto;
   }
 
   logout() {
+    fetch("http://localhost:8080/api/auth/logout", { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include"
+    });
+    localStorage.clear();
     this.menuAberto = false;
-    localStorage.removeItem('perfil'); // Limpa os dados de login
-    this.router.navigate(['/login']); // Redireciona
-  }
+    this.router.navigate(['/']); 
+    }
 }

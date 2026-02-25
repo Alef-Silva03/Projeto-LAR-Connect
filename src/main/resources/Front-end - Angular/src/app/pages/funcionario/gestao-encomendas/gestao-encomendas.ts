@@ -28,16 +28,18 @@ export class GestaoEncomendas implements OnInit {
   }
 
   atualizarLista() {
-    this.authService.listarEncomendas().subscribe({
+    this.authService.listarEncomendas()
+    /*.subscribe({
       next: (dados: any[]) => this.encomendasPendentes = dados,
       error: (err: any) => console.error("Erro ao buscar encomendas", err)
-    });
+    });*/
   }
 
   salvarEncomenda() {
     // Verificação atualizada para moradorNome
     if (this.novaEntrega.apto && this.novaEntrega.moradorNome) {
-      this.authService.registrarEncomenda(this.novaEntrega).subscribe({
+      this.authService.registrarEncomenda(this.novaEntrega)
+      /*.subscribe({
         next: () => {
           alert(`Morador do apto ${this.novaEntrega.apto} foi notificado!`);
           // Limpa o formulário resetando para o novo nome do campo
@@ -45,18 +47,19 @@ export class GestaoEncomendas implements OnInit {
           this.atualizarLista();
         },
         error: () => alert("Erro ao salvar encomenda no banco. Verifique o console do Java.")
-      });
+      });*/
     } else {
       alert("Preencha o Nome do Morador e o Apartamento!");
     }
   }
 
   marcarComoEntregue(item: any) {
-    this.authService.finalizarEntrega(item.id).subscribe({
+    this.authService.finalizarEntrega(item.id)
+    /*.subscribe({
       next: () => {
         alert('Entrega finalizada com sucesso!');
         this.atualizarLista();
       }
-    });
+    });*/
   }
 }

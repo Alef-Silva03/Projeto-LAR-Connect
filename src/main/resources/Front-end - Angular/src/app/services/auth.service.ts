@@ -6,6 +6,15 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+    finalizarEntrega(id: any) {
+        throw new Error('Method not implemented.');
+    }
+    registrarEncomenda(novaEntrega: { apto: string; bloco: string; moradorNome: string; descricao: string; }) {
+        throw new Error('Method not implemented.');
+    }
+    listarEncomendas() {
+        throw new Error('Method not implemented.');
+    }
   private loggedIn = new BehaviorSubject<boolean>(false);
   isLoggedIn$ = this.loggedIn.asObservable();
   private readonly API = 'http://localhost:8080/api/auth';
@@ -34,6 +43,10 @@ export class AuthService {
     getCurrentUser(): LoginResponse | null {
     const userStr = localStorage.getItem('perfil');
     return userStr ? JSON.parse(userStr) : null;
+  }
+
+    getPerfil(): String | null {
+    return localStorage.getItem('perfil');
   }
   
   logout(): void {

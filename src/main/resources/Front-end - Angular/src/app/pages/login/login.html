@@ -9,23 +9,19 @@
             </figure>
 
             <div class="input-group-custom mb-3">
-                <div class="icon-container">
-                    <i class="bi bi-person-fill text-cyan"></i>
-                </div>
+                <i class="bi bi-person-fill text-cyan" style="margin-right: 5px"></i>
                 <input type="text" name="login" [(ngModel)]="dadosLogin.login" 
-                       placeholder="Login ou Email" class="form-control-custom" required>
+                       placeholder="Login ou Email" class="form-control-custom" style="color:black" required>
             </div>
 
             <div class="input-group-custom mb-4">
-                <div class="icon-container">
-                    <i class="bi bi-lock-fill text-cyan"></i>
-                </div>
+                <i class="bi bi-lock-fill text-cyan" style="margin-right: 5px"></i>
                 <input type="password" name="senha" [(ngModel)]="dadosLogin.senha" 
-                       placeholder="Senha" class="form-control-custom" required>
+                       placeholder="Senha" class="form-control-custom" style="max-width: 195px" required>
             </div>
 
             <div class="text-center mb-3">
-                <button (click)="fazerLogin()" class="btn-entrar w-100">ENTRAR</button>
+                <button (click)="fazerLogin()" class="btn-entrar w-100" style="margin:0; padding:10px">ENTRAR</button>
             </div>
 
             <div class="text-center">
@@ -34,9 +30,7 @@
         </form>
 
         <div class="text-center mt-4">
-            <button routerLink="/cadastro" class="btn-link-cadastro">
-                NÃO TEM CONTA? <span class="text-cyan">CADASTRE-SE</span>
-            </button>
+            <button routerLink="/cadastro" class="btn-link-cadastro">NÃO TEM CONTA?<span class="text-cyan" style="margin:0; padding:5px">CADASTRE-SE!</span></button>
         </div>
     </div>
 </div>
