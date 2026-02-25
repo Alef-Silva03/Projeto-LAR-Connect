@@ -23,7 +23,9 @@ fazerLogin() {
     localStorage.setItem('usuario', JSON.stringify(usuarioLogado));
 
     // Redirecionamento baseado no perfil que vem do banco
-    if (usuarioLogado.perfil === 'SINDICO') {
+    if (usuarioLogado.perfil === 'SINDICO' && usuarioLogado.condominio == null){
+      this.router.navigate(['/criar-condominio']);
+    } else if (usuarioLogado.perfil === 'SINDICO') {
       this.router.navigate(['/dashboard-sindico']);
     } else if (usuarioLogado.perfil === 'FUNCIONARIO') {
       this.router.navigate(['/dashboard-funcionario']);

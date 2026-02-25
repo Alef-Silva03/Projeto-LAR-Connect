@@ -16,7 +16,7 @@ import { AnunciosImoveis } from './pages/sindico/anuncios-imoveis/anuncios-imove
 import { EnviarMensagens } from './pages/sindico/enviar-mensagens/enviar-mensagens';
 import { CaixaEntrada } from './pages/sindico/caixa-entrada/caixa-entrada';
 import { DashboardFuncionario } from './pages/funcionario/dashboard-funcionario/dashboard-funcionario';
-//import { GestaoEncomendas } from './pages/funcionario/gestao-encomendas/gestao-encomendas';
+import { GestaoEncomendas } from "./pages/funcionario/gestao-encomendas/gestao-encomendas";
 
 export const routes: Routes = [
   // Rotas Públicas
@@ -45,7 +45,7 @@ export const routes: Routes = [
   { path: 'caixa-entrada', component: CaixaEntrada },
   
   { path: 'dashboard-funcionario', component: DashboardFuncionario },
-  //{ path: 'gestao-encomendas', component: GestaoEncomendas },
+  { path: 'gestao-encomendas', component: GestaoEncomendas },
 
   // Redirecionamento Final (DEVE SER A ÚLTIMA LINHA)
   { path: '**', redirectTo: '' }
