@@ -32,82 +32,37 @@
             <!-- Conteúdo dinâmico -->
             <div class="col-md-8">
                 <!-- DADOS PESSOAIS -->
-                <!-- DADOS PESSOAIS -->
                 <div class="conteudo-aba" *ngIf="abaAtiva === 'dados-pessoais'">
                     <h3 class="titulo-aba">DADOS PESSOAIS</h3>
 
                     <div class="form-group">
                         <label>Nome Completo</label>
-                        <div class="campo-info" *ngIf="campoEditando !== 'nome'; else editNome">
+                        <div class="campo-info">
                             <span>{{ dadosUsuario.nome }}</span>
-                            <button class="btn-editar" (click)="iniciarEdicao('nome')">
+                            <button class="btn-editar" (click)="editarCampo('nome')">
                                 <i class="bi bi-pencil"></i> Editar
                             </button>
                         </div>
-                        <ng-template #editNome>
-                            <div class="campo-editando">
-                                <input type="text" [(ngModel)]="editValue" (keyup.enter)="salvarEdicao('nome')"
-                                    (blur)="cancelarEdicao()" class="edit-input" autofocus>
-                                <div class="edit-actions">
-                                    <button class="btn-confirmar" (click)="salvarEdicao('nome')">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button class="btn-cancelar-edit" (click)="cancelarEdicao()">
-                                        <i class="bi bi-x-lg"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </ng-template>
                     </div>
 
                     <div class="form-group">
                         <label>E-mail</label>
-                        <div class="campo-info" *ngIf="campoEditando !== 'email'; else editEmail">
+                        <div class="campo-info">
                             <span>{{ dadosUsuario.email }}</span>
-                            <button class="btn-editar" (click)="iniciarEdicao('email')">
+                            <button class="btn-editar" (click)="editarCampo('email')">
                                 <i class="bi bi-pencil"></i> Editar
                             </button>
                         </div>
-                        <ng-template #editEmail>
-                            <div class="campo-editando">
-                                <input type="email" [(ngModel)]="editValue" (keyup.enter)="salvarEdicao('email')"
-                                    (blur)="cancelarEdicao()" class="edit-input" autofocus>
-                                <div class="edit-actions">
-                                    <button class="btn-confirmar" (click)="salvarEdicao('email')">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button class="btn-cancelar-edit" (click)="cancelarEdicao()">
-                                        <i class="bi bi-x-lg"></i>
-                                    </button>
-                                </div>
-                                <div class="edit-error" *ngIf="emailError">E-mail inválido</div>
-                            </div>
-                        </ng-template>
                     </div>
 
                     <div class="form-group">
                         <label>Telefone</label>
-                        <div class="campo-info" *ngIf="campoEditando !== 'telefone'; else editTelefone">
+                        <div class="campo-info">
                             <span>{{ dadosUsuario.telefone || 'Não informado' }}</span>
-                            <button class="btn-editar" (click)="iniciarEdicao('telefone')">
+                            <button class="btn-editar" (click)="editarCampo('telefone')">
                                 <i class="bi bi-pencil"></i> Editar
                             </button>
                         </div>
-                        <ng-template #editTelefone>
-                            <div class="campo-editando">
-                                <input type="text" [(ngModel)]="editValue" (keyup.enter)="salvarEdicao('telefone')"
-                                    (blur)="cancelarEdicao()" (input)="formatarTelefone($event)" class="edit-input"
-                                    placeholder="(00) 00000-0000" maxlength="15" autofocus>
-                                <div class="edit-actions">
-                                    <button class="btn-confirmar" (click)="salvarEdicao('telefone')">
-                                        <i class="bi bi-check-lg"></i>
-                                    </button>
-                                    <button class="btn-cancelar-edit" (click)="cancelarEdicao()">
-                                        <i class="bi bi-x-lg"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </ng-template>
                     </div>
 
                     <!-- BLOCO DO CPF REMOVIDO DAQUI -->
