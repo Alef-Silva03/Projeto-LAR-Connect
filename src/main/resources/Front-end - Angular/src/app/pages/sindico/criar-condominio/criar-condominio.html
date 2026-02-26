@@ -19,8 +19,7 @@
                 <label class="label-neon">CEP</label>
                 <div class="pill-input-group">
                     <i class="bi bi-geo-alt-fill ms-3 text-cyan"></i>
-                    <input type="text" name="cep" [(ngModel)]="condominio.cep" 
-                           placeholder="Ex.: 11111-111" required>
+                    <input type="text" name="cep" [(ngModel)]="condominio.cep"  placeholder="Ex.: 11111-111" id="cep" size="10" maxlength="9" onblur="pesquisacep(this.value)" required>
                 </div>
             </div>
 
@@ -28,7 +27,7 @@
                 <label class="label-neon">País</label>
                 <div class="pill-input-group">
                     <i class="bi bi-geo-alt-fill ms-3 text-cyan"></i>
-                    <input type="text" name="pais" [(ngModel)]="condominio.pais" 
+                    <input type="text" name="pais" id="pais" [(ngModel)]="condominio.pais" 
                            placeholder="Ex: Brasil" required>
                 </div>
             </div>
@@ -37,7 +36,7 @@
                 <label class="label-neon">Estado</label>
                 <div class="pill-input-group">
                     <i class="bi bi-geo-alt-fill ms-3 text-cyan"></i>
-                    <input type="text" name="estado" [(ngModel)]="condominio.estado" 
+                    <input type="text" name="estado" id="cep" [(ngModel)]="condominio.estado" 
                            placeholder="Ex: RJ" required>
                 </div>
             </div>
@@ -46,7 +45,7 @@
                 <label class="label-neon">Cidade</label>
                 <div class="pill-input-group">
                     <i class="bi bi-geo-alt-fill ms-3 text-cyan"></i>
-                    <input type="text" name="cidade" [(ngModel)]="condominio.cidade" 
+                    <input type="text" name="cidade" id="cidade" [(ngModel)]="condominio.cidade" 
                            placeholder="Ex: Rio de Janeiro" required>
                 </div>
             </div>
@@ -55,7 +54,7 @@
                 <label class="label-neon">Logradouro</label>
                 <div class="pill-input-group">
                     <i class="bi bi-geo-alt-fill ms-3 text-cyan"></i>
-                    <input type="text" name="logradouro" [(ngModel)]="condominio.logradouro" 
+                    <input type="text" name="logradouro" id="rua" [(ngModel)]="condominio.logradouro" 
                            placeholder="Ex: Rua Benjamin Constant" required>
                 </div>
             </div>
@@ -64,7 +63,7 @@
                 <label class="label-neon">Número</label>
                 <div class="pill-input-group">
                     <i class="bi bi-geo-alt-fill ms-3 text-cyan"></i>
-                    <input type="number" name="numeroCondominio" [(ngModel)]="condominio.numeroCondominio" 
+                    <input type="number" name="numeroCondominio" id="numero" [(ngModel)]="condominio.numeroCondominio" 
                            placeholder="Ex: 35" required>
                 </div>
             </div>

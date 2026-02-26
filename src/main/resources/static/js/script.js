@@ -62,11 +62,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (["PROPRIETARIO", "INQUILINO", "FUNCIONARIO"].includes(usuario.perfil) && !usuario.condominio) {
                     window.location.href = "/aguardar_condominio";
                 } else if (usuario.perfil === "SINDICO") {
-                    window.location.href = "/sindico/dashboard-sindico";
+                    window.location.href = "/dashboard";
                 } else if (usuario.perfil === "PROPRIETARIO") {
-                    window.location.href = "/proprietario/dashboard-proprietario";
+                    window.location.href = "/dashboard";
                 } else if (usuario.perfil === "INQUILINO") {
-                    window.location.href = "/inquilino/dashboard-inquilino";
+                    window.location.href = "/dashboard";
                 } else if (usuario.perfil === "FUNCIONARIO") {
                     window.location.href = "/funcionario/dashboard-funcionario";
                 } else {
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 localStorage.setItem("condominio", condominioCriado.nomeCondominio);
                 alert("Condomínio criado com sucesso!");
-                window.location.href = "/sindico/dashboard-sindico";
+                window.location.href = "/dashboard";
 
             } catch (error) {
                 console.error(error);

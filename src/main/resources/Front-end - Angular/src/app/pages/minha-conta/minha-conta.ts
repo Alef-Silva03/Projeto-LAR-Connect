@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';        
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-minha-conta',
@@ -9,8 +10,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './minha-conta.css',
 })
 export class MinhaConta {
-logout() {
-throw new Error('Method not implemented.');
-}
+  constructor(
+  public authService: AuthService
+  ) {}
+  nome = localStorage.getItem("nome")
 
 }

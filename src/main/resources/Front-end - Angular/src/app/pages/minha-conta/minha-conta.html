@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     
-                    <h2 class="user-name mt-4 fw-bold text-white h1">Alef Silva</h2>
+                    <h2 class="user-name mt-4 fw-bold text-white h1">{{nome}}</h2>
                     
                     <div class="badges-group d-flex justify-content-center gap-2 mt-3">
                         <span class="info-badge">APTO 1305</span>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <button (click)="logout()" class="btn-sair-pill">SAIR DA CONTA</button>
+            <button (click)="authService.logout()" class="btn-sair-pill">SAIR DA CONTA</button>
         </div>
     </div>
 </article>

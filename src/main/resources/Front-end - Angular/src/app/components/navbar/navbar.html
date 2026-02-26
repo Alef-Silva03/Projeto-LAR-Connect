@@ -16,7 +16,7 @@
             <li *ngIf="authService.isAuthenticated()"><a routerLink="/vaga-garagem" (click)="toggleMenu()"><i class="bi bi-car-front"></i> Vagas de Garagem</a></li>
             <hr class="border-secondary opacity-25">
             <li *ngIf="authService.isAuthenticated()"><a routerLink="/minha-conta" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Minha Conta</a></li>
-            <li *ngIf="authService.isAuthenticated() && authService.getPerfil() == 'SINDICO'"><a routerLink="/dashboard-sindico" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Dashboard</a></li>
+            <li *ngIf="authService.isAuthenticated() && authService.getPerfil() == 'SINDICO'"><a routerLink="/dashboard" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Dashboard</a></li>
             <li *ngIf="authService.isAuthenticated() && authService.getPerfil() == 'PROPRIETARIO'"><a routerLink="/dashboard-proprietario" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Dashboard</a></li>
             <li *ngIf="authService.isAuthenticated() && authService.getPerfil() == 'INQUILINO'"><a routerLink="/dashboard-inquilino" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Dashboard</a></li>
             <li *ngIf="authService.isAuthenticated() && authService.getPerfil() == 'FUNCIONARIO'"><a routerLink="/dashboard-funcionario" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Dashboard</a></li>

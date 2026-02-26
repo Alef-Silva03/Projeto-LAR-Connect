@@ -65,7 +65,7 @@ export class CriarCondominio {
 
         localStorage.setItem("condominio", condominioCriado.nomeCondominio);
         alert("Condomínio criado com sucesso!");
-        window.location.href = "/sindico/dashboard-sindico";
+        window.location.href = "/dashboard";
       },
       error: (err: any) => {
         console.error('Erro ao criar condomínio', err);

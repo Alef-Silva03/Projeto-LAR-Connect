@@ -30,13 +30,13 @@ public class SindicoController {
             return "redirect:/login";
         }
         return usuario.getCondominio() != null 
-            ? "redirect:/sindico/dashboard-sindico" 
+            ? "redirect:/dashboard" 
             : "redirect:/sindico/criar_condominio";
     }
 
-    @GetMapping("/sindico/dashboard-sindico")
+    @GetMapping("/dashboard")
     public String dashboardSindico() {
-        return "sindico/dashboard-sindico";
+        return "/dashboard";
     }
     
     @GetMapping("/sindico/criar_condominio")

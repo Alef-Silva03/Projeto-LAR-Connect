@@ -69,18 +69,4 @@ carregarFuncionarios(): void {
     });
     this.cdr.detectChanges(); // força a atualização da view
   }
-
-    removerFuncionario(email: string): void {
-    if (!confirm('Tem certeza que deseja remover este funcionário?')) {
-        return;
-    }
-
-    this.funcionariosService.removerFuncionario(email).subscribe({
-      next: () => {
-        this.carregarFuncionarios(); // recarrega a tabela
-      },
-      error: (err) => alert(err.error?.message || 'Erro ao remover funcionário.')
-    });
-    this.cdr.detectChanges();
-}
 }
