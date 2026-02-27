@@ -13,7 +13,7 @@ import { AuthService } from '../../../services/auth.service';
   templateUrl: './enviar-comunicados.html',
   styleUrls: ['./enviar-comunicados.css']
 })
-export class EnviarComunicadosComponent implements OnInit {
+export class EnviarComunicados implements OnInit {
   comunicado: Comunicado = {
     tipo: '',
     titulo: '',
