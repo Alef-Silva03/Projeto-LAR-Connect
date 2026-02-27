@@ -8,7 +8,7 @@
             <div class="row justify-content-center g-3">
                 
                 <!-- Perfil -->
-                <div class="col-12 col-xl-5">
+                <div class="col-12 col-xl-5 input-group-custom" style="height: 40px">
                     <select name="perfil" [(ngModel)]="usuario.perfil" id="cadPerfil" class="form-select custom-select" required>
                         <option value="" disabled selected hidden>Selecione seu perfil</option>
                         <option value="PROPRIETARIO">Proprietário</option>
@@ -20,42 +20,42 @@
 
                 <!-- Nome -->
                 <div class="col-12 col-xl-5 input-group-custom">
-                    <span class="icon-at"><i class="bi bi-person fs-4"></i></span>
+                    <span class="icon-at"><i class="bi bi-person fs-4 m-2"></i></span>
                     <input type="text" name="nome" [(ngModel)]="usuario.nome" placeholder="Nome completo" class="form-control-custom" required>
                 </div>
 
                 <!-- Email -->
                 <div class="col-12 col-xl-5 input-group-custom">
-                    <span class="icon-at"><i class="bi bi-at fs-4"></i></span>
+                    <span class="icon-at"><i class="bi bi-at fs-4 m-2"></i></span>
                     <input type="email" name="email" [(ngModel)]="usuario.email" placeholder="Email" class="form-control-custom" required>
                 </div>
 
                 <!-- Senha -->
                 <div class="col-12 col-xl-5 input-group-custom">
-                    <span class="icon-at"><i class="bi bi-lock fs-4"></i></span>
+                    <span class="icon-at"><i class="bi bi-lock fs-4 m-2"></i></span>
                     <input type="password" name="senha" [(ngModel)]="usuario.senha" placeholder="Senha" class="form-control-custom" required>
                 </div>
 
                 <!-- CPF -->
                 <div class="col-12 col-xl-5 input-group-custom">
-                    <span class="icon-at"><i class="bi bi-card-text fs-4"></i></span>
+                    <span class="icon-at"><i class="bi bi-card-text fs-4 m-2"></i></span>
                     <input type="text" name="cpf" [(ngModel)]="usuario.cpf" placeholder="CPF (apenas números)" class="form-control-custom" required>
                 </div>
 
                 <!-- Telefone -->
                 <div class="col-12 col-xl-5 input-group-custom">
-                    <span class="icon-at"><i class="bi bi-telephone fs-4"></i></span>
+                    <span class="icon-at"><i class="bi bi-telephone fs-4 m-2"></i></span>
                     <input type="text" name="telefone" [(ngModel)]="usuario.telefone" placeholder="Telefone" class="form-control-custom" required>
                 </div>
             </div>
 
-            <div class="text-center mt-5">
-                <button type="submit" class="btn-principal px-5 py-2">CADASTRE-SE</button>
+            <div class="text-center mt-3 row">
+                <button type="submit" class="btn-link style-none" style="text-decoration:none">CADASTRE-SE</button>
             </div>
         </form>
 
         <div class="text-center mt-3">
-            <button routerLink="/login" class="btn-link">JÁ TENHO CONTA (LOGIN)</button>
+            <button routerLink="/login" class="btn-link" style="text-decoration:none">JÁ TENHO CONTA (LOGIN)</button>
         </div>
     </div>
 </div>

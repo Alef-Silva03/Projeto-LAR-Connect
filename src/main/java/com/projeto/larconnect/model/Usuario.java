@@ -28,17 +28,28 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(nullable = false)
     private String nome;
+    
+    @Column(unique = true, nullable = false)
     private String email;
+    
+    @Column(nullable = false)
     private String senha;
+    
+    @Column(nullable = false)
     private String cpf;
+    
+    @Column(nullable = false)
     private String telefone;
+    
+    @Column(nullable = false)
     private String perfil; // SINDICO, PROPRIETARIO, INQUILINO, FUNCIONARIO
     
-    // Campos específicos de morador
+    @Column(nullable = true)
     private String apartamento;
     
-    // Campos específicos de funcionário
+    @Column(nullable = true)
     private String cargo;
     
     @ManyToOne

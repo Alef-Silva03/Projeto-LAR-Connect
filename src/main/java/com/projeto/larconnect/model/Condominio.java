@@ -36,12 +36,26 @@ public class Condominio {
     
 	@Column(nullable = false)
 	private String cep;
+	
+	@Column(nullable = false)
 	private String pais;
+	
+	@Column(nullable = false)
 	private String estado;
+	
+	@Column(nullable = false)
 	private String cidade;
+	
+	@Column(nullable = false)
 	private String logradouro;
+	
+	@Column(nullable = false)
 	private long numeroCondominio;
+	
+	@Column(nullable = true)
 	private long blocos;
+	
+	@Column(nullable = false)
 	private long apartamentos;
 	
     @OneToMany(mappedBy = "condominio")
