@@ -1,54 +1,96 @@
 <div class="chat-page-container">
     <div class="glass-chat-card row g-0 shadow-lg">
-        
+
+        <!-- SIDEBAR - Lista de Contatos -->
         <aside class="col-md-3 sidebar-glass border-end">
             <div class="p-4 h-100 d-flex flex-column">
+                <!-- Abas -->
                 <div class="chat-tabs-pill d-flex mb-4">
                     <button [class.active]="abaAtiva === 'moradores'" (click)="setAba('moradores')">Moradores</button>
                     <button [class.active]="abaAtiva === 'grupos'" (click)="setAba('grupos')">Grupos</button>
                 </div>
 
+                <!-- Lista de Contatos (CORRIGIDO) -->
                 <div class="contact-list flex-grow-1">
-                    <div *ngIf="abaAtiva === 'moradores'" class="contact-item active-pill">
-                        <img src="assets/imagem/Julia.png" class="avatar-sm circular-border" height= 50px width= 50px>
-                        <div class="ms-3">
-                            <h6 class="m-0">Júlia (Apto 402)</h6>
-                            <small class="text-cyan" *ngIf="digitando">digitando...</small>
+                    <!-- MORADORES - Agora dinâmico -->
+                    <div *ngIf="abaAtiva === 'moradores'">
+                        <div *ngFor="let morador of moradores" class="contact-item"
+                            [class.active-pill]="contatoSelecionado?.id === morador.id"
+                            (click)="selecionarContato(morador)">
+                            <img [src]="morador.avatar" class="avatar-sm circular-border" height="50" width="50">
+                            <div class="ms-3">
+                                <h6 class="m-0">{{ morador.nome }} (Apto {{ morador.apartamento }})</h6>
+                                <small class="text-cyan" *ngIf="morador.digitando">digitando...</small>
+                                <small *ngIf="!morador.digitando" [class.text-cyan]="morador.online">
+                                    {{ morador.online ? 'online' : 'offline' }}
+                                </small>
+                            </div>
                         </div>
                     </div>
-                    <div *ngIf="abaAtiva === 'grupos'" class="p-3 opacity-50 text-center">Nenhum grupo ativo.</div>
+
+                    <!-- GRUPOS -->
+                    <div *ngIf="abaAtiva === 'grupos'" class="p-3 opacity-50 text-center">
+                        <div *ngFor="let grupo of grupos">
+                            {{ grupo.nome }}
+                        </div>
+                        <div *ngIf="grupos.length === 0">Nenhum grupo ativo.</div>
+                    </div>
                 </div>
             </div>
         </aside>
 
-        <section class="col-md-9 d-flex flex-grow-1 flex-column bg-chat-dark">
-            <header class="chat-header p-3 border-bottom d-flex align-items-center">
-                <img src="assets/imagem/Julia.png" class="avatar-md circular-border" height= 50px width= 50px>
+        <!-- ÁREA PRINCIPAL DO CHAT -->
+        <section class="col-md-9 d-flex flex-column bg-chat-dark main-chat">
+            <!-- HEADER - Agora dinâmico -->
+            <header class="chat-header p-3 border-bottom d-flex align-items-center" *ngIf="contatoSelecionado">
+                <img [src]="contatoSelecionado.avatar" class="avatar-md circular-border" height="50" width="50">
                 <div class="ms-3">
-                    <h5 class="m-0 fw-bold">Júlia</h5>
-                    <small [class.text-cyan]="digitando">{{ digitando ? 'digitando...' : 'online' }}</small>
+                    <h5 class="m-0 fw-bold">{{ contatoSelecionado.nome }}</h5>
+                    <small [class.text-cyan]="digitando">
+                        {{ digitando ? 'digitando...' : (contatoSelecionado.online ? 'online' : 'offline') }}
+                    </small>
                 </div>
             </header>
-<div class="message-display p-4 flex-grow-1 custom-scrollbar d-flex flex-column gap-3">
-    <div *ngFor="let msg of mensagens" [ngClass]="msg.enviada ? 'sent' : 'received'" class="message-row">
-        <div class="bubble" [ngClass]="msg.enviada ? 'bubble-sent shadow-neon' : 'bubble-received'">
-            
-            <img *ngIf="msg.anexo" 
-                 [src]="msg.anexo" 
-                 [style.width]="msg.width || '200px'" 
-                 [style.height]="msg.height || 'auto'"
-                 class="img-attachment rounded-4 mb-2">
 
-            <p class="m-0">{{ msg.texto }}</p>
-            <span class="time">{{ msg.hora }}</span>
-        </div>
-    </div>
-</div>
+            <!-- Área de Mensagens -->
+            <div class="message-display p-4 flex-grow-1 custom-scrollbar d-flex flex-column gap-3" #messageDisplay>
+                <!-- Loading -->
+                <div *ngIf="carregando" class="text-center text-cyan">
+                    <small>Carregando mensagens...</small>
+                </div>
 
-            <footer class="p-3">
+                <!-- Lista de Mensagens -->
+                <div *ngFor="let msg of mensagens" [ngClass]="msg.enviada ? 'sent' : 'received'" class="message-row">
+                    <div class="bubble" [ngClass]="msg.enviada ? 'bubble-sent shadow-neon' : 'bubble-received'">
+                        <!-- Anexo -->
+                        <img *ngIf="msg.anexo" [src]="msg.anexo" [style.width]="msg.width || '200px'"
+                            [style.height]="msg.height || 'auto'" class="img-attachment rounded-4 mb-2">
+
+                        <!-- Texto -->
+                        <p class="m-0">{{ msg.texto }}</p>
+
+                        <!-- Hora -->
+                        <span class="time">{{ msg.hora }}</span>
+                    </div>
+                </div>
+
+                <!-- Mensagem inicial -->
+                <div *ngIf="!contatoSelecionado" class="text-center opacity-50 mt-5">
+                    Selecione um contato para começar a conversar
+                </div>
+            </div>
+
+            <!-- FOOTER com Input (CORRIGIDO) -->
+            <footer class="p-3" *ngIf="contatoSelecionado">
                 <div class="input-wrapper-pill d-flex align-items-center px-3 gap-2">
-                    <input #msgInput (keyup.enter)="enviar(msgInput)" placeholder="Escreva sua mensagem..." class="flex-grow-1 py-3 border-0 bg-transparent text-white outline-none">
-                    <button (click)="enviar(msgInput)" class="send-btn-neon shadow-neon">
+                    <!-- INPUT com [(ngModel)] -->
+                    <input #msgInput [(ngModel)]="mensagemTexto" (keyup.enter)="enviar()" (keyup)="onTyping()"
+                        placeholder="Escreva sua mensagem..."
+                        class="chat-input flex-grow-1 py-3 border-0 bg-transparent text-white">
+
+                    <!-- Botão de enviar -->
+                    <button (click)="enviar()" [disabled]="!mensagemTexto?.trim()" class="send-btn-neon shadow-neon"
+                        type="button">
                         <i class="bi bi-send-fill"></i>
                     </button>
                 </div>

@@ -8,11 +8,33 @@ export const RoleGuard: CanActivateFn = (route) => {
   
   const perfil = localStorage.getItem('perfil');
   const requiredRole = route.data['role'];
+  const token = localStorage.getItem('token');
   
-  if (perfil === requiredRole) {
-    return true;
+  // Verifica se está logado primeiro
+  if (!token) {
+    router.navigate(['/login']);
+    return false;
   }
   
-  router.navigate(['/dashboard']);
-  return false;
+  // Se não tem perfil ou não tem o perfil necessário
+  if (!perfil || perfil !== requiredRole) {
+    // Redireciona baseado no perfil que tem
+    switch(perfil) {
+      case 'SINDICO':
+        router.navigate(['/dashboard-sindico']);
+        break;
+      case 'FUNCIONARIO':
+        router.navigate(['/dashboard-funcionario']);
+        break;
+      case 'PROPRIETARIO':
+      case 'INQUILINO':
+        router.navigate(['/minha-conta']);
+        break;
+      default:
+        router.navigate(['/']);
+    }
+    return false;
+  }
+  
+  return true;
 };

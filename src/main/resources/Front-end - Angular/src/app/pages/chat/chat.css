@@ -104,6 +104,7 @@
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: 0.3s;
+    
 }
 
 .input-wrapper-pill:focus-within {
@@ -115,8 +116,8 @@
     background: #00B4D8;
     color: #0D1B2A;
     border: none;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -156,3 +157,101 @@
 /* Utilitários */
 .text-cyan { color: #00B4D8 !important; }
 .circular-border { border: 2px solid #00B4D8; padding: 2px; border-radius: 50%; }
+
+/* ESTILOS PARA O INPUT (CORRIGE O INPUT FEIO) */
+.chat-input {
+    background: transparent !important;
+    border: none !important;
+    color: white !important;
+    font-size: 1rem;
+    outline: none !important;
+    box-shadow: none !important;
+    width: 100%;
+}
+
+.chat-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+.chat-input:focus {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Botão de anexo */
+.attach-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.attach-btn:hover {
+    color: #00B4D8;
+    background: rgba(0, 180, 216, 0.1);
+    transform: scale(1.1);
+}
+
+/* Botão enviar desabilitado */
+.send-btn-neon:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Item de contato ativo */
+.contact-item.active-pill {
+    background: rgba(0, 180, 216, 0.2);
+    border-left: 3px solid #00B4D8;
+}
+
+/* Item de contato hover */
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-item:hover {
+    background: rgba(0, 180, 216, 0.1);
+}
+
+/* Time stamp */
+.time {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    display: block;
+    text-align: right;
+    margin-top: 4px;
+}
+
+/* Responsividade básica */
+@media (max-width: 768px) {
+    .bubble {
+        max-width: 85%;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-page-container {
+        padding: 0;
+    }
+    
+    .glass-chat-card {
+        height: 100vh;
+        border-radius: 0;
+        width: 100%;
+    }
+}
