@@ -1,10 +1,7 @@
 {
   "name": "lar-connect",
   "version": "0.0.0",
-
-
   "scripts": {
-    
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
@@ -27,6 +24,7 @@
   "private": true,
   "packageManager": "npm@11.6.2",
   "dependencies": {
+    "@angular/animations": "^21.1.4",
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
     "@angular/core": "^21.1.0",

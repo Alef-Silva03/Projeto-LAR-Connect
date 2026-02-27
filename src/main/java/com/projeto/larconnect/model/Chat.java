@@ -15,22 +15,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity														
-@Table(name = "comunicado")
+@Table(name = "chat")
 @EntityListeners(AuditingEntityListener.class)
-public class Comunicado {
+public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false)
-    private String tipo;
-    
-    @Column(nullable = false)
-    private String titulo;
-    
     @Column(nullable = false, length = 10000) 
     private String texto;
-    
+          
     @CreatedDate
     @Column(name = "data", updatable = false)
     private LocalDateTime  data;
@@ -38,6 +32,10 @@ public class Comunicado {
     @ManyToOne
     @JoinColumn(name = "idCondominio", referencedColumnName = "id")
     private Condominio condominio;
+    
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", referencedColumnName = "id")
+    private Usuario usuario;
 
 	public Long getId() {
 		return id;
@@ -45,22 +43,6 @@ public class Comunicado {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
 	}
 
 	public String getTexto() {
@@ -87,5 +69,12 @@ public class Comunicado {
 		this.condominio = condominio;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+    
 }

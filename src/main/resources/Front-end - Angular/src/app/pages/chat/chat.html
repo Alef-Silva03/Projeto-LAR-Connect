@@ -5,15 +5,15 @@
         <aside class="col-md-3 sidebar-glass border-end">
             <div class="p-4 h-100 d-flex flex-column">
                 <!-- Abas -->
-                <div class="chat-tabs-pill d-flex mb-4">
+                <!--<div class="chat-tabs-pill d-flex mb-4">
                     <button [class.active]="abaAtiva === 'moradores'" (click)="setAba('moradores')">Moradores</button>
                     <button [class.active]="abaAtiva === 'grupos'" (click)="setAba('grupos')">Grupos</button>
-                </div>
+                </div>-->
 
                 <!-- Lista de Contatos (CORRIGIDO) -->
                 <div class="contact-list flex-grow-1">
                     <!-- MORADORES - Agora dinâmico -->
-                    <div *ngIf="abaAtiva === 'moradores'">
+                    <!--<div *ngIf="abaAtiva === 'moradores'">
                         <div *ngFor="let morador of moradores" class="contact-item"
                             [class.active-pill]="contatoSelecionado?.id === morador.id"
                             (click)="selecionarContato(morador)">
@@ -26,15 +26,15 @@
                                 </small>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- GRUPOS -->
-                    <div *ngIf="abaAtiva === 'grupos'" class="p-3 opacity-50 text-center">
+                    <!--<div *ngIf="abaAtiva === 'grupos'" class="p-3 opacity-50 text-center">
                         <div *ngFor="let grupo of grupos">
                             {{ grupo.nome }}
                         </div>
                         <div *ngIf="grupos.length === 0">Nenhum grupo ativo.</div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </aside>
@@ -42,7 +42,7 @@
         <!-- ÁREA PRINCIPAL DO CHAT -->
         <section class="col-md-9 d-flex flex-column bg-chat-dark main-chat">
             <!-- HEADER - Agora dinâmico -->
-            <header class="chat-header p-3 border-bottom d-flex align-items-center" *ngIf="contatoSelecionado">
+            <!--<header class="chat-header p-3 border-bottom d-flex align-items-center" *ngIf="contatoSelecionado">
                 <img [src]="contatoSelecionado.avatar" class="avatar-md circular-border" height="50" width="50">
                 <div class="ms-3">
                     <h5 class="m-0 fw-bold">{{ contatoSelecionado.nome }}</h5>
@@ -50,46 +50,41 @@
                         {{ digitando ? 'digitando...' : (contatoSelecionado.online ? 'online' : 'offline') }}
                     </small>
                 </div>
-            </header>
+            </header>-->
 
             <!-- Área de Mensagens -->
-            <div class="message-display p-4 flex-grow-1 custom-scrollbar d-flex flex-column gap-3" #messageDisplay>
-                <!-- Loading -->
+            <!--<div class="message-display p-4 flex-grow-1 custom-scrollbar d-flex flex-column gap-3" #messageDisplay>
                 <div *ngIf="carregando" class="text-center text-cyan">
                     <small>Carregando mensagens...</small>
-                </div>
+                </div>-->
 
                 <!-- Lista de Mensagens -->
-                <div *ngFor="let msg of mensagens" [ngClass]="msg.enviada ? 'sent' : 'received'" class="message-row">
-                    <div class="bubble" [ngClass]="msg.enviada ? 'bubble-sent shadow-neon' : 'bubble-received'">
-                        <!-- Anexo -->
-                        <img *ngIf="msg.anexo" [src]="msg.anexo" [style.width]="msg.width || '200px'"
-                            [style.height]="msg.height || 'auto'" class="img-attachment rounded-4 mb-2">
-
+                <div *ngFor="let msg of mensagens" class="message-row">
+                    <div class="bubble">
                         <!-- Texto -->
                         <p class="m-0">{{ msg.texto }}</p>
 
                         <!-- Hora -->
-                        <span class="time">{{ msg.hora }}</span>
+                        <span class="time">{{ msg.data | date:'dd/MM/yyyy HH:mm:ss' }}</span>
                     </div>
                 </div>
 
                 <!-- Mensagem inicial -->
-                <div *ngIf="!contatoSelecionado" class="text-center opacity-50 mt-5">
+                <!--<div *ngIf="!contatoSelecionado" class="text-center opacity-50 mt-5">
                     Selecione um contato para começar a conversar
                 </div>
-            </div>
+            </div>-->
 
             <!-- FOOTER com Input (CORRIGIDO) -->
-            <footer class="p-3" *ngIf="contatoSelecionado">
+            <footer class="p-3">
                 <div class="input-wrapper-pill d-flex align-items-center px-3 gap-2">
                     <!-- INPUT com [(ngModel)] -->
-                    <input #msgInput [(ngModel)]="mensagemTexto" (keyup.enter)="enviar()" (keyup)="onTyping()"
+                    <input #msgInput [(ngModel)]="mensagem.texto" (keyup.enter)="enviarMensagem()"
                         placeholder="Escreva sua mensagem..."
                         class="chat-input flex-grow-1 py-3 border-0 bg-transparent text-white">
 
                     <!-- Botão de enviar -->
-                    <button (click)="enviar()" [disabled]="!mensagemTexto?.trim()" class="send-btn-neon shadow-neon"
+                    <button (click)="enviarMensagem()" class="send-btn-neon shadow-neon"
                         type="button">
                         <i class="bi bi-send-fill"></i>
                     </button>

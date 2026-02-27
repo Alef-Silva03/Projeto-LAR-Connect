@@ -21,12 +21,11 @@ export class MinhaConta {
     email: localStorage.getItem('email') || 'usuario@email.com',
     cpf: localStorage.getItem('cpf') || '',
     cpfVerificado: localStorage.getItem('cpfVerificado') === 'true',
-    apartamento: localStorage.getItem('apto') || '101',
+    apartamento: localStorage.getItem('apartamento'),
     bloco: localStorage.getItem('bloco') || 'A',
     vaga: localStorage.getItem('vaga') || '05',
     telefone: localStorage.getItem('telefone') || '',
     ultimaAlteracaoSenha: localStorage.getItem('ultimaAlteracaoSenha') || '',
-    twofaAtivado: localStorage.getItem('twofaAtivado') === 'true'
   };
 
   // Controle do modal de CPF
@@ -51,6 +50,10 @@ export class MinhaConta {
   // ===== MÉTODOS GERAIS =====
   mudarAba(aba: string) {
     this.abaAtiva = aba;
+  }
+
+  getApartamento() {
+    return localStorage.getItem('apartamento');
   }
 
   logout() {
@@ -205,16 +208,6 @@ export class MinhaConta {
       } else {
         alert('A senha deve ter no mínimo 6 caracteres!');
       }
-    }
-  }
-
-  toggle2FA(event: any) {
-    this.dadosUsuario.twofaAtivado = event.target.checked;
-    localStorage.setItem('twofaAtivado', String(event.target.checked));
-    
-    if (event.target.checked) {
-      alert('Configure a autenticação em duas etapas nas próximas etapas.');
-      // Aqui você implementaria a configuração do 2FA
     }
   }
 

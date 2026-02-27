@@ -6,6 +6,7 @@ import { MinhaConta } from './pages/minha-conta/minha-conta';
 import { Chat } from './pages/chat/chat';
 import { Notificacoes } from './pages/notificacoes/notificacoes';
 import { vagagaragem } from './pages/vaga-garagem/vaga-garagem'; 
+import { Dashboard } from './pages/dashboard/dashboard';
 import { EnviarComunicados } from './pages/sindico/enviar-comunicados/enviar-comunicados';
 import { PainelMoradores } from './pages/sindico/painel-moradores/painel-moradores';
 import { CriarCondominio } from './pages/sindico/criar-condominio/criar-condominio';
@@ -48,7 +49,13 @@ export const routes: Routes = [
     component: vagagaragem, 
     canActivate: [authGuard] 
   },
-  
+
+  // Rotas do Síndico (protegidas por role)
+  { 
+    path: 'dashboard', 
+    component: Dashboard, 
+    canActivate: [authGuard], 
+  },
   { 
     path: 'enviar-comunicados', 
     component: EnviarComunicados, 

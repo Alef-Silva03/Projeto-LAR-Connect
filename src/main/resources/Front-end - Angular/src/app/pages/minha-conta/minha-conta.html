@@ -69,7 +69,10 @@
 
                     <div class="form-group">
                         <label>Apartamento</label>
-                        <div class="campo-info">
+                        <div class="campo-info" *ngIf="getApartamento() == 'null'">
+                            <span> - </span>
+                        </div>
+                        <div class="campo-info" *ngIf="getApartamento() != 'null'">
                             <span>{{ dadosUsuario.apartamento }}</span>
                         </div>
                     </div>
@@ -142,25 +145,6 @@
                     </div>
 
                     <!-- Card Autenticação em duas etapas -->
-                    <div class="card-seguranca">
-                        <div class="card-header">
-                            <i class="bi bi-shield-check"></i>
-                            <h4>Autenticação em duas etapas</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="twofa-info">
-                                <span>Proteja sua conta com verificação em duas etapas</span>
-                                <label class="switch">
-                                    <input type="checkbox" [checked]="dadosUsuario.twofaAtivado"
-                                        (change)="toggle2FA($event)">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                            <p class="twofa-status" [class.ativo]="dadosUsuario.twofaAtivado">
-                                {{ dadosUsuario.twofaAtivado ? 'Ativado' : 'Desativado' }}
-                            </p>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- BOLETOS -->
