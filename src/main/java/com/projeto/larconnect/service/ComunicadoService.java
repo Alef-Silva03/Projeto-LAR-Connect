@@ -74,5 +74,9 @@ public class ComunicadoService {
             comunicado.getData()
         );
     }
+    
+    public void excluirComunicado (Long id) {
+        comunicadoRepository.deleteById(id);
+    }
    
 }

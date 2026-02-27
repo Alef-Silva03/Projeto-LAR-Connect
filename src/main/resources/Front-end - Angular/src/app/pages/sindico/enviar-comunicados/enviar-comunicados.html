@@ -55,6 +55,9 @@
             <h3 class="text-gradient display-6 fw-bold text-gradient h3 mb-4 text-center">{{ c.titulo }}</h3>
             <hr>
             <p style="word-wrap: break-word; margin-top:10px">{{ c.texto }}</p>
+            <button *ngIf="authService.getPerfil() === 'SINDICO'" (click)="excluirComunicado(c.id)" class="btn-action-icon" title="Remover">
+                <i class="bi bi-trash"></i>
+            </button>
           </div>
         </div>
       </div>

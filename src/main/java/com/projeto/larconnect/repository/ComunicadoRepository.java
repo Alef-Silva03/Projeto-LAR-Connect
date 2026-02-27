@@ -15,4 +15,6 @@ public interface ComunicadoRepository extends JpaRepository<Comunicado, Long> {
     
     // Buscar comunicados por ID do condomínio em ordem decrescente
     List<Comunicado> findByCondominioIdOrderByIdDesc(Long condominioId);
+    
+    void deleteById(Long Id);
 }

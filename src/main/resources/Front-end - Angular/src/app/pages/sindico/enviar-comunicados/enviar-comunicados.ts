@@ -28,7 +28,7 @@ export class EnviarComunicadosComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public authService: AuthService,
   ) {}
-
+  
   ngOnInit(): void {
     this.carregarComunicados();
     this.cdr.detectChanges();
@@ -64,5 +64,19 @@ export class EnviarComunicadosComponent implements OnInit {
       },
       error: (err) => console.error('Erro ao carregar comunicados', err)
     });
+  }
+
+  excluirComunicado(id: any) {
+    if (confirm('Tem certeza de que deseja excluir este comunicado?')) {
+      this.comunicadoService.excluirComunicado(id).subscribe({
+        next: () => {
+          this.comunicados = this.comunicados.filter(comunicado => comunicado.id !== id);
+          this.cdr.detectChanges();
+        },
+        error: () => {
+          alert('Erro no processo de exclusão');
+        }
+      });
+    }
   }
 }

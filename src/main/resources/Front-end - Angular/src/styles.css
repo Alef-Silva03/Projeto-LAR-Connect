@@ -37,7 +37,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    color: #E0E1DD
+    color: #E0E1DD;
+
 }
 
 html body{
@@ -225,19 +226,16 @@ display: flex;
     border-radius: 30px;
 }
 
-#login #email {
-	width: 80%;
-	height: 30px;
-	margin: 0;
-}
-
-#login input[type="email"], #cadastro input {
+#login input[type="email"], #cadastro input[type="email"] {
     background-color: rgba(65, 90, 119, 1);
     font-weight: Bold;
     font-size: 18px;
+    height: 40px;
     border: 0px;
     outline: none; /* Tira a borda ao clicar */
     text-align: left;
+    border-radius: 20px;
+    padding-left: 10px
 }
 
 #login .iconat, #cadastro .iconat {
@@ -246,33 +244,30 @@ display: flex;
     margin-right: 20px;
 }
 
-#login #password {
-    width: 100%;
-    height: 85px;
-    background: rgba(65,90,119,1);
-    border-radius: 30px;
-}
-
 #login input[type="password"], #cadastro input[type="password"] {
     background-color: rgba(65,90,119,1);
     font-weight: Bold;
     font-size: 18px;
+    height: 40px;
     border: 0px;
     outline: none; /* Tira a borda ao clicar */
     text-align: left;
+    border-radius: 20px;
+    padding-left: 10px
 }
 
 #login button, #cadastro button {
-    width: 325px;
-    height: 51px;
-    margin: 0 20px;
+    height: 40px;
+    width: 300px;
+    margin: 10px 0;
     background: rgba(119,141,169,0.08);
     border-radius: 80px;
     font-weight: bold;
-    font-size: 17px;
-    	display: flex;
+    font-size: 14px;
+    display: flex;
 	justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 #email, #perfil, #nome, #cpf, #telefone, #apartamento, #password, #email-row {
