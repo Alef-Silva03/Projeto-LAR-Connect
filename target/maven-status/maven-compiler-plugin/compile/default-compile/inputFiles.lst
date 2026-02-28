@@ -4,6 +4,7 @@ C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larcon
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\controller\AuthController.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\controller\CadastroController.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\controller\CarregarComunicadosController.java
+C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\controller\ChatController.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\controller\ComunicadoController.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\controller\CondominioController.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\controller\FuncionarioController.java
@@ -26,6 +27,8 @@ C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larcon
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\controllerPaginas\PainelDeComunicadosController.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\controllerPaginas\RedefinirSenhaController.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\controllerPaginas\VagasGaragemController.java
+C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\dto\ChatRequestDTO.java
+C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\dto\ChatResponseDTO.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\dto\ComunicadoRequestDTO.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\dto\ComunicadoResponseDTO.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\dto\CondominioDTO.java
@@ -37,12 +40,15 @@ C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larcon
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\dto\UsuarioResponseDTO.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\dto\UsuarioUpdateDTO.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\LarconnectApplication.java
+C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\model\Chat.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\model\Comunicado.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\model\Condominio.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\model\Usuario.java
+C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\repository\ChatRepository.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\repository\ComunicadoRepository.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\repository\CondominioRepository.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\repository\UsuarioRepository.java
+C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\service\ChatService.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\service\ComunicadoService.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\service\CondominioService.java
 C:\Users\alef.silva\Desktop\Projeto-LAR-Connect\src\main\java\com\projeto\larconnect\service\CustomUserDetailsService.java

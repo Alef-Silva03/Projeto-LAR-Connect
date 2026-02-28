@@ -65,22 +65,28 @@
                         </div>
                     </div>
 
-                    <!-- BLOCO DO CPF REMOVIDO DAQUI -->
-
                     <div class="form-group">
                         <label>Apartamento</label>
-                        <div class="campo-info" *ngIf="getApartamento() == 'null'">
+
+                        <div class="campo-info">
+                            @if (getApartamento() == 'null'){
                             <span> - </span>
-                        </div>
-                        <div class="campo-info" *ngIf="getApartamento() != 'null'">
-                            <span>{{ dadosUsuario.apartamento }}</span>
+                            }
+                            @if (getApartamento() != 'null'){
+                                <span> getApartamento() </span>
+                                }
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Bloco</label>
                         <div class="campo-info">
-                            <span>{{ dadosUsuario.bloco }}</span>
+                            @if (getBloco() == 'null'){
+                            <span> - </span>
+                            }
+                            @if (getBloco() != 'null'){
+                                <span> getBloco() </span>
+                                }
                         </div>
                     </div>
 

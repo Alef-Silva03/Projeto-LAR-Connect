@@ -941,7 +941,7 @@ PÁGINA DE POSTAGEM DE ANÚNCIO DE VENDA OU ALUGUEL DE IMÓVEL ===== */
 /* ===== RODAPÉ ===== */
 
 footer {
-    width: 100vw;
+    width: 100%;
     height: auto;
     min-height: 20vh;
     background: #0D1B2A;

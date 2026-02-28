@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MensagemService {
 
-  private baseUrl = 'http://localhost:8080/mensagens';
+  private baseUrl = 'http://localhost:8080/chat';
 
   constructor(private http: HttpClient) { }
 

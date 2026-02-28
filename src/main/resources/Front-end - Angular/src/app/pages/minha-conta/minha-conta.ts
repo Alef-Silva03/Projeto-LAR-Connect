@@ -56,9 +56,17 @@ export class MinhaConta {
     return localStorage.getItem('apartamento');
   }
 
+  getBloco() {
+    return localStorage.getItem('bloco');
+  }
+
+  getVaga() {
+    return localStorage.getItem('vaga');
+  }
+
   logout() {
     // Limpar dados de sessão se necessário
-    // localStorage.clear();
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 

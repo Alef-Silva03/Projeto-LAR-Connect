@@ -44,7 +44,6 @@ export class Chat implements OnInit {
     this.mensagem.idCondominio = usuario.condominio?.id;
     this.mensagemService.enviarMensagem(this.mensagem).subscribe({
       next: () => {
-        alert('Mensagem postado com sucesso!');
         this.mensagem = { texto: '', idCondominio: this.mensagem.idCondominio, idUsuario: this.mensagem.idUsuario }; // limpa formulário
         this.carregarMensagens(); // atualiza a lista
       },
