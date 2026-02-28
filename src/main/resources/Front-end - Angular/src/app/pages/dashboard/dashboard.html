@@ -15,13 +15,14 @@
                 </div>
             </div>
 
-           <!-- <div class="col-6 col-md-4 col-lg-3">
+           <div class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item" routerLink="/caixa-entrada">
                     <i class="bi bi-envelope-fill"></i>
                     <span>Mensagens e Pedidos</span>
                 </div>
             </div>
 
+<<<<<<< Updated upstream
             <div *ngIf="authService.getPerfil() == 'SINDICO'" class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item" routerLink="/enviar-mensagens">
                     <i class="bi bi-file-earmark-medical-fill"></i>
@@ -36,6 +37,8 @@
                 </div>
             </div>-->
 
+=======
+>>>>>>> Stashed changes
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item" routerLink="/chat">
                     <i class="bi bi-chat-dots-fill"></i>
@@ -57,7 +60,7 @@
                 </div>
             </div>
 
-            <!--<div class="col-6 col-md-4 col-lg-3">
+            <div class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item" routerLink="/anuncios-imoveis">
                     <i class="bi bi-house-door-fill"></i>
                     <span>Anúncios de Venda e Aluguel</span>
@@ -76,26 +79,43 @@
                     <i class="bi bi-calendar-check-fill"></i>
                     <span>Reservar Espaços e Pedidos</span>
                 </div>
-            </div>-->
+            </div>
 
-            <div *ngIf="authService.getPerfil() == 'SINDICO'" class="col-6 col-md-4 col-lg-3">
-                <div class="nav-pill-item destaque-admin" routerLink="/painel-moradores">
-                    <i class="bi bi-person-plus-fill"></i>
-                    <span>Adicionar ou Remover Moradores</span>
-                </div>
-            </div>
-            <div *ngIf="authService.getPerfil() == 'SINDICO'" class="col-6 col-md-4 col-lg-3">
-                <div class="nav-pill-item destaque-admin" routerLink="/painel-funcionarios">
-                    <i class="bi bi-person-plus-fill"></i>
-                    <span>Adicionar ou Remover Funcionários</span>
-                </div>
-            </div>
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item destaque-admin" routerLink="/criar-condominio">
                     <i class="bi bi-building-add"></i>
                     <span>Dados do Condomínio</span>
                 </div>
             </div>
+
+            @if (authService.getPerfil() == 'SINDICO'){
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="nav-pill-item destaque-admin" routerLink="/painel-moradores">
+                        <i class="bi bi-person-plus-fill"></i>
+                        <span>Adicionar ou Remover Moradores</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="nav-pill-item destaque-admin" routerLink="/painel-funcionarios">
+                        <i class="bi bi-person-plus-fill"></i>
+                        <span>Adicionar ou Remover Funcionários</span>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="nav-pill-item" routerLink="/enviar-mensagens">
+                        <i class="bi bi-file-earmark-medical-fill"></i>
+                        <span>Enviar Mensagens e Docs</span>
+                    </div>
+                </div>
+    
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="nav-pill-item" routerLink="/criar-enquete">
+                        <i class="bi bi-ui-checks"></i>
+                        <span>Criar Enquete ou Votação</span>
+                    </div>
+                </div>
+                }
 
         </div>
     </div>
