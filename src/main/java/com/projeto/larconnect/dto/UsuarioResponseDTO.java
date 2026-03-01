@@ -12,6 +12,8 @@ public class UsuarioResponseDTO {
 	private String condominio;
 	private String apartamento;
 	private String cargo;
+	private String bloco;
+	private String vaga;
 
 	public UsuarioResponseDTO(Usuario usuario) {
 		this.id = usuario.getId();
@@ -22,6 +24,8 @@ public class UsuarioResponseDTO {
 		this.perfil = usuario.getPerfil();
 		this.apartamento = usuario.getApartamento();
 		this.cargo = usuario.getCargo();
+		this.bloco = usuario.getBloco();
+		this.vaga = usuario.getVaga();
 	}
 
 	public Long getId() { return id; }
@@ -50,4 +54,10 @@ public class UsuarioResponseDTO {
 	
 	public String getCargo() { return cargo; }
 	public void setCargo(String cargo) { this.cargo = cargo; }
+	
+	public String getBloco() {return bloco;}
+	public void setBloco(String bloco) {this.bloco = bloco;}
+
+	public String getVaga() {return vaga;}
+	public void setVaga(String vaga) {this.vaga = vaga;}
 }

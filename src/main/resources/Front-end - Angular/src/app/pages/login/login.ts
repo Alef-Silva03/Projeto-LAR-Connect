@@ -19,7 +19,7 @@ export class Login {
 fazerLogin() {
   this.authService.login(this.dadosLogin.login, this.dadosLogin.senha).subscribe({
   next: (usuarioLogado) => {
-
+    localStorage.setItem('usuario', JSON.stringify(usuarioLogado));
     // Redirecionamento baseado no perfil que vem do banco
     if (usuarioLogado.perfil === 'SINDICO' && usuarioLogado.condominio == null){
         this.router.navigate(['/criar-condominio']);

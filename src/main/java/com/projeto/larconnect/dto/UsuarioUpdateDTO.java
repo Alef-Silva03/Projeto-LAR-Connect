@@ -12,6 +12,8 @@ public class UsuarioUpdateDTO {
 	private Long idCondominio;
 	private String apartamento;
 	private String cargo;
+	private String bloco;
+	private String vaga;
 	
 	public String getNome() {
 		return nome;
@@ -74,4 +76,18 @@ public class UsuarioUpdateDTO {
 		this.apartamento = apartamento;
 	}
 	
+	public String getBloco() {
+		return bloco;
+	}
+	
+	public void setBloco(String bloco) {
+		this.bloco = bloco;
+	}
+
+	public String getVaga() {
+		return vaga;
+	}
+	public void setVaga(String vaga) {
+		this.vaga = vaga;
+	}
 }

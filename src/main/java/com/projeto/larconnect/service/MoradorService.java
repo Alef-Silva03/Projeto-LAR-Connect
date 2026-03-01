@@ -42,6 +42,8 @@ public class MoradorService {
             usuario.getNome(),
             usuario.getEmail(),
             usuario.getApartamento(),
+            usuario.getBloco(),
+            usuario.getVaga(),
             usuario.getPerfil()
         );
     }

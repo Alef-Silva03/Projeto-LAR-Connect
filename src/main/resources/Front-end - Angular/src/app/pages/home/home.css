@@ -1,12 +1,30 @@
-.article {
-    padding-top: 150px; /* Aumentado para acomodar a nova navbar */
+article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    margin: 0 10px;
 }
 
-/* Espaçamento para Navbar Fixa */
-.article {
-    padding-top: 140px; 
+section {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 80px 0; /* Aumentado para acomodar a nova navbar */
     background-color: #1B263B;
     color: #E0E1DD;
+}
+
+section div, section figure{
+    max-width: 700px;
+}
+
+.section-0 {
+    padding-bottom: 20px;
 }
 
 /* Estilização dos títulos com a paleta de cores do projeto */

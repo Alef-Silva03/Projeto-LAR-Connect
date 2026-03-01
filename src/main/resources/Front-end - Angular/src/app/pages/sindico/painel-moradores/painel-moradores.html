@@ -17,6 +17,14 @@
                 <label for="apartamentoMorador" class="form-label-custom">Apartamento:</label>
                 <input type="text" id="apartamentoMorador" name="apartamentoMorador" class="form-input-pill" [(ngModel)]="formData.apartamentoMorador" required>
             </div>
+            <div>
+                <label for="blocoMorador" class="form-label-custom">Bloco (opcional):</label>
+                <input type="text" id="blocoMorador" name="blocoMorador" class="form-input-pill" [(ngModel)]="formData.blocoMorador">
+            </div>
+            <div>
+                <label for="vagaMorador" class="form-label-custom">Vaga (opcional):</label>
+                <input type="text" id="vagaMorador" name="vagaMorador" class="form-input-pill" [(ngModel)]="formData.vagaMorador">
+            </div>
             <button type="submit" [disabled]="moradorForm.invalid" class="btn-enviar-neon mt-4">Adicionar</button>
             </form>
             </section>
@@ -28,22 +36,26 @@
                 <thead>
                     <tr>
                     <th>Nome</th>
-                    <th>Apartamento</th>
+                    <th class="text-center">Apartamento</th>
+                    <th>Bloco</th>
+                    <th>Vaga</th>
                     <th>E-mail</th>
                     <th>Perfil</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let morador of moradores" class="row-hover">
-                        <td class="nome-morador">
+                        <td class="nome-morador"  style="max-width: 100px;">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="avatar-mini">{{ morador.nome.charAt(0) }}</div>
                                 <span>{{ morador.nome }}</span>
                             </div>
                         </td>
-                        <td><span class="badge-pill-dark">{{ morador.apartamento }}</span></td>
-                        <td class="text-secondary-light">{{ morador.email }}</td>
-                        <td class="text-secondary-light">{{ morador.perfil }}</td>
+                        <td class="badge-pill-dark text-center">{{ morador.apartamento }}</td>
+                        <td class="text-secondary-light">{{ morador.bloco }}</td>
+                        <td class="text-secondary-light">{{ morador.vaga }}</td>
+                        <td class="text-secondary-light"  style="max-width: 100px;">{{ morador.email }}</td>
+                        <td class="text-secondary-light"  style="max-width: 100px;">{{ morador.perfil }}</td>
                         <td class="text-center">
                             <button class="btn-action-icon" title="Editar Morador">
                                 <i class="bi bi-pencil-square"></i>

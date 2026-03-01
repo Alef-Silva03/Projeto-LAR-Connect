@@ -5,12 +5,11 @@ p {
 /* Container Principal do Chat */
 .chat-page-container {
     height: 100vh;
-    padding-top: 120px; /* Compensa a Navbar Pílula fixa */
     background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 40px;
+
 }
 /* Estilização para anexos no chat */
 .img-anexo-chat {
@@ -42,6 +41,31 @@ p {
     display: flex;
     flex-direction: column;
 }
+
+.main-chat {
+    height: 100%; /* Garante que a section ocupe toda altura */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Área de mensagens com scroll */
+.message-display {
+    flex: 1 1 auto;
+    overflow-y: auto; 
+    min-height: 0; 
+    height: 100%;
+}
+
+.caixa-de-mensagem {
+    min-height: 150px;
+    max-height: 150px;
+    margin-top: 0;
+    flex-shrink: 0; /* Impede que o footer encolha */
+    background: transparent; /* Mantém o fundo transparente */
+    padding: 1rem !important;
+    margin-top: auto; /* Empurra para baixo com flexbox */
+}
+
 
 .chat-tabs-pill {
     background: rgba(255, 255, 255, 0.05);
@@ -82,6 +106,9 @@ p {
     position: relative;
     font-size: 0.95rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        background: #415A77;
+    border-radius: 20px;
+    margin-left: 10px;
 }
 
 .bubble-received {
@@ -258,4 +285,6 @@ p {
         border-radius: 0;
         width: 100%;
     }
+    
 }
+

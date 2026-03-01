@@ -64,10 +64,11 @@
                         <!-- Texto -->
                         <p class="m-0">{{ msg.texto }}</p>
 
-                        <!-- Hora -->
+                        <!-- Hora e nome-->
+                        <span class="time mt-2">{{ msg.usuario.nome }}</span>
                         <span class="time">{{ msg.data | date:'dd/MM/yyyy HH:mm:ss' }}</span>
 
-                            <p>{{ msg.usuario.nome }}</p>
+
 
                     </div>
                 </div>
@@ -79,7 +80,7 @@
             </div>-->
 
             <!-- FOOTER com Input (CORRIGIDO) -->
-            <footer class="p-3">
+            <footer class="p-3 caixa-de-mensagem">
                 <div class="input-wrapper-pill d-flex align-items-center px-3 gap-2">
                     <!-- INPUT com [(ngModel)] -->
                     <input #msgInput [(ngModel)]="mensagem.texto" (keyup.enter)="enviarMensagem()"

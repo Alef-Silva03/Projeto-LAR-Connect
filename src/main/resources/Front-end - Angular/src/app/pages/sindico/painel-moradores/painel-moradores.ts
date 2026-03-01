@@ -15,7 +15,9 @@ export class PainelMoradores implements OnInit {
   moradores: Morador[] = [];
   formData = {
     emailMorador: '',
-    apartamentoMorador: ''
+    apartamentoMorador: '',
+    blocoMorador: '',
+    vagaMorador: '',
   };
 
   constructor(
@@ -50,7 +52,7 @@ carregarMoradores(): void {
       return;
     }
 
-    const { emailMorador, apartamentoMorador } = this.formData;
+    const { emailMorador, apartamentoMorador, blocoMorador, vagaMorador } = this.formData;
     if (!emailMorador || !apartamentoMorador) {
       alert('Preencha todos os campos.');
       return;
@@ -59,11 +61,13 @@ carregarMoradores(): void {
     this.moradoresService.adicionarMorador(
       emailMorador,
       apartamentoMorador,
+      blocoMorador,
+      vagaMorador,
       usuario.condominio?.id
     ).subscribe({
       next: () => {
         this.carregarMoradores(); // recarrega a tabela
-        this.formData = { emailMorador: '', apartamentoMorador: '' }; // limpa o formulário
+        this.formData = { emailMorador: '', apartamentoMorador: '', blocoMorador: '', vagaMorador: '' }; // limpa o formulário
       },
       error: (err) => alert(err.error?.message || 'Erro ao adicionar morador.')
     });

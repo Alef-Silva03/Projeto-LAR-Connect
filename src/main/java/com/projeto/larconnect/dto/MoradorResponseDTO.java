@@ -5,19 +5,24 @@ public class MoradorResponseDTO {
     private String nome;
     private String email;
     private String apartamento;
+    private String bloco;
+    private String vaga;
     private String perfil;
 
     public MoradorResponseDTO() {}
 
-    public MoradorResponseDTO(Long id, String nome, String email, String apartamento, String perfil) {
+    public MoradorResponseDTO(Long id, String nome, String email, String apartamento, String bloco, String vaga, String perfil) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.apartamento = apartamento;
+        this.bloco = bloco;
+        this.vaga = vaga;
         this.perfil = perfil;
     }
 
-    // Getters e Setters
+
+	// Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -29,7 +34,13 @@ public class MoradorResponseDTO {
 
     public String getApartamento() { return apartamento; }
     public void setApartamento(String apartamento) { this.apartamento = apartamento; }
+    
+    public String getBloco() {return bloco;}
+	public void setBloco(String bloco) {this.bloco = bloco;}
 
+	public String getVaga() {return vaga;}
+	public void setVaga(String vaga) {this.vaga = vaga;}
+	
     public String getPerfil() { return perfil; }
     public void setPerfil(String perfil) { this.perfil = perfil; }
 }

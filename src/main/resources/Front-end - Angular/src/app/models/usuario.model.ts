@@ -22,6 +22,8 @@ export interface Usuario {
   condominio?: Condominio;
   apartamento?: string;
   cargo?: string;
+  bloco?: string;
+  vaga?: string;
   resetToken?: string;
   tokenExpiration?: Date;
 }
@@ -41,5 +43,7 @@ export interface LoginResponse {
   condominio: Condominio | null;
   cargo: string;
   apartamento: string;
+  bloco: string;
+  vaga: string;
   reset_token: string;
 }

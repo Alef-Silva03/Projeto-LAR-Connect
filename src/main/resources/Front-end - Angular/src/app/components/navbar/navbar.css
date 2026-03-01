@@ -17,6 +17,7 @@
     height: 100px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     z-index: 999;
+    font-size: 1.1rem;
 }
 
 /* Menu Lateral (Side Menu) */
@@ -117,5 +118,5 @@
 
 /* Logo e Tipografia */
 .brand-title span { color: #00B4D8; font-weight: 300; }
-.logo-img { height: 85px; }
+.logo-img { height: 85px; margin-left:100px; }
 .nav-trigger { cursor: pointer; color: white; display: flex; align-items: center; }

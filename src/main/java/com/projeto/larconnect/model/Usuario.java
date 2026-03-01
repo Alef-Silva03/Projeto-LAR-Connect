@@ -52,6 +52,12 @@ public class Usuario {
     @Column(nullable = true)
     private String cargo;
     
+    @Column(nullable = true)
+    private String bloco;
+    
+    @Column(nullable = true)
+    private String vaga;
+    
     @ManyToOne
     @JoinColumn(name = "idCondominio", referencedColumnName = "id")
     private Condominio condominio;
@@ -159,5 +165,21 @@ public class Usuario {
 	
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
+	}
+	
+	public String getBloco() {
+		return bloco;
+	}
+
+	public void setBloco(String bloco) {
+		this.bloco = bloco;
+	}
+	
+	public String getVaga() {
+		return vaga;
+	}
+
+	public void setVaga(String vaga) {
+		this.vaga = vaga;
 	}
 }

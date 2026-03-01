@@ -42,6 +42,8 @@ public class UsuarioService {
         if (usuarioUpdateDto.getSenha() != null) {usuario.setSenha(usuarioUpdateDto.getSenha());}
         if (usuarioUpdateDto.getEmail() != null) {usuario.setEmail(usuarioUpdateDto.getEmail());}
         if (usuarioUpdateDto.getApartamento() != null) {usuario.setApartamento(usuarioUpdateDto.getApartamento());}
+        if (usuarioUpdateDto.getBloco() != null) {usuario.setBloco(usuarioUpdateDto.getBloco());}
+        if (usuarioUpdateDto.getVaga() != null) {usuario.setVaga(usuarioUpdateDto.getVaga());}
         if (usuarioUpdateDto.getCargo() != null) {usuario.setCargo(usuarioUpdateDto.getCargo());}
    
         Usuario usuarioSalvo = usuarioRepository.save(usuario);

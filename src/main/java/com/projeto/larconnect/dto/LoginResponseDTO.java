@@ -1,6 +1,7 @@
 package com.projeto.larconnect.dto;
 
 import com.projeto.larconnect.model.Condominio;
+import com.projeto.larconnect.model.Usuario;
 
 public class LoginResponseDTO {
     private Long id;
@@ -11,6 +12,8 @@ public class LoginResponseDTO {
     private String perfil;
     private String cargo;
     private String apartamento;
+    private String bloco;
+    private String vaga;
     private Condominio condominio;
 	private String token;
 
@@ -19,7 +22,7 @@ public class LoginResponseDTO {
 
     // Constructor with all fields
     public LoginResponseDTO(Long id, String nome, String email, String cpf, 
-                           String telefone, String perfil, String cargo, String apartamento, Condominio condominio, String token) {
+                           String telefone, String perfil, String cargo, String apartamento, String bloco, String vaga, Condominio condominio, String token) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -28,11 +31,11 @@ public class LoginResponseDTO {
         this.perfil = perfil;
         this.cargo = cargo;
         this.apartamento = apartamento;
+        this.bloco = bloco;
+        this.vaga = vaga;
         this.condominio = condominio;
         this.token = token;
     }
-
-
 
 	// Getters and Setters
     public Long getId() { return id; }
@@ -58,15 +61,16 @@ public class LoginResponseDTO {
     
     public String getApartamento() { return apartamento; }
     public void setApartamento(String apartamento) { this.apartamento = apartamento; }
+    
+	public String getBloco() {return bloco;}
+	public void setBloco(String bloco) {this.bloco = bloco;}
 
+	public String getVaga() {return vaga;}
+	public void setVaga(String vaga) {this.vaga = vaga;}
+	
     public Condominio getCondominio() { return condominio; }
     public void setCondominio(Condominio condominio) { this.condominio = condominio; }
-    
-    public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
+	
+    public String getToken() {return token;}
+	public void setToken(String token) {this.token = token;}
 }

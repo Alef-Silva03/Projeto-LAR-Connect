@@ -25,6 +25,8 @@ export class AuthService {
             localStorage.setItem('telefone', response.telefone);
             localStorage.setItem('cargo', response.cargo);
             localStorage.setItem('apartamento', response.apartamento);
+            localStorage.setItem('bloco', response.bloco);
+            localStorage.setItem('vaga', response.vaga);
             localStorage.setItem('condominio', response.condominio ? response.condominio.nomeCondominio : '');
             localStorage.setItem('token', response.reset_token);
             this.loggedIn.next(true);

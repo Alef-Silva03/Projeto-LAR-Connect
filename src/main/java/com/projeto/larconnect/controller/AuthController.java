@@ -63,6 +63,8 @@ public class AuthController {
             response.setCargo(usuario.getCargo());
             response.setApartamento(usuario.getApartamento());
             response.setCondominio(usuario.getCondominio());
+            response.setBloco(usuario.getBloco());
+            response.setVaga(usuario.getVaga());
             response.setToken(token);
 
             return ResponseEntity.ok(response);
@@ -89,6 +91,8 @@ public class AuthController {
                         usuario.getPerfil().toString(),
                         usuario.getCargo(),
                         usuario.getApartamento(),
+                        usuario.getBloco(),
+                        usuario.getVaga(),
                         usuario.getCondominio(),
                         null
                     );
