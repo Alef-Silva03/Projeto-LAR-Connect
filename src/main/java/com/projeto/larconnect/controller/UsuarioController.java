@@ -22,21 +22,8 @@ public class UsuarioController {
      @Autowired
      private UsuarioService usuarioService;
      
-	 // Aqui você criamos os métodos para lidar com as operações de CRUD dos usuários por meio da ativação dos serviços do UsuarioService.
-	 
-	 // Lógica para buscar o usuário por ID e retornar um DTO
-	 //@GetMapping("/{id}")
-	 //public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Long id) {
-
-	 //}
-	 
-	 // Lógica para criar um novo usuário e retornar um DTO
-	 //@PostMapping
-	 //public ResponseEntity<UsuarioDTO> createUsuario(@RequestBody UsuarioCreateDTO createDto) {
-
-	 //}
 	
-	 // Lógica para atualizar um usuário alguns dados de um usuário existente (patch) e retornar um DTO
+	 // Lógica para atualizar alguns dados de um usuário existente (patch) e retornar um DTO
      @PatchMapping("/{email}")
      public ResponseEntity<UsuarioResponseDTO> updateUsuario(@PathVariable String email, 
                                                              @RequestBody UsuarioUpdateDTO usuarioUpdateDto) {
@@ -51,8 +38,5 @@ public class UsuarioController {
          }
      }
 	 
-	 // @DeleteMapping("/{id}")
-	 // public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
-	 //     // Lógica para deletar um usuário por ID
-	 // }
+
 }

@@ -1,5 +1,7 @@
 package com.projeto.larconnect.service;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional; // Mude para spring transactional
@@ -21,7 +23,7 @@ public class UsuarioService {
     @Autowired
     private CondominioRepository condominioRepository;
     
-    @Transactional // ADICIONE ESTA ANOTAÇÃO
+    @Transactional
     public Usuario update(String email, UsuarioUpdateDTO usuarioUpdateDto) {
         Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email)
             .orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado com e-mail: " + email));
@@ -29,46 +31,34 @@ public class UsuarioService {
         if (usuarioUpdateDto.getIdCondominio() != null) {
             Condominio condominio = condominioRepository.findById(usuarioUpdateDto.getIdCondominio())
                 .orElseThrow(() -> new EntityNotFoundException("Condomínio não encontrado com ID: " + usuarioUpdateDto.getIdCondominio()));
-            
+
             usuario.setCondominio(condominio);
         }
         
         // Atualiza outros campos se necessário
-        if (usuarioUpdateDto.getNome() != null) {
-            usuario.setNome(usuarioUpdateDto.getNome());
-        }
-        
-        if (usuarioUpdateDto.getCpf() != null) {
-            usuario.setCpf(usuarioUpdateDto.getCpf());
-        }
-        
-        if (usuarioUpdateDto.getTelefone() != null) {
-            usuario.setTelefone(usuarioUpdateDto.getTelefone());
-        }
-        
-        if (usuarioUpdateDto.getSenha() != null) {
-			usuario.setSenha(usuarioUpdateDto.getSenha());
-		}
-        
-        if (usuarioUpdateDto.getEmail() != null) {
-			usuario.setEmail(usuarioUpdateDto.getEmail());
-        }
-        
-        if (usuarioUpdateDto.getApartamento() != null) {
-			usuario.setApartamento(usuarioUpdateDto.getApartamento());
-        }
-        
-        if (usuarioUpdateDto.getCargo() != null) {
-        	usuario.setCargo(usuarioUpdateDto.getCargo());
-        }
-        
-    
-        
-        // Salva e retorna
+        if (usuarioUpdateDto.getNome() != null) {usuario.setNome(usuarioUpdateDto.getNome());}
+        if (usuarioUpdateDto.getCpf() != null) {usuario.setCpf(usuarioUpdateDto.getCpf());}
+        if (usuarioUpdateDto.getTelefone() != null) {usuario.setTelefone(usuarioUpdateDto.getTelefone());}
+        if (usuarioUpdateDto.getSenha() != null) {usuario.setSenha(usuarioUpdateDto.getSenha());}
+        if (usuarioUpdateDto.getEmail() != null) {usuario.setEmail(usuarioUpdateDto.getEmail());}
+        if (usuarioUpdateDto.getApartamento() != null) {usuario.setApartamento(usuarioUpdateDto.getApartamento());}
+        if (usuarioUpdateDto.getCargo() != null) {usuario.setCargo(usuarioUpdateDto.getCargo());}
+   
         Usuario usuarioSalvo = usuarioRepository.save(usuario);
         System.out.println("Usuário salvo. Condomínio no usuário salvo: " + 
             (usuarioSalvo.getCondominio() != null ? usuarioSalvo.getCondominio().getId() : "NULL"));
         
         return usuarioSalvo;
+    }
+    
+    @Transactional
+    public String gerarTokenRecuperacao(String email) {
+        Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email)
+                .orElseThrow(() -> new RuntimeException("E-mail não encontrado"));
+        
+        String token = UUID.randomUUID().toString();
+        usuario.setResetToken(token);
+        usuarioRepository.save(usuario);
+        return token;
     }
 }

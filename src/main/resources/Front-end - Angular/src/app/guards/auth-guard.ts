@@ -1,17 +1,14 @@
-import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router'; 
+import { AuthService } from '../services/auth.service'; 
+import { inject } from '@angular/core'; 
 
-export const authGuard: CanActivateFn = (route, state) => {
-  const router = inject(Router);
-  
-  // Verifica se o perfil existe no localStorage (lógica do seu script.js)
-  const perfil = localStorage.getItem('perfil');
-
-  if (perfil) {
-    return true; // Acesso liberado
-  } else {
-    // Se não estiver logado, redireciona para o login
-    router.navigate(['/login']);
-    return false; // Acesso negado
-  }
-};
+export const authGuard = () => { 
+    const authService = inject(AuthService); 
+    const router = inject(Router); 
+    if (authService.isAuthenticated()) { 
+        return true; 
+    } else { 
+        router.navigate(['/login']); 
+        return false; 
+    } 
+}; 

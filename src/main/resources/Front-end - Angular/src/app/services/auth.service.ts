@@ -18,48 +18,48 @@ export class AuthService {
         withCredentials: true  // ← ESSENCIAL
     }).pipe(
         tap(response => {
-        localStorage.setItem('perfil', response.perfil);
-        localStorage.setItem('nome', response.nome);
-        localStorage.setItem('email', response.email);
-        localStorage.setItem('cpf', response.cpf);
-        localStorage.setItem('telefone', response.telefone);
-        localStorage.setItem('cargo', response.cargo);
-        localStorage.setItem('apartamento', response.apartamento);
-        localStorage.setItem('condominio', response.condominio ? response.condominio.nomeCondominio : '');
-        localStorage.setItem('token', response.reset_token); // se necessário
-        this.loggedIn.next(true);
+            localStorage.setItem('perfil', response.perfil);
+            localStorage.setItem('nome', response.nome);
+            localStorage.setItem('email', response.email);
+            localStorage.setItem('cpf', response.cpf);
+            localStorage.setItem('telefone', response.telefone);
+            localStorage.setItem('cargo', response.cargo);
+            localStorage.setItem('apartamento', response.apartamento);
+            localStorage.setItem('condominio', response.condominio ? response.condominio.nomeCondominio : '');
+            localStorage.setItem('token', response.reset_token);
+            this.loggedIn.next(true);
         })
     );
     }
 
     getCurrentUser(): LoginResponse | null {
-    const usuarioJson = localStorage.getItem('usuario');
-    return usuarioJson ? JSON.parse(usuarioJson) : null;
+        const usuarioJson = localStorage.getItem('usuario');
+        return usuarioJson ? JSON.parse(usuarioJson) : null;
     }
 
     getPerfil(): String | null {
-    return localStorage.getItem('perfil');
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem('token'); 
-  }
-
-  isAuthenticated(): boolean {
-    return !!this.getToken();
-  }
-    
-  logout(): void {
-    fetch("http://localhost:8080/api/auth/logout", { 
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include"
-    });
-    localStorage.clear();
-    this.router.navigate(['/']); 
-
-    this.loggedIn.next(false);
+        return localStorage.getItem('perfil');
     }
+
+    getToken(): string | null {
+        return localStorage.getItem('token'); 
+    }
+
+    isAuthenticated(): boolean {
+        return !!this.getToken();
+    }
+    
+    logout(): void {
+        fetch("http://localhost:8080/api/auth/logout", { 
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include"
+        });
+        localStorage.clear();
+        this.router.navigate(['/']); 
+
+        this.loggedIn.next(false);
+        }
 
     finalizarEntrega(id: any) {
         throw new Error('Method not implemented.');

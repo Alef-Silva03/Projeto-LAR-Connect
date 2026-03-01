@@ -65,12 +65,6 @@
     color: #90E0EF;
 }
 
-/* Destaque Administrativo */
-.destaque-admin {
-    border-color: #90E0EF;
-    background: rgba(144, 224, 239, 0.05);
-}
-
 /* Títulos */
 .text-gradient {
     background: linear-gradient(90deg, #00B4D8, #90E0EF);

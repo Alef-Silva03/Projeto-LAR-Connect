@@ -10,11 +10,11 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { EnviarComunicados } from './pages/sindico/enviar-comunicados/enviar-comunicados';
 import { PainelMoradores } from './pages/sindico/painel-moradores/painel-moradores';
 import { CriarCondominio } from './pages/sindico/criar-condominio/criar-condominio';
-import { ReservaEspacos } from './pages/sindico/reserva-espacos/reserva-espacos';
+import { ReservaEspacos } from './pages/reserva-espacos/reserva-espacos';
 import { CriarEnquete } from './pages/sindico/criar-enquete/criar-enquete';
 import { AnunciosImoveis } from './pages/sindico/anuncios-imoveis/anuncios-imoveis';
 import { EnviarMensagens } from './pages/sindico/enviar-mensagens/enviar-mensagens';
-import { CaixaEntrada } from './pages/sindico/caixa-entrada/caixa-entrada';
+import { CaixaEntrada } from './pages/caixa-entrada/caixa-entrada';
 import { DashboardFuncionario } from './pages/funcionario/dashboard-funcionario/dashboard-funcionario';
 import { GestaoEncomendas } from './pages/funcionario/gestao-encomendas/gestao-encomendas';
 

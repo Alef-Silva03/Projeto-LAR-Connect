@@ -1,3 +1,7 @@
+p {
+    word-wrap: break-word;
+}
+
 /* Container Principal do Chat */
 .chat-page-container {
     height: 100vh;
@@ -28,7 +32,7 @@
     height: 80vh;
     width: 95%;
     max-width: 1300px;
-    overflow: scroll;
+    overflow-y: scroll;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 

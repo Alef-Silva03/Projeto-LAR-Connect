@@ -10,7 +10,7 @@ import { Chat } from './pages/chat/chat';
 import { Notificacoes } from './pages/notificacoes/notificacoes';
 
 export const routes: Routes = [
-  { path: '', component: Home },
+    { path: '', component: Home },
     { path: 'login', component: Login },
     { path: 'cadastro', component: Cadastro },
     { path: 'minha-conta', component: MinhaConta }, // Remova qualquer 'canActivate' daqui
@@ -22,7 +22,7 @@ export const routes: Routes = [
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, Navbar, Footer], // A Navbar PRECISA estar aqui
- // No seu arquivo app.ts
+
 template: `
   <app-navbar></app-navbar>
   

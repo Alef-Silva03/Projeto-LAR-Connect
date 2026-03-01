@@ -66,11 +66,14 @@
 
                         <!-- Hora -->
                         <span class="time">{{ msg.data | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+
+                            <p>{{ msg.usuario.nome }}</p>
+
                     </div>
                 </div>
 
-                <!-- Mensagem inicial -->
-                <!--<div *ngIf="!contatoSelecionado" class="text-center opacity-50 mt-5">
+            <!-- Mensagem inicial -->
+            <!--<div *ngIf="!contatoSelecionado" class="text-center opacity-50 mt-5">
                     Selecione um contato para começar a conversar
                 </div>
             </div>-->

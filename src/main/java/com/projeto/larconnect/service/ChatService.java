@@ -66,7 +66,8 @@ public class ChatService {
         return new ChatResponseDTO(
             chat.getId(), 
             chat.getTexto(),
-            chat.getData()
+            chat.getData(),
+            chat.getUsuario()
         );
     }
     

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Mensagem } from '../../models/mensagem.model';
+import { MensagemResponse, MensagemRequest } from '../../models/mensagem.model';
 import { Subscription } from 'rxjs';
 import { MensagemService } from '../../services/mensagem-service';
 import { AuthService } from '../../services/auth.service';
@@ -14,13 +14,13 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./chat.css']
 })
 export class Chat implements OnInit {
-  mensagem: Mensagem = {
+  mensagem: MensagemRequest = {
     texto: '',
     idCondominio: 0,
     idUsuario: 0
   };
 
-  mensagens: Mensagem[] = [];
+  mensagens: MensagemResponse[] = [];
 
   constructor(
     private mensagemService: MensagemService,
@@ -77,4 +77,9 @@ export class Chat implements OnInit {
       });
     }
   }
+
+    getUsuarioEmail() {
+        return localStorage.getItem('email');
+  }
+
 }

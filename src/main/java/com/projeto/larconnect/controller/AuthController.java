@@ -4,6 +4,7 @@ import com.projeto.larconnect.dto.LoginDTO;
 import com.projeto.larconnect.dto.LoginResponseDTO;
 import com.projeto.larconnect.model.Usuario;
 import com.projeto.larconnect.repository.UsuarioRepository;
+import com.projeto.larconnect.service.UsuarioService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,9 @@ public class AuthController {
     @Autowired
     private UsuarioRepository usuarioRepository;
     
+    @Autowired
+    private UsuarioService usuarioService;
+    
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginDto, HttpServletRequest request) {
         try {
@@ -47,6 +51,8 @@ public class AuthController {
             Usuario usuario = usuarioRepository.findByEmailIgnoreCase(loginDto.getEmail())
                     .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+            String token = usuarioService.gerarTokenRecuperacao(loginDto.getEmail());
+            
             LoginResponseDTO response = new LoginResponseDTO();
             response.setId(usuario.getId());
             response.setNome(usuario.getNome());
@@ -57,6 +63,7 @@ public class AuthController {
             response.setCargo(usuario.getCargo());
             response.setApartamento(usuario.getApartamento());
             response.setCondominio(usuario.getCondominio());
+            response.setToken(token);
 
             return ResponseEntity.ok(response);
 
@@ -82,7 +89,8 @@ public class AuthController {
                         usuario.getPerfil().toString(),
                         usuario.getCargo(),
                         usuario.getApartamento(),
-                        usuario.getCondominio()
+                        usuario.getCondominio(),
+                        null
                     );
                     
                     return ResponseEntity.ok(response);

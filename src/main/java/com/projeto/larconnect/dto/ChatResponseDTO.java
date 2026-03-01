@@ -3,6 +3,7 @@ package com.projeto.larconnect.dto;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.projeto.larconnect.model.Usuario;
 
 public class ChatResponseDTO {
 	private Long id;
@@ -11,14 +12,17 @@ public class ChatResponseDTO {
 	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
 	private LocalDateTime data;
 	
-    public ChatResponseDTO() {}
-
-    public ChatResponseDTO(Long id, String texto, LocalDateTime data) {
+	private Usuario usuario;
+	
+	public ChatResponseDTO() {}
+	
+	public ChatResponseDTO(Long id, String texto, LocalDateTime data, Usuario usuario) {
         this.id = id;
         this.texto = texto;
         this.data = data;
-    }
-	
+        this.usuario = usuario;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -36,5 +40,12 @@ public class ChatResponseDTO {
 	}
 	public void setData(LocalDateTime data) {
 		this.data = data;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

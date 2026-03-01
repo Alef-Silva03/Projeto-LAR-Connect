@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Mensagem } from '../models/mensagem.model';
+import { MensagemResponse, MensagemRequest } from '../models/mensagem.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,13 +13,13 @@ export class MensagemService {
   constructor(private http: HttpClient) { }
 
   // Enviar um novo mensagem
-  enviarMensagem(mensagem: Mensagem): Observable<Mensagem> {
-    return this.http.post<Mensagem>(`${this.baseUrl}/create`, mensagem, {withCredentials: true});
+  enviarMensagem(mensagem: MensagemRequest): Observable<MensagemRequest> {
+    return this.http.post<MensagemRequest>(`${this.baseUrl}/create`, mensagem, {withCredentials: true});
   }
 
   // Listar todos os mensagens do condomínio do usuário logado
-  listarMensagens(): Observable<Mensagem[]> {
-    return this.http.get<Mensagem[]>(`${this.baseUrl}/listar`, {withCredentials: true});
+  listarMensagens(): Observable<MensagemResponse[]> {
+    return this.http.get<MensagemResponse[]>(`${this.baseUrl}/listar`, {withCredentials: true});
   }
 
   excluirMensagem(id: any): Observable<void> {
