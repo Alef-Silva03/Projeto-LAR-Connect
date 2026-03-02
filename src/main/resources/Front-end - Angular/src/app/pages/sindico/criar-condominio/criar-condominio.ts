@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; // Importe HttpHeaders
@@ -32,8 +32,35 @@ export class CriarCondominio {
 
   constructor(
     private http: HttpClient, 
+    private cdr: ChangeDetectorRef,
     private router: Router
   ) {}
+  
+  /*private buscarCep(cep: string): void {
+    const usuarioString = localStorage.getItem('usuario');
+    if (!usuarioString) {
+      alert('Usuário não encontrado. Faça login novamente.');
+      return;
+    }
+    let usuario = JSON.parse(usuarioString);
+
+    let cepMensagemErro = ''
+    this.http.get<any>(`https://viacep.com.br/ws/${cep}/json/`).subscribe({
+        next: (data) => {
+            if (data?.erro) {
+                cepMensagemErro = 'CEP não encontrado.'
+                this.cdr.detectChanges()
+                return
+            }
+            usuario = {
+                ...usuario,
+                logradouro : data.logradouro || this.usuario.logradouro
+            }
+
+        }
+    })
+  }*/
+
 
   criarCondominio(condominio: CondominioRequest): Observable<CondominioResponse> {
 

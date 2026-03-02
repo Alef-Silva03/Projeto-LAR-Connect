@@ -65,22 +65,8 @@ carregarFuncionarios(): void {
         this.carregarFuncionarios(); // recarrega a tabela
         this.formData = { emailFuncionario: '', cargoFuncionario: '' }; // limpa o formulário
       },
-      error: (err) => alert(err.error?.message || 'Erro ao adicionar funcionário.')
+      error: (err) => alert(err.error?.message || 'Erro ao adicionar funcionario.')
     });
     this.cdr.detectChanges(); // força a atualização da view
-  }
-
-    removerFuncionario(email: string) {
-    if (confirm('Tem certeza de que deseja remover este funcionário?')) {
-      this.funcionariosService.removerFuncionario(email).subscribe({
-        next: () => {
-          this.funcionarios = this.funcionarios.filter(funcionario => funcionario.email !== email);
-          this.cdr.detectChanges();
-        },
-        error: () => {
-          alert('Erro no processo de exclusão');
-        }
-      });
-    }
   }
 }

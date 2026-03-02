@@ -29,28 +29,26 @@
                 <thead>
                     <tr>
                     <th>Nome</th>
-                    <th>Cargo</th>
+                    <th>cargo</th>
                     <th>E-mail</th>
                     <th>Remover</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let funcionario of funcionarios" class="row-hover">
-                        @if (funcionario.cargo != ''){
-                            <td class="nome-funcionario">
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="avatar-mini">{{ funcionario.nome.charAt(0) }}</div>
-                                    <span>{{ funcionario.nome }}</span>
-                                </div>
-                            </td>
-                            <td><span class="badge-pill-dark">{{ funcionario.cargo }}</span></td>
-                            <td class="text-secondary-light">{{ funcionario.email }}</td>
-                            <td class="text-center">
-                                <button type="submit" (click)="removerFuncionario(funcionario.email)" class="btn-action-icon" title="Remover">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </td>
-                        }
+                        <td class="nome-funcionario">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="avatar-mini">{{ funcionario.nome.charAt(0) }}</div>
+                                <span>{{ funcionario.nome }}</span>
+                            </div>
+                        </td>
+                        <td><span class="badge-pill-dark">{{ funcionario.cargo }}</span></td>
+                        <td class="text-secondary-light">{{ funcionario.email }}</td>
+                        <td class="text-center">
+                            <button type="submit" class="btn-action-icon" title="Remover">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

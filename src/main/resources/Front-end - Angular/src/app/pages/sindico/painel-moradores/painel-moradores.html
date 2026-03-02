@@ -45,7 +45,6 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let morador of moradores" class="row-hover">
-                    @if (morador.apartamento != ''){
                         <td class="nome-morador"  style="max-width: 100px;">
                             <div class="d-flex align-items-center gap-3">
                                 <div class="avatar-mini">{{ morador.nome.charAt(0) }}</div>
@@ -58,11 +57,13 @@
                         <td class="text-secondary-light"  style="max-width: 100px;">{{ morador.email }}</td>
                         <td class="text-secondary-light"  style="max-width: 100px;">{{ morador.perfil }}</td>
                         <td class="text-center">
-                            <button type="submit" (click)="removerMorador(morador.email)" class="btn-action-icon" title="Remover">
-                                <i class="bi bi-trash"></i>
+                            <button class="btn-action-icon" title="Editar Morador">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button class="btn-action-icon ms-2" title="Ver Detalhes">
+                                <i class="bi bi-eye"></i>
                             </button>
                         </td>
-                    }
                     </tr>
                 </tbody>
             </table>
