@@ -73,4 +73,18 @@ carregarMoradores(): void {
     });
     this.cdr.detectChanges(); // força a atualização da view
   }
+
+  removerMorador(email: string) {
+    if (confirm('Tem certeza de que deseja remover este morador?')) {
+      this.moradoresService.removerMorador(email).subscribe({
+        next: () => {
+          this.moradores = this.moradores.filter(morador => morador.email !== email);
+          this.cdr.detectChanges();
+        },
+        error: () => {
+          alert('Erro no processo de exclusão');
+        }
+      });
+    }
+  }
 }

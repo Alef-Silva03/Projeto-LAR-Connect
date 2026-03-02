@@ -9,6 +9,7 @@ import { vagagaragem } from './pages/vaga-garagem/vaga-garagem';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { EnviarComunicados } from './pages/sindico/enviar-comunicados/enviar-comunicados';
 import { PainelMoradores } from './pages/sindico/painel-moradores/painel-moradores';
+import { PainelFuncionarios } from './pages/sindico/painel-funcionarios/painel-funcionarios';
 import { CriarCondominio } from './pages/sindico/criar-condominio/criar-condominio';
 import { ReservaEspacos } from './pages/reserva-espacos/reserva-espacos';
 import { CriarEnquete } from './pages/sindico/criar-enquete/criar-enquete';
@@ -17,6 +18,7 @@ import { EnviarMensagens } from './pages/sindico/enviar-mensagens/enviar-mensage
 import { CaixaEntrada } from './pages/caixa-entrada/caixa-entrada';
 import { DashboardFuncionario } from './pages/funcionario/dashboard-funcionario/dashboard-funcionario';
 import { GestaoEncomendas } from './pages/funcionario/gestao-encomendas/gestao-encomendas';
+import { MensagemAoSindico } from './pages/mensagem-ao-sindico/mensagem-ao-sindico';
 
 // Guards
 import { authGuard } from './guards/auth-guard';
@@ -49,13 +51,23 @@ export const routes: Routes = [
     component: vagagaragem, 
     canActivate: [authGuard] 
   },
-
-  // Rotas do Síndico (protegidas por role)
   { 
     path: 'dashboard', 
     component: Dashboard, 
     canActivate: [authGuard], 
   },
+    { 
+    path: 'mensagem-ao-sindico', 
+    component: MensagemAoSindico, 
+    canActivate: [authGuard], 
+  },
+  { 
+    path: 'caixa-entrada', 
+    component: CaixaEntrada, 
+    canActivate: [authGuard],  
+  },
+  // Rotas do Síndico (protegidas por role)
+
   { 
     path: 'enviar-comunicados', 
     component: EnviarComunicados, 
@@ -65,6 +77,12 @@ export const routes: Routes = [
   { 
     path: 'painel-moradores', 
     component: PainelMoradores, 
+    canActivate: [authGuard, RoleGuard], 
+    data: { role: 'SINDICO' }
+  },
+  {
+    path: 'painel-funcionarios', 
+    component: PainelFuncionarios, 
     canActivate: [authGuard, RoleGuard], 
     data: { role: 'SINDICO' } 
   },
@@ -98,12 +116,7 @@ export const routes: Routes = [
     canActivate: [authGuard, RoleGuard], 
     data: { role: 'SINDICO' } 
   },
-  { 
-    path: 'caixa-entrada', 
-    component: CaixaEntrada, 
-    canActivate: [authGuard, RoleGuard], 
-    data: { role: 'SINDICO' } 
-  },
+
 
   // Rotas do Funcionário (protegidas por role)
   { 

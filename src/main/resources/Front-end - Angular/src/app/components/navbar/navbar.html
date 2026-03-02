@@ -46,6 +46,8 @@
             </div>-->
                 <a *ngIf="!authService.isAuthenticated()" routerLink="/cadastro"><i class="bi bi-person-plus"></i> Cadastro </a>
                 <a *ngIf="!authService.isAuthenticated()" routerLink="/login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                <a *ngIf="authService.isAuthenticated() && authService.getPerfil() != 'FUNCIONARIO'" routerLink="/dashboard"><i class="bi bi-person-circle"></i> Dashboard</a>
+                <a *ngIf="authService.isAuthenticated() && authService.getPerfil() == 'FUNCIONARIO'" routerLink="/dashboard-funcionario"><i class="bi bi-person-circle"></i> Dashboard</a>
                 <a *ngIf="authService.isAuthenticated()" (click)="authService.logout()"><i class="bi bi-box-arrow-right"></i> Sair</a>
         </div>
     </div>

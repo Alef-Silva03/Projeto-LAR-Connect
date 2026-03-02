@@ -13,6 +13,7 @@ import { AuthService } from '../../../services/auth.service';
   templateUrl: './enviar-comunicados.html',
   styleUrls: ['./enviar-comunicados.css']
 })
+
 export class EnviarComunicados implements OnInit {
   comunicado: Comunicado = {
     tipo: '',
@@ -30,6 +31,7 @@ export class EnviarComunicados implements OnInit {
   ) {}
   
   ngOnInit(): void {
+    this.cdr.detectChanges();
     this.carregarComunicados();
     this.cdr.detectChanges();
   }

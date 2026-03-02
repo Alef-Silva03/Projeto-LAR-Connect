@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CaixaDeEntrada } from './caixa-de-entrada';
+import { CaixaEntrada } from './caixa-entrada';
 
 describe('CaixaDeEntrada', () => {
-  let service: CaixaDeEntrada;
+  let service: CaixaEntrada;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CaixaDeEntrada);
+    service = TestBed.inject(CaixaEntrada);
   });
 
   it('should be created', () => {

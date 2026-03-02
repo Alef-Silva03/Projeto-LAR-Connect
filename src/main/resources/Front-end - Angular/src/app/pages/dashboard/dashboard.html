@@ -18,9 +18,18 @@
            <div class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item" routerLink="/caixa-entrada">
                     <i class="bi bi-envelope-fill"></i>
-                    <span>Mensagens e Pedidos</span>
+                    <span>Caixa de Entrada</span>
                 </div>
             </div>
+
+            @if (authService.getPerfil() != 'SINDICO'){
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="nav-pill-item" routerLink="/mensagem-ao-sindico">
+                    <i class="bi bi-envelope-fill"></i>
+                    <span>Enviar Pedidos e Queixas Anônimas ao Síndico</span>
+                </div>
+            </div>
+            }
 
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item" routerLink="/chat">
@@ -43,12 +52,12 @@
                 </div>
             </div>
 
-            <div class="col-6 col-md-4 col-lg-3">
+            <!--<div class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item" routerLink="/anuncios-imoveis">
                     <i class="bi bi-house-door-fill"></i>
                     <span>Anúncios de Venda e Aluguel</span>
                 </div>
-            </div>
+            </div>-->
 
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item" routerLink="/vaga-garagem">
@@ -60,7 +69,7 @@
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item" routerLink="/reserva-espacos">
                     <i class="bi bi-calendar-check-fill"></i>
-                    <span>Reservar Espaços e Pedidos</span>
+                    <span>Reservar Espaços</span>
                 </div>
             </div>
 
@@ -78,6 +87,7 @@
                         <span>Adicionar ou Remover Moradores</span>
                     </div>
                 </div>
+
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="nav-pill-item destaque-admin" routerLink="/painel-funcionarios">
                         <i class="bi bi-person-plus-fill"></i>
@@ -85,10 +95,10 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-4 col-lg-3">
+                <!--<div class="col-6 col-md-4 col-lg-3">
                     <div class="nav-pill-item" routerLink="/enviar-mensagens">
                         <i class="bi bi-file-earmark-medical-fill"></i>
-                        <span>Enviar Mensagens e Docs</span>
+                        <span>Enviar Mensagens e Docs aos Moradores</span>
                     </div>
                 </div>
     
@@ -97,7 +107,7 @@
                         <i class="bi bi-ui-checks"></i>
                         <span>Criar Enquete ou Votação</span>
                     </div>
-                </div>
+                </div>-->
                 }
 
         </div>
