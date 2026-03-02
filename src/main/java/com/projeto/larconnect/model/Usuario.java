@@ -3,13 +3,14 @@
 package com.projeto.larconnect.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-
+import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity														//Informa que a classe criada aqui é uma entidade, ou seja, um tipo de usuário
@@ -58,6 +60,9 @@ public class Usuario {
     @Column(nullable = true)
     private String vaga;
     
+    @OneToMany(mappedBy = "comprador", cascade = CascadeType.ALL)
+    private List<CompraVaga> comprasVagas = new ArrayList<>();
+    
     @ManyToOne
     @JoinColumn(name = "idCondominio", referencedColumnName = "id")
     private Condominio condominio;
@@ -67,7 +72,7 @@ public class Usuario {
 
 	@Column(name = "token_expiration")						//Cria um atributo que é o momento em que o token será renovado e baixado no PC do usuário novamente. Técnica de segurança.
 	private LocalDateTime tokenExpiration;
-
+	
 	// --- Getters e Setters ---
 															//Abaixo são os métodos desta classe, ou seja, o que os objetos dela podem fazer e o que pode ser feito com os atributos deles. Neste caso, podemos
 															//salvar os valores de cada atributo de um objeto (setter) ou ver qual o valor de cada atributo de um objeto (getter)
@@ -120,11 +125,51 @@ public class Usuario {
 	}
 
 	public String getPerfil() {
-	    return perfil;
+		return perfil;
 	}
 
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
+	}
+
+	public String getApartamento() {
+		return apartamento;
+	}
+
+	public void setApartamento(String apartamento) {
+		this.apartamento = apartamento;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getBloco() {
+		return bloco;
+	}
+
+	public void setBloco(String bloco) {
+		this.bloco = bloco;
+	}
+
+	public String getVaga() {
+		return vaga;
+	}
+
+	public void setVaga(String vaga) {
+		this.vaga = vaga;
+	}
+
+	public List<CompraVaga> getComprasVagas() {
+		return comprasVagas;
+	}
+
+	public void setComprasVagas(List<CompraVaga> comprasVagas) {
+		this.comprasVagas = comprasVagas;
 	}
 
 	public Condominio getCondominio() {
@@ -134,7 +179,7 @@ public class Usuario {
 	public void setCondominio(Condominio condominio) {
 		this.condominio = condominio;
 	}
-	
+
 	public String getResetToken() {
 		return resetToken;
 	}
@@ -150,36 +195,5 @@ public class Usuario {
 	public void setTokenExpiration(LocalDateTime tokenExpiration) {
 		this.tokenExpiration = tokenExpiration;
 	}
-	
-	public String getApartamento() {
-		return apartamento;
-	}
-	
-	public void setApartamento(String apartamento) {
-		this.apartamento = apartamento;
-	}
-	
-	public String getCargo() {
-		return cargo;
-	}
-	
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-	
-	public String getBloco() {
-		return bloco;
-	}
 
-	public void setBloco(String bloco) {
-		this.bloco = bloco;
-	}
-	
-	public String getVaga() {
-		return vaga;
-	}
-
-	public void setVaga(String vaga) {
-		this.vaga = vaga;
-	}
 }

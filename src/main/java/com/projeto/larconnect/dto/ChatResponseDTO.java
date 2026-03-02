@@ -1,7 +1,6 @@
 package com.projeto.larconnect.dto;
 
 import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.projeto.larconnect.model.Usuario;
 
