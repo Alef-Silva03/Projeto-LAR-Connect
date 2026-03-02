@@ -1,3 +1,21 @@
+.pill-input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-input-pill{
+background-color: #415A77;
+  border-radius: 30px;
+  height: 50px;
+  width: 200px;
+  text-align: center;
+  padding-left: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-family: 
+}
+
 .reservas-container {
     padding-top: 140px;
     background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);

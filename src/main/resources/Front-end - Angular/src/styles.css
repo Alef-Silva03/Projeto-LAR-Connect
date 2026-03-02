@@ -42,11 +42,29 @@
 }
 
 html body{
-    background-color: #1B263B;
+    background-color: radial-gradient( circle at top, #1B263B 0%, #0D1B2A 100%);
+    background-color: rgba(0, 0, 0, 0);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-image: radial-gradient(circle at center top, rgb(27, 38, 59) 0%, rgb(13, 27, 42) 100%);
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
     overflow-x: hidden;
 }
 html, body {
-    background-color: #1B263B;
+    background-color: radial-gradient( circle at top, #1B263B 0%, #0D1B2A 100%);
+    background-color: rgba(0, 0, 0, 0);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-image: radial-gradient(circle at center top, rgb(27, 38, 59) 0%, rgb(13, 27, 42) 100%);
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
     margin: 0;
     padding: 0;
     min-height: 100vh;
