@@ -15,12 +15,12 @@ import { ReservaService } from '../../services/reserva-service';
 
 export class ReservaEspacos implements OnInit {
     reserva: Reserva = {
-        reservaChurrasqueira: new Date(),
-        reservaSalao: new Date(),
-        reservaPlayground: new Date(),
-        reservaAcademia: new Date(),
-        reservaQuadra: new Date(),
-        reservaCinema: new Date(),
+        reservaChurrasqueira: new Date('2000-01-01'),
+        reservaSalao: new Date('2000-01-01'),
+        reservaPlayground: new Date('2000-01-01'),
+        reservaAcademia: new Date('2000-01-01'),
+        reservaQuadra: new Date('2000-01-01'),
+        reservaCinema: new Date('2000-01-01'),
         idCondominio: 0,
         idUsuario: 0
     };
@@ -51,7 +51,7 @@ export class ReservaEspacos implements OnInit {
         },
         error: (err) => {
             console.error('Erro ao fazer reserva.', err);
-            alert('Erro ao postar comunicado. Verifique o console.');
+            alert('Erro ao realizar reserva. Verifique o console.');
         }
     });
   }
