@@ -3,57 +3,47 @@ package br.com.larconnect.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import br.com.larconnect.dto.EncomendaRequestDTO;
 import br.com.larconnect.model.Encomenda;
+import br.com.larconnect.model.Notificacao;
 import br.com.larconnect.model.Usuario;
 import br.com.larconnect.repository.EncomendaRepository;
 import br.com.larconnect.repository.NotificacaoRepository;
 import br.com.larconnect.repository.UsuarioRepository;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
-@Service // Indica que esta classe é um serviço
+@Service
 public class EncomendaService {
 
     @Autowired private EncomendaRepository encomendaRepo;
     @Autowired private UsuarioRepository usuarioRepo;
     @Autowired private NotificacaoRepository notificacaoRepo;
 
-    @Transactional // Garante que se algo der errado (ex: erro ao salvar notificação), nada seja salvo no banco
+    @Transactional
     public Encomenda registrarRecebimento(EncomendaRequestDTO dto) {
-        
-        // 1. Busca o morador (Se não existir, ele para aqui e avisa o erro)
+        // 1. Localiza o morador no banco pelo Apto/Bloco
         Usuario moradorObj = usuarioRepo.findByAptoAndBloco(dto.getApto(), dto.getBloco())
-            .orElseThrow(() -> new RuntimeException("Morador não encontrado no Apto " + dto.getApto() + " Bloco " + dto.getBloco()));
+            .orElseThrow(() -> new RuntimeException("Morador não encontrado no Apto " + dto.getApto()));
 
-        // 2. Cria a encomenda preenchendo os dados
+        // 2. Registra a Encomenda
         Encomenda enc = new Encomenda();
         enc.setApto(dto.getApto());
         enc.setBloco(dto.getBloco());
-        enc.setMorador(moradorObj.getNome()); // Pega o nome real do morador que está no banco
+        enc.setMorador(moradorObj.getNome());
         enc.setDescricao("Encomenda recebida na portaria");
-        enc.setDataChegada("Hoje, " + java.time.LocalTime.now().toString().substring(0,5));
+        enc.setDataChegada("Recebido às " + LocalTime.now().toString().substring(0,5));
         enc.setEntregue(false);
-        enc.setCondominio();
         
-        // Salva a encomenda no MySQL
-        return encomendaRepo.save(enc);
+        Encomenda salva = encomendaRepo.save(enc);
+
+        // 3. Cria a Notificação para o Morador
+        Notificacao notif = new Notificacao();
+        notif.setDestinatario(moradorObj);
+        notif.setMensagem("Olá " + moradorObj.getNome() + ", chegou uma encomenda para você!");
+        notif.setDataCriacao(LocalDateTime.now());
+        notificacaoRepo.save(notif);
+
+        return salva;
     }
-    
-    public List<Encomenda> getEncomendasDoCondominio() {
-        // Pega o usuário logado atual
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        
-        // Busca o usuário logado
-        Usuario usuarioLogado = usuarioRepository.findByEmailIgnoreCase(email)
-            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-        
-        // Busca todos os comunicados do condomínio do usuário
-        Long condominioId = usuarioLogado.getCondominio().getId();
-        List<Encomenda> encomenda = encomendaRepo.findByCondominioIdOrderByIdDesc(condominioId);
-        
-        // Converte para DTO
-        return encomenda;
-    }
-    
 }

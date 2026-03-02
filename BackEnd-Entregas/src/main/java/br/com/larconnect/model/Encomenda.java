@@ -1,12 +1,11 @@
 package br.com.larconnect.model;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -15,39 +14,59 @@ public class Encomenda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String morador; // Nome do morador (Texto)
-    private String descricao; // Adicione esta linha se faltar!
+    private String morador; 
+    private String descricao;
     private String apto;
     private String bloco;
     private String dataChegada;
+    private LocalDateTime dataEntrega; // Para o histórico
     private boolean entregue = false;
-    
-    @ManyToOne
-    @JoinColumn(name = "idCondominio", referencedColumnName = "id")
-    private Condominio condominio;
-
-	
-    public void setEntregue(boolean b) {
-		// TODO Auto-generated method stub
-		
+	public Long getId() {
+		return id;
 	}
-	public String getApto() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getMorador() {
+		return morador;
+	}
+	public void setMorador(String morador) {
+		this.morador = morador;
 	}
 	public String getDescricao() {
-		// TODO Auto-generated method stub
-		return null;
+		return descricao;
 	}
-	public void setDataEntrega(LocalDateTime now) {
-		// TODO Auto-generated method stub
-		
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public String getApto() {
+		return apto;
+	}
+	public void setApto(String apto) {
+		this.apto = apto;
+	}
+	public String getBloco() {
+		return bloco;
+	}
+	public void setBloco(String bloco) {
+		this.bloco = bloco;
+	}
+	public String getDataChegada() {
+		return dataChegada;
+	}
+	public void setDataChegada(String dataChegada) {
+		this.dataChegada = dataChegada;
+	}
+	public LocalDateTime getDataEntrega() {
+		return dataEntrega;
+	}
+	public void setDataEntrega(LocalDateTime dataEntrega) {
+		this.dataEntrega = dataEntrega;
 	}
 	public boolean isEntregue() {
-		// TODO Auto-generated method stub
-		return false;
+		return entregue;
 	}
-	
-	
-	
+	public void setEntregue(boolean entregue) {
+		this.entregue = entregue;
+	}
 }

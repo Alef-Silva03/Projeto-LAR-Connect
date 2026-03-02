@@ -1,7 +1,6 @@
 package br.com.larconnect.model;
 
 import java.time.LocalDateTime;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,15 +20,45 @@ public class Notificacao {
     private boolean lida = false;
     
     @ManyToOne
-    private Usuario destinatario; // O morador que vai ver no painel
+    private Usuario destinatario;
 
-	public void setDestinatario(Usuario morador) {
-		// TODO Auto-generated method stub
-		
+	public Long getId() {
+		return id;
 	}
 
-	public void setMensagem(String string) {
-		// TODO Auto-generated method stub
-		
+	public void setId(Long id) {
+		this.id = id;
 	}
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+
+	public LocalDateTime getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(LocalDateTime dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	public boolean isLida() {
+		return lida;
+	}
+
+	public void setLida(boolean lida) {
+		this.lida = lida;
+	}
+
+	public Usuario getDestinatario() {
+		return destinatario;
+	}
+
+	public void setDestinatario(Usuario destinatario) {
+		this.destinatario = destinatario;
+	} 
 }

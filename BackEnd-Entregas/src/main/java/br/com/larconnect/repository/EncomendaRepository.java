@@ -9,7 +9,9 @@ import br.com.larconnect.model.Encomenda;
 
 @Repository
 public interface EncomendaRepository extends JpaRepository<Encomenda, Long> {
-    
-    // O Spring gera a lógica automaticamente baseada no nome do método!
-    List<Encomenda> findByCondominioIdOrderByIdDesc();
+    // Para a aba "Entregas Ativas"
+    List<Encomenda> findByEntregueFalse();
+
+    // NOVO: Para a aba "Histórico"
+    List<Encomenda> findByEntregueTrue();
 }
