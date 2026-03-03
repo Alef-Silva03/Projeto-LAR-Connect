@@ -15,12 +15,12 @@ import { ReservaService } from '../../services/reserva-service';
 
 export class ReservaEspacos implements OnInit {
     reserva: Reserva = {
-        reservaChurrasqueira: new Date('2000-01-01'),
-        reservaSalao: new Date('2000-01-01'),
-        reservaPlayground: new Date('2000-01-01'),
-        reservaAcademia: new Date('2000-01-01'),
-        reservaQuadra: new Date('2000-01-01'),
-        reservaCinema: new Date('2000-01-01'),
+        reservaChurrasqueira: new Date(),
+        reservaSalao: new Date(),
+        reservaPlayground: new Date(),
+        reservaAcademia: new Date(),
+        reservaQuadra: new Date(),
+        reservaCinema: new Date(),
         idCondominio: 0,
         idUsuario: 0
     };

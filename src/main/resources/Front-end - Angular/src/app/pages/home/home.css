@@ -1,3 +1,11 @@
+h1{
+    font-size: 3.5rem
+}
+
+H3{
+    font-size: 1.5rem
+}
+
 article{
     display: flex;
     flex-direction: column;
@@ -14,17 +22,22 @@ section {
     justify-items: center;
     align-content: center;
     justify-content: center;
-    padding: 80px 0; /* Aumentado para acomodar a nova navbar */
+    padding: 120px 0; /* Aumentado para acomodar a nova navbar */
     background-color: #1B263B;
     color: #E0E1DD;
 }
 
 section div, section figure{
-    max-width: 700px;
+    max-width: 650px;
 }
 
 .section-0 {
-    padding-bottom: 20px;
+    padding-bottom: 80px;
+    margin-right: 3%;
+}
+
+.section-0 div{
+    max-width: 1000px;
 }
 
 /* Estilização dos títulos com a paleta de cores do projeto */
@@ -53,4 +66,8 @@ section div, section figure{
 
 .img-fluid:hover {
     transform: translateY(-10px);
+}
+
+.logo-home {
+    width: 100px;
 }
