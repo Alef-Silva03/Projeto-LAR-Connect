@@ -16,7 +16,7 @@ public class Encomenda {
     
     private String morador; 
     private String descricao;
-    private String apto;
+    private String apartamento;
     private String bloco;
     private String dataChegada;
     private LocalDateTime dataEntrega; // Para o histórico
@@ -39,11 +39,11 @@ public class Encomenda {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String getApto() {
-		return apto;
+	public String getApartamento() {
+		return apartamento;
 	}
-	public void setApto(String apto) {
-		this.apto = apto;
+	public void setApartamento(String apartamento) {
+		this.apartamento = apartamento;
 	}
 	public String getBloco() {
 		return bloco;

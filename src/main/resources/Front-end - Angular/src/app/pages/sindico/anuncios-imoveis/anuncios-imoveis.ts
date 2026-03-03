@@ -17,21 +17,21 @@ export class AnunciosImoveis {
       tipo: 'venda', 
       preco: 'R$ 1.250.000', 
       quartos: 4, area: 180, vagas: 3, 
-      imagem: 'assets/imagem/apto1.jpg' 
+      imagem: 'assets/imagem/apartamento1.jpg' 
     },
     { 
       titulo: 'Apartamento Vista Mar', 
       tipo: 'aluguel', 
       preco: 'R$ 4.500 /mês', 
       quartos: 2, area: 75, vagas: 1, 
-      imagem: 'assets/imagem/apto2.jpg' 
+      imagem: 'assets/imagem/apartamento2.jpg' 
     },
     { 
       titulo: 'Studio Moderno Mobiliado', 
       tipo: 'aluguel', 
       preco: 'R$ 2.800 /mês', 
       quartos: 1, area: 45, vagas: 1, 
-      imagem: 'assets/imagem/apto3.jpg' 
+      imagem: 'assets/imagem/apartamento3.jpg' 
     }
   ];
 

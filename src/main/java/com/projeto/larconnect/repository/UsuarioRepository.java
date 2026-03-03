@@ -23,4 +23,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     // Ou com JPQL para mais controle
     @Query("SELECT u FROM Usuario u WHERE u.condominio.id = :condominioId")
     List<Usuario> findMoradoresByCondominioId(@Param("condominioId") Long condominioId);
+    
+
+    // Este é o método que usamos para a busca do morador no registro de encomendas:
+    Optional<Usuario> findByApartamentoAndBloco(String apartamento, String bloco);
 }

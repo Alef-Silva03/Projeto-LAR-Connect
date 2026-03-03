@@ -12,5 +12,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByLogin(String login);
 
     // Este é o método que usamos para a busca do morador no registro de encomendas:
-    Optional<Usuario> findByAptoAndBloco(String apto, String bloco);
+    Optional<Usuario> findByApartamentoAndBloco(String apartamento, String bloco);
 }

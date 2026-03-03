@@ -14,7 +14,7 @@ export class AuthService {
     constructor(private router: Router, private http: HttpClient) {}
 
     login(email: string, senha: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.API}/login`, { email, senha }, {
+    return this.http.post<LoginResponse>(`http://localhost:8080/api/auth/login`, { email, senha }, {
         withCredentials: true  // ← ESSENCIAL
     }).pipe(
         tap(response => {
@@ -66,7 +66,7 @@ export class AuthService {
     finalizarEntrega(id: any) {
         throw new Error('Method not implemented.');
     }
-    registrarEncomenda(novaEntrega: { apto: string; bloco: string; moradorNome: string; descricao: string; }) {
+    registrarEncomenda(novaEntrega: { apartamento: string; bloco: string; moradorNome: string; descricao: string; }) {
         throw new Error('Method not implemented.');
     }
     listarEncomendas() {

@@ -16,9 +16,9 @@ export class DashboardFuncionario implements OnInit {
   horaAtual: string = '';
 
   /*acessosRecentes = [
-    { hora: '10:45', nome: 'João Silva (Uber)', tipo: 'Visitante', unidade: 'Apto 402-A', status: 'Entrada' },
+    { hora: '10:45', nome: 'João Silva (Uber)', tipo: 'Visitante', unidade: 'Apartamento 402-A', status: 'Entrada' },
     { hora: '10:30', nome: 'Loggi Entregas', tipo: 'Prestador', unidade: 'Portaria', status: 'Saída' },
-    { hora: '10:15', nome: 'Ricardo M. (Técnico Vivo)', tipo: 'Prestador', unidade: 'Apto 101-B', status: 'Entrada' }
+    { hora: '10:15', nome: 'Ricardo M. (Técnico Vivo)', tipo: 'Prestador', unidade: 'Apartamento 101-B', status: 'Entrada' }
   ];*/
 
   ngOnInit() {

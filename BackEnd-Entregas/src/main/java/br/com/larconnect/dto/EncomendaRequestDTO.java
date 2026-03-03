@@ -4,14 +4,14 @@ import lombok.Data;
 
 @Data
 public class EncomendaRequestDTO {
-    private String apto;
+    private String apartamento;
     private String bloco;
     private String moradorNome; // Nome vindo do campo do porteiro
-	public String getApto() {
-		return apto;
+	public String getApartamento() {
+		return apartamento;
 	}
-	public void setApto(String apto) {
-		this.apto = apto;
+	public void setApartamento(String apartamento) {
+		this.apartamento = apartamento;
 	}
 	public String getBloco() {
 		return bloco;

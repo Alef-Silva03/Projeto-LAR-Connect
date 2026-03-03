@@ -17,7 +17,7 @@
             <h3 class="h5 text-white mb-4"><i class="bi bi-plus-circle me-2 text-cyan"></i>Nova Entrada</h3>
             <div class="row g-3">
                 <div class="col-md-3">
-                    <input type="text" [(ngModel)]="novaEntrega.apto" placeholder="Apto" class="form-input-pill">
+                    <input type="text" [(ngModel)]="novaEntrega.apartamento" placeholder="Apartamento" class="form-input-pill">
                 </div>
                 <div class="col-md-2">
                     <input type="text" [(ngModel)]="novaEntrega.bloco" placeholder="Bloco" class="form-input-pill">
@@ -51,7 +51,7 @@
                             <h5 class="m-0 text-white">{{ item.morador }}</h5>
                             <span class="time-tag">{{ item.dataChegada | date:'dd/MM HH:mm' }}</span>
                         </div>
-                        <p class="text-cyan mb-0">Unidade: {{ item.apto }} - Bloco: {{ item.bloco }}</p>
+                        <p class="text-cyan mb-0">Unidade: {{ item.apartamento }} - Bloco: {{ item.bloco }}</p>
                     </div>
                     <div class="actions">
                         <button (click)="marcarComoEntregue(item)" class="btn-entregar-pill">

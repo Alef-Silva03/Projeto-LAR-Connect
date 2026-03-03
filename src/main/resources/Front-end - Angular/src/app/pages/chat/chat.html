@@ -19,7 +19,7 @@
                             (click)="selecionarContato(morador)">
                             <img [src]="morador.avatar" class="avatar-sm circular-border" height="50" width="50">
                             <div class="ms-3">
-                                <h6 class="m-0">{{ morador.nome }} (Apto {{ morador.apartamento }})</h6>
+                                <h6 class="m-0">{{ morador.nome }} (Apartamento {{ morador.apartamento }})</h6>
                                 <small class="text-cyan" *ngIf="morador.digitando">digitando...</small>
                                 <small *ngIf="!morador.digitando" [class.text-cyan]="morador.online">
                                     {{ morador.online ? 'online' : 'offline' }}

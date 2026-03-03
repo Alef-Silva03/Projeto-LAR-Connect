@@ -21,7 +21,7 @@ public class Usuario {
     private String login;
     private String senha;
     private String perfil; // FUNCIONARIO ou MORADOR
-    private String apto;
+    private String apartamento;
     private String bloco;
 	public Long getId() {
 		return id;
@@ -53,11 +53,11 @@ public class Usuario {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
-	public String getApto() {
-		return apto;
+	public String getApartamento() {
+		return apartamento;
 	}
-	public void setApto(String apto) {
-		this.apto = apto;
+	public void setApartamento(String apartamento) {
+		this.apartamento = apartamento;
 	}
 	public String getBloco() {
 		return bloco;

@@ -23,7 +23,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         localStorage.removeItem('email');
         localStorage.removeItem('cpf');
         localStorage.removeItem('cpfVerificado');
-        localStorage.removeItem('apto');
+        localStorage.removeItem('apartamento');
         localStorage.removeItem('bloco');
         localStorage.removeItem('vaga');
         localStorage.removeItem('telefone');
