@@ -7,22 +7,24 @@ import { Chat } from './pages/chat/chat';
 import { Notificacoes } from './pages/notificacoes/notificacoes';
 import { vagagaragem } from './pages/vaga-garagem/vaga-garagem'; 
 import { Dashboard } from './pages/dashboard/dashboard';
-import { EnviarComunicados } from './pages/sindico/enviar-comunicados/enviar-comunicados';
-import { PainelMoradores } from './pages/sindico/painel-moradores/painel-moradores';
-import { PainelFuncionarios } from './pages/sindico/painel-funcionarios/painel-funcionarios';
-import { CriarCondominio } from './pages/sindico/criar-condominio/criar-condominio';
+import { EnviarComunicados } from './pages/enviar-comunicados/enviar-comunicados';
+import { PainelMoradores } from './pages/painel-moradores/painel-moradores';
+import { PainelFuncionarios } from './pages/painel-funcionarios/painel-funcionarios';
+import { CriarCondominio } from './pages/criar-condominio/criar-condominio';
 import { ReservaEspacos } from './pages/reserva-espacos/reserva-espacos';
-import { CriarEnquete } from './pages/sindico/criar-enquete/criar-enquete';
-import { AnunciosImoveis } from './pages/sindico/anuncios-imoveis/anuncios-imoveis';
-import { EnviarMensagens } from './pages/sindico/enviar-mensagens/enviar-mensagens';
+import { CriarEnquete } from './pages/criar-enquete/criar-enquete';
+import { AnunciosImoveis } from './pages/anuncios-imoveis/anuncios-imoveis';
+import { EnviarMensagens } from './pages/enviar-mensagens/enviar-mensagens';
 import { CaixaEntrada } from './pages/caixa-entrada/caixa-entrada';
 import { DashboardFuncionario } from './pages/funcionario/dashboard-funcionario/dashboard-funcionario';
 import { LocalGestaoEncomendasComponent as GestaoEncomendas} from './pages/funcionario/gestao-encomendas/gestao-encomendas';
 import { MensagemAoSindico } from './pages/mensagem-ao-sindico/mensagem-ao-sindico';
+import { DadosCondominio } from './pages/dados-condominio/dados-condominio';
 
 // Guards
 import { authGuard } from './guards/auth-guard';
 import { RoleGuard } from './guards/role-guard';
+
 
 export const routes: Routes = [
   // Rotas Públicas (sem proteção)
@@ -64,6 +66,11 @@ export const routes: Routes = [
   { 
     path: 'caixa-entrada', 
     component: CaixaEntrada, 
+    canActivate: [authGuard],  
+  },
+    { 
+    path: 'dados-condominio', 
+    component: DadosCondominio, 
     canActivate: [authGuard],  
   },
   // Rotas do Síndico (protegidas por role)

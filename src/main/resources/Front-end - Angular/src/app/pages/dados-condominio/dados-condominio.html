@@ -1,0 +1,70 @@
+<article class="minha-conta-container">
+    <div class="glass-card shadow-lg">
+        <header class="text-center mb-5">
+            <h1 class="titulo-pagina">DADOS DO CONDOMÍNIO</h1>
+            <!--<p class="subtitulo">GERENCIE OS DADOS DO SEU CONDOMÍNIO</p>-->
+        </header>
+
+        <div class="row justify-content-center">
+            <!-- Conteúdo dinâmico -->
+            <div class="col-md-8">
+                <!-- DADOS PESSOAIS -->
+                <div class="conteudo-aba">
+
+                    <div class="form-group">
+                        <label>Nome do Condominio</label>
+                        <div class="campo-info">
+                            <span>{{ dadosCondominio().nomeCondominio }}</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>CEP</label>
+                        <div class="campo-info">
+                            <span>{{ dadosCondominio().cep }}</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <div class="campo-info">
+                            <span>{{ dadosUsuario.telefone || 'Não informado' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Apartamento</label>
+
+                        <div class="campo-info">
+                            @if (getApartamento() == 'null'){
+                            <span> - </span>
+                            }
+                            @if (getApartamento() != 'null'){
+                                <span> getApartamento() </span>
+                                }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bloco</label>
+                        <div class="campo-info">
+                            @if (getBloco() == 'null'){
+                            <span> - </span>
+                            }
+                            @if (getBloco() != 'null'){
+                                <span> getBloco() </span>
+                                }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Vaga de Garagem</label>
+                        <div class="campo-info">
+                            <span>{{ dadosUsuario.vaga || 'Não possui' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
