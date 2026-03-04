@@ -75,3 +75,21 @@
     transform: scale(1.05);
     box-shadow: 0 0 30px rgba(0, 180, 216, 0.6);
 }
+
+.btn-action-icon {
+    color: #E0E1DD;
+    border: none;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    width: 50px;
+    height: 40px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 1);
+    background-color: #790000;
+    border-radius: 10px;
+
+}
+
+.btn-action-icon:hover {
+    transform: scale(1.2);
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 1);
+}
