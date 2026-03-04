@@ -21,6 +21,9 @@ import { DashboardFuncionario } from './pages/funcionario/dashboard-funcionario/
 import { LocalGestaoEncomendasComponent as GestaoEncomendas} from './pages/funcionario/gestao-encomendas/gestao-encomendas';
 =======
 import { GestaoEncomendas } from './pages/funcionario/gestao-encomendas/gestao-encomendas';
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import { MensagemAoSindico } from './pages/mensagem-ao-sindico/mensagem-ao-sindico';
 
