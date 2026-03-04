@@ -17,14 +17,7 @@ import { AnunciosImoveis } from './pages/sindico/anuncios-imoveis/anuncios-imove
 import { EnviarMensagens } from './pages/sindico/enviar-mensagens/enviar-mensagens';
 import { CaixaEntrada } from './pages/caixa-entrada/caixa-entrada';
 import { DashboardFuncionario } from './pages/funcionario/dashboard-funcionario/dashboard-funcionario';
-<<<<<<< Updated upstream
 import { LocalGestaoEncomendasComponent as GestaoEncomendas} from './pages/funcionario/gestao-encomendas/gestao-encomendas';
-=======
-import { GestaoEncomendas } from './pages/funcionario/gestao-encomendas/gestao-encomendas';
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 import { MensagemAoSindico } from './pages/mensagem-ao-sindico/mensagem-ao-sindico';
 
 // Guards
