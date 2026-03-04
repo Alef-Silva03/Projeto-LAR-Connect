@@ -42,7 +42,7 @@ export const routes: Routes = [
     canActivate: [authGuard] 
   },
   { 
-    path: 'notificacoes', 
+    path: 'notificacoes-entrega', 
     component: Notificacoes, 
     canActivate: [authGuard] 
   },

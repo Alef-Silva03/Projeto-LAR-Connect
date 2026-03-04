@@ -21,7 +21,7 @@ export class FuncionariosService {
 
   adicionarFuncionario(email: string, cargo: string, idCondominio: number): Observable<any> {
     const payload = { idCondominio, cargo };
-    return this.http.patch(`/api/usuarios/${email}`, payload, {withCredentials: true });
+    return this.http.patch(`http://localhost:8080/api/usuarios/${email}`, payload, {withCredentials: true });
   }
 
   listarFuncionarios(): Observable<Funcionario[]> {
