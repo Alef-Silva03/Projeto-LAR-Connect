@@ -1,50 +1,83 @@
 <article class="painel-e-vagas">
     <div class="container-fluid glass-container">
         <header class="text-center mb-5">
-            <h1 class="text-gradient">CENTRAL DE VAGAS</h1>
-            <p class="subtitulo">COMPRE OU ALUGUE SUA VAGA DE FORMA RÁPIDA</p>
+            <h1 class="text-gradient">VAGAS</h1>
         </header>
 
-        <div class="filter-pills d-flex justify-content-center gap-3 mb-5">
-            <button class="filter-item active">Todas</button>
-            <button class="filter-item">Disponíveis para Venda</button>
-            <button class="filter-item">Disponíveis para Aluguel</button>
+        <!-- Loading State -->
+        <div *ngIf="loading" class="text-center my-5">
+            <div class="spinner-border text-info" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
         </div>
 
-        <div id="bloco" class="shadow-lg">
+        <!-- Error State -->
+        <div *ngIf="error" class="alert alert-danger text-center my-5" role="alert">
+            {{ error }}
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-pills d-flex justify-content-center gap-3 mb-5" *ngIf="!loading">
+            <button 
+                class="filter-item" 
+                [class.active]="filtroAtivo === 'Todas'" 
+                (click)="filtrarVagas('Todas')">
+                Todas
+            </button>
+            <button 
+                class="filter-item" 
+                [class.active]="filtroAtivo === 'Disponíveis para Venda'" 
+                (click)="filtrarVagas('Disponíveis para Venda')">
+                Disponíveis para Venda
+            </button>
+        </div>
+
+        <!-- Vagas Table -->
+        <div id="bloco" class="shadow-lg" *ngIf="!loading && vagas.length > 0">
             <section id="tabela-comercial">
                 <table>
                     <thead>
                         <tr>
                             <th>LOCALIZAÇÃO</th>
-                            <th>TIPO</th>
-                            <th>VALOR ESTIMADO</th>
+                            <th>VALOR</th>
                             <th>STATUS</th>
-                            <th class="text-center">INTERESSE</th>
+                            <th class="text-center">AÇÃO</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><span class="vaga-id">VAGA A-12</span></td>
-                            <td><span class="badge-tipo venda">VENDA</span></td>
-                            <td class="valor">R$ 25.000,00</td>
-                            <td><span class="status-indicator disponivel">LIVRE</span></td>
-                            <td class="text-center">
-                                <button class="btn-acao-neon">TENHO INTERESSE</button>
+                        <tr *ngFor="let vaga of vagas">
+                            <td>
+                                <span class="vaga-id">VAGA {{ vaga.localizacao || vaga.numero }}</span>
+                                <small class="d-block text-muted" *ngIf="vaga.proprietario">
+                                    Proprietário: {{ vaga.proprietario }}
+                                </small>
                             </td>
-                        </tr>
-                        <tr>
-                            <td><span class="vaga-id">VAGA B-05</span></td>
-                            <td><span class="badge-tipo aluguel">ALUGUEL</span></td>
-                            <td class="valor">R$ 250,00 <small>/mês</small></td>
-                            <td><span class="status-indicator disponivel">LIVRE</span></td>
+                            <td class="valor">{{ formatarValor(vaga) }}</td>
+                            <td>
+                                <span class="status-indicator" [class]="getStatusClass(vaga.status)">
+                                    {{ getStatusText(vaga.status) }}
+                                </span>
+                            </td>
                             <td class="text-center">
-                                <button class="btn-acao-neon">ALUGAR AGORA</button>
+                                <button 
+                                    class="btn-acao-neon" 
+                                    [class.btn-reservada]="vaga.status === 'reservada'"
+                                    [class.btn-vendida]="vaga.status === 'vendida'"
+                                    [class.btn-indisponivel]="vaga.status === 'indisponivel'"
+                                    [disabled]="!isBotaoHabilitado(vaga)"
+                                    (click)="acaoBotao(vaga)">
+                                    {{ getBotaoTexto(vaga) }}
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </section>
+        </div>
+
+        <!-- No Results -->
+        <div *ngIf="!loading && vagas.length === 0" class="text-center my-5">
+            <p class="text-muted">Nenhuma vaga encontrada.</p>
         </div>
     </div>
 </article>
