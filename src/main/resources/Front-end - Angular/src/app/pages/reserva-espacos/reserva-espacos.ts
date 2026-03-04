@@ -52,6 +52,7 @@ export class ReservaEspacos implements OnInit {
         error: (err) => {
             console.error('Erro ao fazer reserva.', err);
             alert('Erro ao realizar reserva. Verifique o console.');
+
         }
     });
   }
