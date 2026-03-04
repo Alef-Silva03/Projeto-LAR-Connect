@@ -1,199 +1,211 @@
-//Esse arquivo cria a classe Usuário, que será transformada na tabela Usuário do banco de dados
-
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
 package com.projeto.larconnect.model;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity														//Informa que a classe criada aqui é uma entidade, ou seja, um tipo de usuário
-@Table(name = "usuario")
+@Entity
+@Table(
+   name = "usuario"
+)
 public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(nullable = false)
-    private String nome;
-    
-    @Column(unique = true, nullable = false)
-    private String email;
-    
-    @Column(nullable = false)
-    private String senha;
-    
-    @Column(nullable = false)
-    private String cpf;
-    
-    @Column(nullable = false)
-    private String telefone;
-    
-    @Column(nullable = false)
-    private String perfil; // SINDICO, PROPRIETARIO, INQUILINO, FUNCIONARIO
-    
-    @Column(nullable = true)
-    private String apartamento;
-    
-    @Column(nullable = true)
-    private String cargo;
-    
-    @Column(nullable = true)
-    private String bloco;
-    
-    @Column(nullable = true)
-    private String vaga;
-    
-    @OneToMany(mappedBy = "comprador", cascade = CascadeType.ALL)
-    private List<CompraVaga> comprasVagas = new ArrayList<>();
-    
-    @ManyToOne
-    @JoinColumn(name = "idCondominio", referencedColumnName = "id")
-    private Condominio condominio;
-	
-	@Column(name = "reset_token")							//Cria um atributo que é um token que será baixado no PC do usuário quando ele logar. Será usado para checar o tempo todo se o usuário está logado.
-	private String resetToken;
+   @Id
+   @GeneratedValue(
+      strategy = GenerationType.IDENTITY
+   )
+   private Long id;
+   @Column(
+      nullable = false
+   )
+   private String nome;
+   @Column(
+      unique = true,
+      nullable = false
+   )
+   private String email;
+   @Column(
+      nullable = false
+   )
+   private String senha;
+   @Column(
+      nullable = false
+   )
+   private String cpf;
+   @Column(
+      nullable = false
+   )
+   private String telefone;
+   @Column(
+      nullable = false
+   )
+   private String perfil;
+   @Column(
+      nullable = true
+   )
+   private String apartamento;
+   @Column(
+      nullable = true
+   )
+   private String cargo;
+   @Column(
+      nullable = true
+   )
+   private String bloco;
+   @Column(
+      nullable = true
+   )
+   private String vaga;
+   @OneToMany(
+      mappedBy = "comprador",
+      cascade = {CascadeType.ALL}
+   )
+   private List<CompraVaga> comprasVagas = new ArrayList();
+   @ManyToOne
+   @JoinColumn(
+      name = "idCondominio",
+      referencedColumnName = "id"
+   )
+   private Condominio condominio;
+   @Column(
+      name = "reset_token"
+   )
+   private String resetToken;
+   @Column(
+      name = "token_expiration"
+   )
+   private LocalDateTime tokenExpiration;
 
-	@Column(name = "token_expiration")						//Cria um atributo que é o momento em que o token será renovado e baixado no PC do usuário novamente. Técnica de segurança.
-	private LocalDateTime tokenExpiration;
-	
-	// --- Getters e Setters ---
-															//Abaixo são os métodos desta classe, ou seja, o que os objetos dela podem fazer e o que pode ser feito com os atributos deles. Neste caso, podemos
-															//salvar os valores de cada atributo de um objeto (setter) ou ver qual o valor de cada atributo de um objeto (getter)
-	public Long getId() {
-		return id;
-	}
+   public Usuario() {
+   }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+   public Long getId() {
+      return this.id;
+   }
 
-	public String getNome() {
-		return nome;
-	}
+   public void setId(Long id) {
+      this.id = id;
+   }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+   public String getNome() {
+      return this.nome;
+   }
 
-	public String getEmail() {
-		return email;
-	}
+   public void setNome(String nome) {
+      this.nome = nome;
+   }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+   public String getEmail() {
+      return this.email;
+   }
 
-	public String getSenha() {
-		return senha;
-	}
+   public void setEmail(String email) {
+      this.email = email;
+   }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+   public String getSenha() {
+      return this.senha;
+   }
 
-	public String getCpf() {
-		return cpf;
-	}
+   public void setSenha(String senha) {
+      this.senha = senha;
+   }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+   public String getCpf() {
+      return this.cpf;
+   }
 
-	public String getTelefone() {
-		return telefone;
-	}
+   public void setCpf(String cpf) {
+      this.cpf = cpf;
+   }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+   public String getTelefone() {
+      return this.telefone;
+   }
 
-	public String getPerfil() {
-		return perfil;
-	}
+   public void setTelefone(String telefone) {
+      this.telefone = telefone;
+   }
 
-	public void setPerfil(String perfil) {
-		this.perfil = perfil;
-	}
+   public String getPerfil() {
+      return this.perfil;
+   }
 
-	public String getApartamento() {
-		return apartamento;
-	}
+   public void setPerfil(String perfil) {
+      this.perfil = perfil;
+   }
 
-	public void setApartamento(String apartamento) {
-		this.apartamento = apartamento;
-	}
+   public String getApartamento() {
+      return this.apartamento;
+   }
 
-	public String getCargo() {
-		return cargo;
-	}
+   public void setApartamento(String apartamento) {
+      this.apartamento = apartamento;
+   }
 
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
+   public String getCargo() {
+      return this.cargo;
+   }
 
-	public String getBloco() {
-		return bloco;
-	}
+   public void setCargo(String cargo) {
+      this.cargo = cargo;
+   }
 
-	public void setBloco(String bloco) {
-		this.bloco = bloco;
-	}
+   public String getBloco() {
+      return this.bloco;
+   }
 
-	public String getVaga() {
-		return vaga;
-	}
+   public void setBloco(String bloco) {
+      this.bloco = bloco;
+   }
 
-	public void setVaga(String vaga) {
-		this.vaga = vaga;
-	}
+   public String getVaga() {
+      return this.vaga;
+   }
 
-	public List<CompraVaga> getComprasVagas() {
-		return comprasVagas;
-	}
+   public void setVaga(String vaga) {
+      this.vaga = vaga;
+   }
 
-	public void setComprasVagas(List<CompraVaga> comprasVagas) {
-		this.comprasVagas = comprasVagas;
-	}
+   public List<CompraVaga> getComprasVagas() {
+      return this.comprasVagas;
+   }
 
-	public Condominio getCondominio() {
-		return condominio;
-	}
+   public void setComprasVagas(List<CompraVaga> comprasVagas) {
+      this.comprasVagas = comprasVagas;
+   }
 
-	public void setCondominio(Condominio condominio) {
-		this.condominio = condominio;
-	}
+   public Condominio getCondominio() {
+      return this.condominio;
+   }
 
-	public String getResetToken() {
-		return resetToken;
-	}
+   public void setCondominio(Condominio condominio) {
+      this.condominio = condominio;
+   }
 
-	public void setResetToken(String resetToken) {
-		this.resetToken = resetToken;
-	}
+   public String getResetToken() {
+      return this.resetToken;
+   }
 
-	public LocalDateTime getTokenExpiration() {
-		return tokenExpiration;
-	}
+   public void setResetToken(String resetToken) {
+      this.resetToken = resetToken;
+   }
 
-	public void setTokenExpiration(LocalDateTime tokenExpiration) {
-		this.tokenExpiration = tokenExpiration;
-	}
+   public LocalDateTime getTokenExpiration() {
+      return this.tokenExpiration;
+   }
 
+   public void setTokenExpiration(LocalDateTime tokenExpiration) {
+      this.tokenExpiration = tokenExpiration;
+   }
 }
