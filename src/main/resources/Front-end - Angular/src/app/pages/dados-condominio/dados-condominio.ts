@@ -35,7 +35,7 @@ export class DadosCondominio {
 
    quantidadeDeMoradores() {
      this.moradoresService.listarMoradores().subscribe((listaMoradores: Morador[]) => {
-       const quantMoradores = listaMoradores.length;
+       const quantMoradores = listaMoradores.length + 1;
        localStorage.setItem('quantMoradores', quantMoradores.toString())
      });
      return localStorage.getItem('quantMoradores')
