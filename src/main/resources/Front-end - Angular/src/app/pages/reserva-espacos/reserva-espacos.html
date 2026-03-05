@@ -9,30 +9,15 @@
         <div class="row g-4">
 
             <div class="col-md-6 col-lg-4">
-                <div class="card-espaco-glass">
-                    <div class="icon-area">
-                        <i class="bi bi-fire"></i>
-                    </div>
-                    <h3 class="mt-3">Churrasqueira</h3>
-                    <div class="date-picker-section mt-5 d-flex justify-content-center">
-                        <div class="pill-input-group w-50">
-                            <input type="date" [(ngModel)]="reserva.reservaChurrasqueira" class="form-input-pill">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <form (ngSubmit)="realizarReserva()" class="card-espaco-glass">
+                <form (ngSubmit)="realizarReserva()">
                     <div class="card-espaco-glass">
                         <div class="icon-area">
-                            <i class="bi bi-music-note-beamed"></i>
+                            <i class="bi bi-fire"></i>
                         </div>
-                        <h3 class="mt-3">Salão de Festas</h3>
+                        <h3 class="mt-3">Churrasqueira</h3>
                         <div class="date-picker-section mt-5 d-flex justify-content-center">
                             <div class="pill-input-group w-50">
-                                <input type="date" [(ngModel)]="reserva.reservaSalao" class="form-input-pill">
+                                <input type="date" name="reservaChurrasqueira" [(ngModel)]="reserva.reservaChurrasqueira" class="form-input-pill">
                             </div>
                         </div>
                         <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
@@ -41,6 +26,24 @@
             </div>
 
             <div class="col-md-6 col-lg-4">
+                <form (ngSubmit)="realizarReserva()">
+                    <div class="card-espaco-glass">
+                        <div class="icon-area">
+                            <i class="bi bi-music-note-beamed"></i>
+                        </div>
+                        <h3 class="mt-3">Salão de Festas</h3>
+                        <div class="date-picker-section mt-5 d-flex justify-content-center">
+                            <div class="pill-input-group w-50">
+                                <input type="date" name="reservaSalao" [(ngModel)]="reserva.reservaSalao" class="form-input-pill">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <form (ngSubmit)="realizarReserva()">
                 <div class="card-espaco-glass">
                     <div class="icon-area">
                         <i class="bi bi-person-arms-up"></i>
@@ -48,56 +51,64 @@
                     <h3 class="mt-3">Playground</h3>
                     <div class="date-picker-section mt-5 d-flex justify-content-center">
                         <div class="pill-input-group w-50">
-                            <input type="date" [(ngModel)]="reserva.reservaPlayground" class="form-input-pill">
+                            <input type="date" name="reservaPlayground" [(ngModel)]="reserva.reservaPlayground" class="form-input-pill">
                         </div>
                     </div>
                     <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
                 </div>
+                </form>
             </div>
 
             <div class="col-md-6 col-lg-4">
-                <div class="card-espaco-glass">
-                    <div class="icon-area">
-                        <i class="bi bi-hypnotize"></i>
-                    </div>
-                    <h3 class="mt-3">Academia</h3>
-                    <div class="date-picker-section mt-5 d-flex justify-content-center">
-                        <div class="pill-input-group w-50">
-                            <input type="date" [(ngModel)]="reserva.reservaAcademia" class="form-input-pill">
+                <form (ngSubmit)="realizarReserva()">
+                    <div class="card-espaco-glass">
+                        <div class="icon-area">
+                            <i class="bi bi-hypnotize"></i>
                         </div>
+                        <h3 class="mt-3">Academia</h3>
+                        <div class="date-picker-section mt-5 d-flex justify-content-center">
+                            <div class="pill-input-group w-50">
+                                <input type="date" name="reservaAcademia" [(ngModel)]="reserva.reservaAcademia" class="form-input-pill">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
                     </div>
-                    <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
-                </div>
+                </form>
+
             </div>
 
             <div class="col-md-6 col-lg-4">
-                <div class="card-espaco-glass">
-                    <div class="icon-area">
-                        <i class="bi bi-dribbble"></i>
-                    </div>
-                    <h3 class="mt-3">Quadra Esportiva</h3>
-                    <div class="date-picker-section mt-5 d-flex justify-content-center">
-                        <div class="pill-input-group w-50">
-                            <input type="date" [(ngModel)]="reserva.reservaQuadra" class="form-input-pill">
+                <form (ngSubmit)="realizarReserva()">
+                    <div class="card-espaco-glass">
+                        <div class="icon-area">
+                            <i class="bi bi-dribbble"></i>
                         </div>
+                        <h3 class="mt-3">Quadra Esportiva</h3>
+                        <div class="date-picker-section mt-5 d-flex justify-content-center">
+                            <div class="pill-input-group w-50">
+                                <input type="date" name="reservaQuadra" [(ngModel)]="reserva.reservaQuadra" class="form-input-pill">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
                     </div>
-                    <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
-                </div>
+                </form>
             </div>
 
             <div class="col-md-6 col-lg-4">
-                <div class="card-espaco-glass">
-                    <div class="icon-area">
-                        <i class="bi bi-film"></i>
-                    </div>
-                    <h3 class="mt-3">Espaço Cinema</h3>
-                    <div class="date-picker-section mt-5 d-flex justify-content-center">
-                        <div class="pill-input-group w-50">
-                            <input type="date" [(ngModel)]="reserva.reservaCinema" class="form-input-pill">
+                <form (ngSubmit)="realizarReserva()">
+                    <div class="card-espaco-glass">
+                        <div class="icon-area">
+                            <i class="bi bi-film"></i>
                         </div>
+                        <h3 class="mt-3">Espaço Cinema</h3>
+                        <div class="date-picker-section mt-5 d-flex justify-content-center">
+                            <div class="pill-input-group w-50">
+                                <input type="date" name="reservaCinema" [(ngModel)]="reserva.reservaCinema" class="form-input-pill">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
                     </div>
-                    <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>

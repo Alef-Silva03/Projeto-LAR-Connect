@@ -33,18 +33,20 @@ export class DadosCondominio {
     return condominio
   }
 
-  quantidadeDeMoradores(): number {
-    var listaMoradores = this.moradoresService.listarMoradores().subscribe
-    var quantMoradores = listaMoradores.length
-    console.log(quantMoradores)
-    return quantMoradores
-  }
+   quantidadeDeMoradores() {
+     this.moradoresService.listarMoradores().subscribe((listaMoradores: Morador[]) => {
+       const quantMoradores = listaMoradores.length;
+       localStorage.setItem('quantMoradores', quantMoradores.toString())
+     });
+     return localStorage.getItem('quantMoradores')
+    }
 
-  quantidadeDeFuncionarios(): number {
-    var listaFuncionarios = this.funcionariosService.listarFuncionarios().subscribe
-    var quantFuncionarios = listaFuncionarios.length
-    console.log(quantFuncionarios)
-    return quantFuncionarios
+  quantidadeDeFuncionarios() {
+     this.funcionariosService.listarFuncionarios().subscribe((listaFuncionarios: Morador[]) => {
+       const quantFuncionarios = listaFuncionarios.length;
+       localStorage.setItem('quantFuncionarios', quantFuncionarios.toString())
+     });
+     return localStorage.getItem('quantFuncionarios')
   }
 
 }

@@ -1,8 +1,8 @@
 /* Container Principal */
 .painel-sindico-container {
-    padding-top: 140px;
+    padding-top: 100px;
     background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
-    min-height: 100vh;
+    min-height: 100%;
     display: flex;
     justify-content: center;
     padding-bottom: 60px;
@@ -19,7 +19,14 @@
     padding: 50px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-}
+      opacity: 0;
+      animation: fadeInAnimation 0.3s ease-in forwards;
+    }
+
+    @keyframes fadeInAnimation {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
 /* Estilo das Pílulas de Ação */
 .nav-pill-item {
@@ -37,6 +44,7 @@
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 
 .nav-pill-item i {
     font-size: 2.5rem;
