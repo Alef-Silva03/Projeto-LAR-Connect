@@ -68,9 +68,10 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // Rotas públicas
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/**").permitAll()
                 .requestMatchers("/usuarios/salvar").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
-                .requestMatchers("/", "/login", "/cadastro", "/nova_senha").permitAll()
+                .requestMatchers("/", "/login", "/cadastro", "/nova_senha", "/redefinir-senha").permitAll()
                 
                 // Rotas protegidas por perfil
                 .requestMatchers("/sindico/**").hasRole("SINDICO")

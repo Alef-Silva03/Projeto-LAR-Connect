@@ -1,232 +1,264 @@
-/* CSS para os componentes de redefinição de senha */
-.redefinir-container .container-fluid,
-.nova-senha-container .container-fluid {
-    background: rgba(13, 27, 42, 1);
+/* redefinir-senha.css */
+
+#redefinir-senha .container-fluid {
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
     min-height: 100vh;
-    padding: 100px 0;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.redefinir-container #fundo,
-.nova-senha-container #fundo {
+#redefinir-senha #fundo {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px;
+    justify-content: center;
+    padding: 20px;
+}
+
+#redefinir-senha .login-box {
+    background: #0D1B2A;
     border-radius: 40px;
-    background: rgba(27, 38, 59, 1);
-    box-shadow: 4px 4px 100px rgba(0, 0, 0, 0.25);
+    padding: 40px 60px;
     width: 100%;
     max-width: 500px;
-    margin: 0 auto;
+    box-shadow: 4px 4px 100px rgba(0, 0, 0, 0.25);
 }
 
-.redefinir-container form,
-.nova-senha-container form {
+#redefinir-senha form {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
 }
 
-.redefinir-container .row,
-.nova-senha-container .row {
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 40px;
-    width: 100%;
+#redefinir-senha form figure {
+    margin: 0 0 30px 0;
+    text-align: center;
 }
 
-.redefinir-container form figure,
-.nova-senha-container form figure {
-    margin: 30px 0 60px 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.redefinir-container .logo,
-.nova-senha-container .logo {
+#redefinir-senha .logo {
     width: 100px;
     height: 130px;
-    margin-bottom: 30px;
+    object-fit: contain;
 }
 
-.redefinir-container #email,
-.nova-senha-container #email,
-.redefinir-container #password,
-.nova-senha-container #password {
+#redefinir-senha h2 {
+    color: #E0E1DD;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+}
+
+/* Estilo do campo de email */
+#redefinir-senha #email-row {
     width: 100%;
     height: 70px;
-    background: rgba(65, 90, 119, 1);
+    background: #1B263B;
     border-radius: 30px;
-    border: none;
-    color: white;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
-    padding: 0 15px;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    border: none;
 }
 
-.redefinir-container input[type="email"],
-.nova-senha-container input[type="email"],
-.redefinir-container input[type="password"],
-.nova-senha-container input[type="password"] {
-    background-color: rgba(65, 90, 119, 1);
-    font-weight: bold;
+#redefinir-senha .input-group-text {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-right: 15px;
+}
+
+#redefinir-senha .iconat {
+    color: #E0E1DD;
+    font-size: 24px;
+    width: 25px;
+    height: auto;
+}
+
+#redefinir-senha input[type="email"] {
+    background: transparent !important;
+    border: none !important;
+    color: #E0E1DD !important;
     font-size: 18px;
-    border: 0px;
-    outline: none;
-    text-align: left;
-    color: white;
-    width: 100%;
-    padding: 10px 0;
+    font-weight: bold;
+    height: 100%;
+    padding: 0;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
-.redefinir-container input[type="email"]::placeholder,
-.nova-senha-container input[type="email"]::placeholder,
-.redefinir-container input[type="password"]::placeholder,
-.nova-senha-container input[type="password"]::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+#redefinir-senha input[type="email"]::placeholder {
+    color: rgba(224, 225, 221, 0.7);
     font-weight: normal;
 }
 
-.redefinir-container .iconat,
-.nova-senha-container .iconat {
-    width: 28px;
-    height: 28px;
-    margin-right: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#redefinir-senha input[type="email"]:focus {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #E0E1DD;
 }
 
-.redefinir-container .iconat svg,
-.nova-senha-container .iconat svg {
-    fill: white;
-    width: 24px;
-    height: 24px;
-}
-
-.redefinir-container button,
-.nova-senha-container button {
-    width: 100%;
-    max-width: 325px;
-    height: 51px;
-    margin: 10px 0;
+/* Botão Enviar */
+#redefinir-senha .btn-entrar {
+    height: 50px;
     background: rgba(119, 141, 169, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 80px;
+    color: #E0E1DD;
     font-weight: bold;
-    font-size: 17px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    color: white;
-    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 1px;
     transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.redefinir-container button:hover:not(:disabled),
-.nova-senha-container button:hover:not(:disabled) {
+#redefinir-senha .btn-entrar:hover:not(:disabled) {
     background: rgba(119, 141, 169, 0.2);
     border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
 }
 
-.redefinir-container button:disabled,
-.nova-senha-container button:disabled {
+#redefinir-senha .btn-entrar:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
-.redefinir-container button[type="button"],
-.nova-senha-container button[type="button"] {
-    background: rgba(65, 90, 119, 0.5);
-    margin-top: 5px;
-}
-
-/* Estilos para as mensagens de alerta */
-.redefinir-container .alert,
-.nova-senha-container .alert {
-    width: 100%;
-    padding: 12px 20px;
-    border-radius: 10px;
-    margin: 15px 0 0 0;
+/* Link voltar ao login */
+#redefinir-senha .link-voltar {
+    color: #E0E1DD;
+    text-decoration: none;
     font-size: 14px;
-    text-align: center;
+    font-weight: bold;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.redefinir-container .alert-danger,
-.nova-senha-container .alert-danger {
+#redefinir-senha .link-voltar:hover {
+    opacity: 1;
+    color: #778DA9;
+}
+
+#redefinir-senha .link-voltar i {
+    font-size: 16px;
+}
+
+/* Alertas */
+#redefinir-senha .alert {
     background: rgba(220, 53, 69, 0.2);
-    border: 1px solid rgba(220, 53, 69, 0.5);
-    color: #ff8b8b;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #ff6b6b;
+    border-radius: 15px;
+    font-size: 14px;
+    padding: 12px 15px;
+    margin-top: 15px;
 }
 
-.redefinir-container .alert-success,
-.nova-senha-container .alert-success {
-    background: rgba(40, 167, 69, 0.2);
-    border: 1px solid rgba(40, 167, 69, 0.5);
-    color: #8bff8b;
-}
-
-.redefinir-container .alert-info,
-.nova-senha-container .alert-info {
+#redefinir-senha .alert-info {
     background: rgba(23, 162, 184, 0.2);
-    border: 1px solid rgba(23, 162, 184, 0.5);
-    color: #8bd1ff;
+    border: 1px solid rgba(23, 162, 184, 0.3);
+    color: #5bc0de;
 }
 
-/* Ajustes de responsividade */
+/* Mensagem de sucesso/erro */
+#redefinir-senha .mensagem {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-    .redefinir-container #fundo,
-    .nova-senha-container #fundo {
-        width: 90%;
-        padding: 30px 20px;
+    #redefinir-senha .login-box {
+        padding: 30px 30px;
+        max-width: 450px;
     }
-    
-    .redefinir-container button,
-    .nova-senha-container button {
-        max-width: 100%;
+
+    #redefinir-senha h2 {
+        font-size: 22px;
+        margin-bottom: 30px;
     }
-    
-    .redefinir-container #email,
-    .nova-senha-container #email,
-    .redefinir-container #password,
-    .nova-senha-container #password {
+
+    #redefinir-senha #email-row {
         height: 60px;
     }
-    
-    .redefinir-container input[type="email"],
-    .nova-senha-container input[type="email"],
-    .redefinir-container input[type="password"],
-    .nova-senha-container input[type="password"] {
+
+    #redefinir-senha .iconat {
+        font-size: 20px;
+    }
+
+    #redefinir-senha input[type="email"] {
         font-size: 16px;
     }
 }
 
 @media (max-width: 480px) {
-    .redefinir-container .logo,
-    .nova-senha-container .logo {
+    #redefinir-senha .login-box {
+        padding: 25px 20px;
+    }
+
+    #redefinir-senha .logo {
         width: 80px;
         height: 104px;
     }
-    
-    .redefinir-container #email,
-    .nova-senha-container #email,
-    .redefinir-container #password,
-    .nova-senha-container #password {
+
+    #redefinir-senha h2 {
+        font-size: 20px;
+        margin-bottom: 25px;
+    }
+
+    #redefinir-senha #email-row {
         height: 55px;
+        padding: 0 15px;
     }
-    
-    .redefinir-container .iconat,
-    .nova-senha-container .iconat {
-        width: 24px;
-        height: 24px;
-        margin-right: 15px;
+
+    #redefinir-senha .btn-entrar {
+        height: 45px;
+        font-size: 14px;
     }
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate__fadeIn {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Ajustes para o Bootstrap */
+#redefinir-senha .form-control:focus {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: #E0E1DD;
+}
+
+/* Remove qualquer estilo padrão do Bootstrap que possa interferir */
+#redefinir-senha .input-group {
+    flex-wrap: nowrap;
+}
+
+#redefinir-senha .input-group > .form-control {
+    width: 1%;
 }

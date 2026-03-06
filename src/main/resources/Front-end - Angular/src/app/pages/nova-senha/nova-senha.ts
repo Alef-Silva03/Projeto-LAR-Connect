@@ -1,15 +1,15 @@
 // src/app/pages/nova-senha/nova-senha.component.ts
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PasswordResetService } from '../../services/password-reset.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-nova-senha',
-  standalone: true, // Importante: marcar como standalone
-  imports: [CommonModule, ReactiveFormsModule], // Importar os módulos necessários
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './nova-senha.html',
   styleUrls: ['./nova-senha.css']
 })
@@ -18,74 +18,93 @@ export class NovaSenhaComponent implements OnInit {
   isLoading = false;
   mensagem = '';
   sucesso = false;
+  tokenValido = true;
   token: string | null = null;
+  validandoToken = false;
 
   constructor(
     private fb: FormBuilder,
+    private passwordResetService: PasswordResetService,
     private route: ActivatedRoute,
-    private router: Router,
-    private passwordResetService: PasswordResetService
+    private router: Router
   ) {
     this.novaSenhaForm = this.fb.group({
-      token: ['', Validators.required],
       novaSenha: ['', [Validators.required, Validators.minLength(6)]],
-      confirmarSenha: ['', Validators.required]
-    }, { validators: this.senhasIguais });
+      confirmarSenha: ['', Validators.required],
+      token: ['']
+    }, { validators: this.senhasCoincidem });
   }
 
   ngOnInit() {
+    // Pegar o token da URL
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
-      if (this.token) {
-        this.novaSenhaForm.patchValue({ token: this.token });
-      } else {
+      
+      if (!this.token) {
+        this.tokenValido = false;
         this.mensagem = 'Token não encontrado. Solicite uma nova redefinição.';
+      } else {
+        this.novaSenhaForm.patchValue({
+          token: this.token
+        });
+        // Opcional: validar o token com o backend
+        this.validarToken();
       }
     });
   }
 
-  senhasIguais(group: AbstractControl): ValidationErrors | null {
-    const novaSenha = group.get('novaSenha')?.value;
-    const confirmarSenha = group.get('confirmarSenha')?.value;
+  validarToken() {
+    if (!this.token) return;
     
-    if (novaSenha && confirmarSenha && novaSenha !== confirmarSenha) {
-      return { senhasDiferentes: true };
-    }
-    return null;
+    this.validandoToken = true;
+    this.passwordResetService.validarToken(this.token).subscribe({
+      next: (response) => {
+        this.tokenValido = true;
+        this.validandoToken = false;
+      },
+      error: (error) => {
+        this.tokenValido = false;
+        this.validandoToken = false;
+        this.mensagem = error.error?.mensagem || 'Token inválido ou expirado. Solicite uma nova redefinição.';
+        console.error('Erro ao validar token:', error);
+      }
+    });
+  }
+
+  senhasCoincidem(group: FormGroup) {
+    const senha = group.get('novaSenha')?.value;
+    const confirmar = group.get('confirmarSenha')?.value;
+    return senha === confirmar ? null : { senhasDiferentes: true };
   }
 
   onSubmit() {
-    if (this.novaSenhaForm.valid && this.token) {
-      this.isLoading = true;
-      this.mensagem = '';
+    if (this.novaSenhaForm.invalid || !this.tokenValido) {
+      return;
+    }
 
-      this.passwordResetService.salvarNovaSenha(
-        this.token,
-        this.novaSenhaForm.value.novaSenha,
-        this.novaSenhaForm.value.confirmarSenha
-      ).subscribe({
+    this.isLoading = true;
+    this.mensagem = '';
+
+    // Usando o método redefinirSenha do serviço
+    this.passwordResetService.redefinirSenha(this.novaSenhaForm.value)
+      .subscribe({
         next: (response) => {
           this.isLoading = false;
           this.sucesso = true;
           this.mensagem = 'Senha alterada com sucesso!';
+          
+          // Redireciona para o login após 3 segundos
           setTimeout(() => {
             this.router.navigate(['/login']);
-          }, 2000);
+          }, 3000);
         },
         error: (error) => {
           this.isLoading = false;
           this.sucesso = false;
-          if (error.error === 'senhas_diferentes') {
-            this.mensagem = 'As senhas não coincidem.';
-          } else if (error.error?.includes('expirado')) {
-            this.mensagem = 'Token expirado. Solicite uma nova redefinição.';
-          } else {
-            this.mensagem = 'Erro ao redefinir senha. Tente novamente.';
-          }
+          this.mensagem = error.error?.mensagem || 'Erro ao alterar senha. Tente novamente.';
           console.error('Erro:', error);
         }
       });
-    }
   }
 
   voltarParaLogin() {

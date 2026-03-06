@@ -20,6 +20,8 @@ import { DashboardFuncionario } from './pages/funcionario/dashboard-funcionario/
 import { LocalGestaoEncomendasComponent as GestaoEncomendas } from './pages/funcionario/gestao-encomendas/gestao-encomendas';
 import { MensagemAoSindico } from './pages/mensagem-ao-sindico/mensagem-ao-sindico';
 import { DadosCondominio } from './pages/dados-condominio/dados-condominio';
+import { RedefinirSenhaComponent } from './pages/redefinir-senha/redefinir-senha';
+import { NovaSenhaComponent } from './pages/nova-senha/nova-senha';
 
 // Guards
 import { authGuard } from './guards/auth-guard';
@@ -31,6 +33,8 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login', component: Login },
   { path: 'cadastro', component: Cadastro },
+  { path: 'redefinir-senha', component: RedefinirSenhaComponent },
+  { path: 'nova-senha', component: NovaSenhaComponent },
 
 
   // Rotas Protegidas (qualquer usuário logado)

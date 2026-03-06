@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RedefinirSenha } from './redefinir-senha';
+import { RedefinirSenhaComponent } from './redefinir-senha';
 
 describe('RedefinirSenha', () => {
-  let component: RedefinirSenha;
-  let fixture: ComponentFixture<RedefinirSenha>;
+  let component: RedefinirSenhaComponent;
+  let fixture: ComponentFixture<RedefinirSenhaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RedefinirSenha]
+      imports: [RedefinirSenhaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RedefinirSenha);
+    fixture = TestBed.createComponent(RedefinirSenhaComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

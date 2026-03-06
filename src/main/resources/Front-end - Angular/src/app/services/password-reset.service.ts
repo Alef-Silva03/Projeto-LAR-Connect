@@ -11,15 +11,22 @@ export class PasswordResetService {
 
   constructor(private http: HttpClient) { }
 
+  // Método existente - solicitar reset por email
   solicitarReset(email: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/redefinir-senha`, { email });
+    return this.http.post(`${this.apiUrl}/redefinir-senha`, { email }, {withCredentials: true});
   }
 
-  salvarNovaSenha(token: string, novaSenha: string, confirmarSenha: string): Observable<any> {
+  // Método existente - salvar nova senha (renomeado para ficar mais claro)
+  redefinirSenha(dados: { token: string; novaSenha: string; confirmarSenha: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/nova-senha`, {
-      token,
-      novaSenha,
-      confirmarSenha
-    });
+      token: dados.token,
+      novaSenha: dados.novaSenha,
+      confirmarSenha: dados.confirmarSenha
+    }, {withCredentials: true});
+  }
+
+  // NOVO MÉTODO OPCIONAL: validar se o token é válido antes de mostrar o formulário
+  validarToken(token: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/validar-token/${token}`, {withCredentials: true});
   }
 }

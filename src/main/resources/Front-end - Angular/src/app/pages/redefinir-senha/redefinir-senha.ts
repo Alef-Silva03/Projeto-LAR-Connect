@@ -1,7 +1,7 @@
 // src/app/pages/redefinir-senha/redefinir-senha.component.ts
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { PasswordResetService } from '../../services/password-reset.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-redefinir-senha',
   standalone: true, // Importante: marcar como standalone
-  imports: [CommonModule, ReactiveFormsModule], // Importar os módulos necessários
+  imports: [CommonModule, ReactiveFormsModule, RouterLink], // Importar os módulos necessários
   templateUrl: './redefinir-senha.html',
   styleUrls: ['./redefinir-senha.css']
 })

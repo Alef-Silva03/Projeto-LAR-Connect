@@ -1,60 +1,76 @@
-<div id="login" class="container-fluid">
+<div class="container-fluid" id="nova-senha">
     <div id="fundo">
-        <form [formGroup]="novaSenhaForm" (ngSubmit)="onSubmit()" class="col">
-            <figure class="row">
-                <img src="assets/imagem/LogoSemNome.png" alt="Logo" class="logo img-fluid">
-            </figure>
+        <div class="login-box">
+            <form [formGroup]="novaSenhaForm" (ngSubmit)="onSubmit()">
+                <figure>
+                    <img src="assets/imagem/LogoSemNome.png" alt="Logo" class="logo">
+                </figure>
 
-            <div id="password" class="row">
-                <div class="col-1 iconat">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="icon lock"
-                        viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4M4.5 7A1.5 1.5 0 0 0 3 8.5v5A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 11.5 7zM8 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3" />
-                    </svg>
-                </div>
-                <input type="password" formControlName="novaSenha" placeholder="Nova Senha" class="col-10">
-            </div>
-            
-            @if (novaSenhaForm.get('novaSenha')?.invalid && novaSenhaForm.get('novaSenha')?.touched) {
-                <div class="alert alert-danger mt-2">
-                    A senha deve ter no mínimo 6 caracteres
-                </div>
-            }
+                <h2>NOVA SENHA</h2>
 
-            <br><br>
+                <!-- Verificação do token -->
+                @if (!tokenValido) {
+                    <div class="token-error">
+                        {{ mensagem }}
+                    </div>
+                }
 
-            <div id="password" class="row">
-                <div class="col-1 iconat">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="icon lock"
-                        viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4M4.5 7A1.5 1.5 0 0 0 3 8.5v5A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 11.5 7zM8 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3" />
-                    </svg>
-                </div>
-                <input type="password" formControlName="confirmarSenha" placeholder="Confirmar Senha" class="col-10">
-            </div>
+                <!-- Campos de senha (só aparecem se o token for válido) -->
+                @if (tokenValido) {
+                    <!-- Nova Senha -->
+                    <div id="password-row">
+                        <span class="input-group-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="icon" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4M4.5 7A1.5 1.5 0 0 0 3 8.5v5A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 11.5 7zM8 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3" />
+                            </svg>
+                        </span>
+                        <input type="password" formControlName="novaSenha" placeholder="Nova Senha">
+                    </div>
+                    
+                    @if (novaSenhaForm.get('novaSenha')?.invalid && novaSenhaForm.get('novaSenha')?.touched) {
+                        <div class="alert alert-danger">
+                            A senha deve ter no mínimo 6 caracteres
+                        </div>
+                    }
 
-            @if (novaSenhaForm.errors?.['senhasDiferentes'] && novaSenhaForm.get('confirmarSenha')?.touched) {
-                <div class="alert alert-danger mt-2">
-                    As senhas não coincidem
-                </div>
-            }
+                    <!-- Confirmar Senha -->
+                    <div id="password-row">
+                        <span class="input-group-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="icon" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4M4.5 7A1.5 1.5 0 0 0 3 8.5v5A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 11.5 7zM8 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3" />
+                            </svg>
+                        </span>
+                        <input type="password" formControlName="confirmarSenha" placeholder="Confirmar Senha">
+                    </div>
 
-            <br><br>
-            <input type="hidden" formControlName="token">
-            
-            <button type="submit" class="row" [disabled]="novaSenhaForm.invalid || isLoading">
-                {{ isLoading ? 'Salvando...' : 'SALVAR' }}
-            </button>
-            
-            <button type="button" class="row" (click)="voltarParaLogin()">LOGIN</button>
-            
-            @if (mensagem) {
-                <div class="alert" [ngClass]="{'alert-success': sucesso, 'alert-danger': !sucesso}">
-                    {{ mensagem }}
-                </div>
-            }
-        </form>
+                    @if (novaSenhaForm.errors?.['senhasDiferentes'] && novaSenhaForm.get('confirmarSenha')?.touched) {
+                        <div class="alert alert-danger">
+                            As senhas não coincidem
+                        </div>
+                    }
+
+                    <input type="hidden" formControlName="token">
+                    
+                    <button type="submit" class="btn-entrar" [disabled]="novaSenhaForm.invalid || isLoading">
+                        {{ isLoading ? 'SALVANDO...' : 'SALVAR' }}
+                    </button>
+                }
+
+                <!-- Botão LOGIN (aparece em ambos os casos) -->
+                <button type="button" class="btn-secundario" (click)="voltarParaLogin()">LOGIN</button>
+                
+                <!-- Mensagem de feedback -->
+                @if (mensagem && tokenValido) {
+                    <div class="alert" [ngClass]="{'alert-success': sucesso, 'alert-danger': !sucesso}">
+                        {{ mensagem }}
+                    </div>
+                }
+
+                <!-- Link voltar -->
+                <a routerLink="/login" class="link-voltar">
+                    ← VOLTAR
+                </a>
+            </form>
+        </div>
     </div>
 </div>

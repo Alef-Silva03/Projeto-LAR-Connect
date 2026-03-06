@@ -19,7 +19,7 @@ public class PasswordResetController {
     private PasswordResetService service;
 
     // 📩 recebe email
-    @PostMapping("/redefinir_senha")
+    @PostMapping("/redefinir-senha")
     public String solicitarReset(@RequestParam String email) {
 
         String token = service.solicitarReset(email);
@@ -28,7 +28,7 @@ public class PasswordResetController {
     }
 
     // 🔐 recebe nova senha
-    @PostMapping("/nova_senha")
+    @PostMapping("/nova-senha")
     public String salvarNovaSenha(
             @RequestParam String token,
             @RequestParam String novaSenha,
