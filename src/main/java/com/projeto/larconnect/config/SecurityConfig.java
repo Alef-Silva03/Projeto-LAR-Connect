@@ -71,12 +71,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/**").permitAll()
                 .requestMatchers("/usuarios/salvar").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
-<<<<<<< HEAD
-                .requestMatchers("/", "/login", "/cadastro", "/nova_senha", "/redefinir-senha").permitAll()
-=======
-                .requestMatchers("/", "/login", "/cadastro", "/nova_senha", "/criar-condominio").permitAll()
->>>>>>> 518f5823a17674f7e847e326ceb98138b69b72f3
-                
+                .requestMatchers("/", "/login", "/cadastro", "/nova_senha", "/redefinir-senha", "/criar-condominio").permitAll()
+
                 // Rotas protegidas por perfil
                 .requestMatchers("/sindico/**").hasRole("SINDICO")
                 .requestMatchers("/api/condominio/**").hasRole("SINDICO")

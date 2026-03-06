@@ -33,12 +33,9 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login', component: Login },
   { path: 'cadastro', component: Cadastro },
-<<<<<<< HEAD
   { path: 'redefinir-senha', component: RedefinirSenhaComponent },
   { path: 'nova-senha', component: NovaSenhaComponent },
-=======
   { path: 'criar-condominio', component: CriarCondominio },
->>>>>>> 518f5823a17674f7e847e326ceb98138b69b72f3
 
 
   // Rotas Protegidas (qualquer usuário logado)
