@@ -8,8 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-redefinir-senha',
-  standalone: true, // Importante: marcar como standalone
-  imports: [CommonModule, ReactiveFormsModule, RouterLink], // Importar os módulos necessários
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './redefinir-senha.html',
   styleUrls: ['./redefinir-senha.css']
 })
@@ -17,8 +17,10 @@ export class RedefinirSenhaComponent {
   redefinirForm: FormGroup;
   isLoading = false;
   mensagem = '';
+  mensagemSucesso = '';
+  mensagemErro = '';
 
-  constructor(
+constructor(
     private fb: FormBuilder,
     private passwordResetService: PasswordResetService,
     private router: Router

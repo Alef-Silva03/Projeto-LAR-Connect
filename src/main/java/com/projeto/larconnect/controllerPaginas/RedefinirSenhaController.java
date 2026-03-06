@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class RedefinirSenhaController {
-	 @GetMapping("/redefinir_senha")
+	 @GetMapping("/redefinir-senha")
 	    public String redefinirSenha() {
-	        return "redefinir_senha";
+	        return "redefinir-senha";
 	    }	
 }

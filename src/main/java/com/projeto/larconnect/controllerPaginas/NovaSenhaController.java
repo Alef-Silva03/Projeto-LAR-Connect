@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class NovaSenhaController {
 
-    @GetMapping("/nova_senha")
+    @GetMapping("/nova-senha")
     public String novaSenha() {
-        return "nova_senha";
+        return "nova-senha";
     }
 }

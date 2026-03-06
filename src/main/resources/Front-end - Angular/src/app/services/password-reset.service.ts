@@ -1,32 +1,53 @@
 // src/app/services/password-reset.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PasswordResetService {
-  private apiUrl = 'http://localhost:8080/api'; // Ajuste conforme sua URL do backend
+  private apiUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) { }
 
-  // Método existente - solicitar reset por email
+  // HEADERS CORRETOS para o backend Java
+  private getHttpOptions() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
+      withCredentials: true // Importante para manter a sessão
+    };
+  }
+
+  // 1. Primeiro passo: solicitar redefinição (envia apenas email)
   solicitarReset(email: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/redefinir-senha`, { email }, {withCredentials: true});
+    return this.http.post(
+      `${this.apiUrl}/redefinir-senha`, 
+      { email }, 
+      this.getHttpOptions()
+    );
   }
 
-  // Método existente - salvar nova senha (renomeado para ficar mais claro)
-  redefinirSenha(dados: { token: string; novaSenha: string; confirmarSenha: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/nova-senha`, {
-      token: dados.token,
-      novaSenha: dados.novaSenha,
-      confirmarSenha: dados.confirmarSenha
-    }, {withCredentials: true});
+  // 2. Segundo passo: redefinir senha com token
+  redefinirSenha(dados: { token: string; novaSenha: string }): Observable<any> {
+    return this.http.post(
+      `${this.apiUrl}/nova-senha`, 
+      {
+        token: dados.token,
+        novaSenha: dados.novaSenha
+      },
+      this.getHttpOptions()
+    );
   }
 
-  // NOVO MÉTODO OPCIONAL: validar se o token é válido antes de mostrar o formulário
+  // 3. Validar token
   validarToken(token: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/validar-token/${token}`, {withCredentials: true});
+    return this.http.get(
+      `${this.apiUrl}/validar-token/${token}`,
+      this.getHttpOptions()
+    );
   }
 }

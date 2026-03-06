@@ -10,7 +10,4 @@ public class LarconnectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LarconnectApplication.class, args);
 	}
-	
-	
-
 }
