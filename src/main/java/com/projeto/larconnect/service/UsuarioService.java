@@ -20,8 +20,7 @@ public class UsuarioService {
    @Autowired
    private CondominioRepository condominioRepository;
 
-   public UsuarioService() {
-   }
+   public UsuarioService() {}
 
    @Transactional
    public Usuario update(String email, UsuarioUpdateDTO usuarioUpdateDto) {

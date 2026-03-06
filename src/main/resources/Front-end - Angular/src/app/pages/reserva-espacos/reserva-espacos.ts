@@ -15,12 +15,12 @@ import { ReservaService } from '../../services/reserva-service';
 
 export class ReservaEspacos implements OnInit {
     reserva: Reserva = {
-        reservaChurrasqueira: new Date(),
-        reservaSalao: new Date(),
-        reservaPlayground: new Date(),
-        reservaAcademia: new Date(),
-        reservaQuadra: new Date(),
-        reservaCinema: new Date(),
+        reservaChurrasqueira: undefined,
+        reservaSalao: undefined,
+        reservaPlayground: undefined,
+        reservaAcademia: undefined,
+        reservaQuadra: undefined,
+        reservaCinema: undefined,
         idCondominio: 0,
         idUsuario: 0
     };
@@ -43,15 +43,18 @@ export class ReservaEspacos implements OnInit {
         }
         const usuario = JSON.parse(usuarioString);
 
-        this.reserva.idCondominio = usuario.condominio?.id;
+        this.reserva.idCondominio = usuario.condominio.id;
         this.reserva.idUsuario = usuario.id
+        console.log(this.reserva)
         this.reservaService.realizarReserva(this.reserva).subscribe({
         next: () => {
             alert('Reserva feita com sucesso!');
         },
         error: (err) => {
             console.error('Erro ao fazer reserva.', err);
-            alert('Erro ao realizar reserva. Verifique o console.');
+            const mensagem = err.error || 'Erro ao realizar reserva. Verifique o console.';
+            alert(`Erro ao cadastrar: ${mensagem}`);
+
 
         }
     });

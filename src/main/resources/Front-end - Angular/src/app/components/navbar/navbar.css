@@ -1,4 +1,6 @@
 /* Container Invisível para não criar fundo azul indesejado */
+
+
 .navbar-wrapper {
     background: transparent !important;
     padding: 25px 0;
@@ -114,6 +116,12 @@
 .side-nav-content ul li a:hover {
     color: white;
     padding-left: 10px;
+}
+
+a:hover {
+    color: #2391a7;
+    padding-bottom: 5px;
+    transition: 0.2s;
 }
 
 /* Logo e Tipografia */

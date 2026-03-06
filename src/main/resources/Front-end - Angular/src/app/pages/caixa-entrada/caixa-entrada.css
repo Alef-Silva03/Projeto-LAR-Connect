@@ -70,10 +70,10 @@
 }
 
 .badge-status-b {
-    font-size: 0.65rem;
-    font-weight: 800;
+    font-size: 0.9rem;
     padding: 4px 0;
-    text-transform: uppercase;
+    color: white;
+    font-family: arial;
 }
 
 .badge-status.Urgente { color: #FF4D6D; border: 1px solid #FF4D6D; box-shadow: 0 0 10px rgba(255, 77, 109, 0.3); }

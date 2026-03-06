@@ -33,8 +33,12 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login', component: Login },
   { path: 'cadastro', component: Cadastro },
+<<<<<<< HEAD
   { path: 'redefinir-senha', component: RedefinirSenhaComponent },
   { path: 'nova-senha', component: NovaSenhaComponent },
+=======
+  { path: 'criar-condominio', component: CriarCondominio },
+>>>>>>> 518f5823a17674f7e847e326ceb98138b69b72f3
 
 
   // Rotas Protegidas (qualquer usuário logado)
@@ -78,14 +82,14 @@ export const routes: Routes = [
     component: DadosCondominio, 
     canActivate: [authGuard],  
   },
-  // Rotas do Síndico (protegidas por role)
-
   {
     path: 'enviar-comunicados',
     component: EnviarComunicados,
-    canActivate: [authGuard, RoleGuard],
-    data: { role: 'SINDICO' }
+    canActivate: [authGuard],
   },
+  // Rotas do Síndico (protegidas por role)
+
+
   {
     path: 'painel-moradores',
     component: PainelMoradores,
@@ -98,12 +102,7 @@ export const routes: Routes = [
     canActivate: [authGuard, RoleGuard],
     data: { role: 'SINDICO' }
   },
-  {
-    path: 'criar-condominio',
-    component: CriarCondominio,
-    canActivate: [authGuard, RoleGuard],
-    data: { role: 'SINDICO' }
-  },
+
   {
     path: 'reserva-espacos',
     component: ReservaEspacos,

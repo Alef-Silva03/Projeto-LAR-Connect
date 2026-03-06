@@ -1,11 +1,11 @@
 export interface Reserva {
   id?: number;
-  reservaChurrasqueira?: Date;
-  reservaSalao?: Date;
-  reservaPlayground?: Date;
-  reservaAcademia?: Date;
-  reservaQuadra?: Date;
-  reservaCinema?: Date;
+  reservaChurrasqueira?: String;
+  reservaSalao?: String;
+  reservaPlayground?: String;
+  reservaAcademia?: String;
+  reservaQuadra?: String;
+  reservaCinema?: String;
   idCondominio: number;
   idUsuario: number
 }

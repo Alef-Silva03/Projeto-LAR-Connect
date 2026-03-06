@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CadastroService } from '../../services/cadastro.service'; // Você precisa criar este serviço
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -24,7 +25,8 @@ export class Cadastro {
 
   constructor(
     private cadastroService: CadastroService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   realizarCadastro() {
@@ -32,8 +34,12 @@ export class Cadastro {
     
     this.cadastroService.cadastrar(this.usuario).subscribe({
       next: (res) => {
-        alert('Cadastro realizado com sucesso!');
-        this.router.navigate(['/login']);
+        if (localStorage.getItem('perfil') == 'SINDICO'){
+          this.router.navigate(['/criar-condominio']);
+        } else{
+          alert('Cadastro realizado com sucesso!');
+          this.router.navigate(['/login']);
+        }
       },
       error: (err) => {
         console.error('Erro completo:', err);

@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MoradoresService, Morador } from '../../services/moradores';
+import { FuncionariosService } from '../../services/funcionarios';
 
 @Component({
   selector: 'app-dados-condominio',
@@ -11,14 +13,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './dados-condominio.css',
 })
 export class DadosCondominio {
-  dadosUsuario = {
-    apartamento: localStorage.getItem('apartamento'),
-    bloco: localStorage.getItem('bloco') || 'A',
-    vaga: localStorage.getItem('vaga') || '05',
-    telefone: localStorage.getItem('telefone') || '',
-    ultimaAlteracaoSenha: localStorage.getItem('ultimaAlteracaoSenha') || '',
-  };
+  moradores: Morador[] = [];
 
+  constructor(
+    private moradoresService: MoradoresService,
+    private funcionariosService: FuncionariosService,
+  ) {}
 
   dadosCondominio() {
     const usuarioString = localStorage.getItem('usuario')
@@ -33,54 +33,20 @@ export class DadosCondominio {
     return condominio
   }
 
-
-
-  // Dados de boletos
-  boletos: any[] = [];
-
-  // Dados de notificações
-  notificacoes: any[] = [];
-  filtroNotificacoes: string = 'todas';
-  notificacoesFiltradas: any[] = [];
-
-  constructor(private router: Router) {}
-
-  // ===== MÉTODOS GERAIS =====
-
-  getApartamento() {
-    return localStorage.getItem('apartamento');
-  }
-
-  getBloco() {
-    return localStorage.getItem('bloco');
-  }
-
-  getVaga() {
-    return localStorage.getItem('vaga');
-  }
-
-  logout() {
-    // Limpar dados de sessão se necessário
-    localStorage.clear();
-    this.router.navigate(['/login']);
-  }
-
-  // ===== MÉTODOS DE EDIÇÃO =====
-  editarCampo(campo: string) {
-    switch(campo) {
-        
-      case 'telefone':
-        const novoTelefone = prompt('Digite seu novo telefone:', this.dadosUsuario.telefone);
-        if (novoTelefone && novoTelefone.trim()) {
-          this.dadosUsuario.telefone = novoTelefone;
-          localStorage.setItem('telefone', novoTelefone);
-        }
-        break;
+   quantidadeDeMoradores() {
+     this.moradoresService.listarMoradores().subscribe((listaMoradores: Morador[]) => {
+       const quantMoradores = listaMoradores.length + 1;
+       localStorage.setItem('quantMoradores', quantMoradores.toString())
+     });
+     return localStorage.getItem('quantMoradores')
     }
+
+  quantidadeDeFuncionarios() {
+     this.funcionariosService.listarFuncionarios().subscribe((listaFuncionarios: Morador[]) => {
+       const quantFuncionarios = listaFuncionarios.length;
+       localStorage.setItem('quantFuncionarios', quantFuncionarios.toString())
+     });
+     return localStorage.getItem('quantFuncionarios')
   }
 
-  validarEmail(email: string): boolean {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  }
 }

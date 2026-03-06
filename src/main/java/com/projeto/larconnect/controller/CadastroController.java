@@ -50,6 +50,16 @@ public class CadastroController {
         @RequestParam("telefone") String telefone,
         @RequestParam("perfil") String perfil
     ) {
+    	if (usuarioRepository.findByEmailIgnoreCase(email).isPresent()) {
+			return ResponseEntity.status(HttpStatus.CONFLICT)
+				.body("Email já cadastrado");
+		}
+    	if (nome != null && !nome.isBlank()
+      		&& email != null && !email.isBlank()
+      		&& senha != null && !senha.isBlank()
+      		&& cpf != null && !cpf.isBlank()
+      		&& telefone != null && !telefone.isBlank()
+      		&& perfil != null && !perfil.isBlank()) {
         try {
             Usuario usuario = new Usuario();
             usuario.setNome(nome);
@@ -75,5 +85,9 @@ public class CadastroController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body("Erro ao cadastrar: " + e.getMessage());
         }
+    	} else {
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+				.body("Todos os campos são obrigatórios e não podem ser vazios");
+    	}
     }
 }

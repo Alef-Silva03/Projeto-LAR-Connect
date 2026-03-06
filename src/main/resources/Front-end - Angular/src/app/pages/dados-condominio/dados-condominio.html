@@ -12,55 +12,85 @@
                 <div class="conteudo-aba">
 
                     <div class="form-group">
-                        <label>Nome do Condominio</label>
+                        <label>Nome do Condomínio</label>
                         <div class="campo-info">
                             <span>{{ dadosCondominio().nomeCondominio }}</span>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>CEP</label>
-                        <div class="campo-info">
-                            <span>{{ dadosCondominio().cep }}</span>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label>CEP</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().cep }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col">
+                            <label>País</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().pais }}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col">
+                            <label>Estado</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().estado }}</span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Telefone</label>
+                        <label>Cidade</label>
                         <div class="campo-info">
-                            <span>{{ dadosUsuario.telefone || 'Não informado' }}</span>
+                            <span>{{ dadosCondominio().cidade }}</span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Apartamento</label>
-
+                        <label>Logradouro</label>
                         <div class="campo-info">
-                            @if (getApartamento() == 'null'){
-                            <span> - </span>
-                            }
-                            @if (getApartamento() != 'null'){
-                                <span> getApartamento() </span>
-                                }
+                            <span>{{ dadosCondominio().logradouro }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group col">
+                            <label>Número</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().numeroCondominio }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col">
+                            <label>Blocos</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().blocos }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col">
+                            <label>Apartamentos /  Casas</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().apartamentos }}</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Bloco</label>
-                        <div class="campo-info">
-                            @if (getBloco() == 'null'){
-                            <span> - </span>
-                            }
-                            @if (getBloco() != 'null'){
-                                <span> getBloco() </span>
-                                }
+                    <div class="row">
+                        <div class="form-group col">
+                            <label>Quantidade de Moradores</label>
+                            <div class="campo-info">
+                                <span>{{ quantidadeDeMoradores() }}</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label>Vaga de Garagem</label>
-                        <div class="campo-info">
-                            <span>{{ dadosUsuario.vaga || 'Não possui' }}</span>
+                        <div class="form-group col">
+                            <label>Quantidade de Funcionarios</label>
+                            <div class="campo-info">
+                                <span>{{ quantidadeDeFuncionarios() }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

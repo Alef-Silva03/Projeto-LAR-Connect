@@ -1,15 +1,4 @@
-/* Estilo do link "Esqueci minha senha" */
-.btn-forgot {
-    color: rgba(144, 224, 239, 0.7);
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: 0.3s;
-}
 
-.btn-forgot:hover {
-    color: #00B4D8;
-    text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
-}
 
 /* Garante que o ícone do Bootstrap Icons apareça bem */
 .icon-container i {
