@@ -5,12 +5,11 @@ footer {
     height: auto;
     min-height: 20vh;
     background: #0D1B2A;
-    margin-top: 50px;
     padding: 20px;
-    display: flex; /* Garante o alinhamento das colunas */
+    display: flex;
     align-items: flex-start;
     justify-content: space-around;
-    box-shadow: 0px 2px 20px black;
+    box-shadow: 0px 0px 30px black;
 }
 
 footer .logo-rodape {
@@ -32,7 +31,7 @@ footer h3 {
 
 footer li {
     margin-bottom: 5px;
-    list-style: none; /* Remove as bolinhas se não estiver no styles.css */
+    list-style: none;
 }
 
 footer a {
@@ -57,7 +56,6 @@ footer .equipe-fotos img {
     border: 2px solid #1B263B;
 }
 
-/* Responsividade do Rodapé */
 @media (max-width: 850px) {
     footer {
         flex-direction: column;
