@@ -1,0 +1,41 @@
+<article class="inbox-container">
+    <div class="glass-card shadow-lg p-5 animate__animated animate__fadeIn">
+        <header class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <h1 class="text-gradient">CAIXA DE ENTRADA</h1>
+                <p class="subtitulo">Veja as mensagens e notificações que você recebeu</p>
+            </div>
+        </header>
+
+        <!--<div class="filters-scroll d-flex gap-3 mb-4 overflow-auto pb-2">
+            <button class="btn-filter-pill active">Todas</button>
+            <button class="btn-filter-pill">Manutenção</button>
+            <button class="btn-filter-pill">Reclamações</button>
+            <button class="btn-filter-pill">Sugestões</button>
+        </div>-->
+
+        <section class="messages-list">
+            <div *ngFor="let msg of mensagens" class="message-item-glass">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="user-avatar">X</div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="mb-1 text-white fw-bold">{{ msg.titulo }}</h3>
+                            </div>
+                        <h4 class="badge-status-b mb-4">{{ msg.assunto }}</h4>
+                        <p class="text-truncate-2 text-secondary-light mt-4">{{ msg.texto }}</p>
+                    </div>
+                    <div class="actions-area d-flex flex-column align-items-end gap-2">
+                        <span class="badge-status">{{ msg.data | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+                        <!--<button class="btn-action-view">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>-->
+                        <button (click)="excluirMensagem(msg.id)" class="btn-action-icon mb-4 col-1 mt-4" title="Remover">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>

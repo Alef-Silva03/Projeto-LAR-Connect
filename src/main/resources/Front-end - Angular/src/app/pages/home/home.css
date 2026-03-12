@@ -1,0 +1,306 @@
+h1{
+    font-size: 3.5rem
+}
+
+H3{
+    font-size: 1.5rem
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    margin: 0 10px;
+}
+
+section {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 120px 0; /* Aumentado para acomodar a nova navbar */
+    background-color: #1B263B;
+    color: #E0E1DD;
+}
+
+section div, section figure{
+    max-width: 650px;
+}
+
+.section-0 {
+    padding-bottom: 80px;
+    margin-right: 3%;
+}
+
+.section-0 div{
+    max-width: 1000px;
+}
+
+/* Estilização dos títulos com a paleta de cores do projeto */
+.titulo1, .titulo2 {
+    color: #778DA9;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Background levemente diferente para criar separação visual */
+.bg-contrast {
+    background-color: rgba(13, 27, 42, 0.4);
+}
+
+/* Ícones da lista */
+.bi-check2-circle {
+    color: #415A77;
+    font-size: 1.2rem;
+}
+
+/* Efeito nas imagens */
+.img-fluid {
+    border-radius: 30px;
+    transition: transform 0.3s ease;
+}
+
+.img-fluid:hover {
+    transform: translateY(-10px);
+}
+
+.logo-home {
+    width: 100px;
+}
+
+
+
+
+/*MELHORIAS POSTERIORES ABAIXO*/
+h1, h2, h3, h4, h5, h6, p, a, li, button, .lead {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+section {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+    padding: 140px 5%; 
+    background-color: #1B263B;
+    color: #E0E1DD;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.section-0 {
+    padding-top: 230px;
+    padding-bottom: 120px;
+    background: radial-gradient(circle at 80% 20%, #2a3f5a, #0D1B2A 80%);
+    border-bottom: 1px solid rgba(119, 141, 169, 0.2);
+    margin: 0 !important;
+}
+
+.section-0 div {
+    max-width: 900px;
+}
+
+.logo-home {
+    width: 120px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.section-0 h1 {
+    font-weight: 800;
+    background: linear-gradient(135deg, #E0E1DD 0%, #A9B7C8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+}
+
+.section-0 .lead {
+    font-size: 1.3rem;
+    font-weight: 300;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #B0C4DE;
+}
+
+.titulo1, .titulo2 {
+    color: #778DA9;
+    font-weight: 700;
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.titulo1::after, .titulo2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #415A77, #778DA9);
+    border-radius: 2px;
+}
+
+.text-center .titulo2::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.texto1, .texto2, .texto3 {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: rgba(224, 225, 221, 0.9);
+}
+
+.texto2 {
+    font-weight: 600;
+    color: #A9B7C8;
+}
+
+.bg-contrast {
+    background-color: rgba(13, 27, 42, 0.6);
+    backdrop-filter: blur(2px);
+}
+
+.img-fluid {
+    border-radius: 30px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.img-fluid:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 30px 40px -10px black;
+}
+
+.list-group {
+    gap: 15px; 
+}
+
+.list-group-item {
+    background: rgba(65, 90, 119, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 20px !important;
+    padding: 20px 25px !important;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    color: #E0E1DD !important;
+}
+
+.list-group-item:hover {
+    background: rgba(65, 90, 119, 0.4) !important;
+    border-color: rgba(119, 141, 169, 0.3) !important;
+    transform: translateX(5px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
+}
+
+.bi-check2-circle {
+    color: #00B4D8;
+    font-size: 1.4rem;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.btn-moderno {
+    background: linear-gradient(135deg, #415A77, #1B263B);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 35px;
+    font-weight: 600;
+    color: #E0E1DD;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.btn-moderno:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px -8px black;
+    background: linear-gradient(135deg, #4f6f8f, #2a3f5a);
+    color: white;
+}
+
+@media (max-width: 1200px) {
+    section {
+        padding: 100px 4%;
+    }
+}
+
+@media (max-width: 992px) {
+    section {
+        flex-direction: column;
+        text-align: center;
+        padding: 80px 5%;
+        gap: 40px;
+    }
+
+    .text-content {
+        text-align: center;
+    }
+
+    .titulo1::after, .titulo2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .list-group-item {
+        text-align: left;
+    }
+
+    .section-2 .order-xxl-1 {
+        order: 2 !important;
+    }
+    .section-2 .order-xxl-2 {
+        order: 1 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+    h3 {
+        font-size: 1.3rem;
+    }
+    .section-0 {
+        padding-top: 150px;
+        padding-bottom: 80px;
+    }
+}

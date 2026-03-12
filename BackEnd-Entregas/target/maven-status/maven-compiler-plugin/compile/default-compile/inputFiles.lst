@@ -1,0 +1,14 @@
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\config\SecurityConfig.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\controller\AutenticacaoController.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\controller\EncomendaController.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\controller\PortariaController.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\controller\UsuarioController.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\dto\EncomendaRequestDTO.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\LarConnectApplication.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\model\Encomenda.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\model\Notificacao.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\model\Usuario.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\repository\EncomendaRepository.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\repository\NotificacaoRepository.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\repository\UsuarioRepository.java
+C:\Users\patricia.stampa\Downloads\BackEnd-Entregas\src\main\java\br\com\larconnect\service\EncomendaService.java

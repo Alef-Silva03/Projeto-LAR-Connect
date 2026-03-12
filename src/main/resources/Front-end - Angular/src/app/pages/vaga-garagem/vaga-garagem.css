@@ -1,0 +1,212 @@
+/* ===== REESTRUTURAÇÃO COMPLETA: VAGAS COMERCIAIS ===== */
+
+.painel-e-vagas {
+    padding-top: 140px;
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    min-height: 100vh;
+    color: #E0E1DD;
+}
+
+.glass-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Títulos com Degradê */
+.text-gradient {
+    background: linear-gradient(90deg, #00B4D8, #90E0EF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+
+/* Filtros Estilo Pílula */
+.filter-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 25px;
+    border-radius: 50px;
+    color: #E0E1DD;
+    transition: 0.3s;
+}
+
+.filter-item.active, .filter-item:hover {
+    background: rgba(0, 180, 216, 0.2);
+    border-color: #00B4D8;
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+}
+
+/* Tabela Profissional sem Fundo Branco */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px; /* Efeito de pílulas flutuantes */
+}
+
+tbody tr {
+    background: rgba(27, 38, 59, 0.6) !important; /* Vidro fumê escuro */
+    transition: 0.3s ease-in-out;
+}
+
+tbody tr:hover {
+    background: rgba(65, 90, 119, 0.4) !important;
+    transform: translateY(-3px);
+}
+
+td {
+    padding: 20px;
+    border: none;
+    vertical-align: middle;
+}
+
+td:first-child { border-radius: 20px 0 0 20px; }
+td:last-child { border-radius: 0 20px 20px 0; }
+
+/* Elementos de Destaque */
+.vaga-id {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #90E0EF;
+}
+
+.valor {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #E0E1DD;
+}
+
+/* Badges de Tipo */
+.badge-tipo {
+    padding: 5px 15px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.venda { background: rgba(0, 180, 216, 0.1); color: #00B4D8; border: 1px solid #00B4D8; }
+.aluguel { background: rgba(255, 183, 3, 0.1); color: #FFB703; border: 1px solid #FFB703; }
+
+/* Botão de Ação Neon */
+.btn-acao-neon {
+    background: #00B4D8;
+    color: #0D1B2A;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+}
+
+.btn-acao-neon:hover {
+    background: #90E0EF;
+    box-shadow: 0 0 25px rgba(0, 180, 216, 0.7);
+    transform: scale(1.05);
+}
+
+/* Estados de Status */
+.status-indicator.disponivel {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.status-indicator.reservada {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+.status-indicator.vendida {
+    background: rgba(108, 117, 125, 0.1);
+    color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.status-indicator.indisponivel {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+/* Botões por status */
+.btn-acao-neon {
+    background: #00B4D8;
+    color: #0D1B2A;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+}
+
+.btn-acao-neon:hover:not(:disabled) {
+    background: #90E0EF;
+    box-shadow: 0 0 25px rgba(0, 180, 216, 0.7);
+    transform: scale(1.05);
+}
+
+/* Botão para status reservada */
+.btn-reservada:disabled {
+    background: #ffc107;
+    color: #000;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Botão para status vendida */
+.btn-vendida:disabled {
+    background: #6c757d;
+    color: #fff;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Botão para status indisponivel */
+.btn-indisponivel:disabled {
+    background: #dc3545;
+    color: #fff;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Botão desabilitado padrão */
+.btn-acao-neon:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-acao-neon:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Loading Spinner */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Ajuste na tabela */
+table th:first-child,
+table td:first-child {
+    width: 30%;
+}
+
+.valor {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #00B4D8;
+}
+
+/* Texto do proprietário */
+.text-muted {
+    color: #adb5bd !important;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
