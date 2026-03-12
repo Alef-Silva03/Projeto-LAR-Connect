@@ -1,0 +1,46 @@
+<div class="container-fluid" id="redefinir-senha">
+    <div id="fundo" class="d-flex flex-column align-items-center justify-content-center min-vh-100">
+        <div class="login-box p-4">
+            <form [formGroup]="redefinirForm" (ngSubmit)="onSubmit()">
+                <figure class="text-center mb-5">
+                    <img src="assets/imagem/LogoSemNome.png" alt="Logo" class="logo img-fluid">
+                </figure>
+
+                <h2 class="text-center mb-4">REDEFINIR SENHA</h2>
+
+                <!-- Campo de E-mail -->
+                <div class="input-group mb-4" id="email-row">
+                    <span class="input-group-text bg-transparent border-0">
+                        <i class="bi bi-envelope-fill iconat"></i>
+                    </span>
+                    <input type="email" formControlName="email" placeholder="E-mail"
+                        class="form-control bg-transparent border-0">
+                </div>
+
+                @if (redefinirForm.get('email')?.invalid && redefinirForm.get('email')?.touched) {
+                <div class="alert alert-danger mt-2">
+                    Email é obrigatório e deve ser válido
+                </div>
+                }
+
+                <!-- Botão Enviar -->
+                <button type="submit" class="btn-entrar w-100 mb-3" [disabled]="redefinirForm.invalid || isLoading">
+                    {{ isLoading ? 'ENVIANDO...' : 'ENVIAR' }}
+                </button>
+
+                <!-- Link para voltar ao login -->
+                <div class="text-center mt-4">
+                    <a routerLink="/login" class="link-voltar">
+                        <i class="bi bi-arrow-left"></i> VOLTAR AO LOGIN
+                    </a>
+                </div>
+
+                @if (mensagem) {
+                <div class="alert alert-info mt-3">
+                    {{ mensagem }}
+                </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>
