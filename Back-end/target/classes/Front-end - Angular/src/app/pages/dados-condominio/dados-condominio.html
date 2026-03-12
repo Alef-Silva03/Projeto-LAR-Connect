@@ -1,0 +1,100 @@
+<article class="minha-conta-container">
+    <div class="glass-card shadow-lg">
+        <header class="text-center mb-5">
+            <h1 class="titulo-pagina">DADOS DO CONDOMÍNIO</h1>
+            <!--<p class="subtitulo">GERENCIE OS DADOS DO SEU CONDOMÍNIO</p>-->
+        </header>
+
+        <div class="row justify-content-center">
+            <!-- Conteúdo dinâmico -->
+            <div class="col-md-8">
+                <!-- DADOS PESSOAIS -->
+                <div class="conteudo-aba">
+
+                    <div class="form-group">
+                        <label>Nome do Condomínio</label>
+                        <div class="campo-info">
+                            <span>{{ dadosCondominio().nomeCondominio }}</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label>CEP</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().cep }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col">
+                            <label>País</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().pais }}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col">
+                            <label>Estado</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().estado }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cidade</label>
+                        <div class="campo-info">
+                            <span>{{ dadosCondominio().cidade }}</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Logradouro</label>
+                        <div class="campo-info">
+                            <span>{{ dadosCondominio().logradouro }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group col">
+                            <label>Número</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().numeroCondominio }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col">
+                            <label>Blocos</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().blocos }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col">
+                            <label>Apartamentos /  Casas</label>
+                            <div class="campo-info">
+                                <span>{{ dadosCondominio().apartamentos }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col">
+                            <label>Quantidade de Moradores</label>
+                            <div class="campo-info">
+                                <span>{{ quantidadeDeMoradores() }}</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col">
+                            <label>Quantidade de Funcionarios</label>
+                            <div class="campo-info">
+                                <span>{{ quantidadeDeFuncionarios() }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

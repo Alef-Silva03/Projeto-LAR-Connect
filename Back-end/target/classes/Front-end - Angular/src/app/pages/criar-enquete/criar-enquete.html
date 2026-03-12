@@ -1,0 +1,61 @@
+<article class="enquete-container">
+    <div class="glass-card shadow-lg p-5 animate__animated animate__fadeIn">
+        <header class="text-center mb-5">
+            <span class="badge-neon">DEMOCRACIA DIGITAL</span>
+            <h1 class="text-gradient">CRIAR ENQUETE OU VOTAÇÃO</h1>
+            <p class="subtitulo">Abra votações para decisões importantes do condomínio</p>
+        </header>
+
+        <form class="form-enquete">
+            <div class="mb-4">
+                <label class="label-neon">Pergunta ou Título da Votação</label>
+                <div class="pill-input-group">
+                    <i class="bi bi-question-circle ms-3 text-cyan"></i>
+                    <input type="text" [(ngModel)]="enquete.titulo" name="titulo" 
+                           placeholder="Ex: Qual cor devemos pintar o bloco A?" class="form-input-pill">
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="label-neon">Opções de Resposta</label>
+                <div *ngFor="let opcao of enquete.opcoes; let i = index; trackBy: trackByFn" class="pill-input-group mb-2 animate__animated animate__slideInLeft">
+                    <span class="ms-3 text-cyan fw-bold">{{ i + 1 }}</span>
+                    <input type="text" [(ngModel)]="enquete.opcoes[i]" [name]="'opcao' + i" 
+                           placeholder="Digite uma opção..." class="form-input-pill">
+                    <button type="button" (click)="removerOpcao(i)" class="btn-remove" *ngIf="enquete.opcoes.length > 2">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+                
+                <button type="button" (click)="adicionarOpcao()" class="btn-add-option mt-2">
+                    <i class="bi bi-plus-circle-fill me-2"></i> ADICIONAR OPÇÃO
+                </button>
+            </div>
+
+            <hr class="border-light opacity-10 my-5">
+
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <label class="label-neon">Encerramento</label>
+                    <div class="pill-input-group">
+                        <i class="bi bi-clock ms-3 text-cyan"></i>
+                        <input type="date" [(ngModel)]="enquete.dataFim" name="dataFim" class="form-input-pill">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="label-neon">Tipo de Votação</label>
+                    <select [(ngModel)]="enquete.tipo" name="tipo" class="pill-input-group form-input-pill bg-dark text-white border-0 w-100">
+                        <option value="publica">Aberta (Resultados visíveis)</option>
+                        <option value="privada">Fechada (Apenas Síndico vê)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="button" (click)="publicarEnquete()" class="btn-neon-large">
+                    <i class="bi bi-megaphone-fill me-2"></i> PUBLICAR PARA MORADORES
+                </button>
+            </div>
+        </form>
+    </div>
+</article>
