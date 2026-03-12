@@ -1,0 +1,16 @@
+
+
+/* Garante que o ícone do Bootstrap Icons apareça bem */
+.icon-container i {
+    font-size: 1.2rem;
+}
+
+/* Efeito de Vidro na Caixa */
+.login-box {
+    background: rgba(13, 27, 42, 0.85);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 400px;
+}

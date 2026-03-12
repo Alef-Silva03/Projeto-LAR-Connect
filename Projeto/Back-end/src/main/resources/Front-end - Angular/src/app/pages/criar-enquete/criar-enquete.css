@@ -1,0 +1,61 @@
+.enquete-container {
+    padding-top: 140px;
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+
+.glass-card {
+    width: 95%;
+    max-width: 800px;
+    background: rgba(13, 27, 42, 0.85);
+    backdrop-filter: blur(25px);
+    border-radius: 40px;
+    border: 1px solid rgba(0, 180, 216, 0.15);
+}
+
+.btn-add-option {
+    background: rgba(0, 180, 216, 0.1);
+    border: 1px dashed #00B4D8;
+    color: #00B4D8;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.btn-add-option:hover {
+    background: #00B4D8;
+    color: #0D1B2A;
+}
+
+.btn-remove {
+    background: transparent;
+    border: none;
+    color: #FF4D6D;
+    padding-right: 20px;
+    transition: 0.3s;
+}
+
+.btn-remove:hover {
+    transform: scale(1.2);
+}
+
+.btn-neon-large {
+    background: #00B4D8;
+    color: #0D1B2A;
+    border: none;
+    padding: 18px 50px;
+    border-radius: 50px;
+    font-weight: 800;
+    box-shadow: 0 10px 30px rgba(0, 180, 216, 0.3);
+    transition: 0.3s;
+}
+
+.btn-neon-large:hover {
+    box-shadow: 0 0 40px rgba(0, 180, 216, 0.6);
+    transform: translateY(-3px);
+}

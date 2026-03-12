@@ -1,0 +1,169 @@
+/* Efeito de Vidro e Profundidade */
+.glass-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(13, 27, 42, 0.8);
+    backdrop-filter: blur(30px);
+    border-radius: 40px;
+    padding: 50px;
+    border: 1px solid rgba(0, 180, 216, 0.1);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+}
+
+/* Badge Superior Administrativo */
+.badge-admin {
+    color: #00B4D8;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Tabela em Estilo Pílula Flutuante */
+.table-modern {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px; /* Espaço entre as linhas para parecerem pílulas */
+}
+
+.table-modern tbody tr {
+    background: rgba(255, 255, 255, 0.03) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 20px;
+}
+
+.table-modern tbody tr:hover {
+    background: rgba(0, 180, 216, 0.08) !important;
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Avatar Mini */
+.avatar-mini {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #00B4D8, #03045E);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: white;
+}
+
+/* Status com Glow (Brilho) */
+.status-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-wrapper .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-wrapper.ativo { color: #00B4D8; }
+.status-wrapper.ativo .dot { background: #00B4D8; box-shadow: 0 0 10px #00B4D8; }
+
+.status-wrapper.inativo { color: #FF4D6D; }
+.status-wrapper.inativo .dot { background: #FF4D6D; box-shadow: 0 0 10px #FF4D6D; }
+
+/* Botões de Ação de Vidro */
+.btn-action-icon {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: #90E0EF;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.btn-action-icon:hover {
+    background: #00B4D8;
+    color: #0D1B2A;
+}
+
+.enviar-comunicados-container {
+    padding-top: 140px;
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 60px;
+}
+
+.glass-card {
+    width: 95%;
+    max-width: 900px;
+    background: rgba(27, 38, 59, 0.7);
+    backdrop-filter: blur(25px);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #00B4D8, #90E0EF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.form-label-custom {
+    color: #00B4D8;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Inputs e Selects Estilo Pílula */
+.form-select-pill, .form-input-pill, .form-textarea-pill {
+    background: rgba(65, 90, 119, 0.2) !important;
+    border: 1px solid rgba(0, 180, 216, 0.3) !important;
+    border-radius: 20px !important;
+    color: white !important;
+    padding: 15px 25px !important;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.form-select-pill:focus, .form-input-pill:focus, .form-textarea-pill:focus {
+    background: rgba(65, 90, 119, 0.3) !important;
+    border-color: #00B4D8 !important;
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+    outline: none;
+}
+
+.form-textarea-pill {
+    border-radius: 30px !important;
+    resize: none;
+}
+
+/* Botão Neon */
+.btn-enviar-neon {
+    background: #00B4D8;
+    color: #0D1B2A;
+    border: none;
+    padding: 15px 50px;
+    border-radius: 50px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    box-shadow: 0 5px 20px rgba(0, 180, 216, 0.4);
+}
+
+.btn-enviar-neon:hover {
+    background: #90E0EF;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 180, 216, 0.6);
+}

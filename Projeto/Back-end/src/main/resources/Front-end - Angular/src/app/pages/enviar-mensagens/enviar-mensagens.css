@@ -1,0 +1,60 @@
+.comunicacao-container {
+    padding-top: 140px;
+    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+
+.glass-card {
+    width: 95%;
+    max-width: 850px;
+    background: rgba(13, 27, 42, 0.85);
+    backdrop-filter: blur(25px);
+    border-radius: 40px;
+    border: 1px solid rgba(0, 180, 216, 0.15);
+}
+
+/* Pílulas de Seleção de Destino */
+.btn-pill-filter {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    color: #90E0EF;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-pill-filter.active {
+    background: #00B4D8;
+    color: #0D1B2A;
+    box-shadow: 0 0 20px rgba(0, 180, 216, 0.5);
+}
+
+/* Área de Upload */
+.upload-dropzone {
+    border: 2px dashed rgba(0, 180, 216, 0.4);
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(65, 90, 119, 0.1);
+    transition: 0.3s;
+}
+
+.upload-dropzone:hover {
+    background: rgba(0, 180, 216, 0.05);
+    border-color: #00B4D8;
+}
+
+.btn-neon-large {
+    background: #00B4D8;
+    color: #0D1B2A;
+    border: none;
+    padding: 18px;
+    border-radius: 50px;
+    font-weight: 800;
+    box-shadow: 0 10px 30px rgba(0, 180, 216, 0.3);
+}
