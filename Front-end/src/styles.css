@@ -24,12 +24,13 @@ body{
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    background: radial-gradient( circle at top, #1B263B 0%, #0D1B2A 100%)
+    background: radial-gradient( circle at top, #1B263B 0%, #0D1B2A 100%);
 }
 
 main{
     margin-top: 0 !important;
     padding: 0 !important;
+    margin: 100px 0 50px 0 !important
 }
 
 article{
