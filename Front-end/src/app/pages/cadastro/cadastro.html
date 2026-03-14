@@ -8,7 +8,7 @@
             <div class="row justify-content-center g-3">
                 
                 <!-- Perfil -->
-                <div class="col-12 col-xl-5 input-group-custom" style="height: 40px">
+                <div class="col-12 col-xl-5 input-group-custom">
                     <select name="perfil" [(ngModel)]="usuario.perfil" id="cadPerfil" class="form-select custom-select" required>
                         <option value="" disabled selected hidden>Selecione seu perfil</option>
                         <option value="PROPRIETARIO">Proprietário</option>
@@ -39,13 +39,13 @@
                 <!-- CPF -->
                 <div class="col-12 col-xl-5 input-group-custom">
                     <span class="icon-at"><i class="bi bi-card-text fs-4 m-2"></i></span>
-                    <input type="text" name="cpf" [(ngModel)]="usuario.cpf" placeholder="CPF (apenas números)" class="form-control-custom" required>
+                    <input type="text" name="cpf" [(ngModel)]="usuario.cpf" placeholder="  CPF (apenas números)" class="form-control-custom" required>
                 </div>
 
                 <!-- Telefone -->
                 <div class="col-12 col-xl-5 input-group-custom">
                     <span class="icon-at"><i class="bi bi-telephone fs-4 m-2"></i></span>
-                    <input type="text" name="telefone" [(ngModel)]="usuario.telefone" placeholder="Telefone" class="form-control-custom" required>
+                    <input type="text" name="telefone" [(ngModel)]="usuario.telefone" placeholder="  Telefone" class="form-control-custom" required>
                 </div>
             </div>
 

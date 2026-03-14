@@ -1,4 +1,4 @@
-<article class="inbox-container">
+<article class="container-fluid inbox-container justify-content-start">
     <div class="glass-card shadow-lg p-5 animate__animated animate__fadeIn">
         <header class="d-flex justify-content-between align-items-center mb-5">
             <div>
@@ -15,13 +15,14 @@
         </div>-->
 
         <section class="messages-list">
+            @if (mensagens.length > 0){
             <div *ngFor="let msg of mensagens" class="message-item-glass">
                 <div class="d-flex align-items-start gap-3">
                     <div class="user-avatar">X</div>
                     <div class="flex-grow-1">
                         <div class="d-flex justify-content-between">
                             <h3 class="mb-1 text-white fw-bold">{{ msg.titulo }}</h3>
-                            </div>
+                        </div>
                         <h4 class="badge-status-b mb-4">{{ msg.assunto }}</h4>
                         <p class="text-truncate-2 text-secondary-light mt-4">{{ msg.texto }}</p>
                     </div>
@@ -36,6 +37,19 @@
                     </div>
                 </div>
             </div>
+            } @else {
+                <div class="message-item-glass">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="user-avatar">O</div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <h3 class="mb-1 text-white fw-bold">Você não possui mensagens na sua caixa.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            
         </section>
     </div>
 </article>

@@ -26,7 +26,7 @@ export const routes: Routes = [
 template: `
   <app-navbar></app-navbar>
   
-  <main class="container-fluid p-0" style="margin-top: 85px;"> 
+  <main> 
     <router-outlet></router-outlet>
   </main>
 

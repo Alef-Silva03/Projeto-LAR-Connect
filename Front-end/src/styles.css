@@ -27,12 +27,6 @@ body{
     background: radial-gradient( circle at top, #1B263B 0%, #0D1B2A 100%);
 }
 
-main{
-    margin-top: 0 !important;
-    padding: 0 !important;
-    margin: 100px 0 50px 0 !important
-}
-
 article{
     background: none !important;
 }
@@ -40,6 +34,9 @@ article{
 .container-fluid{
     display: flex;
     flex-direction: column;
+    padding: 200px 0 120px 0 !important;
+    justify-items: center;
+    align-items: center;
 }
 
 ul {
@@ -51,7 +48,11 @@ ul {
 a, h6, h5, h4, h3, h2, h1, p {
     text-decoration: none !important;
     color: #E0E1DD;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: sans-serif
+}
+
+h1, h1 span {
+    font-family: Oswald
 }
 
 textarea, option{
@@ -214,11 +215,9 @@ button:active {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centraliza logo e form */
-    padding: 40px;
     border-radius: 40px;
     background: rgba(27, 38, 59, 1);
     box-shadow: 4px 4px 100px rgba(0, 0, 0, 0.25);
-  
 }
 
 #login form {
@@ -253,7 +252,6 @@ button:active {
 
 #login input[type="email"], #cadastro input[type="email"] {
     background-color: rgba(65, 90, 119, 1);
-    font-weight: Bold;
     font-size: 18px;
     height: 40px;
     border: 0px;
@@ -271,7 +269,6 @@ button:active {
 
 #login input[type="password"], #cadastro input[type="password"] {
     background-color: rgba(65,90,119,1);
-    font-weight: Bold;
     font-size: 18px;
     height: 40px;
     border: 0px;

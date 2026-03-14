@@ -1,17 +1,16 @@
 <div class="container-fluid" id="login">
-    <div id="fundo" class="d-flex flex-column align-items-center justify-content-center min-vh-100">
-        <div class="login-box p-4 mt-5 shadow-lg animate__animated animate__fadeIn">
-            <form>
+    <div id="fundo" class="d-flex flex-column align-items-center justify-content-center">
+        <div class="login-box p-4 shadow-lg animate__animated animate__fadeIn">
 
+            <form>
                 <figure class="text-center mb-4">
                     <img src="assets/imagem/LogoSemNome.png" alt="LAR Connect" class="logo img-fluid">
-                    <h2 class="text-white h5 mt-2">Acesse o Sistema</h2>
                 </figure>
 
                 <div class="input-group-custom mb-3">
                     <i class="bi bi-person-fill text-cyan" style="margin-right: 5px"></i>
                     <input type="email" name="login" [(ngModel)]="dadosLogin.login" placeholder="  E-mail"
-                        class="form-control-custom" style="color:black" required>
+                        class="form-control-custom" required>
                 </div>
 
                 <div class="input-group-custom mb-4">
@@ -34,7 +33,7 @@
                 <div class="text-center">
                     <button routerLink="/cadastro" class="btn-link-cadastro">NÃO TEM CONTA? CADASTRE-SE!</button>
                 </div>
-                
             </form>
+
         </div>
     </div>

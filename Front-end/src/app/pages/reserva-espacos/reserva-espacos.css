@@ -16,7 +16,7 @@ background-color: #1B263B;
 }
 
 .reservas-container {
-    padding-top: 140px;
+    padding-top: 100px;
     background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
     min-height: 100vh;
     display: flex;

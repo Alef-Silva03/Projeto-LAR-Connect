@@ -1,11 +1,11 @@
 /* Container Principal */
 .painel-sindico-container {
-    padding-top: 100px;
+    padding-top: 70px;
     background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
     min-height: 100%;
     display: flex;
     justify-content: center;
-    padding-bottom: 60px;
+    padding-bottom: 20px;
 }
 
 /* Card de Vidro Fumê */
@@ -19,8 +19,8 @@
     padding: 50px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      animation: fadeInAnimation 0.3s ease-in forwards;
+    opacity: 0;
+    animation: fadeInAnimation 0.3s ease-in forwards;
     }
 
     @keyframes fadeInAnimation {
@@ -33,7 +33,7 @@
     background: rgba(65, 90, 119, 0.2);
     border: 1px solid rgba(0, 180, 216, 0.3);
     border-radius: 25px;
-    padding: 30px 20px;
+    padding: 15px 20px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -56,8 +56,9 @@
     font-size: 0.9rem;
     font-weight: 600;
     text-align: center;
-    line-height: 1.2;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 20px;
 }
 
 /* Efeito Hover Neon */

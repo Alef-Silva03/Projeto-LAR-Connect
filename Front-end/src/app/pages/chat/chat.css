@@ -46,6 +46,7 @@ p {
     height: 100%; /* Garante que a section ocupe toda altura */
     display: flex;
     flex-direction: column;
+    padding-top: 20px;
 }
 
 /* Área de mensagens com scroll */

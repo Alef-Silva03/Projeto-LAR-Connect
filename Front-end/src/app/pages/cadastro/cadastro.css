@@ -6,7 +6,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px 20px;
 }
 
 #fundo {
@@ -67,7 +66,6 @@ input, .form-select {
     box-shadow: none !important;
     color: #E0E1DD !important;
     font-size: 1rem;
-    font-weight: 500;
     width: 100%;
     outline: none;
 }

@@ -22,17 +22,6 @@ C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\co
 C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controller\SindicoController.java
 C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controller\UsuarioController.java
 C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controller\VagaController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\CaixaDeEntradaController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\ChatMoradoresController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\EnviarMensagensController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\EnviarNotificacaoEntregaController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\LoginController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\MinhaContaController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\NotificacoesEntregaController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\NovaSenhaController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\PainelDeComunicadosController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\RedefinirSenhaController.java
-C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\controllerPaginas\VagasGaragemController.java
 C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\dto\ChatRequestDTO.java
 C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\dto\ChatResponseDTO.java
 C:\Users\pedro.pederneiras\Desktop\Projeto-LAR-Connect\Back-end\src\main\java\com\projeto\larconnect\dto\CompraVagaRequestDTO.java
