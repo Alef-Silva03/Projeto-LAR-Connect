@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { GestaoEncomendasService } from '../../../services/gestao-encomendas';
+import { AuthService } from '../../../services/auth';
 
 @Component({
   selector: 'app-gestao-encomendas',
@@ -11,56 +11,51 @@ import { GestaoEncomendasService } from '../../../services/gestao-encomendas';
   templateUrl: './gestao-encomendas.html',
   styleUrls: ['./gestao-encomendas.css']
 })
-export class LocalGestaoEncomendasComponent implements OnInit {
-  // Ajustado para 'moradorNome' para bater com o DTO do Java
+export class GestaoEncomendas implements OnInit {
   novaEntrega = {
-    apartamento: '',
+    apto: '',
     bloco: '',
-    moradorNome: '', // Antes era 'morador'
+    moradorNome: '', 
     descricao: 'Pacote/Correspondência'
   };
 
   encomendasPendentes: any[] = [];
 
-  constructor(private gestaoEncomendasService: GestaoEncomendasService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.atualizarLista();
   }
 
   atualizarLista() {
-    this.gestaoEncomendasService.listarEncomendas()
-    /*.subscribe({
+    this.authService.listarEncomendas().subscribe({
       next: (dados: any[]) => this.encomendasPendentes = dados,
-      error: (err: any) => console.error("Erro ao buscar encomendas", err)
-    });*/
+      error: (err) => console.error("Erro ao buscar encomendas", err)
+    });
   }
 
   salvarEncomenda() {
-    // Verificação atualizada para moradorNome
-    if (this.novaEntrega.apartamento && this.novaEntrega.moradorNome) {
-      this.gestaoEncomendasService.registrarEncomenda(this.novaEntrega)
-      /*.subscribe({
+    if (this.novaEntrega.apto && this.novaEntrega.moradorNome) {
+      this.authService.registrarEncomenda(this.novaEntrega).subscribe({
         next: () => {
-          alert(`Morador do apartamento ${this.novaEntrega.apartamento} foi notificado!`);
-          // Limpa o formulário resetando para o novo nome do campo
-          this.novaEntrega = { apartamento: '', bloco: '', moradorNome: '', descricao: 'Pacote/Correspondência' };
-          this.atualizarLista();
+          alert(`Morador do apto ${this.novaEntrega.apto} foi notificado!`);
+          this.novaEntrega = { apto: '', bloco: '', moradorNome: '', descricao: 'Pacote/Correspondência' };
+          this.atualizarLista(); // Recarrega a prateleira
         },
-        error: () => alert("Erro ao salvar encomenda no banco. Verifique o console do Java.")
-      });*/
+        error: () => alert("Erro ao salvar. Verifique se o morador está cadastrado com este apto/bloco.")
+      });
     } else {
       alert("Preencha o Nome do Morador e o Apartamento!");
     }
   }
 
   marcarComoEntregue(item: any) {
-    this.gestaoEncomendasService.finalizarEntrega(item.id)
-    /*.subscribe({
+    this.authService.finalizarEntrega(item.id).subscribe({
       next: () => {
-        alert('Entrega finalizada com sucesso!');
-        this.atualizarLista();
-      }
-    });*/
+        alert('Entrega finalizada! O pacote saiu da prateleira.');
+        this.atualizarLista(); // O item sumirá da lista pois 'entregue' agora é true
+      },
+      error: (err) => console.error("Erro ao finalizar entrega", err)
+    });
   }
 }
