@@ -1,12 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
-
-export class GestaoEncomendasService {
+@Injectable({ providedIn: 'root' })
+export class AuthService {
   private readonly API = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) { }
@@ -19,7 +16,7 @@ export class GestaoEncomendasService {
   }
 
   registrarEncomenda(encomenda: any): Observable<any> {
-    return this.http.post(`http://localhost:8080/api/encomendas`, encomenda);
+    return this.http.post(`${this.API}/encomendas`, encomenda);
   }
 
   finalizarEntrega(id: number): Observable<any> {
@@ -40,7 +37,7 @@ export class GestaoEncomendasService {
   }
 
   // Se você criou o endpoint de histórico no EncomendaController (opcional):
-  listarHistorico(apartamento: string, bloco: string): Observable<any[]> {
+  listarHistorico(apto: string, bloco: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.API}/portaria/historico`);
   }
 }
