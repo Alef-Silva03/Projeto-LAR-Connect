@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.projeto.larconnect.model.Usuario;
+import com.projeto.larconnect.model.Condominio;
 
 public class MensagemPrivadaResponseDTO {
 	private Long id;
@@ -17,18 +18,21 @@ public class MensagemPrivadaResponseDTO {
 	
 	private Usuario autor;
 	private Usuario destinatario;
+	private Condominio condominio;
 	
 	public MensagemPrivadaResponseDTO() {}
 	
-	public MensagemPrivadaResponseDTO(Long id, String tipo, String titulo, String assunto, String texto, LocalDateTime data, Usuario autor, Usuario destinatario) {
+	public MensagemPrivadaResponseDTO(Long id, String tipo, String titulo, String assunto, String texto, LocalDateTime data, Condominio condominio, Usuario autor, Usuario destinatario) {
         this.id = id;
         this.tipo = tipo;
         this.titulo = titulo;
         this.assunto = assunto;
         this.texto = texto;
         this.data = data;
+        this.condominio = condominio;
         this.autor = autor;
         this.destinatario = destinatario;
+
 	}
 
 	public Long getId() {
@@ -78,5 +82,13 @@ public class MensagemPrivadaResponseDTO {
 	}
 	public void setDestinatario(Usuario destinatario) {
 		this.destinatario = destinatario;
+	}
+
+	public void setCondominio(Condominio condominio) {
+		this.condominio = condominio;
+	}
+	
+	public Condominio getCondominio() {
+		return condominio;
 	}
 }

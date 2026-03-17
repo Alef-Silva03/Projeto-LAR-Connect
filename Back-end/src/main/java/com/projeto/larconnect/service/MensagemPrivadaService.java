@@ -74,6 +74,7 @@ public class MensagemPrivadaService {
             MensagemPrivada.getAssunto(),
             MensagemPrivada.getTexto(),
             MensagemPrivada.getData(),
+            MensagemPrivada.getCondominio(),
             MensagemPrivada.getAutor(),
             MensagemPrivada.getDestinatario()
         );

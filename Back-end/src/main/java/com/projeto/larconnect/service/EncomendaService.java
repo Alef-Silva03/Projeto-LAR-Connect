@@ -34,7 +34,7 @@ public class EncomendaService {
         enc.setBloco(dto.getBloco());
         enc.setMorador(moradorObj.getNome());
         enc.setDescricao("Encomenda recebida na portaria");
-        enc.setDataChegada("Recebido às " + LocalTime.now().toString().substring(0,5));
+        enc.setDataChegada(LocalDateTime.now());
         enc.setEntregue(false);
         
         Encomenda salva = encomendaRepo.save(enc);

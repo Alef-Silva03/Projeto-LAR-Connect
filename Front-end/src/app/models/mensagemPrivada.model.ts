@@ -1,3 +1,5 @@
+import { Condominio } from "./usuario.model";
+
 export interface MensagemPrivada {
   id?: number;
   tipo: string;
@@ -5,7 +7,7 @@ export interface MensagemPrivada {
   assunto: string;
   texto: string;
   data?: Date;
-  idCondominio: number;
+  condominio: Condominio;
   idAutor?: number;
   idDestinatario?: number;
 }

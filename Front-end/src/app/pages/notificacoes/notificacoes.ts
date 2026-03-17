@@ -13,6 +13,7 @@ export class Notificacoes implements OnInit {
   abaAtiva: string = 'entregas';
   encomendas: any[] = [];
   historico: any[] = [];
+  console = console
 
   private readonly API_URL = 'http://localhost:8080/api/portaria';
 

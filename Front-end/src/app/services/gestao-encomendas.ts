@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
+export class gestaoEncomendasService {
   private readonly API = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) { }

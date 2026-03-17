@@ -19,7 +19,18 @@ export class MensagemAoSindico {
     titulo: '',
     assunto: '',
     texto: '',
-    idCondominio: 0,
+    condominio: {
+      id: 0,
+      nomeCondominio: '',
+      cep: '',
+      pais: '',
+      estado: '',
+      cidade: '',
+      logradouro: '',
+      numeroCondominio: 0,
+      blocos: 0,
+      apartamentos: 0
+    },
   };
 
   constructor(
@@ -35,11 +46,11 @@ export class MensagemAoSindico {
     }
     const usuario = JSON.parse(usuarioString);
 
-    this.mensagemPrivada.idCondominio = usuario.condominio?.id;
+    this.mensagemPrivada.condominio = usuario.condominio?.id;
     this.mensagemPrivadaService.enviarMensagem(this.mensagemPrivada).subscribe({
       next: () => {
         alert('Mensagem enviada com sucesso!');
-        this.mensagemPrivada = { tipo: 'Mensagem ao Síndico', titulo: '', assunto: '', texto: '', idCondominio: this.mensagemPrivada.idCondominio }; // limpa formulário
+        this.mensagemPrivada = { tipo: 'Mensagem ao Síndico', titulo: '', assunto: '', texto: '', condominio: this.mensagemPrivada.condominio }; // limpa formulário
       },
       error: (err) => {
         console.error('Erro ao enviar comunicado', err);

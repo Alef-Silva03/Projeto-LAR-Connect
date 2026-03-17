@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.CreatedDate;
+
 @Entity
 @Data
 public class Encomenda {
@@ -18,7 +20,9 @@ public class Encomenda {
     private String descricao;
     private String apartamento;
     private String bloco;
-    private String dataChegada;
+    
+    @CreatedDate
+    private LocalDateTime dataChegada;
     private LocalDateTime dataEntrega; // Para o histórico
     private boolean entregue = false;
 	public Long getId() {
@@ -51,10 +55,10 @@ public class Encomenda {
 	public void setBloco(String bloco) {
 		this.bloco = bloco;
 	}
-	public String getDataChegada() {
+	public LocalDateTime getDataChegada() {
 		return dataChegada;
 	}
-	public void setDataChegada(String dataChegada) {
+	public void setDataChegada(LocalDateTime dataChegada) {
 		this.dataChegada = dataChegada;
 	}
 	public LocalDateTime getDataEntrega() {

@@ -29,6 +29,42 @@ export class Cadastro {
     private authService: AuthService
   ) {}
 
+  aplicarMascaraTelefone(event: any): void {
+    let input = event.target;
+    let value = input.value;
+    
+    // Remove tudo que não é número
+    value = value.replace(/\D/g, '');
+    
+    // Limita o tamanho máximo (11 dígitos para celular com DDD)
+    if (value.length > 12) value = value.slice(0, 12);
+    
+    // Aplica a máscara (XX) XXXXX-XXXX
+    if (value.length > 2) {
+      value = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7, 12)}`;
+    } else if (value.length > 0) {
+      value = `(${value.substring(0, 2)}`;
+    }
+    input.value = value;
+  }
+
+  aplicarMascaraCPF(event: any): void {
+    let input = event.target;
+    let value = input.value;
+    
+    // Remove tudo que não é número
+    value = value.replace(/\D/g, '');
+    
+    // Limita o tamanho máximo (11 dígitos para celular com DDD)
+    if (value.length > 11) value = value.slice(0, 11);
+    
+    // Aplica a máscara (XX) XXXXX-XXXX
+    if (value.length > 3) {
+      value = `${value.substring(0, 3)}. ${value.substring(3, 6)}.${value.substring(6, 9)}-${value.substring(9, 11)}`;
+    }
+    input.value = value;
+  }
+
   realizarCadastro() {
     console.log('Dados enviados:', this.usuario);
     

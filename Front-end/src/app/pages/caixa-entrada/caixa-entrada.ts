@@ -15,6 +15,7 @@ import { AuthService } from '../../services/auth.service';
 export class CaixaEntrada implements OnInit {
 
   mensagens: MensagemPrivada[] = [];
+  i: number = 0;
 
   constructor(
     private mensagemPrivadaService: MensagemPrivadaService,
@@ -31,9 +32,9 @@ export class CaixaEntrada implements OnInit {
     this.mensagemPrivadaService.listarMensagens().subscribe({
       next: (lista) => {
         this.mensagens = lista;
-        this.cdr.detectChanges();   // <-- força a atualização da view
+        this.cdr.detectChanges();   // força a atualização da view
       },
-      error: (err) => console.error('Erro ao carregar comunicados', err)
+      error: (err) => console.error('Erro ao carregar mensagens', err)
     });
   };
 
@@ -50,4 +51,8 @@ export class CaixaEntrada implements OnInit {
       });
     };
   };
+
+  increment() {
+    this.i += 1;
+  }
 };
