@@ -45,8 +45,13 @@ export class MensagemAoSindico {
       return;
     }
     const usuario = JSON.parse(usuarioString);
-
     this.mensagemPrivada.condominio = usuario.condominio?.id;
+
+    if (!this.mensagemPrivada.titulo || !this.mensagemPrivada.assunto || !this.mensagemPrivada.texto) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+
     this.mensagemPrivadaService.enviarMensagem(this.mensagemPrivada).subscribe({
       next: () => {
         alert('Mensagem enviada com sucesso!');
@@ -57,6 +62,10 @@ export class MensagemAoSindico {
         alert('Erro ao postar comunicado. Verifique o console.');
       }
     });
+
+    this.mensagemPrivada.titulo = ''
+    this.mensagemPrivada.assunto = ''
+    this.mensagemPrivada.texto = ''
   }
 
 }

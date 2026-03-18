@@ -13,8 +13,11 @@
             <li><a routerLink="/login" (click)="toggleMenu()"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>
             <li><a routerLink="/cadastro" (click)="toggleMenu()"><i class="bi bi-person-plus"></i> Cadastro </a></li>
             } @else {
-                <li><a routerLink="/notificacoes" (click)="toggleMenu()"><i class="bi bi-bell"></i> Notificações</a></li>
-                <li ><a routerLink="/chat" (click)="toggleMenu()"><i class="bi bi-chat-left-dots"></i> Chat de Moradores</a></li>
+                <li><a routerLink="/enviar-comunicados" (click)="toggleMenu()"><i class="bi bi-megaphone-fill"></i> Comunicados</a></li>
+                <li><a routerLink="/caixa-entrada" (click)="toggleMenu()"><i class="bi bi-envelope-fill"></i> Caixa de Entrada</a></li>
+                <li><a routerLink="/notificacoes-entrega" (click)="toggleMenu()"><i class="bi bi-bell"></i> Notificações</a></li>
+                <li><a routerLink="/chat" (click)="toggleMenu()"><i class="bi bi-chat-left-dots"></i> Chat de Moradores</a></li>
+                <li><a routerLink="/reserva-espacos" (click)="toggleMenu()"><i class="bi bi-calendar-check-fill"></i> Reserva de Espaços</a></li>
                 <li><a routerLink="/vaga-garagem" (click)="toggleMenu()"><i class="bi bi-car-front"></i> Vagas de Garagem</a></li>
                 <hr class="border-secondary opacity-25">
                 <li><a routerLink="/minha-conta" (click)="toggleMenu()"><i class="bi bi-person-circle"></i> Minha Conta</a></li>

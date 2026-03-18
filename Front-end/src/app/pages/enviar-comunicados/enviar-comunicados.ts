@@ -43,8 +43,13 @@ export class EnviarComunicados implements OnInit {
       return;
     }
     const usuario = JSON.parse(usuarioString);
-
     this.comunicado.idCondominio = usuario.condominio?.id;
+
+    if (!this.comunicado.tipo || !this.comunicado.titulo || !this.comunicado.texto) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+
     this.comunicadoService.enviarComunicado(this.comunicado).subscribe({
       next: () => {
         alert('Comunicado postado com sucesso!');

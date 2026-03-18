@@ -60,17 +60,19 @@
 
                 <!-- Lista de Mensagens -->
                 <div *ngFor="let msg of mensagens" class="message-row">
-                    <div class="bubble">
-                        <!-- Texto -->
-                        <p class="m-0">{{ msg.texto }}</p>
-
-                        <!-- Hora e nome-->
+                    @if (msg.usuario.nome == authService.getCurrentUser()?.nome){
+                        <div class="bubble" style="margin-left: 65%; width: 280px; overflow-wrap: break-word;">
+                        <p class="m-0" style="overflow-wrap: break-word">{{ msg.texto }}</p>
                         <span class="time mt-2">{{ msg.usuario.nome }}</span>
                         <span class="time">{{ msg.data | date:'dd/MM/yyyy HH:mm:ss' }}</span>
-
-
-
                     </div>
+                    } @else {
+                        <div class="bubble">
+                        <p class="m-0">{{ msg.texto }}</p>
+                        <span class="time mt-2">{{ msg.usuario.nome }}</span>
+                        <span class="time">{{ msg.data | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+                    </div>
+                    }
                 </div>
 
             <!-- Mensagem inicial -->

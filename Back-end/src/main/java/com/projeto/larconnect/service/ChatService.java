@@ -54,7 +54,7 @@ public class ChatService {
         
         // Busca todos os chats do condomínio do usuário
         Long condominioId = usuarioLogado.getCondominio().getId();
-        List<Chat> chat = chatRepository.findByCondominioIdOrderByIdDesc(condominioId);
+        List<Chat> chat = chatRepository.findByCondominioId(condominioId);
         
         // Converte para DTO
         return chat.stream()

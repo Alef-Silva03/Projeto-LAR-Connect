@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EnviarComunicadosComponent } from './enviar-comunicados';
+import { EnviarComunicados } from './enviar-comunicados';
 
 describe('EnviarComunicados', () => {
-  let component: EnviarComunicadosComponent;
-  let fixture: ComponentFixture<EnviarComunicadosComponent>;
+  let component: EnviarComunicados;
+  let fixture: ComponentFixture<EnviarComunicados>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EnviarComunicadosComponent]
+      imports: [EnviarComunicados]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EnviarComunicadosComponent);
+    fixture = TestBed.createComponent(EnviarComunicados);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

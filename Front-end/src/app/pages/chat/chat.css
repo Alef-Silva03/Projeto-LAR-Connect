@@ -2,40 +2,37 @@ p {
     word-wrap: break-word;
 }
 
-/* Container Principal do Chat */
 .chat-page-container {
-    height: 100vh;
+    max-height: 1000px;
     background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
-/* Estilização para anexos no chat */
+
 .img-anexo-chat {
-    border-radius: 15px; /* Bordas arredondadas seguindo o padrão pílula */
+    border-radius: 15px;
     margin-top: 8px;
-    border: 1px solid rgba(0, 180, 216, 0.2); /* Brilho ciano sutil */
-    max-width: 100%; /* Garante que a imagem não "vaze" do balão */
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    max-width: 100%;
     display: block;
-    object-fit: contain; /* Mantém a imagem inteira sem cortes */
+    object-fit: contain;
 }
 
-/* Card de Vidro (Glassmorphism) */
 .glass-chat-card {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 40px;
-    height: 80vh;
+    height: 100%;
     width: 95%;
-    max-width: 1300px;
+    max-width: 1100px;
     overflow-y: scroll;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-/* Sidebar e Abas Estilo Pílula */
 .sidebar-glass {
     background: rgba(13, 27, 42, 0.4);
     display: flex;
@@ -43,13 +40,12 @@ p {
 }
 
 .main-chat {
-    height: 100%; /* Garante que a section ocupe toda altura */
+    height: 100%; 
     display: flex;
     flex-direction: column;
     padding-top: 20px;
 }
 
-/* Área de mensagens com scroll */
 .message-display {
     flex: 1 1 auto;
     overflow-y: auto; 
@@ -58,13 +54,12 @@ p {
 }
 
 .caixa-de-mensagem {
-    min-height: 150px;
-    max-height: 150px;
+    height: 150px;
     margin-top: 0;
-    flex-shrink: 0; /* Impede que o footer encolha */
-    background: transparent; /* Mantém o fundo transparente */
+    flex-shrink: 0; 
+    background: transparent; 
     padding: 1rem !important;
-    margin-top: auto; /* Empurra para baixo com flexbox */
+    margin-top: auto; 
 }
 
 
@@ -86,12 +81,11 @@ p {
 }
 
 .chat-tabs-pill button.active {
-    background: #00B4D8; /* Ciano Neon */
+    background: #00B4D8;
     color: #0D1B2A;
     box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
 }
 
-/* Balões de Mensagem Estilo Pílula Assimétrica */
 .message-row {
     display: flex;
     width: 100%;
@@ -125,12 +119,10 @@ p {
     border-radius: 25px 25px 5px 25px;
 }
 
-/* Efeito Neon na Mensagem Enviada */
 .shadow-neon {
     box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
 }
 
-/* Área de Input */
 .input-wrapper-pill {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 50px;
@@ -162,7 +154,6 @@ p {
     background: #90E0EF;
 }
 
-/* Scrollbar Personalizada */
 .custom-scrollbar {
     overflow-y: auto;
 }
@@ -176,7 +167,6 @@ p {
     border-radius: 10px;
 }
 
-/* Animações de Entrada de Mensagem */
 .message-row {
     animation: slideIn 0.3s ease-out;
 }
@@ -186,7 +176,6 @@ p {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Utilitários */
 .text-cyan { color: #00B4D8 !important; }
 .circular-border { border: 2px solid #00B4D8; padding: 2px; border-radius: 50%; }
 
@@ -265,7 +254,7 @@ p {
     font-size: 0.7rem;
     opacity: 0.7;
     display: block;
-    text-align: right;
+    text-align: left;
     margin-top: 4px;
 }
 

@@ -39,20 +39,14 @@ export class CriarCondominio {
   ) {}
 
   /**
-   * Busca endereço pelo CEP usando a API ViaCEP
-   * @param cep - CEP digitado pelo usuário (com ou sem máscara)
+   * @param cep
    */
   buscarCep(cep: string): void {
-    // Remove caracteres não numéricos
     const cepNumerico = cep.replace(/\D/g, '');
-    
-    // Verifica se o CEP tem 8 dígitos
     if (cepNumerico.length !== 8) {
       return;
     }
-
     this.buscandoCep = true;
-
     this.http.get<any>(`https://viacep.com.br/ws/${cepNumerico}/json/`).subscribe({
       next: (data) => {
         if (data.erro) {
@@ -60,17 +54,10 @@ export class CriarCondominio {
           this.limparCamposEndereco();
           return;
         }
-
-        // Preenche os campos com os dados retornados
         this.condominio.logradouro = data.logradouro || '';
         this.condominio.cidade = data.localidade || '';
         this.condominio.estado = data.uf || '';
-        this.condominio.pais = 'Brasil'; // ViaCEP não retorna país, então setamos como padrão
-        
-        // Opcional: Se quiser preencher o bairro também (se tiver campo)
-        // this.condominio.bairro = data.bairro || '';
-
-        // Força a detecção de mudanças para atualizar a view
+        this.condominio.pais = 'Brasil';
         this.cdr.detectChanges();
       },
       error: (error) => {
@@ -84,10 +71,7 @@ export class CriarCondominio {
       }
     });
   }
-
-  /**
-   * Limpa os campos de endereço quando o CEP não é encontrado
-   */
+  
   private limparCamposEndereco(): void {
     this.condominio.logradouro = '';
     this.condominio.cidade = '';
@@ -97,16 +81,13 @@ export class CriarCondominio {
   }
 
   /**
-   * Aplica máscara ao CEP (formato 99999-999)
-   * @param event - Evento do input
+   * @param event
    */
   aplicarMascaraCep(event: any): void {
     let cep = event.target.value.replace(/\D/g, '');
-    
     if (cep.length > 5) {
       cep = cep.substring(0, 5) + '-' + cep.substring(5, 8);
     }
-    
     this.condominio.cep = cep;
   }
 
@@ -123,6 +104,11 @@ export class CriarCondominio {
       alert('Por favor, preencha um CEP válido com 8 dígitos.');
       return;
     }
+    if (!this.condominio.nomeCondominio || !this.condominio.pais || !this.condominio.estado || !this.condominio.cidade || !this.condominio.logradouro || 
+      !this.condominio.numeroCondominio || !this.condominio.blocos || !this.condominio.apartamentos) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
 
     this.criarCondominio(this.condominio).subscribe({
       next: async (res: CondominioResponse) => {

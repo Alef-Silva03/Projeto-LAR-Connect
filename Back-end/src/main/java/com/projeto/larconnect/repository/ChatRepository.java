@@ -12,7 +12,7 @@ import com.projeto.larconnect.model.Chat;
 public interface ChatRepository extends JpaRepository<Chat, Long> {
     
     // Buscar comunicados por ID do condomínio em ordem decrescente
-    List<Chat> findByCondominioIdOrderByIdDesc(Long condominioId);
+    List<Chat> findByCondominioId(Long condominioId);
     
     void deleteById(Long Id);
 }
