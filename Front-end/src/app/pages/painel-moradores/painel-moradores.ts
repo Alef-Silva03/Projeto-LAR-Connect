@@ -11,8 +11,10 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './painel-moradores.html',
   styleUrls: ['./painel-moradores.css']
 })
+
 export class PainelMoradores implements OnInit {
-  moradores: Morador[] = [];
+  moradores: Morador[] = []
+  console = console
   formData = {
     emailMorador: '',
     apartamentoMorador: '',
@@ -30,15 +32,15 @@ export class PainelMoradores implements OnInit {
     this.carregarMoradores();
   }
 
-carregarMoradores(): void {
-  this.moradoresService.listarMoradores().subscribe({
-    next: (data) => {
-      this.moradores = data;
-      this.cdr.detectChanges(); // força a atualização da view
-    },
-    error: (err) => console.error('Erro ao carregar moradores', err)
-  });
-}
+  carregarMoradores(): void {
+    this.moradoresService.listarMoradores().subscribe({
+      next: (data) => {
+        this.moradores = data;
+        this.cdr.detectChanges(); // força a atualização da view
+      },
+      error: (err) => console.error('Erro ao carregar moradores', err)
+    });
+  }
 
   onSubmit(): void {
     const usuarioString = localStorage.getItem('usuario');

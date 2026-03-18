@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MensagemResponse, MensagemRequest } from '../../models/mensagem.model';
 import { Subscription } from 'rxjs';
-import { MensagemService } from '../../services/mensagem-service';
+import { MensagemService } from '../../services/chat-service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

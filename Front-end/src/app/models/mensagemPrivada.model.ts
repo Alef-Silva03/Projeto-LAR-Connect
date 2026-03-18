@@ -10,4 +10,5 @@ export interface MensagemPrivada {
   condominio: Condominio;
   idAutor?: number;
   idDestinatario?: number;
+  arquivo?: string;
 }

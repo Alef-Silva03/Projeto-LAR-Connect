@@ -17,8 +17,6 @@ export interface Morador {
   providedIn: 'root'
 })
 export class MoradoresService {
-
-
   constructor(private http: HttpClient) {};
 
   adicionarMorador(emailMorador: string, apartamento: string, bloco: string, vaga: string, idCondominio: number): Observable<any> {

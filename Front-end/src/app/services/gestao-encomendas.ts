@@ -13,6 +13,7 @@ export class gestaoEncomendasService {
   listarEncomendas(): Observable<any[]> {
     // Busca apenas as pendentes para o porteiro
     return this.http.get<any[]>(`${this.API}/portaria/encomendas-pendentes`);
+
   }
 
   registrarEncomenda(encomenda: any): Observable<any> {

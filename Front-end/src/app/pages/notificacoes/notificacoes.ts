@@ -11,7 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class Notificacoes implements OnInit {
   abaAtiva: string = 'entregas';
-  encomendas: any[] = [];
+  encomendas$: any;
   historico: any[] = [];
   console = console
 
@@ -21,15 +21,14 @@ export class Notificacoes implements OnInit {
 
   ngOnInit(): void {
     this.cdr.detectChanges();
-    this.carregarEntregasAtivas();
-
+    this.encomendas$ = this.carregarEntregasAtivas();
+    this.console.log(this.encomendas$)
   }
+
   getUsuarioNome(): number {
-    // Aqui você pode implementar a lógica para obter o ID do usuário logado
-    // Por exemplo, se você armazenar o ID no localStorage após o login:
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
-    console.log('ID do usuário logado:', usuario.nome); // Verifique se o ID está sendo recuperado corretamente
-    return usuario.nome || 0; // Retorna 0 se não encontrar o ID
+    console.log('ID do usuário logado:', usuario.nome); 
+    return usuario.nome || 0; 
   }
 
   setAba(nomeAba: string) {
@@ -45,8 +44,7 @@ export class Notificacoes implements OnInit {
 
   carregarEntregasAtivas() {
     this.cdr.detectChanges();
-    this.http.get<any[]>(`${this.API_URL}/encomendas-pendentes`)
-      .subscribe(dados => this.encomendas = dados);
+    return this.http.get<any[]>(`${this.API_URL}/encomendas-pendentes`)
   }
 
   carregarHistorico() {
@@ -62,12 +60,9 @@ export class Notificacoes implements OnInit {
       });
   }
 
-  // ESSA É A FUNÇÃO QUE ESTAVA FALTANDO:
   confirmarRecebimento(id: number) {
-    // Chama o PatchMapping do seu PortariaController no Java
     this.http.patch(`${this.API_URL}/entregar/${id}`, {})
       .subscribe(() => {
-        // Após confirmar no MySQL, recarrega a lista para sumir da tela
         this.carregarEntregasAtivas();
         console.log(`Encomenda ${id} entregue com sucesso!`);
       });

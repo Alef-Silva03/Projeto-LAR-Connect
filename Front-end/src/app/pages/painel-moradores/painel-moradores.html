@@ -47,6 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{ console.log(moradores )}}
                     <tr *ngFor="let morador of moradores" class="row-hover">
                     @if (morador.apartamento != ''){
                         <td class="nome-morador"  style="max-width: 100px;">
