@@ -20,86 +20,154 @@
     display: block;
 }
 
-/* Tabela em Estilo Pílula Flutuante */
+/* Tabela em Estilo Pílula Flutuante - SEM BORDAS RETAS */
 .table-modern {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 15px; /* Espaço entre as linhas para parecerem pílulas */
+    border-spacing: 0 12px;
+}
+
+.table-modern thead th {
+    color: #90E0EF;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    background: transparent;
+    border: none; /* Removida qualquer borda */
 }
 
 .table-modern tbody tr {
-    background: rgba(255, 255, 255, 0.03) !important;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border-radius: 20px;
+    background-color: rgba(65, 90, 119, 0.2) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 60px; /* Border-radius extremo para efeito pílula */
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    border: none; /* SEM BORDAS */
+    position: relative;
+    overflow: hidden; /* Garante que o conteúdo respeite o border-radius */
+    
 }
 
 .table-modern tbody tr:hover {
-    background: rgba(0, 180, 216, 0.08) !important;
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(0, 180, 216, 0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px -8px rgba(0, 180, 216, 0.5);
+    
 }
 
-/* Avatar Mini */
+.table-modern tbody td {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    border: none; /* SEM BORDAS */
+    background: transparent; /* Fundo transparente para aparecer o fundo da linha */
+}
+
+/* Primeira célula com border-radius à esquerda */
+.table-modern tbody tr td:first-child {
+    border-top-left-radius: 60px;
+    border-bottom-left-radius: 60px;
+}
+
+/* Última célula com border-radius à direita */
+.table-modern tbody tr td:last-child {
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+}
+
+/* Avatar com glow sutil */
 .avatar-mini {
-    width: 35px;
-    height: 35px;
-    background: linear-gradient(135deg, #00B4D8, #03045E);
-    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(145deg, #00B4D8, #03045E);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 0.8rem;
+    font-weight: 700;
+    font-size: 1.1rem;
     color: white;
+    box-shadow: 0 8px 18px rgba(0, 180, 216, 0.3);
+    transition: 0.2s;
 }
 
-/* Status com Glow (Brilho) */
-.status-wrapper {
+tr:hover .avatar-mini {
+    box-shadow: 0 10px 22px rgba(0, 180, 216, 0.6);
+}
+
+/* Badge de apartamento */
+.badge-pill {
+    background: rgba(0, 180, 216, 0.15);
+    padding: 6px 16px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #90E0EF;
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    transition: 0.2s;
+    display: inline-block;
+}
+
+tr:hover .badge-pill {
+    background: rgba(0, 180, 216, 0.25);
+    border-color: #00B4D8;
+}
+
+/* Perfil badge */
+.perfil-badge {
+    background: rgba(144, 224, 239, 0.08);
+    padding: 5px 14px;
+    border-radius: 40px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: #ADE8F4;
+    border: 1px solid rgba(144, 224, 239, 0.2);
+    white-space: nowrap;
+}
+
+/* Ações */
+.btn-action-icon {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #FF4D6D;
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    transition: 0.25s ease;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.status-wrapper .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-}
-
-.status-wrapper.ativo { color: #00B4D8; }
-.status-wrapper.ativo .dot { background: #00B4D8; box-shadow: 0 0 10px #00B4D8; }
-
-.status-wrapper.inativo { color: #FF4D6D; }
-.status-wrapper.inativo .dot { background: #FF4D6D; box-shadow: 0 0 10px #FF4D6D; }
-
-/* Botões de Ação de Vidro */
-.btn-action-icon {
-    background: rgba(255, 255, 255, 0.05);
-    border: none;
-    color: #90E0EF;
-    width: 35px;
-    height: 35px;
-    border-radius: 10px;
-    transition: 0.3s;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .btn-action-icon:hover {
-    background: #00B4D8;
+    background: #FF4D6D;
     color: #0D1B2A;
+    border-color: #FF4D6D;
+    transform: scale(1.15) rotate(2deg);
+    box-shadow: 0 0 20px #FF4D6D;
 }
 
-.enviar-comunicados-container {
-    padding-top: 140px;
-    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-bottom: 60px;
+/* Texto secundário com fallback */
+.text-secondary-light {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
 }
 
+.nome {
+    font-weight: 600;
+    color: white;
+    line-height: 1.3;
+}
+
+.sub-info {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.2px;
+}
+
+/* Mantendo estilos existentes que não conflitam */
 .glass-card {
     width: 95%;
     max-width: 650px;
@@ -126,8 +194,7 @@
     display: block;
 }
 
-/* Inputs e Selects Estilo Pílula */
-.form-select-pill, .form-input-pill, .form-textarea-pill {
+.form-input-pill {
     background: rgba(65, 90, 119, 0.2) !important;
     border: 1px solid rgba(0, 180, 216, 0.3) !important;
     border-radius: 20px !important;
@@ -137,19 +204,13 @@
     transition: 0.3s;
 }
 
-.form-select-pill:focus, .form-input-pill:focus, .form-textarea-pill:focus {
+.form-input-pill:focus {
     background: rgba(65, 90, 119, 0.3) !important;
     border-color: #00B4D8 !important;
     box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
     outline: none;
 }
 
-.form-textarea-pill {
-    border-radius: 30px !important;
-    resize: none;
-}
-
-/* Botão Neon */
 .btn-enviar-neon {
     background: #00B4D8;
     color: #0D1B2A;
@@ -165,5 +226,5 @@
 .btn-enviar-neon:hover {
     background: #90E0EF;
     transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(0, 180, 216, 0.6);
+
 }

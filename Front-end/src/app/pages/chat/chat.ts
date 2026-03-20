@@ -5,6 +5,7 @@ import { MensagemResponse, MensagemRequest } from '../../models/mensagem.model';
 import { Subscription } from 'rxjs';
 import { MensagemService } from '../../services/chat-service';
 import { AuthService } from '../../services/auth.service';
+import { Morador, MoradoresService } from '../../services/moradores';
 
 @Component({
   selector: 'app-chat',
@@ -13,6 +14,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './chat.html',
   styleUrls: ['./chat.css']
 })
+
 export class Chat implements OnInit {
   mensagem: MensagemRequest = {
     texto: '',
@@ -21,16 +23,29 @@ export class Chat implements OnInit {
   };
 
   mensagens: MensagemResponse[] = [];
-
+  moradores: Morador[] = []
+  
   constructor(
     private mensagemService: MensagemService,
+    private moradoresService: MoradoresService,
     private cdr: ChangeDetectorRef,
     public authService: AuthService,
   ) {}
 
   ngOnInit(): void {
     this.carregarMensagens();
+    this.carregarMoradores();
     this.cdr.detectChanges();
+  }
+
+  carregarMoradores(): void {
+    this.moradoresService.listarMoradores().subscribe({
+      next: (data) => {
+        this.moradores = data;
+        this.cdr.detectChanges(); // força a atualização da view
+      },
+      error: (err) => console.error('Erro ao carregar moradores', err)
+    });
   }
 
   enviarMensagem(): void {
@@ -40,7 +55,6 @@ export class Chat implements OnInit {
       return;
     }
     const usuario = JSON.parse(usuarioString);
-
     this.mensagem.idCondominio = usuario.condominio?.id;
     this.mensagemService.enviarMensagem(this.mensagem).subscribe({
       next: () => {
@@ -79,7 +93,6 @@ export class Chat implements OnInit {
   }
 
     getUsuarioEmail() {
-        return localStorage.getItem('email');
+      return localStorage.getItem('email');
   }
-
 }

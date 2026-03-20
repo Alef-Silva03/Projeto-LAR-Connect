@@ -53,13 +53,11 @@ export class PainelMoradores implements OnInit {
       alert('Usuário não autenticado ou sem condomínio vinculado.');
       return;
     }
-
     const { emailMorador, apartamentoMorador, blocoMorador, vagaMorador } = this.formData;
     if (!emailMorador || !apartamentoMorador) {
       alert('Preencha todos os campos.');
       return;
     }
-
     this.moradoresService.adicionarMorador(
       emailMorador,
       apartamentoMorador,

@@ -4,6 +4,7 @@
         <!-- SIDEBAR - Lista de Contatos -->
         <aside class="col-md-3 sidebar-glass border-end">
             <div class="p-4 h-100 d-flex flex-column">
+                <div class="flex-grow-1"></div>
                 <!-- Abas -->
                 <!--<div class="chat-tabs-pill d-flex mb-4">
                     <button [class.active]="abaAtiva === 'moradores'" (click)="setAba('moradores')">Moradores</button>
@@ -11,22 +12,19 @@
                 </div>-->
 
                 <!-- Lista de Contatos (CORRIGIDO) -->
-                <div class="contact-list flex-grow-1">
-                    <!-- MORADORES - Agora dinâmico -->
-                    <!--<div *ngIf="abaAtiva === 'moradores'">
-                        <div *ngFor="let morador of moradores" class="contact-item"
-                            [class.active-pill]="contatoSelecionado?.id === morador.id"
-                            (click)="selecionarContato(morador)">
-                            <img [src]="morador.avatar" class="avatar-sm circular-border" height="50" width="50">
-                            <div class="ms-3">
-                                <h6 class="m-0">{{ morador.nome }} (Apartamento {{ morador.apartamento }})</h6>
-                                <small class="text-cyan" *ngIf="morador.digitando">digitando...</small>
-                                <small *ngIf="!morador.digitando" [class.text-cyan]="morador.online">
-                                    {{ morador.online ? 'online' : 'offline' }}
-                                </small>
-                            </div>
+                <div class="contact-list flex-grow-1 mt-auto">
+                    <div *ngFor="let morador of moradores" class="contact-item d-flex align-items-center">
+                        <div class="avatar-mini">{{ morador.nome.charAt(0) }}</div>
+                        <div class="ms-3 flex-grow-1">
+                            <h6 class="m-0 contact-name">
+                                {{ morador.nome }}
+                            </h6>
+                            <small class="contact-sub">
+                                Apartamento {{ morador.apartamento }}
+                            </small>
                         </div>
-                    </div>-->
+                    </div>
+                </div>
 
                     <!-- GRUPOS -->
                     <!--<div *ngIf="abaAtiva === 'grupos'" class="p-3 opacity-50 text-center">
@@ -36,7 +34,6 @@
                         <div *ngIf="grupos.length === 0">Nenhum grupo ativo.</div>
                     </div>-->
                 </div>
-            </div>
         </aside>
 
         <!-- ÁREA PRINCIPAL DO CHAT -->
@@ -63,7 +60,7 @@
                     @if (msg.usuario.nome == authService.getCurrentUser()?.nome){
                         <div class="bubble" style="margin-left: 65%; width: 280px; overflow-wrap: break-word;">
                         <p class="m-0" style="overflow-wrap: break-word">{{ msg.texto }}</p>
-                        <span class="time mt-2">{{ msg.usuario.nome }}</span>
+                        <span class="time mt-2">Você</span>
                         <span class="time">{{ msg.data | date:'dd/MM/yyyy HH:mm:ss' }}</span>
                     </div>
                     } @else {
@@ -82,7 +79,7 @@
             </div>-->
 
             <!-- FOOTER com Input (CORRIGIDO) -->
-            <footer class="p-3 caixa-de-mensagem">
+            <div class="p-3 caixa-de-mensagem">
                 <div class="input-wrapper-pill d-flex align-items-center px-3 gap-2">
                     <!-- INPUT com [(ngModel)] -->
                     <input #msgInput [(ngModel)]="mensagem.texto" (keyup.enter)="enviarMensagem()"
@@ -95,7 +92,7 @@
                         <i class="bi bi-send-fill"></i>
                     </button>
                 </div>
-            </footer>
+            </div>
         </section>
     </div>
 </article>

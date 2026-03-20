@@ -8,7 +8,6 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .img-anexo-chat {
@@ -27,6 +26,7 @@ p {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 40px;
     height: 100%;
+    min-height: 500px;
     width: 95%;
     max-width: 1100px;
     overflow-y: scroll;
@@ -37,13 +37,13 @@ p {
     background: rgba(13, 27, 42, 0.4);
     display: flex;
     flex-direction: column;
+    flex: 0 0 25%;
 }
 
 .main-chat {
     height: 100%; 
-    display: flex;
-    flex-direction: column;
     padding-top: 20px;
+    flex: 1;
 }
 
 .message-display {
@@ -59,7 +59,8 @@ p {
     flex-shrink: 0; 
     background: transparent; 
     padding: 1rem !important;
-    margin-top: auto; 
+    margin-top: auto;
+    box-shadow: 0px 2px 20px black
 }
 
 
@@ -96,12 +97,13 @@ p {
 .message-row.received { justify-content: flex-start; }
 
 .bubble {
-    max-width: 70%;
+    max-width: 50%;
+    min-width: 200px;
     padding: 15px 20px;
     position: relative;
     font-size: 0.95rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        background: #415A77;
+    background: #415A77;
     border-radius: 20px;
     margin-left: 10px;
 }
@@ -278,3 +280,87 @@ p {
     
 }
 
+.contact-list {
+    padding-right: 5px;
+    margin-top: auto !important;
+    overflow-y: auto;
+}
+
+/* ITEM */
+.contact-item {
+    padding: 12px 15px;
+    border-radius: 15px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: transparent;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+}
+
+/* ATIVO */
+.contact-item.active {
+    background: rgba(0, 180, 216, 0.15);
+    border-left: 3px solid #00B4D8;
+}
+
+/* AVATAR */
+.avatar-wrapper {
+    position: relative;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 180, 216, 0.5);
+    object-fit: cover;
+}
+
+/* STATUS ONLINE */
+.status-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #0D1B2A;
+}
+
+.status-dot.online {
+    background: #00FFAB;
+}
+
+/* TEXTO */
+.contact-name {
+    font-weight: 600;
+    color: #E0E1DD;
+}
+
+.contact-sub {
+    color: rgba(224, 225, 221, 0.6);
+    font-size: 0.8rem;
+}
+
+/* HORA */
+.contact-time {
+    font-size: 0.7rem;
+    color: rgba(224, 225, 221, 0.4);
+}
+
+.avatar-mini {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #00B4D8, #03045E);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: white;
+}
