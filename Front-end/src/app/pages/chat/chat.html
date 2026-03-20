@@ -12,16 +12,24 @@
                 </div>-->
 
                 <!-- Lista de Contatos (CORRIGIDO) -->
-                <div class="contact-list flex-grow-1 mt-auto">
-                    <div *ngFor="let morador of moradores" class="contact-item d-flex align-items-center">
-                        <div class="avatar-mini">{{ morador.nome.charAt(0) }}</div>
-                        <div class="ms-3 flex-grow-1">
-                            <h6 class="m-0 contact-name">
-                                {{ morador.nome }}
-                            </h6>
-                            <small class="contact-sub">
-                                Apartamento {{ morador.apartamento }}
-                            </small>
+                <div class="contact-list flex-grow-1">
+                    <div class="mt-auto">
+                        <div *ngFor="let morador of moradores" class="contact-item d-flex align-items-center">
+                            <div class="avatar-mini">{{ morador.nome.charAt(0) }}</div>
+                            <div class="ms-3 flex-grow-1">
+                                <h6 class="m-0 contact-name">
+                                    {{ morador.nome }}
+                                </h6>
+                                @if (morador.perfil != "FUNCIONARIO") {
+                                <small class="contact-sub">
+                                    Apartamento {{ morador.apartamento }}
+                                </small>
+                                } @else {
+                                <small class="contact-sub">
+                                    Cargo {{ morador.cargo }}
+                                </small>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
