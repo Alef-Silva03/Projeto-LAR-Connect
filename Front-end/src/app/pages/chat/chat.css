@@ -263,7 +263,6 @@ p {
 }
 
 .contact-list {
-    padding-right: 5px;
     margin-top: auto !important;
     overflow-y: auto;
 }
@@ -271,18 +270,15 @@ p {
 /* ITEM */
 .contact-item {
     padding: 5px 15px;
-    border-radius: 15px;
-    margin-bottom: 8px;
     cursor: pointer;
     transition: all 0.25s ease;
-    background: rgba(96, 170, 255, 0.164);
+    background: rgba(133, 190, 255, 0.164);
     border: 1px solid rgba(91, 147, 252, 0.123);
     
 }
 
 .contact-item:hover {
-    background: rgba(12, 91, 128, 0.288);
-    transform: translateX(5px);
+    background: rgba(10, 70, 99, 0.288);
 }
 
 /* ATIVO */
@@ -326,7 +322,7 @@ p {
 }
 
 .contact-sub {
-    color: rgba(224, 225, 221, 0.6);
+    color: rgba(255, 255, 255, 0.76);
     font-size: 0.8rem;
 }
 
