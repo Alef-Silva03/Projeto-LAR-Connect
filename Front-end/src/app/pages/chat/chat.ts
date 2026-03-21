@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, ChangeDetec
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MensagemResponse, MensagemRequest } from '../../models/mensagem.model';
-import { Subscription } from 'rxjs';
 import { MensagemService } from '../../services/chat-service';
 import { AuthService } from '../../services/auth.service';
 import { Morador, MoradoresService } from '../../services/moradores';

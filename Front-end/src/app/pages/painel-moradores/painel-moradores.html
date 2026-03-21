@@ -40,7 +40,7 @@
               <thead>
                 <tr>
                   <th>Morador</th>
-                  <th class="text-center">Ap.</th>
+                  <th class="text-center">Apartamento</th>
                   <th>Bloco</th>
                   <th>Vaga</th>
                   <th>Perfil</th>
@@ -50,36 +50,38 @@
           
               <tbody>
                 <tr *ngFor="let morador of moradores" class="row-hover form-input-pill">
-          
                   @if (morador.apartamento != ''){
-          
-                  <td class="nome-morador">
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="avatar-mini">{{ morador.nome.charAt(0) }}</div>
-                      <div class="d-flex flex-column">
-                        <span class="nome">{{ morador.nome }}</span>
-                        <small class="sub-info">{{ morador.email }}</small>
+                    <td class="nome-morador">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="avatar-mini">{{ morador.nome.charAt(0) }}</div>
+                        <div class="d-flex flex-column">
+                          <span class="nome">{{ morador.nome }}</span>
+                          <small class="sub-info">{{ morador.email }}</small>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-          
-                  <td class="text-center">
-                    <span class="badge-pill">{{ morador.apartamento }}</span>
-                  </td>
-          
-                  <td class="text-secondary-light">{{ morador.bloco || '—' }}</td>
-                  <td class="text-secondary-light">{{ morador.vaga || '—' }}</td>
-          
-                  <td>
-                    <span class="perfil-badge">{{ morador.perfil }}</span>
-                  </td>
-          
-                  <td class="text-center">
-                    <button (click)="removerMorador(morador.email)" class="btn-action-icon danger" title="Remover morador">
-                      <i class="bi bi-trash"></i>
-                    </button>
-                  </td>
-          
+                    </td>
+            
+                    <td class="text-center">
+                      <span class="badge-pill">{{ morador.apartamento }}</span>
+                    </td>
+            
+                    <td class="text-secondary-light">
+                      <span class="badge-pill">{{ morador.bloco || '—' }}</span>
+                    </td>
+
+                    <td class="text-secondary-light">
+                      <span class="badge-pill">{{ morador.vaga || '—' }}</span>
+                    </td>
+            
+                    <td>
+                      <span class="perfil-badge">{{ morador.perfil }}</span>
+                    </td>
+            
+                    <td class="text-center">
+                      <button (click)="removerMorador(morador.email)" class="btn-action-icon danger" title="Remover morador">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </td>
                   }
           
                 </tr>

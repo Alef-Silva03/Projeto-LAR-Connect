@@ -71,6 +71,7 @@ export class PainelMoradores implements OnInit {
       },
       error: (err) => alert(err.error?.message || 'Erro ao adicionar morador.')
     });
+    alert("Morador adicionado com sucesso!")
     this.cdr.detectChanges(); // força a atualização da view
   }
 

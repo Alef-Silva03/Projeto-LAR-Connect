@@ -25,11 +25,13 @@ public class UsuarioService {
    @Transactional
    public Usuario update(String email, UsuarioUpdateDTO usuarioUpdateDto) {
       Usuario usuario = (Usuario)this.usuarioRepository.findByEmailIgnoreCase(email).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado com e-mail: " + email));
-      if (usuarioUpdateDto.getIdCondominio() != null) {
+      if (usuarioUpdateDto.getIdCondominio() == -1) {
+          usuario.setCondominio(null);
+      } else if (usuarioUpdateDto.getIdCondominio() != null) {
          Condominio condominio = (Condominio)this.condominioRepository.findById(usuarioUpdateDto.getIdCondominio()).orElseThrow(() -> new EntityNotFoundException("Condomínio não encontrado com ID: " + usuarioUpdateDto.getIdCondominio()));
          usuario.setCondominio(condominio);
       }
-
+      
       if (usuarioUpdateDto.getNome() != null) {
          usuario.setNome(usuarioUpdateDto.getNome());
       }
@@ -65,11 +67,12 @@ public class UsuarioService {
       if (usuarioUpdateDto.getCargo() != null) {
          usuario.setCargo(usuarioUpdateDto.getCargo());
       }
+      
+      if (usuarioUpdateDto.getCondominio() != null) {
+          usuario.setCargo(usuarioUpdateDto.getCondominio());
+      }
 
       Usuario usuarioSalvo = (Usuario)this.usuarioRepository.save(usuario);
-      PrintStream var10000 = System.out;
-      Object var10001 = usuarioSalvo.getCondominio() != null ? usuarioSalvo.getCondominio().getId() : "NULL";
-      var10000.println("Usuário salvo. Condomínio no usuário salvo: " + String.valueOf(var10001));
       return usuarioSalvo;
    }
 

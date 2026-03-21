@@ -52,7 +52,7 @@
 .table-modern tbody tr:hover {
     background: rgba(0, 180, 216, 0.08);
     transform: translateY(-4px);
-    box-shadow: 0 15px 35px -8px rgba(0, 180, 216, 0.5);
+    box-shadow: 0 5px 17px -8px rgba(0, 180, 216, 0.5);
     
 }
 
@@ -88,12 +88,7 @@
     font-weight: 700;
     font-size: 1.1rem;
     color: white;
-    box-shadow: 0 8px 18px rgba(0, 180, 216, 0.3);
     transition: 0.2s;
-}
-
-tr:hover .avatar-mini {
-    box-shadow: 0 10px 22px rgba(0, 180, 216, 0.6);
 }
 
 /* Badge de apartamento */
@@ -149,12 +144,6 @@ tr:hover .badge-pill {
     box-shadow: 0 0 20px #FF4D6D;
 }
 
-/* Texto secundário com fallback */
-.text-secondary-light {
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 400;
-}
-
 .nome {
     font-weight: 600;
     color: white;
@@ -175,12 +164,6 @@ tr:hover .badge-pill {
     backdrop-filter: blur(25px);
     border-radius: 40px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.text-gradient {
-    background: linear-gradient(90deg, #00B4D8, #90E0EF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .form-label-custom {
