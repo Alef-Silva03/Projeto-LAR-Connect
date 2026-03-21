@@ -9,6 +9,7 @@ import com.projeto.larconnect.model.StatusVaga;
 import com.projeto.larconnect.model.Vaga;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface VagaRepository extends JpaRepository<Vaga, Long> {
@@ -16,6 +17,7 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
     List<Vaga> findByCondominioId(Long condominioId);
     List<Vaga> findByCondominioIdAndStatus(Long condominioId, StatusVaga status);
     boolean existsByNumero(String numero);
+    Optional<Vaga> findByNumeroAndCondominioId(String numero, Long condominioId);
     
     @Query("SELECT v FROM Vaga v WHERE v.preco BETWEEN :min AND :max")
     List<Vaga> findByPrecoBetween(@Param("min") BigDecimal min, @Param("max") BigDecimal max);

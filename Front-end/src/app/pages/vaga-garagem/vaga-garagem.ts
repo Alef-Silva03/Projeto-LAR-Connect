@@ -1,234 +1,213 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { finalize, timeout } from 'rxjs';
 import { VagaService } from '../../services/vaga.service';
-import { Vaga } from '../../models/vaga.model';
+import { ElegibilidadeAnuncioVaga, Vaga } from '../../models/vaga.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-vaga-garagem',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, FormsModule],
   providers: [VagaService],
   templateUrl: './vaga-garagem.html',
   styleUrl: './vaga-garagem.css',
 })
 export class VagaGaragem implements OnInit {
   vagas: Vaga[] = [];
-  filtroAtivo: string = 'Todas';
-  loading: boolean = false;
+  filtroAtivo = 'Todas';
+  loading = false;
   error: string | null = null;
-
-  // Mapeamento de status para exibição
-  statusMap: { [key: string]: { text: string; class: string } } = {
-    'disponivel': { text: 'DISPONÍVEL', class: 'disponivel' },
-    'reservada': { text: 'RESERVADA', class: 'reservada' },
-    'vendida': { text: 'VENDIDA', class: 'vendida' },
-    'indisponivel': { text: 'INDISPONÍVEL', class: 'indisponivel' }
+  private loadingFallbackId: ReturnType<typeof setTimeout> | null = null;
+  elegibilidade: ElegibilidadeAnuncioVaga | null = null;
+  anuncio = {
+    descricao: '',
+    preco: null as number | null,
+    andar: ''
   };
 
-  constructor(private vagaService: VagaService) {}
+  statusMap: { [key: string]: { text: string; class: string } } = {
+    DISPONIVEL: { text: 'DISPONIVEL', class: 'disponivel' },
+    RESERVADA: { text: 'RESERVADA', class: 'reservada' },
+    VENDIDA: { text: 'VENDIDA', class: 'vendida' },
+    INDISPONIVEL: { text: 'INDISPONIVEL', class: 'indisponivel' }
+  };
+
+  constructor(
+  private vagaService: VagaService,
+  private authService: AuthService,
+  private cdr: ChangeDetectorRef
+) {}
+
 
   ngOnInit(): void {
     this.carregarVagas();
+    this.carregarElegibilidade();
   }
 
   carregarVagas(): void {
     this.loading = true;
     this.error = null;
-    
+    console.log('carregarVagas iniciou');
+  
     this.vagaService.listarVagas().subscribe({
-      next: (response) => {
-        if (response && response.content) {
-          this.vagas = response.content.map(vaga => ({
-            ...vaga,
-            disponivel: vaga.status === 'disponivel' // Atualiza disponível baseado no status
-          }));
-        } else {
-          this.vagas = (response as any).map((vaga: any) => ({
-            ...vaga,
-            disponivel: vaga.status === 'disponivel'
-          }));
-        }
+      next: (vagas) => {
+        console.log('vagas ok', vagas);
+        this.vagas = vagas;
         this.loading = false;
+        this.error = null;
+        this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error('Erro ao carregar vagas:', err);
-        this.error = 'Erro ao carregar vagas. Tente novamente.';
+        console.log('status vagas', err?.status);
+        console.log('erro vagas', err);
+        this.vagas = [];
         this.loading = false;
-        
-        // Fallback para dados locais em caso de erro
-        this.carregarVagasFallback();
+        this.error = `Erro ao carregar vagas: ${err?.status ?? 'sem status'}`;
+        this.cdr.detectChanges();
+      },
+      complete: () => {
+        console.log('carregarVagas complete');
+        this.loading = false;
+        this.cdr.detectChanges();
       }
     });
   }
+  
+  
 
-  carregarVagasFallback(): void {
-    // Dados de exemplo com os novos status
-    this.vagas = [
-      { 
-        id: 1, 
-        proprietario: 'Alef Silva', 
-        numero: 'A1', 
-        localizacao: 'A-01',
-        valor: 25000,
-        status: 'vendida', 
-        disponivel: false 
+  carregarElegibilidade(): void {
+    this.vagaService.consultarElegibilidadeAnuncio().subscribe({
+      next: (response) => {
+        this.elegibilidade = response;
+        this.cdr.detectChanges();
       },
-      { 
-        id: 2, 
-        proprietario: '', 
-        numero: 'A2', 
-        localizacao: 'A-02',
-        valor: 27000,
-        status: 'disponivel', 
-        disponivel: true 
-      },
-      { 
-        id: 3, 
-        proprietario: 'Carlos', 
-        numero: 'A3', 
-        localizacao: 'A-03',
-        valor: 32000,
-        status: 'reservada', 
-        disponivel: false 
-      },
-      { 
-        id: 4, 
-        proprietario: '', 
-        numero: 'B1', 
-        localizacao: 'B-01',
-        valor: 35000,
-        status: 'disponivel', 
-        disponivel: true 
-      },
-      { 
-        id: 5, 
-        proprietario: 'João', 
-        numero: 'B2', 
-        localizacao: 'B-02',
-        valor: 28000,
-        status: 'indisponivel', 
-        disponivel: false 
-      },
-      { 
-        id: 6, 
-        proprietario: '', 
-        numero: 'C1', 
-        localizacao: 'C-01',
-        valor: 45000,
-        status: 'disponivel', 
-        disponivel: true 
+      error: (err) => {
+        console.error('Erro ao consultar elegibilidade:', err);
+        this.elegibilidade = {
+          podeAnunciar: false,
+          motivo: 'Nao foi possivel validar se sua vaga pode ser anunciada agora.'
+        };
+        this.cdr.detectChanges();
       }
-    ];
+    });
   }
+  
 
   filtrarVagas(tipo: string): void {
     this.filtroAtivo = tipo;
-    
+
     if (tipo === 'Todas') {
       this.carregarVagas();
       return;
     }
-    
-    // Para "Disponíveis para Venda" - filtra apenas disponíveis
+
     this.loading = true;
-    this.vagaService.listarVagasDisponiveis().subscribe({
-      next: (vagas) => {
-        this.vagas = vagas.map(vaga => ({
-          ...vaga,
-          disponivel: vaga.status === 'disponivel'
-        }));
+    this.error = null;
+    this.iniciarFallbackDeLoading();
+    this.vagaService.listarVagasDisponiveis().pipe(
+      timeout(8000),
+      finalize(() => {
+        this.limparFallbackDeLoading();
         this.loading = false;
+      })
+    ).subscribe({
+      next: (vagas) => {
+        this.vagas = vagas;
       },
       error: (err) => {
         console.error('Erro ao filtrar vagas:', err);
-        // Fallback: filtrar localmente
-        this.vagas = this.vagas.filter(v => v.status === 'disponivel');
-        this.loading = false;
+        this.error = 'Nao foi possivel filtrar as vagas agora.';
+      }
+    });
+  }
+
+  anunciarMinhaVaga(): void {
+    if (!this.elegibilidade?.podeAnunciar) {
+      alert(this.elegibilidade?.motivo || 'Sua conta nao pode anunciar vaga no momento.');
+      return;
+    }
+
+    if (!this.anuncio.descricao.trim() || !this.anuncio.preco || this.anuncio.preco <= 0) {
+      alert('Preencha descricao e preco da vaga para anunciar.');
+      return;
+    }
+
+    this.vagaService.anunciarMinhaVaga({
+      descricao: this.anuncio.descricao.trim(),
+      preco: this.anuncio.preco,
+      andar: this.anuncio.andar || undefined
+    }).subscribe({
+      next: () => {
+        alert('Sua vaga foi anunciada com sucesso.');
+        this.anuncio = { descricao: '', preco: null, andar: '' };
+        this.carregarVagas();
+      },
+      error: (err) => {
+        console.error('Erro ao anunciar vaga:', err);
+        alert(err.error?.message || err.error || 'Nao foi possivel anunciar sua vaga.');
       }
     });
   }
 
   comprarVaga(id: number): void {
-    // Verifica se a vaga ainda está disponível antes de comprar
     const vaga = this.vagas.find(v => v.id === id);
-    if (!vaga || vaga.status !== 'disponivel') {
-      alert('Esta vaga não está mais disponível para compra.');
-      this.carregarVagas(); // Recarrega para atualizar
+    const usuario = this.authService.getCurrentUser();
+
+    if (!vaga || vaga.status !== 'DISPONIVEL') {
+      alert('Esta vaga nao esta mais disponivel para compra.');
+      this.carregarVagas();
+      return;
+    }
+
+    if (!usuario?.id) {
+      alert('Faça login novamente para comprar a vaga.');
       return;
     }
 
     this.loading = true;
-    this.vagaService.comprarVaga(id).subscribe({
-      next: (response) => {
-        console.log(`Compra iniciada para vaga ${id}`, response);
-        alert('Processo de compra iniciado com sucesso! Entraremos em contato.');
-        this.carregarVagas(); // Recarrega a lista
-        this.loading = false;
+    this.vagaService.comprarVaga(id, usuario.id).subscribe({
+      next: () => {
+        alert('Processo de compra iniciado com sucesso.');
+        this.carregarVagas();
       },
       error: (err) => {
         console.error(`Erro ao comprar vaga ${id}:`, err);
-        alert('Erro ao processar compra. Tente novamente.');
+        alert(err.error?.message || err.error || 'Erro ao processar compra. Tente novamente.');
         this.loading = false;
       }
     });
-  }
-
-  reservarVaga(id: number): void {
-    const vaga = this.vagas.find(v => v.id === id);
-    if (!vaga || vaga.status !== 'disponivel') {
-      alert('Esta vaga não está disponível para reserva.');
-      return;
-    }
-
-    this.loading = true;
-    this.vagaService.reservarVaga(id).subscribe({
-      next: (response) => {
-        console.log(`Vaga ${id} reservada com sucesso`, response);
-        alert('Vaga reservada com sucesso! Você tem 24h para finalizar a compra.');
-        this.carregarVagas();
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error(`Erro ao reservar vaga ${id}:`, err);
-        alert('Erro ao reservar vaga. Tente novamente.');
-        this.loading = false;
-      }
-    });
-  }
-
-  getStatusInfo(status: string): { text: string; class: string } {
-    return this.statusMap[status] || { text: status.toUpperCase(), class: 'indisponivel' };
   }
 
   getBotaoTexto(vaga: Vaga): string {
-    switch(vaga.status) {
-      case 'disponivel':
+    switch (vaga.status) {
+      case 'DISPONIVEL':
         return 'COMPRAR';
-      case 'reservada':
+      case 'RESERVADA':
         return 'RESERVADA';
-      case 'vendida':
+      case 'VENDIDA':
         return 'VENDIDA';
-      case 'indisponivel':
-        return 'INDISPONÍVEL';
+      case 'INDISPONIVEL':
+        return 'INDISPONIVEL';
       default:
-        return 'INDISPONÍVEL';
+        return 'INDISPONIVEL';
     }
   }
 
   isBotaoHabilitado(vaga: Vaga): boolean {
-    return vaga.status === 'disponivel';
+    return vaga.status === 'DISPONIVEL';
   }
 
   acaoBotao(vaga: Vaga): void {
-    if (vaga.status === 'disponivel') {
+    if (vaga.status === 'DISPONIVEL') {
       this.comprarVaga(vaga.id);
     }
-    // Para outros status, o botão está desabilitado
   }
 
   formatarValor(vaga: Vaga): string {
-    return `R$ ${vaga.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    return `R$ ${Number(vaga.preco).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   }
 
   getStatusClass(status: string): string {
@@ -236,6 +215,23 @@ export class VagaGaragem implements OnInit {
   }
 
   getStatusText(status: string): string {
-    return this.statusMap[status]?.text || status.toUpperCase();
+    return this.statusMap[status]?.text || status;
+  }
+
+  private iniciarFallbackDeLoading(): void {
+    this.limparFallbackDeLoading();
+    this.loadingFallbackId = setTimeout(() => {
+      if (this.loading) {
+        this.loading = false;
+        this.error = 'A busca de vagas demorou mais do que o esperado. Verifique o back-end e a aba Network do navegador.';
+      }
+    }, 9000);
+  }
+
+  private limparFallbackDeLoading(): void {
+    if (this.loadingFallbackId) {
+      clearTimeout(this.loadingFallbackId);
+      this.loadingFallbackId = null;
+    }
   }
 }

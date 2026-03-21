@@ -1,49 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Vaga, VagaResponse } from '../models/vaga.model';
+import { AnuncioVagaRequest, ElegibilidadeAnuncioVaga, Vaga } from '../models/vaga.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VagaService {
-  // Ajuste a URL base conforme sua API
-  private apiUrl = 'http://localhost:8080/api/vagas';
+  private apiUrl = '/api/vagas';
+  private compraApiUrl = '/api/compras-vagas';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  // Buscar todas as vagas com paginação
-  listarVagas(page: number = 0, size: number = 10): Observable<VagaResponse> {
-    return this.http.get<VagaResponse>(`${this.apiUrl}?page=${page}&size=${size}`);
+  listarVagas(): Observable<Vaga[]> {
+    return this.http.get<Vaga[]>(this.apiUrl, { withCredentials: true });
   }
 
-  // Buscar vagas disponíveis para venda
   listarVagasDisponiveis(): Observable<Vaga[]> {
-    return this.http.get<Vaga[]>(`${this.apiUrl}/disponiveis`);
+    return this.http.get<Vaga[]>(`${this.apiUrl}/disponiveis`, { withCredentials: true });
   }
 
-  // Buscar vaga por ID
   buscarVagaPorId(id: number): Observable<Vaga> {
-    return this.http.get<Vaga>(`${this.apiUrl}/${id}`);
+    return this.http.get<Vaga>(`${this.apiUrl}/${id}`, { withCredentials: true });
   }
 
-  // Comprar vaga
-  comprarVaga(id: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${id}/comprar`, {});
+  consultarElegibilidadeAnuncio(): Observable<ElegibilidadeAnuncioVaga> {
+    return this.http.get<ElegibilidadeAnuncioVaga>(`${this.apiUrl}/minha/elegibilidade-anuncio`, { withCredentials: true });
   }
 
-  // Reservar vaga
-  reservarVaga(id: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${id}/reservar`, {});
+  anunciarMinhaVaga(payload: AnuncioVagaRequest): Observable<Vaga> {
+    return this.http.post<Vaga>(`${this.apiUrl}/minha/anunciar`, payload, { withCredentials: true });
   }
 
-  // Liberar vaga (quando desocupar ou cancelar reserva)
-  liberarVaga(id: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}/liberar`, {});
-  }
-
-  // Filtrar vagas por status
-  filtrarPorStatus(status: string): Observable<Vaga[]> {
-    return this.http.get<Vaga[]>(`${this.apiUrl}/status/${status}`);
+  comprarVaga(vagaId: number, compradorId: number): Observable<unknown> {
+    return this.http.post(`${this.compraApiUrl}/iniciar`, {
+      vagaId,
+      compradorId,
+      metodoPagamento: 'PIX',
+      observacoes: 'Compra iniciada pelo painel de vagas'
+    }, { withCredentials: true });
   }
 }

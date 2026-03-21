@@ -1,17 +1,31 @@
+export type StatusVaga = 'DISPONIVEL' | 'RESERVADA' | 'VENDIDA' | 'INDISPONIVEL';
+
 export interface Vaga {
-    id: number;
-    proprietario?: string;
-    numero: string;
-    localizacao: string;  // Ex: "A-12", "B-05"
-    valor: number;        // Valor de venda
-    status: 'disponivel' | 'reservada' | 'vendida' | 'indisponivel';
-    disponivel: boolean;  // true se status for 'disponivel'
+  id: number;
+  numero: string;
+  bloco: string;
+  andar?: string;
+  descricao: string;
+  preco: number;
+  status: StatusVaga;
+  condominioId?: number;
+  nomeCondominio?: string;
+  proprietario?: string;
+  dataCriacao?: string;
 }
 
-export interface VagaResponse {
-    content: Vaga[];
-    totalElements: number;
-    totalPages: number;
-    size: number;
-    number: number;
+export interface ElegibilidadeAnuncioVaga {
+  podeAnunciar: boolean;
+  motivo: string;
+  usuarioId?: number;
+  condominioId?: number;
+  nomeCondominio?: string;
+  numeroVaga?: string;
+  bloco?: string;
+}
+
+export interface AnuncioVagaRequest {
+  descricao: string;
+  preco: number;
+  andar?: string;
 }

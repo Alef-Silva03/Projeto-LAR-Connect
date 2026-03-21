@@ -751,7 +751,8 @@ E LISTA DE VAGAS ===== */
 
 /* Sombra para dar destaque (igual à imagem) */
 .painel-e-vagas tbody {
-    box-shadow: 4px 4px 70px black;
+    box-shadow: 2px 2px 30px black;
+    border-radius: 20px;
 }
 
 .painel-e-vagas #botoes2 {

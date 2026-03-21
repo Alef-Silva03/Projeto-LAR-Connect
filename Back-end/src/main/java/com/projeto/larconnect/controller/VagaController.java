@@ -1,5 +1,7 @@
 package com.projeto.larconnect.controller;
 
+import com.projeto.larconnect.dto.AnuncioVagaRequestDTO;
+import com.projeto.larconnect.dto.ElegibilidadeAnuncioVagaDTO;
 import com.projeto.larconnect.dto.VagaRequestDTO;
 import com.projeto.larconnect.dto.VagaResponseDTO;
 import com.projeto.larconnect.model.StatusVaga;
@@ -8,6 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -15,10 +18,10 @@ import java.util.List;
 @RequestMapping("/api/vagas")
 public class VagaController {
     private final VagaService vagaService;
-    
-     public VagaController(VagaService vagaService) {
-		this.vagaService = vagaService;
-	}
+
+    public VagaController(VagaService vagaService) {
+        this.vagaService = vagaService;
+    }
 
     @GetMapping
     public ResponseEntity<List<VagaResponseDTO>> listarTodas() {
@@ -28,6 +31,11 @@ public class VagaController {
     @GetMapping("/disponiveis")
     public ResponseEntity<List<VagaResponseDTO>> listarDisponiveis() {
         return ResponseEntity.ok(vagaService.listarDisponiveis());
+    }
+
+    @GetMapping("/minha/elegibilidade-anuncio")
+    public ResponseEntity<ElegibilidadeAnuncioVagaDTO> consultarElegibilidadeAnuncio() {
+        return ResponseEntity.ok(vagaService.consultarElegibilidadeAnuncio());
     }
 
     @GetMapping("/{id}")
@@ -50,6 +58,11 @@ public class VagaController {
     @PostMapping
     public ResponseEntity<VagaResponseDTO> criarVaga(@Valid @RequestBody VagaRequestDTO request) {
         return new ResponseEntity<>(vagaService.criarVaga(request), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/minha/anunciar")
+    public ResponseEntity<VagaResponseDTO> anunciarMinhaVaga(@Valid @RequestBody AnuncioVagaRequestDTO request) {
+        return new ResponseEntity<>(vagaService.anunciarMinhaVaga(request), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

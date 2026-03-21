@@ -14,6 +14,7 @@ public class VagaResponseDTO {
     private StatusVaga status;
     private Long condominioId;
     private String nomeCondominio;
+    private String proprietario;
     private LocalDateTime dataCriacao;
     
 	public Long getId() {
@@ -69,6 +70,12 @@ public class VagaResponseDTO {
 	}
 	public void setNomeCondominio(String nomeCondominio) {
 		this.nomeCondominio = nomeCondominio;
+	}
+	public String getProprietario() {
+		return proprietario;
+	}
+	public void setProprietario(String proprietario) {
+		this.proprietario = proprietario;
 	}
 	public LocalDateTime getDataCriacao() {
 		return dataCriacao;

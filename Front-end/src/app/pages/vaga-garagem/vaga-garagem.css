@@ -1,10 +1,8 @@
-/* ===== REESTRUTURAÇÃO COMPLETA: VAGAS COMERCIAIS ===== */
-
 .painel-e-vagas {
     padding-top: 140px;
-    background: radial-gradient(circle at top, #1B263B 0%, #0D1B2A 100%);
+    background: radial-gradient(circle at top, #1b263b 0%, #0d1b2a 100%);
     min-height: 100vh;
-    color: #E0E1DD;
+    color: #e0e1dd;
 }
 
 .glass-container {
@@ -12,145 +10,194 @@
     margin: 0 auto;
 }
 
-/* Títulos com Degradê */
+.announcement-card {
+    max-width: 640px;
+    margin: 0 auto 40px;
+    background: linear-gradient(180deg, rgba(29, 42, 68, 0.92) 0%, rgba(24, 35, 57, 0.9) 100%);
+    border: 1px solid rgba(144, 224, 239, 0.2);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 14px 34px rgba(5, 10, 22, 0.28);
+}
+
+.section-title {
+    color: #90e0ef;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.helper-text {
+    color: #d8f3ff;
+    margin-bottom: 18px;
+}
+
+.helper-warning {
+    color: #ffd166;
+}
+
+.announcement-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    align-items: center;
+}
+
+.announcement-form input {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #e0e1dd;
+    border-radius: 14px;
+    padding: 12px 14px;
+}
+
+.announcement-form input::placeholder {
+    color: rgba(224, 225, 221, 0.65);
+}
+
 .text-gradient {
-    background: linear-gradient(90deg, #00B4D8, #90E0EF);
+    background: linear-gradient(90deg, #00b4d8, #90e0ef);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 800;
     font-size: 2.5rem;
 }
 
-/* Filtros Estilo Pílula */
 .filter-item {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px 25px;
     border-radius: 50px;
-    color: #E0E1DD;
+    color: #e0e1dd;
     transition: 0.3s;
 }
 
-.filter-item.active, .filter-item:hover {
+.filter-item.active,
+.filter-item:hover {
     background: rgba(0, 180, 216, 0.2);
-    border-color: #00B4D8;
+    border-color: #00b4d8;
     box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
 }
 
-/* Tabela Profissional sem Fundo Branco */
-table {
+.table-shell {
+    max-width: 980px;
+    margin: 0 auto;
+    padding-top: 8px;
+}
+
+#tabela-comercial {
     width: 100%;
+}
+
+table {
+    width: 82%;
+    max-width: 860px;
+    margin: 0 auto;
     border-collapse: separate;
-    border-spacing: 0 15px; /* Efeito de pílulas flutuantes */
+    border-spacing: 0 10px;
+    border-radius: 30px;
+    table-layout: fixed;
 }
 
-tbody tr {
-    background: rgba(27, 38, 59, 0.6) !important; /* Vidro fumê escuro */
-    transition: 0.3s ease-in-out;
-}
-
-tbody tr:hover {
-    background: rgba(65, 90, 119, 0.4) !important;
-    transform: translateY(-3px);
-}
-
-td {
-    padding: 20px;
-    border: none;
+thead th {
+    padding: 0 18px 10px;
+    color: #dfe7f1;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    text-align: center;
     vertical-align: middle;
 }
 
-td:first-child { border-radius: 20px 0 0 20px; }
-td:last-child { border-radius: 0 20px 20px 0; }
+tbody tr {
+    background: rgba(30, 43, 68, 0.88) !important;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 8px 20px rgba(7, 14, 28, 0.14);
+}
 
-/* Elementos de Destaque */
+tbody tr:hover {
+    background: rgba(40, 58, 89, 0.92) !important;
+    transform: translateY(-2px);
+}
+
+td {
+    padding: 16px 18px;
+    border: none;
+    vertical-align: middle;
+    text-align: center;
+}
+
+td:first-child {
+    border-radius: 14px 0 0 14px;
+}
+
+td:last-child {
+    border-radius: 0 14px 14px 0;
+}
+
 .vaga-id {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
-    color: #90E0EF;
+    color: #90e0ef;
+    font-size: 1rem;
 }
 
 .valor {
     font-weight: 700;
-    font-size: 1.1rem;
-    color: #E0E1DD;
+    font-size: 1.02rem;
+    color: #00b4d8;
 }
 
-/* Badges de Tipo */
-.badge-tipo {
-    padding: 5px 15px;
-    border-radius: 8px;
-    font-size: 0.75rem;
-    font-weight: 800;
-}
-
-.venda { background: rgba(0, 180, 216, 0.1); color: #00B4D8; border: 1px solid #00B4D8; }
-.aluguel { background: rgba(255, 183, 3, 0.1); color: #FFB703; border: 1px solid #FFB703; }
-
-/* Botão de Ação Neon */
 .btn-acao-neon {
-    background: #00B4D8;
-    color: #0D1B2A;
+    background: #00b4d8;
+    color: #0d1b2a;
     border: none;
-    padding: 10px 25px;
+    min-width: 124px;
+    padding: 10px 20px;
     border-radius: 50px;
     font-weight: 800;
     font-size: 0.8rem;
     transition: 0.3s;
-    box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+    box-shadow: 0 8px 18px rgba(0, 180, 216, 0.2);
 }
 
-.btn-acao-neon:hover {
-    background: #90E0EF;
-    box-shadow: 0 0 25px rgba(0, 180, 216, 0.7);
-    transform: scale(1.05);
+.btn-acao-neon:hover:not(:disabled) {
+    background: #90e0ef;
+    box-shadow: 0 10px 22px rgba(0, 180, 216, 0.3);
+    transform: translateY(-1px);
 }
 
-/* Estados de Status */
+.status-indicator {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
 .status-indicator.disponivel {
-    background: rgba(40, 167, 69, 0.1);
+    background: rgba(40, 167, 69, 0.12);
     color: #28a745;
     border: 1px solid #28a745;
 }
 
 .status-indicator.reservada {
-    background: rgba(255, 193, 7, 0.1);
+    background: rgba(255, 193, 7, 0.12);
     color: #ffc107;
     border: 1px solid #ffc107;
 }
 
 .status-indicator.vendida {
-    background: rgba(108, 117, 125, 0.1);
-    color: #6c757d;
+    background: rgba(108, 117, 125, 0.12);
+    color: #c6ccd2;
     border: 1px solid #6c757d;
 }
 
 .status-indicator.indisponivel {
-    background: rgba(220, 53, 69, 0.1);
+    background: rgba(220, 53, 69, 0.12);
     color: #dc3545;
     border: 1px solid #dc3545;
 }
 
-/* Botões por status */
-.btn-acao-neon {
-    background: #00B4D8;
-    color: #0D1B2A;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: 0.8rem;
-    transition: 0.3s;
-    box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
-}
-
-.btn-acao-neon:hover:not(:disabled) {
-    background: #90E0EF;
-    box-shadow: 0 0 25px rgba(0, 180, 216, 0.7);
-    transform: scale(1.05);
-}
-
-/* Botão para status reservada */
 .btn-reservada:disabled {
     background: #ffc107;
     color: #000;
@@ -158,7 +205,6 @@ td:last-child { border-radius: 0 20px 20px 0; }
     cursor: not-allowed;
 }
 
-/* Botão para status vendida */
 .btn-vendida:disabled {
     background: #6c757d;
     color: #fff;
@@ -166,7 +212,6 @@ td:last-child { border-radius: 0 20px 20px 0; }
     cursor: not-allowed;
 }
 
-/* Botão para status indisponivel */
 .btn-indisponivel:disabled {
     background: #dc3545;
     color: #fff;
@@ -174,7 +219,6 @@ td:last-child { border-radius: 0 20px 20px 0; }
     cursor: not-allowed;
 }
 
-/* Botão desabilitado padrão */
 .btn-acao-neon:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -186,27 +230,62 @@ td:last-child { border-radius: 0 20px 20px 0; }
     box-shadow: none;
 }
 
-/* Loading Spinner */
 .spinner-border {
     width: 3rem;
     height: 3rem;
 }
 
-/* Ajuste na tabela */
 table th:first-child,
 table td:first-child {
-    width: 30%;
+    width: 38%;
 }
 
-.valor {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #00B4D8;
+table th:nth-child(2),
+table td:nth-child(2) {
+    width: 18%;
 }
 
-/* Texto do proprietário */
+table th:nth-child(3),
+table td:nth-child(3) {
+    width: 18%;
+}
+
+table th:last-child,
+table td:last-child {
+    width: 26%;
+}
+
+.col-acao {
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.acao-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .text-muted {
     color: #adb5bd !important;
     font-size: 0.8rem;
-    margin-top: 4px;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .announcement-card {
+        margin-bottom: 28px;
+        padding: 20px;
+    }
+
+    #tabela-comercial {
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 760px;
+    }
 }

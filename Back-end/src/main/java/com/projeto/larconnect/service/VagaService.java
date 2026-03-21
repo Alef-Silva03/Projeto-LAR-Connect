@@ -1,14 +1,21 @@
 package com.projeto.larconnect.service;
 
+import com.projeto.larconnect.dto.AnuncioVagaRequestDTO;
+import com.projeto.larconnect.dto.ElegibilidadeAnuncioVagaDTO;
 import com.projeto.larconnect.dto.VagaRequestDTO;
 import com.projeto.larconnect.dto.VagaResponseDTO;
 import com.projeto.larconnect.model.Condominio;
-import com.projeto.larconnect.model.Vaga;
 import com.projeto.larconnect.model.StatusVaga;
+import com.projeto.larconnect.model.Usuario;
+import com.projeto.larconnect.model.Vaga;
 import com.projeto.larconnect.repository.CondominioRepository;
+import com.projeto.larconnect.repository.UsuarioRepository;
 import com.projeto.larconnect.repository.VagaRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,10 +24,15 @@ import java.util.stream.Collectors;
 public class VagaService {
     private final VagaRepository vagaRepository;
     private final CondominioRepository condominioRepository;
-    
-    public VagaService(VagaRepository vagaRepository, CondominioRepository condominioRepository) {
+    private final UsuarioRepository usuarioRepository;
+
+    public VagaService(
+            VagaRepository vagaRepository,
+            CondominioRepository condominioRepository,
+            UsuarioRepository usuarioRepository) {
         this.vagaRepository = vagaRepository;
         this.condominioRepository = condominioRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<VagaResponseDTO> listarTodas() {
@@ -37,7 +49,7 @@ public class VagaService {
 
     public VagaResponseDTO buscarPorId(Long id) {
         Vaga vaga = vagaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Vaga não encontrada com ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Vaga nao encontrada com ID: " + id));
         return converterParaDTO(vaga);
     }
 
@@ -56,11 +68,11 @@ public class VagaService {
     @Transactional
     public VagaResponseDTO criarVaga(VagaRequestDTO request) {
         if (vagaRepository.existsByNumero(request.getNumero())) {
-            throw new RuntimeException("Já existe uma vaga com este número");
+            throw new RuntimeException("Ja existe uma vaga com este numero");
         }
 
         Condominio condominio = condominioRepository.findById(request.getCondominioId())
-                .orElseThrow(() -> new RuntimeException("Condomínio não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Condominio nao encontrado"));
 
         Vaga vaga = new Vaga();
         vaga.setNumero(request.getNumero());
@@ -76,9 +88,34 @@ public class VagaService {
     }
 
     @Transactional
+    public VagaResponseDTO anunciarMinhaVaga(AnuncioVagaRequestDTO request) {
+        Usuario usuario = getUsuarioAutenticado();
+        ElegibilidadeAnuncioVagaDTO elegibilidade = montarElegibilidade(usuario);
+
+        if (!elegibilidade.isPodeAnunciar()) {
+            throw new RuntimeException(elegibilidade.getMotivo());
+        }
+
+        Long condominioId = usuario.getCondominio().getId();
+        Vaga vaga = vagaRepository.findByNumeroAndCondominioId(usuario.getVaga(), condominioId)
+                .orElseGet(Vaga::new);
+
+        vaga.setNumero(usuario.getVaga());
+        vaga.setBloco(usuario.getBloco() != null && !usuario.getBloco().isBlank() ? usuario.getBloco() : "Sem bloco");
+        vaga.setAndar(request.getAndar());
+        vaga.setDescricao(request.getDescricao());
+        vaga.setPreco(request.getPreco());
+        vaga.setCondominio(usuario.getCondominio());
+        vaga.setStatus(StatusVaga.DISPONIVEL);
+
+        Vaga vagaSalva = vagaRepository.save(vaga);
+        return converterParaDTO(vagaSalva);
+    }
+
+    @Transactional
     public VagaResponseDTO atualizarVaga(Long id, VagaRequestDTO request) {
         Vaga vaga = vagaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Vaga não encontrada"));
+                .orElseThrow(() -> new RuntimeException("Vaga nao encontrada"));
 
         vaga.setNumero(request.getNumero());
         vaga.setBloco(request.getBloco());
@@ -93,16 +130,59 @@ public class VagaService {
     @Transactional
     public void deletarVaga(Long id) {
         Vaga vaga = vagaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Vaga não encontrada"));
+                .orElseThrow(() -> new RuntimeException("Vaga nao encontrada"));
         vagaRepository.delete(vaga);
     }
 
     @Transactional
     public void atualizarStatus(Long id, StatusVaga status) {
         Vaga vaga = vagaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Vaga não encontrada"));
+                .orElseThrow(() -> new RuntimeException("Vaga nao encontrada"));
         vaga.setStatus(status);
         vagaRepository.save(vaga);
+    }
+
+    public ElegibilidadeAnuncioVagaDTO consultarElegibilidadeAnuncio() {
+        Usuario usuario = getUsuarioAutenticado();
+        return montarElegibilidade(usuario);
+    }
+
+    private Usuario getUsuarioAutenticado() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication.getName() == null || "anonymousUser".equals(authentication.getName())) {
+            throw new RuntimeException("Usuario nao autenticado");
+        }
+
+        return usuarioRepository.findByEmailIgnoreCase(authentication.getName())
+                .orElseThrow(() -> new RuntimeException("Usuario nao encontrado"));
+    }
+
+    private ElegibilidadeAnuncioVagaDTO montarElegibilidade(Usuario usuario) {
+        ElegibilidadeAnuncioVagaDTO dto = new ElegibilidadeAnuncioVagaDTO();
+        dto.setUsuarioId(usuario.getId());
+        dto.setNumeroVaga(usuario.getVaga());
+        dto.setBloco(usuario.getBloco());
+
+        if (usuario.getCondominio() != null) {
+            dto.setCondominioId(usuario.getCondominio().getId());
+            dto.setNomeCondominio(usuario.getCondominio().getNomeCondominio());
+        }
+
+        if (usuario.getCondominio() == null) {
+            dto.setPodeAnunciar(false);
+            dto.setMotivo("Voce precisa estar vinculado a um condominio pelo sindico para anunciar sua vaga.");
+            return dto;
+        }
+
+        if (usuario.getVaga() == null || usuario.getVaga().isBlank()) {
+            dto.setPodeAnunciar(false);
+            dto.setMotivo("Voce precisa ter uma vaga registrada no seu cadastro para anunciar.");
+            return dto;
+        }
+
+        dto.setPodeAnunciar(true);
+        dto.setMotivo("Usuario apto a anunciar a vaga.");
+        return dto;
     }
 
     private VagaResponseDTO converterParaDTO(Vaga vaga) {
@@ -115,12 +195,17 @@ public class VagaService {
         dto.setPreco(vaga.getPreco());
         dto.setStatus(vaga.getStatus());
         dto.setDataCriacao(vaga.getDataCriacao());
-        
+
         if (vaga.getCondominio() != null) {
             dto.setCondominioId(vaga.getCondominio().getId());
             dto.setNomeCondominio(vaga.getCondominio().getNomeCondominio());
+
+            usuarioRepository.findByCondominioId(vaga.getCondominio().getId()).stream()
+                    .filter(usuario -> vaga.getNumero().equalsIgnoreCase(usuario.getVaga()))
+                    .findFirst()
+                    .ifPresent(usuario -> dto.setProprietario(usuario.getNome()));
         }
-        
+
         return dto;
     }
 }
