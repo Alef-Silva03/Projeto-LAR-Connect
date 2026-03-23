@@ -71,7 +71,8 @@ public class ReservaService {
     
     private ReservaResponseDTO convertToDTO(Reserva reserva) {
         return new ReservaResponseDTO(
-            reserva.getDataReserva(),
+        	reserva.getId(),
+        	reserva.getDataReserva(),
             reserva.getLocal(),
             reserva.getUsuario()
         );

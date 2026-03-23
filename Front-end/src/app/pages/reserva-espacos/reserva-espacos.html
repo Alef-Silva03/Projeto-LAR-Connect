@@ -120,6 +120,7 @@
                                         <td class="col text-center">{{ reserva.dataReserva | date:'dd/MM/yyyy'  }}</td>
                                         @if (reserva.usuario.id == getUsuario().id) {
                                             <td class="col">
+                                                
                                                 <button type="submit" (click)="excluirReserva(reserva.id)" class="btn-action-icon" title="Remover">
                                                     <i class="bi bi-trash"></i>
                                                 </button>

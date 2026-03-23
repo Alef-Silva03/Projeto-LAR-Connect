@@ -19,7 +19,7 @@ export class ReservaService {
         return this.http.get<ReservaResponse[]>('http://localhost:8080/reservas/listar', {withCredentials: true});
       }
     
-    excluirReserva(id: any): Observable<void> {
-        return this.http.delete<void>('http://localhost:8080/reservas/excluir/${id}', {withCredentials: true})
+    excluirReserva(id: number): Observable<void> {
+        return this.http.delete<void>(`http://localhost:8080/reservas/excluir/${id}`, {withCredentials: true})
       }
 }

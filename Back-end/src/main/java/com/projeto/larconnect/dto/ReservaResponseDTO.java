@@ -7,18 +7,28 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.projeto.larconnect.model.Usuario;
 
 public class ReservaResponseDTO {
+	private long id;
     private Date dataReserva;
     private String local;
 	private Usuario usuario;
 	
 	public ReservaResponseDTO() {}
 	
-	public ReservaResponseDTO(Date dataReserva, String local, Usuario usuario) {
+	public ReservaResponseDTO(long id, Date dataReserva, String local, Usuario usuario) {
+		this.id = id;
         this.dataReserva = dataReserva;
         this.local = local;
         this.usuario = usuario;
 	}
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	public Date getDataReserva() {
 		return dataReserva;
 	}

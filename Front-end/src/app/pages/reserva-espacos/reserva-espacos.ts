@@ -73,7 +73,7 @@ export class ReservaEspacos implements OnInit {
             return;
         }
         const usuario = JSON.parse(usuarioString);
-
+        
         this.reserva.idCondominio = usuario.condominio.id;
         this.reserva.idUsuario = usuario.id
         
@@ -90,14 +90,12 @@ export class ReservaEspacos implements OnInit {
     this.reservaService.listarReservas().subscribe({
         next: (data) => {
         this.reservas = data;
-        console.log(this.reservas)
         this.cdr.detectChanges();
         },
         error: (err) => console.error('Erro ao carregar Reservas', err)
         });
     }
 
-    // NOVA LINHA - Método auxiliar para pegar o objeto correto baseado no local
     private getReservaPorLocal(local: string): ReservaRequest {
         switch(local) {
             case 'churrasqueira':
@@ -121,46 +119,38 @@ export class ReservaEspacos implements OnInit {
         }
         const usuario = JSON.parse(usuarioString);
 
-        // NOVAS LINHAS - Usa o objeto específico do local
         const reservaEspecifica = this.getReservaPorLocal(local.toString());
         
         this.reserva.local = local;
         this.reserva.idCondominio = usuario.condominio.id;
         this.reserva.idUsuario = usuario.id
         
-        // NOVA LINHA - Usa a reserva específica para enviar
         const reservaParaEnviar = reservaEspecifica;
         
         this.reservaService.realizarReserva(reservaParaEnviar).subscribe({
-        next: (response: any) => { // NOVA LINHA - Adicionado tipo any para aceitar diferentes tipos de resposta
-            // NOVAS LINHAS - Verifica se a resposta é um objeto ou texto
+        next: (response: any) => {
             if (typeof response === 'string') {
-                alert(response); // Se for string, exibe diretamente
+                alert(response); 
             } else if (response && response.mensagem) {
                 alert(response.mensagem);
             } else {
                 alert('Reserva feita com sucesso!');
             }
             
-            // NOVAS LINHAS - Limpa apenas o campo do formulário específico
             reservaEspecifica.dataReserva = undefined;
             
-            // NOVA LINHA - Atualiza a lista de reservas
             this.listarReservas();
         },
-        error: (err: HttpErrorResponse) => { // NOVA LINHA - Tipagem específica para erro
+        error: (err: HttpErrorResponse) => { 
             console.error('Erro ao fazer reserva.', err);
             
-            // NOVAS LINHAS - Tratamento especial para erro com status 201 (sucesso mas com texto)
             if (err.status === 201 && err.error && err.error.text) {
-                alert(err.error.text); // Exibe o texto de sucesso que veio no erro
-                // Limpa o campo do formulário específico mesmo no caso de "erro" de parsing
+                alert(err.error.text); 
                 reservaEspecifica.dataReserva = undefined;
                 this.listarReservas();
                 return;
             }
             
-            // NOVAS LINHAS - Tratamento para outros tipos de erro
             let mensagemErro = 'Erro ao realizar reserva. Verifique o console.';
             if (err.error) {
                 if (typeof err.error === 'string') {
@@ -176,7 +166,7 @@ export class ReservaEspacos implements OnInit {
     });
   }
 
-  excluirReserva(id: number | undefined) {
+  excluirReserva(id: number) {
     if (confirm('Tem certeza de que deseja excluir esta reserva?')) {
       this.reservaService.excluirReserva(id).subscribe({
         next: () => {
@@ -190,7 +180,6 @@ export class ReservaEspacos implements OnInit {
     }
   }
 
-  // NOVA LINHA - Método melhorado para trocar a tabela
   escolhaTabela(escolha: string){
     if (escolha == 'churrasqueira'){
         localStorage.setItem('escolhaTabela', 'churrasqueira');

@@ -4,8 +4,8 @@ export interface ReservaRequest {
   id?: number;
   local: String;
   dataReserva?: Date;
-  idCondominio: number;
   idUsuario: number
+  idCondominio: number;
 }
 
 export interface ReservaResponse extends ReservaRequest {
