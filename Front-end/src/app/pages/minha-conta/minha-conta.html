@@ -12,7 +12,7 @@
                     (click)="mudarAba('dados-pessoais')">
                     <i class="bi bi-person-circle"></i> Dados Pessoais
                 </button>
-                <button class="nav-pill-item" [class.active]="abaAtiva === 'seguranca'" (click)="mudarAba('seguranca')">
+                <!--<button class="nav-pill-item" [class.active]="abaAtiva === 'seguranca'" (click)="mudarAba('seguranca')">
                     <i class="bi bi-shield-lock"></i> Segurança
                 </button>
                 <button class="nav-pill-item" [class.active]="abaAtiva === 'boletos'" (click)="mudarAba('boletos')">
@@ -21,17 +21,20 @@
                 <button class="nav-pill-item" [class.active]="abaAtiva === 'notificacoes'"
                     (click)="mudarAba('notificacoes')">
                     <i class="bi bi-bell"></i> Notificações
-                </button>
-                <div class="text-center mt-5">
+                </button>-->
+                <div class="text-center mt-1">
                     <button (click)="logout()" class="btn-sair-pill">
                         <i class="bi bi-box-arrow-right"></i> SAIR DA CONTA
                     </button>
                 </div>
+                <div class="text-center mt-1">
+                    <button (click)="logout()" class="btn-sair-pill">
+                        <i class="bi bi-trash"></i> EXCLUIR CONTA
+                    </button>
+                </div>  
             </div>
 
-            <!-- Conteúdo dinâmico -->
             <div class="col-md-8">
-                <!-- DADOS PESSOAIS -->
                 <div class="conteudo-aba" *ngIf="abaAtiva === 'dados-pessoais'">
                     <h3 class="titulo-aba">DADOS PESSOAIS</h3>
 

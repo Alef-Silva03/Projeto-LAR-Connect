@@ -1,6 +1,8 @@
 package com.projeto.larconnect.model;
 
 
+import java.sql.Date;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,23 +22,11 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(unique = true, nullable = true) 
-    private String reservaChurrasqueira;
+    @Column(unique = true, nullable = false) 
+    private Date dataReserva;
     
-    @Column(unique = true, nullable = true) 
-    private String reservaSalao;
-    
-    @Column(unique = true, nullable = true) 
-    private String reservaPlayground;
-          
-    @Column(unique = true, nullable = true) 
-    private String reservaAcademia;
-    
-    @Column(unique = true, nullable = true) 
-    private String reservaQuadra;
-    
-    @Column(unique = true, nullable = true) 
-    private String reservaCinema;
+    @Column(nullable = false) 
+    private String local;
     
     @ManyToOne
     @JoinColumn(name = "idCondominio", referencedColumnName = "id")
@@ -54,52 +44,20 @@ public class Reserva {
 		this.id = id;
 	}
 
-	public String getReservaChurrasqueira() {
-		return reservaChurrasqueira;
+	public Date getDataReserva() {
+		return dataReserva;
 	}
 
-	public void setReservaChurrasqueira(String reservaChurrasqueira) {
-		this.reservaChurrasqueira = reservaChurrasqueira;
+	public void setDataReserva(Date dataReserva) {
+		this.dataReserva = dataReserva;
 	}
 
-	public String getReservaSalao() {
-		return reservaSalao;
+	public String getLocal() {
+		return local;
 	}
 
-	public void setReservaSalao(String reservaSalao) {
-		this.reservaSalao = reservaSalao;
-	}
-
-	public String getReservaPlayground() {
-		return reservaPlayground;
-	}
-
-	public void setReservaPlayground(String reservaPlayground) {
-		this.reservaPlayground = reservaPlayground;
-	}
-
-	public String getReservaAcademia() {
-		return reservaAcademia;
-	}
-
-	public void setReservaAcademia(String reservaAcademia) {
-		this.reservaAcademia = reservaAcademia;
-	}
-
-	public String getReservaQuadra() {
-		return reservaQuadra;
-	}
-
-	public void setReservaQuadra(String reservaQuadra) {
-		this.reservaQuadra = reservaQuadra;
-	}
-
-	public String getReservaCinema() {
-		return reservaCinema;
-	}
-
-	public void setReservaCinema(String reservaCinema) {
-		this.reservaCinema = reservaCinema;
+	public void setLocal(String local) {
+		this.local = local;
 	}
 
 	public Condominio getCondominio() {

@@ -2,8 +2,9 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Reserva } from '../../models/reserva.model';
+import { ReservaRequest, ReservaResponse } from '../../models/reserva.model';
 import { ReservaService } from '../../services/reserva-service';
+import { HttpErrorResponse } from '@angular/common/http'; // NOVA LINHA - Import necessário
 
 @Component({
   selector: 'app-reserva-espacos',
@@ -14,15 +15,41 @@ import { ReservaService } from '../../services/reserva-service';
 })
 
 export class ReservaEspacos implements OnInit {
-    reserva: Reserva = {
-        reservaChurrasqueira: undefined,
-        reservaSalao: undefined,
-        reservaPlayground: undefined,
-        reservaAcademia: undefined,
-        reservaQuadra: undefined,
-        reservaCinema: undefined,
+    reservas: ReservaResponse[] = [];
+    reserva: ReservaRequest = {
+        local: '',
+        dataReserva: undefined,
         idCondominio: 0,
-        idUsuario: 0
+        idUsuario: 0,
+    };
+
+    // NOVAS LINHAS - Objetos separados para cada formulário
+    reservaChurrasqueira: ReservaRequest = {
+        local: 'churrasqueira',
+        dataReserva: undefined,
+        idCondominio: 0,
+        idUsuario: 0,
+    };
+    
+    reservaSalao: ReservaRequest = {
+        local: 'salao',
+        dataReserva: undefined,
+        idCondominio: 0,
+        idUsuario: 0,
+    };
+    
+    reservaPlayground: ReservaRequest = {
+        local: 'playground',
+        dataReserva: undefined,
+        idCondominio: 0,
+        idUsuario: 0,
+    };
+    
+    reservaQuadra: ReservaRequest = {
+        local: 'quadra',
+        dataReserva: undefined,
+        idCondominio: 0,
+        idUsuario: 0,
     };
 
     constructor(
@@ -32,11 +59,15 @@ export class ReservaEspacos implements OnInit {
     ) {}
     
     ngOnInit(): void {
-        this.cdr.detectChanges();
+    this.cdr.detectChanges();
+    let escolha = 'churrasqueira'
+    localStorage.setItem('escolhaTabela', escolha)
+    this.listarReservas();
+    this.cdr.detectChanges();
     }
 
-    realizarReserva(): void {
-        const usuarioString = localStorage.getItem('usuario');
+    listarReservas(): void {
+     const usuarioString = localStorage.getItem('usuario');
         if (!usuarioString) {
             alert('Usuário não encontrado. Faça login novamente.');
             return;
@@ -45,19 +76,149 @@ export class ReservaEspacos implements OnInit {
 
         this.reserva.idCondominio = usuario.condominio.id;
         this.reserva.idUsuario = usuario.id
-        console.log(this.reserva)
-        this.reservaService.realizarReserva(this.reserva).subscribe({
-        next: () => {
-            alert('Reserva feita com sucesso!');
+        
+        // NOVAS LINHAS - Atualiza os objetos separados com os dados do usuário
+        this.reservaChurrasqueira.idCondominio = usuario.condominio.id;
+        this.reservaChurrasqueira.idUsuario = usuario.id;
+        this.reservaSalao.idCondominio = usuario.condominio.id;
+        this.reservaSalao.idUsuario = usuario.id;
+        this.reservaPlayground.idCondominio = usuario.condominio.id;
+        this.reservaPlayground.idUsuario = usuario.id;
+        this.reservaQuadra.idCondominio = usuario.condominio.id;
+        this.reservaQuadra.idUsuario = usuario.id;
+        
+    this.reservaService.listarReservas().subscribe({
+        next: (data) => {
+        this.reservas = data;
+        console.log(this.reservas)
+        this.cdr.detectChanges();
         },
-        error: (err) => {
+        error: (err) => console.error('Erro ao carregar Reservas', err)
+        });
+    }
+
+    // NOVA LINHA - Método auxiliar para pegar o objeto correto baseado no local
+    private getReservaPorLocal(local: string): ReservaRequest {
+        switch(local) {
+            case 'churrasqueira':
+                return this.reservaChurrasqueira;
+            case 'salao':
+                return this.reservaSalao;
+            case 'playground':
+                return this.reservaPlayground;
+            case 'quadra':
+                return this.reservaQuadra;
+            default:
+                return this.reserva;
+        }
+    }
+
+    realizarReserva(local: String): void {
+        const usuarioString = localStorage.getItem('usuario');
+        if (!usuarioString) {
+            alert('Usuário não encontrado. Faça login novamente.');
+            return;
+        }
+        const usuario = JSON.parse(usuarioString);
+
+        // NOVAS LINHAS - Usa o objeto específico do local
+        const reservaEspecifica = this.getReservaPorLocal(local.toString());
+        
+        this.reserva.local = local;
+        this.reserva.idCondominio = usuario.condominio.id;
+        this.reserva.idUsuario = usuario.id
+        
+        // NOVA LINHA - Usa a reserva específica para enviar
+        const reservaParaEnviar = reservaEspecifica;
+        
+        this.reservaService.realizarReserva(reservaParaEnviar).subscribe({
+        next: (response: any) => { // NOVA LINHA - Adicionado tipo any para aceitar diferentes tipos de resposta
+            // NOVAS LINHAS - Verifica se a resposta é um objeto ou texto
+            if (typeof response === 'string') {
+                alert(response); // Se for string, exibe diretamente
+            } else if (response && response.mensagem) {
+                alert(response.mensagem);
+            } else {
+                alert('Reserva feita com sucesso!');
+            }
+            
+            // NOVAS LINHAS - Limpa apenas o campo do formulário específico
+            reservaEspecifica.dataReserva = undefined;
+            
+            // NOVA LINHA - Atualiza a lista de reservas
+            this.listarReservas();
+        },
+        error: (err: HttpErrorResponse) => { // NOVA LINHA - Tipagem específica para erro
             console.error('Erro ao fazer reserva.', err);
-            const mensagem = err.error || 'Erro ao realizar reserva. Verifique o console.';
-            alert(`Erro ao cadastrar: ${mensagem}`);
-
-
+            
+            // NOVAS LINHAS - Tratamento especial para erro com status 201 (sucesso mas com texto)
+            if (err.status === 201 && err.error && err.error.text) {
+                alert(err.error.text); // Exibe o texto de sucesso que veio no erro
+                // Limpa o campo do formulário específico mesmo no caso de "erro" de parsing
+                reservaEspecifica.dataReserva = undefined;
+                this.listarReservas();
+                return;
+            }
+            
+            // NOVAS LINHAS - Tratamento para outros tipos de erro
+            let mensagemErro = 'Erro ao realizar reserva. Verifique o console.';
+            if (err.error) {
+                if (typeof err.error === 'string') {
+                    mensagemErro = err.error;
+                } else if (err.error.message) {
+                    mensagemErro = err.error.message;
+                } else if (err.message) {
+                    mensagemErro = err.message;
+                }
+            }
+            alert(`Erro ao cadastrar: ${mensagemErro}`);
         }
     });
   }
 
+  excluirReserva(id: number | undefined) {
+    if (confirm('Tem certeza de que deseja excluir esta reserva?')) {
+      this.reservaService.excluirReserva(id).subscribe({
+        next: () => {
+          this.reservas = this.reservas.filter(reserva => reserva.id !== id);
+          this.cdr.detectChanges();
+        },
+        error: () => {
+          alert('Erro no processo de exclusão');
+        }
+      });
+    }
+  }
+
+  // NOVA LINHA - Método melhorado para trocar a tabela
+  escolhaTabela(escolha: string){
+    if (escolha == 'churrasqueira'){
+        localStorage.setItem('escolhaTabela', 'churrasqueira');
+    } else if (escolha == 'playground'){
+        localStorage.setItem('escolhaTabela', 'playground');
+    } else if (escolha == 'quadra'){
+        localStorage.setItem('escolhaTabela', 'quadra');
+    } else if (escolha == 'salao'){
+        localStorage.setItem('escolhaTabela', 'salao');
+    }
+    this.cdr.detectChanges();
+  }
+
+  getEscolhaTabela(): string{
+    let escolhaTabela = localStorage.getItem('escolhaTabela');
+    if (escolhaTabela != null){
+        return escolhaTabela
+    }
+    return ''
+  }
+
+  getUsuario(){
+    const usuarioString = localStorage.getItem('usuario');
+    if (!usuarioString) {
+        alert('Usuário não encontrado. Faça login novamente.');
+        return;
+    }
+    const usuario = JSON.parse(usuarioString);
+    return usuario
+  }
 }

@@ -6,58 +6,31 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.projeto.larconnect.dto.ReservaResponseDTO;
 import com.projeto.larconnect.dto.ReservaRequestDTO;
-import com.projeto.larconnect.model.Condominio;
-import com.projeto.larconnect.model.Reserva;
-import com.projeto.larconnect.model.Usuario;
-import com.projeto.larconnect.repository.CondominioRepository;
-import com.projeto.larconnect.repository.ReservaRepository;
-import com.projeto.larconnect.repository.UsuarioRepository;
+import com.projeto.larconnect.service.ReservaService;
+
+import jakarta.validation.Valid;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/reservas")
-@CrossOrigin(origins = "http://localhost:4200") // permite chamadas do Angular
+@CrossOrigin(origins = "http://localhost:4200")
 public class ReservaController {
-
-    @Autowired
-    private ReservaRepository reservaRepository;
-    
-    @Autowired
-    private CondominioRepository condominioRepository;
-    
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private ReservaService reservaService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createReserva(@RequestBody ReservaRequestDTO dto) {
+    public ResponseEntity<String> create(@Valid @RequestBody ReservaRequestDTO request) {
         try {
-            Reserva reserva = new Reserva();
-            reserva.setReservaChurrasqueira(dto.getReservaChurrasqueira());
-            reserva.setReservaSalao(dto.getReservaSalao());
-            reserva.setReservaPlayground(dto.getReservaPlayground());
-            reserva.setReservaAcademia(dto.getReservaAcademia());
-            reserva.setReservaQuadra(dto.getReservaQuadra());
-            reserva.setReservaCinema(dto.getReservaCinema());
-
-            // Buscar entidades pelo ID
-            Condominio condominio = condominioRepository.findById(dto.getIdCondominio())
-                    .orElseThrow(() -> new RuntimeException("Condomínio não encontrado"));
-            Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
-                    .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
-            reserva.setCondominio(condominio);
-            reserva.setUsuario(usuario);
-
-            Reserva saved = reservaRepository.save(reserva);
-
+        	reservaService.create(request);
             Map<String, Object> response = new HashMap<>();
-            response.put("id", saved.getId());
             response.put("message", "Reserva criada com sucesso!");
-
-            return ResponseEntity.ok(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Reserva cadastrada com sucesso!");
 
         } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
@@ -66,5 +39,17 @@ public class ReservaController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("Erro ao cadastrar: " + e.getMessage());
         }
+    }
+    
+    @GetMapping("/listar")
+    public ResponseEntity<List<ReservaResponseDTO>> listar() {
+        List<ReservaResponseDTO> chat = reservaService.getReservas();
+        return ResponseEntity.ok(chat);
+    }
+    
+    @DeleteMapping("/excluir/{id}")
+    public ResponseEntity<Void> excluirReserva(@PathVariable Long id) {
+        reservaService.excluirReserva(id);
+        return ResponseEntity.noContent().build();
     }
 }

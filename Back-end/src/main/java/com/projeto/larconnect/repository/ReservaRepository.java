@@ -17,6 +17,6 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
     Optional<Reserva> findById(Long id);
 
-    List<Reserva> findByCondominioId(Long condominioId);
+    List<Reserva> findByCondominioIdOrderByIdDesc(Long condominioId);
     
 }

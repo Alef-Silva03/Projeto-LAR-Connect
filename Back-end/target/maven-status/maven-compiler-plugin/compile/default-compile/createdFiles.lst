@@ -2,6 +2,7 @@ com\projeto\larconnect\controller\FuncionarioController.class
 com\projeto\larconnect\dto\UsuarioUpdateDTO.class
 com\projeto\larconnect\controller\VagaController.class
 com\projeto\larconnect\dto\FuncionarioResponseDTO.class
+com\projeto\larconnect\service\ReservaService.class
 com\projeto\larconnect\controller\ComunicadoController.class
 com\projeto\larconnect\dto\LoginDTO.class
 com\projeto\larconnect\repository\EncomendaRepository.class
@@ -60,6 +61,7 @@ com\projeto\larconnect\dto\VagaResponseDTO.class
 com\projeto\larconnect\model\Notificacao.class
 com\projeto\larconnect\controller\AuthController.class
 com\projeto\larconnect\controller\ProprietarioController.class
+com\projeto\larconnect\dto\ReservaResponseDTO.class
 com\projeto\larconnect\dto\VagaRequestDTO.class
 com\projeto\larconnect\dto\CompraVagaResponseDTO.class
 com\projeto\larconnect\service\UsuarioService.class

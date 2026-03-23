@@ -1,23 +1,21 @@
-<article class="container-fluid reservas-container">
+<article class="reservas-container">
     <div class="glass-card shadow-lg p-5">
         <header class="text-center mb-5">
-            <span class="badge-neon">GESTÃO DE ÁREAS COMUNS</span>
             <h1 class="text-gradient">RESERVAR ESPAÇOS</h1>
-            <p class="subtitulo">Consulte a disponibilidade e gerencie as datas do seu condomínio</p>
+            <p class="subtitulo">Consulte a disponibilidade e reserve espaços no condomínio para eventos</p>
         </header>
 
         <div class="row g-4">
-
             <div class="col-md-6 col-lg-4">
-                <form (ngSubmit)="realizarReserva()">
+                <form (ngSubmit)="realizarReserva('churrasqueira')">
                     <div class="card-espaco-glass">
                         <div class="icon-area">
                             <i class="bi bi-fire"></i>
                         </div>
                         <h3 class="mt-3">Churrasqueira</h3>
-                        <div class="date-picker-section mt-5 d-flex justify-content-center">
+                        <div class="mt-5 d-flex justify-content-center">
                             <div class="pill-input-group w-50">
-                                <input type="date" name="reservaChurrasqueira" [(ngModel)]="reserva.reservaChurrasqueira" class="form-input-pill">
+                                <input type="date" name="dataReserva" [(ngModel)]="reservaChurrasqueira.dataReserva" class="form-input-pill">
                             </div>
                         </div>
                         <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
@@ -26,7 +24,7 @@
             </div>
 
             <div class="col-md-6 col-lg-4">
-                <form (ngSubmit)="realizarReserva()">
+                <form (ngSubmit)="realizarReserva('salao')">
                     <div class="card-espaco-glass">
                         <div class="icon-area">
                             <i class="bi bi-music-note-beamed"></i>
@@ -34,7 +32,7 @@
                         <h3 class="mt-3">Salão de Festas</h3>
                         <div class="date-picker-section mt-5 d-flex justify-content-center">
                             <div class="pill-input-group w-50">
-                                <input type="date" name="reservaSalao" [(ngModel)]="reserva.reservaSalao" class="form-input-pill">
+                                <input type="date" name="dataReserva" [(ngModel)]="reservaSalao.dataReserva" class="form-input-pill">
                             </div>
                         </div>
                         <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
@@ -43,7 +41,7 @@
             </div>
 
             <div class="col-md-6 col-lg-4">
-                <form (ngSubmit)="realizarReserva()">
+                <form (ngSubmit)="realizarReserva('playground')">
                 <div class="card-espaco-glass">
                     <div class="icon-area">
                         <i class="bi bi-person-arms-up"></i>
@@ -51,7 +49,7 @@
                     <h3 class="mt-3">Playground</h3>
                     <div class="date-picker-section mt-5 d-flex justify-content-center">
                         <div class="pill-input-group w-50">
-                            <input type="date" name="reservaPlayground" [(ngModel)]="reserva.reservaPlayground" class="form-input-pill">
+                            <input type="date" name="playground" [(ngModel)]="reservaPlayground.dataReserva" class="form-input-pill">
                         </div>
                     </div>
                     <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
@@ -60,33 +58,15 @@
             </div>
 
             <div class="col-md-6 col-lg-4">
-                <form (ngSubmit)="realizarReserva()">
-                    <div class="card-espaco-glass">
-                        <div class="icon-area">
-                            <i class="bi bi-hypnotize"></i>
-                        </div>
-                        <h3 class="mt-3">Academia</h3>
-                        <div class="date-picker-section mt-5 d-flex justify-content-center">
-                            <div class="pill-input-group w-50">
-                                <input type="date" name="reservaAcademia" [(ngModel)]="reserva.reservaAcademia" class="form-input-pill">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
-                    </div>
-                </form>
-
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <form (ngSubmit)="realizarReserva()">
+                <form (ngSubmit)="realizarReserva('quadra')">
                     <div class="card-espaco-glass">
                         <div class="icon-area">
                             <i class="bi bi-dribbble"></i>
                         </div>
-                        <h3 class="mt-3">Quadra Esportiva</h3>
+                        <h3 class="mt-3">Quadra</h3>
                         <div class="date-picker-section mt-5 d-flex justify-content-center">
                             <div class="pill-input-group w-50">
-                                <input type="date" name="reservaQuadra" [(ngModel)]="reserva.reservaQuadra" class="form-input-pill">
+                                <input type="date" name="reservaQuadra" [(ngModel)]="reservaQuadra.dataReserva" class="form-input-pill">
                             </div>
                         </div>
                         <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
@@ -94,21 +74,97 @@
                 </form>
             </div>
 
-            <div class="col-md-6 col-lg-4">
-                <form (ngSubmit)="realizarReserva()">
-                    <div class="card-espaco-glass">
-                        <div class="icon-area">
-                            <i class="bi bi-film"></i>
-                        </div>
-                        <h3 class="mt-3">Espaço Cinema</h3>
-                        <div class="date-picker-section mt-5 d-flex justify-content-center">
-                            <div class="pill-input-group w-50">
-                                <input type="date" name="reservaCinema" [(ngModel)]="reserva.reservaCinema" class="form-input-pill">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-reserva-neon mt-4">RESERVAR AGORA</button>
-                    </div>
-                </form>
+            <hr>
+
+            <h3>Listas de Reservas</h3>
+            <h5>Veja quais data estão indisponíveis para cada espaço</h5>
+            <div class="col align-items-center justify-content-center">
+                <div class="row btn-row">
+                    <button type="submit" name="escolha" value="churrasqueira" class="col btn-enviar-neon" (click)="escolhaTabela('churrasqueira')" [class.active]="getEscolhaTabela() === 'churrasqueira'">Churrasqueira</button>
+                    <button type="submit" name="escolha" value="salao" class="col btn-enviar-neon" (click)="escolhaTabela('salao')" [class.active]="getEscolhaTabela() === 'salao'">Salão</button>
+                    <button type="submit" name="escolha" value="playground" class="col btn-enviar-neon" (click)="escolhaTabela('playground')" [class.active]="getEscolhaTabela() === 'playground'">Playground</button>
+                    <button type="submit" name="escolha" value="quadra" class="col btn-enviar-neon" (click)="escolhaTabela('quadra')" [class.active]="getEscolhaTabela() === 'quadra'">Quadra</button>
+                </div>
+                <section id="tabela-glass" class="custom-scrollbar-table row">
+                    <table id="tabela" class="table-modern col">
+                        <thead>
+                            <tr class="row">
+                                <th class="col">Morador</th>
+                                <th class="col">Data da Reserva</th>
+                                <th class="col">Apagar Reserva</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let reserva of reservas" class="row-hover row">
+                                <ng-container>
+                                    @if (getEscolhaTabela() === 'churrasqueira' && reserva.local === 'churrasqueira') {
+                                        <td class="nome-morador col">
+                                            <p class="d-flex align-items-center gap-3 text-center row justify-content-center">{{ reserva.usuario.nome }}</p>
+                                        </td>
+                                        <td class="col text-center">{{ reserva.dataReserva | date:'dd/MM/yyyy'  }}</td>
+                                        @if (reserva.usuario.id == getUsuario().id) {
+                                            <td class="col">
+                                                <button type="submit" (click)="excluirReserva(reserva.id)" class="btn-action-icon" title="Remover">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        } @else {
+                                            <td class="col"></td>
+                                        }
+                                    }
+                                    
+                                    @if (getEscolhaTabela() === 'playground' && reserva.local === 'playground') {
+                                        <td class="nome-morador col">
+                                            <p class="d-flex align-items-center gap-3 text-center row justify-content-center">{{ reserva.usuario.nome }}</p>
+                                        </td>
+                                        <td class="col text-center">{{ reserva.dataReserva | date:'dd/MM/yyyy'  }}</td>
+                                        @if (reserva.usuario.id == getUsuario().id) {
+                                            <td class="col">
+                                                <button type="submit" (click)="excluirReserva(reserva.id)" class="btn-action-icon" title="Remover">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        } @else {
+                                            <td class="col"></td>
+                                        }
+                                    }
+                                    
+                                    @if (getEscolhaTabela() === 'quadra' && reserva.local === 'quadra') {
+                                        <td class="nome-morador col">
+                                            <p class="d-flex align-items-center gap-3 text-center row justify-content-center">{{ reserva.usuario.nome }}</p>
+                                        </td>
+                                        <td class="col text-center">{{ reserva.dataReserva | date:'dd/MM/yyyy'  }}</td>
+                                        @if (reserva.usuario.id == getUsuario().id) {
+                                            <td class="col">
+                                                <button type="submit" (click)="excluirReserva(reserva.id)" class="btn-action-icon" title="Remover">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        } @else {
+                                            <td class="col"></td>
+                                        }
+                                    }
+                                    
+                                    @if (getEscolhaTabela() === 'salao' && reserva.local === 'salao') {
+                                        <td class="nome-morador col">
+                                            <p class="d-flex align-items-center gap-3 text-center row justify-content-center">{{ reserva.usuario.nome }}</p>
+                                        </td>
+                                        <td class="col text-center">{{ reserva.dataReserva | date:'dd/MM/yyyy' }}</td>
+                                        @if (reserva.usuario.id == getUsuario().id) {
+                                            <td class="col">
+                                                <button type="submit" (click)="excluirReserva(reserva.id)" class="btn-action-icon" title="Remover">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        } @else {
+                                            <td class="col"></td>
+                                        }
+                                    }
+                                </ng-container>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
             </div>
         </div>
     </div>
