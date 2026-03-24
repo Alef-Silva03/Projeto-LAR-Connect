@@ -47,8 +47,9 @@ public class MensagemPrivada {
     @JoinColumn(name = "idAutor", referencedColumnName = "id")
     private Usuario autor;
 
-    @Column(nullable = true) 
-    private long destinatario;
+	@OneToOne
+    @JoinColumn(name = "idDestinatario", referencedColumnName = "id")
+    private Usuario destinatario;
     
 	public Long getId() {
 		return id;
@@ -114,11 +115,11 @@ public class MensagemPrivada {
 		this.autor = autor;
 	}
 
-	public long getDestinatario() {
+	public Usuario getDestinatario() {
 		return destinatario;
 	}
 
-	public void setDestinatario(long destinatario) {
+	public void setDestinatario(Usuario destinatario) {
 		this.destinatario = destinatario;
 	}
 }

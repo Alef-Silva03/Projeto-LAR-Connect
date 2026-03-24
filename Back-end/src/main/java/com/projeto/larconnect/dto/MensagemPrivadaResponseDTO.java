@@ -17,12 +17,12 @@ public class MensagemPrivadaResponseDTO {
 	private LocalDateTime data;
 	
 	private Usuario autor;
-	private long destinatario;
+	private Usuario destinatario;
 	private Condominio condominio;
 	
 	public MensagemPrivadaResponseDTO() {}
 	
-	public MensagemPrivadaResponseDTO(Long id, String tipo, String titulo, String assunto, String texto, LocalDateTime data, Condominio condominio, Usuario autor, long destinatario) {
+	public MensagemPrivadaResponseDTO(Long id, String tipo, String titulo, String assunto, String texto, LocalDateTime data, Condominio condominio, Usuario autor, Usuario destinatario) {
         this.id = id;
         this.tipo = tipo;
         this.titulo = titulo;
@@ -77,10 +77,10 @@ public class MensagemPrivadaResponseDTO {
 	public void setAutor(Usuario autor) {
 		this.autor = autor;
 	}
-	public long getDestinatario() {
+	public Usuario getDestinatario() {
 		return destinatario;
 	}
-	public void setDestinatario(long destinatario) {
+	public void setDestinatario(Usuario destinatario) {
 		this.destinatario = destinatario;
 	}
 
@@ -91,5 +91,4 @@ public class MensagemPrivadaResponseDTO {
 	public Condominio getCondominio() {
 		return condominio;
 	}
-
 }
