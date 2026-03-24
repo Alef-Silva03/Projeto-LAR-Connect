@@ -41,8 +41,8 @@ a, h6, h5, h4, h3, h2, h1, p {
     font-family: sans-serif
 }
 
-h1, h1 span {
-    font-family: Oswald
+h6, h5, h4, h3, h2, h1, span, label, th {
+    font-family: Oswald, sans-serif
 }
 
 textarea, option{

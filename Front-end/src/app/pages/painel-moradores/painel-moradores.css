@@ -24,18 +24,27 @@
 .table-modern {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 12px;
+    border-spacing: 0 1px;
+}
+
+.table-glass-card{
+    background: rgba(27, 38, 59, 0.7);
+    backdrop-filter: blur(25px);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .table-modern thead th {
     color: #90E0EF;
     font-weight: 700;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-    padding: 12px 20px;
+    padding: 12px 50px;
     background: transparent;
-    border: none; /* Removida qualquer borda */
+    border: none; 
+    text-align: center;
+
 }
 
 .table-modern tbody tr {
@@ -45,23 +54,26 @@
     transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2);
     border: none; /* SEM BORDAS */
     position: relative;
-    overflow: hidden; /* Garante que o conteúdo respeite o border-radius */
-    
+    overflow: hidden;
+        border-spacing: 10px;
 }
 
 .table-modern tbody tr:hover {
-    background: rgba(0, 180, 216, 0.08);
+    background-color: rgba(0, 180, 216, 0.1) !important;
     transform: translateY(-4px);
-    box-shadow: 0 5px 17px -8px rgba(0, 180, 216, 0.5);
-    
 }
 
 .table-modern tbody td {
     padding: 16px 20px;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.9);
+    text-align: center;
     border: none; /* SEM BORDAS */
     background: transparent; /* Fundo transparente para aparecer o fundo da linha */
+}
+
+.nome-morador {
+    text-align: left !important;
 }
 
 /* Primeira célula com border-radius à esquerda */

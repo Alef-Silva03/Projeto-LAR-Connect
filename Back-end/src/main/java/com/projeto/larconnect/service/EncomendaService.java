@@ -29,7 +29,7 @@ public class EncomendaService {
 
         // 2. Registra a Encomenda
         Encomenda enc = new Encomenda();
-        enc.setMorador(moradorObj.getNome());
+        enc.setMorador(dto.getMoradorNome());
         enc.setDescricao(dto.getDescricao());
         enc.setDataChegada(LocalDateTime.now());
         enc.setEntregue(false);

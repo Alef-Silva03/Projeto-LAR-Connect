@@ -1,44 +1,42 @@
 <article class="container-fluid enquete-container">
     <div class="glass-card shadow-lg p-5 animate__animated animate__fadeIn">
         <header class="text-center mb-5">
-            <span class="badge-neon">DEMOCRACIA DIGITAL</span>
-            <h1 class="text-gradient">CRIAR ENQUETE OU VOTAÇÃO</h1>
+            <h1 class="text-gradient">ENQUETES E VOTAÇÔES</h1>
             <p class="subtitulo">Abra votações para decisões importantes do condomínio</p>
         </header>
 
+        @if (authService.getPerfil() === 'SINDICO'){
         <form class="form-enquete">
             <div class="mb-4">
                 <label class="label-neon">Pergunta ou Título da Votação</label>
-                <div class="pill-input-group">
-                    <i class="bi bi-question-circle ms-3 text-cyan"></i>
+                <div class="pill-input-group ">
                     <input type="text" [(ngModel)]="enquete.titulo" name="titulo" 
-                           placeholder="Ex: Qual cor devemos pintar o bloco A?" class="form-input-pill">
+                           placeholder="Ex: Qual cor devemos pintar o bloco A?" class="form-input-pill input-wrapper-pill d-flex align-items-center px-3 gap-2">
                 </div>
             </div>
 
             <div class="mb-4">
                 <label class="label-neon">Opções de Resposta</label>
-                <div *ngFor="let opcao of enquete.opcoes; let i = index; trackBy: trackByFn" class="pill-input-group mb-2 animate__animated animate__slideInLeft">
-                    <span class="ms-3 text-cyan fw-bold">{{ i + 1 }}</span>
-                    <input type="text" [(ngModel)]="enquete.opcoes[i]" [name]="'opcao' + i" 
-                           placeholder="Digite uma opção..." class="form-input-pill">
-                    <button type="button" (click)="removerOpcao(i)" class="btn-remove" *ngIf="enquete.opcoes.length > 2">
-                        <i class="bi bi-x-lg"></i>
-                    </button>
+                <div class="pill-input-group mb-2 animate__animated animate__slideInLeft">
+                    <input type="text" [(ngModel)]="enquete.opcao1" [name]="'opcao1'" 
+                           placeholder="Digite a primeira opção..." class="form-input-pill">
+                </div>
+                <div class="pill-input-group mb-2 animate__animated animate__slideInLeft">
+                    <input type="text" [(ngModel)]="enquete.opcao2" [name]="'opcao2'" 
+                           placeholder="Digite a segunda opção..." class="form-input-pill">
                 </div>
                 
-                <button type="button" (click)="adicionarOpcao()" class="btn-add-option mt-2">
+                <!--<button type="button" (click)="adicionarOpcao()" class="btn-add-option mt-2">
                     <i class="bi bi-plus-circle-fill me-2"></i> ADICIONAR OPÇÃO
-                </button>
+                </button>-->
             </div>
 
-            <hr class="border-light opacity-10 my-5">
+            <!--<hr class="border-light opacity-10 my-5">
 
             <div class="row mb-5">
                 <div class="col-md-6">
                     <label class="label-neon">Encerramento</label>
                     <div class="pill-input-group">
-                        <i class="bi bi-clock ms-3 text-cyan"></i>
                         <input type="date" [(ngModel)]="enquete.dataFim" name="dataFim" class="form-input-pill">
                     </div>
                 </div>
@@ -49,13 +47,76 @@
                         <option value="privada">Fechada (Apenas Síndico vê)</option>
                     </select>
                 </div>
-            </div>
+            </div>-->
 
             <div class="text-center">
-                <button type="button" (click)="publicarEnquete()" class="btn-neon-large">
+                <button type="button" (click)="criarEnquete()" class="btn-neon-large">
                     <i class="bi bi-megaphone-fill me-2"></i> PUBLICAR PARA MORADORES
                 </button>
             </div>
         </form>
+    }
+
+    <section class="mt-5">
+    <header class="text-center mb-5">
+      <h1 class="text-gradient display-5 fw-bold text-gradient h3 mb-4 text-center">PAINEL DE ENQUETES</h1>
+      <h3 class="subtitulo">Veja abaixo as enquetes do seu condomínio!</h3>
+    </header>
+    <div class="glass-card align-items-center justify-content-center m-0">
+      <div *ngIf="enquetes.length === 0" class="text-center text-muted align-items-center justify-content-center p-5" style="color: white !important;">
+        Nenhuma enquete postada.
+      </div>
+      </div>
+      <div class="row g-4">
+        <div *ngFor="let c of enquetes" class="col-12  mb-4">
+          <div class="painel card shadow-sm p-4 h-100 animate__animated animate__fadeIn animate__slow" style="background: rgba(5, 18, 43, 0.7); color: white; border-radius: 15px;">
+            <div class="row align-items-baseline">
+                <h6 class="text-gradient col-11" >Postado em: {{ c.data | date:'dd/MM/yyyy HH:mm:ss' }}</h6>
+                <button *ngIf="authService.getPerfil() === 'SINDICO'" (click)="atualizarEnquete(c.id)" class="btn-action-icon mb-4 col-1" title="Desativar">
+                    <i class="bi bi-x-circle"></i>
+                </button>
+            </div>
+            <h3 class="text-gradient display-6 fw-bold text-gradient h3 mb-4 text-center">{{ c.titulo }}</h3>
+            <hr>
+            <strong>Status: {{ c.ativo ? 'Ativa' : 'Encerrada' }}</strong>
+            <div style="word-wrap: break-word; margin-top: 10px" *ngIf="c.ativo" class="voting-section">
+                <form class="form-enquete">
+                    <div class="mb-3">
+                        <div class="mb-2">
+                            <label class="form-check-label">
+                                <input type="radio" name="voto{{c.id}}" value="opcao1" 
+                                       [(ngModel)]="c.votoSelecionado" [ngModelOptions]="{standalone: true}"
+                                       class="form-check-input me-2">
+                                {{ c.opcao1 }} <p class="text-muted" style="color: white !important;">({{ c.votosOpcao1 }})</p>
+                            </label>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-check-label">
+                                <input type="radio" name="voto{{c.id}}" value="opcao2" 
+                                       [(ngModel)]="c.votoSelecionado" [ngModelOptions]="{standalone: true}"
+                                       class="form-check-input me-2">
+                                {{ c.opcao2 }} <p class="text-muted" style="color:white !important;">({{ c.votosOpcao2 }})</p>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-neon mt-3" 
+                            (click)="registrarVoto(c, c.votoSelecionado)" 
+                            [disabled]="!c.votoSelecionado">
+                        VOTAR
+                    </button>
+                </form>
+            </div>
+            <div style="word-wrap: break-word; margin-top: 10px" *ngIf="!c.ativo" class="results-section">
+                <div class="mb-3">
+                    <p><strong>{{ c.opcao1 }}: {{ c.votosOpcao1 }} votos</strong></p>
+                    <p><strong>{{ c.opcao2 }}: {{ c.votosOpcao2 }} votos</strong></p>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
     </div>
 </article>

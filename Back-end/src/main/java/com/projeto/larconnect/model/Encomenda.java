@@ -23,6 +23,7 @@ public class Encomenda {
     private LocalDateTime dataChegada;
     private LocalDateTime dataEntrega; // Para o histórico
     private boolean entregue = false;
+    
 	public Long getId() {
 		return id;
 	}

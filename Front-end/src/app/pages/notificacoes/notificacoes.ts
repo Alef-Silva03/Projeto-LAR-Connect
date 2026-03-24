@@ -1,11 +1,14 @@
 import { ChangeDetectorRef,Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-notificacoes',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, FormsModule, RouterModule],
   templateUrl: './notificacoes.html',
   styleUrls: ['./notificacoes.css']
 })
@@ -13,16 +16,18 @@ export class Notificacoes implements OnInit {
   abaAtiva: string = 'entregas';
   encomendas$: any;
   historico: any[] = [];
-  console = console
+  console = console;
 
   private readonly API_URL = 'http://localhost:8080/api/portaria';
 
-  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) { }
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.cdr.detectChanges();
     this.encomendas$ = this.carregarEntregasAtivas();
     this.console.log(this.encomendas$)
+    this.cdr.detectChanges();
+    
   }
 
   getUsuarioNome(): number {

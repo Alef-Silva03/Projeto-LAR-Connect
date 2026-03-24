@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -11,33 +11,41 @@ import { gestaoEncomendasService } from '../../../services/gestao-encomendas';
   templateUrl: './gestao-encomendas.html',
   styleUrls: ['./gestao-encomendas.css']
 })
-export class GestaoEncomendas implements OnInit {
+export class GestaoEncomendas {
   novaEntrega = {
-    moradorNome: '',
+    dataChegada: new Date(),
+    morador: '',
     descricao: '',
   };
 
   encomendasPendentes: any[] = [];
 
-  constructor(private gestaoEncomendasService: gestaoEncomendasService) { }
+   constructor(
+    private gestaoEncomendasService: gestaoEncomendasService,
+    private cdr: ChangeDetectorRef
+  ) { }
+
+  atualizarLista() {
+    this.gestaoEncomendasService.listarEncomendas().subscribe({
+      next: (dados: any[]) => {
+        this.encomendasPendentes = dados;
+        this.cdr.detectChanges(); // Força a detecção de mudanças
+      },
+      error: (err) => console.error("Erro ao buscar encomendas", err)
+    });
+  }
 
   ngOnInit() {
     this.atualizarLista();
   }
 
-  atualizarLista() {
-    this.gestaoEncomendasService.listarEncomendas().subscribe({
-      next: (dados: any[]) => this.encomendasPendentes = dados,
-      error: (err) => console.error("Erro ao buscar encomendas", err)
-    });
-  }
-
   salvarEncomenda() {
-    if (this.novaEntrega.descricao && this.novaEntrega.moradorNome) {
+    if (this.novaEntrega.descricao && this.novaEntrega.morador) {
+        this.novaEntrega.dataChegada = new Date();
       this.gestaoEncomendasService.registrarEncomenda(this.novaEntrega).subscribe({
         next: () => {
-          alert(`O morador ${this.novaEntrega.moradorNome} foi notificado!`);
-          this.novaEntrega = { moradorNome: '', descricao: '' };
+          alert(`O morador ${this.novaEntrega.morador} foi notificado!`);
+          this.novaEntrega = { morador: '', descricao: '', dataChegada: new Date() }; // Limpa o formulário
           this.atualizarLista(); // Recarrega a prateleira
         },
         error: () => alert("Erro ao salvar. Verifique se o morador está cadastrado.")

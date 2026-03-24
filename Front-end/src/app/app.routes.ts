@@ -109,8 +109,7 @@ export const routes: Routes = [
   {
     path: 'criar-enquete',
     component: CriarEnquete,
-    canActivate: [authGuard, RoleGuard],
-    data: { role: 'SINDICO' }
+    canActivate: [authGuard]
   },
   {
     path: 'anuncios-imoveis',

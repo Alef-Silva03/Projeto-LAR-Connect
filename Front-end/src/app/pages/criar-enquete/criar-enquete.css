@@ -7,6 +7,17 @@
     padding-bottom: 60px;
 }
 
+.form-input-pill {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border-radius: 50px;
+    width: 100%;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
 .glass-card {
     width: 95%;
     max-width: 800px;
@@ -58,4 +69,8 @@
 .btn-neon-large:hover {
     box-shadow: 0 0 40px rgba(0, 180, 216, 0.6);
     transform: translateY(-3px);
+}
+
+label{
+    font-size: 1.2rem;
 }

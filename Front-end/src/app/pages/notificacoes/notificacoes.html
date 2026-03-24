@@ -18,28 +18,28 @@
             <section *ngIf="abaAtiva === 'entregas'" class="animate-in">
                 <h4 class="mb-4 text-cyan fw-bold">Aguardando Retirada</h4>
                 
-                <div *ngIf="encomendas$.length === 0" class="alert alert-info bg-dark border-0 text-cyan opacity-75">
+                <!--<div *ngIf="encomendas$.length === 0" class="alert alert-info bg-dark border-0 text-cyan opacity-75">
                     <i class="bi bi-info-circle me-2"></i> Nenhuma encomenda pendente para o seu apartamento no momento.
-                </div>
+                </div>-->
 
                 <div class="card-encomenda-modern mb-3" *ngFor="let item of encomendas$ | async">
                     {{ console.log(item)}}
+                    @if (item.morador == authService.getCurrentUser()?.nome){
                     <div class="d-flex align-items-center justify-content-between w-100">
                         <div class="d-flex align-items-center gap-4">
                             <div class="icone-caixa-modern shadow-neon">
                                 <i class="bi bi-box-seam fs-2"></i>
                             </div>
                             <div>
-                                <span class="d-block fw-bold h5 mb-1">{{ item.descricao }}</span>
-                                <small class="text-cyan opacity-75">
-                                    Chegada: {{ item.dataChegada }}
-                                </small>
+                                <h6 class="d-block fw-bold mb-1">Chegada: {{ item.dataChegada | date: 'dd/MM/yyyy HH:mm' }}</h6>
+                                <p class="text-cyan opacity-75">Descrição: {{ item.descricao }}</p>
                             </div>
                         </div>
                         <button class="btn-confirmar-pill" (click)="confirmarRecebimento(item.id)">
                             Confirmar Recebimento
                         </button>
                     </div>
+                    }
                 </div>
             </section>
 
