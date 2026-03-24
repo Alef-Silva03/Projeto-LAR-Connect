@@ -45,5 +45,5 @@ export interface LoginResponse {
   apartamento: string;
   bloco: string;
   vaga: string;
-  reset_token: string;
+  token: string;
 }

@@ -7,7 +7,7 @@
     <section class="announcement-card mb-5" *ngIf="elegibilidade">
       <h2 class="section-title">Anunciar minha vaga</h2>
       <p class="helper-text" *ngIf="elegibilidade.podeAnunciar">
-        Vaga {{ elegibilidade.numeroVaga }} do condomínio {{ elegibilidade.nomeCondominio || 'vinculado' }} pronta para anúncio.
+        Vaga {{ elegibilidade.numeroVaga }} do condominio {{ elegibilidade.nomeCondominio || 'vinculado' }} pronta para anuncio.
       </p>
       <p class="helper-text helper-warning" *ngIf="!elegibilidade.podeAnunciar">
         {{ elegibilidade.motivo }}
@@ -16,14 +16,14 @@
       <div class="announcement-form">
         <input
           type="text"
-          placeholder="Descrição da vaga"
+          placeholder="Descricao da vaga"
           [(ngModel)]="anuncio.descricao"
           [disabled]="!elegibilidade.podeAnunciar">
         <input
           type="number"
           min="0"
           step="0.01"
-          placeholder="Preço"
+          placeholder="Preco"
           [(ngModel)]="anuncio.preco"
           [disabled]="!elegibilidade.podeAnunciar">
         <input
@@ -66,19 +66,23 @@
       <table>
         <thead>
           <tr>
-            <th>LOCALIZAÇÃO</th>
+            <th>LOCALIZACAO</th>
             <th>VALOR</th>
             <th>STATUS</th>
-            <th class="col-acao">AÇÃO</th>
+            <th class="col-acao">ACAO</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let vaga of vagas">
-            <td>
+            <td class="col-localizacao">
               <span class="vaga-id">VAGA {{ vaga.numero }}</span>
-              <small class="d-block text-muted">
-                Bloco: {{ vaga.bloco }}<span *ngIf="vaga.proprietario"> | Proprietário: {{ vaga.proprietario }}</span>
+              <small class="d-block vaga-meta">
+                Bloco: {{ vaga.bloco }}<span *ngIf="vaga.proprietario"> | Proprietario: {{ vaga.proprietario }}</span>
               </small>
+              <div class="reserva-aviso" *ngIf="mostrarAcoesReserva(vaga) && vaga.nomeCompradorReserva">
+                <span class="reserva-chip">Aguardando sua decisao</span>
+                <small class="d-block reserva-texto">Reserva solicitada por {{ vaga.nomeCompradorReserva }}</small>
+              </div>
             </td>
             <td class="valor">{{ formatarValor(vaga) }}</td>
             <td>
@@ -87,17 +91,29 @@
               </span>
             </td>
             <td class="col-acao">
-              <div class="acao-wrap">
-                <button
-                  class="btn-acao-neon"
-                  [class.btn-reservada]="vaga.status === 'RESERVADA'"
-                  [class.btn-vendida]="vaga.status === 'VENDIDA'"
-                  [class.btn-indisponivel]="vaga.status === 'INDISPONIVEL'"
-                  [disabled]="!isBotaoHabilitado(vaga)"
-                  (click)="acaoBotao(vaga)">
-                  {{ getBotaoTexto(vaga) }}
+              <div class="acao-wrap acao-dupla" *ngIf="mostrarAcoesReserva(vaga); else acaoPadrao">
+                <button class="btn-acao-neon btn-aprovar" (click)="aprovarReserva(vaga)">
+                  ACEITAR
+                </button>
+                <button class="btn-acao-neon btn-recusar" (click)="recusarReserva(vaga)">
+                  RECUSAR
                 </button>
               </div>
+
+              <ng-template #acaoPadrao>
+                <div class="acao-wrap">
+                  <button
+                    class="btn-acao-neon"
+                    [class.btn-reservada]="vaga.status === 'RESERVADA'"
+                    [class.btn-vendida]="vaga.status === 'VENDIDA'"
+                    [class.btn-indisponivel]="vaga.status === 'INDISPONIVEL'"
+                    [class.btn-minha-vaga]="isMinhaVaga(vaga) && vaga.status === 'DISPONIVEL'"
+                    [disabled]="!isBotaoHabilitado(vaga)"
+                    (click)="acaoBotao(vaga)">
+                    {{ getBotaoTexto(vaga) }}
+                  </button>
+                </div>
+              </ng-template>
             </td>
           </tr>
         </tbody>

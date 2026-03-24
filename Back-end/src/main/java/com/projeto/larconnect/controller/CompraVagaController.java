@@ -56,4 +56,14 @@ public class CompraVagaController {
     public ResponseEntity<CompraVagaResponseDTO> cancelarCompra(@PathVariable Long compraId) {
         return ResponseEntity.ok(compraService.cancelarCompra(compraId));
     }
+
+    @PostMapping("/{compraId}/aprovar")
+    public ResponseEntity<CompraVagaResponseDTO> aprovarReserva(@PathVariable Long compraId) {
+        return ResponseEntity.ok(compraService.aprovarReserva(compraId));
+    }
+
+    @PostMapping("/{compraId}/recusar")
+    public ResponseEntity<CompraVagaResponseDTO> recusarReserva(@PathVariable Long compraId) {
+        return ResponseEntity.ok(compraService.recusarReserva(compraId));
+    }
 }

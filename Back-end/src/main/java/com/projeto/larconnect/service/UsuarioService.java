@@ -25,10 +25,12 @@ public class UsuarioService {
    @Transactional
    public Usuario update(String email, UsuarioUpdateDTO usuarioUpdateDto) {
       Usuario usuario = (Usuario)this.usuarioRepository.findByEmailIgnoreCase(email).orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado com e-mail: " + email));
-      if (usuarioUpdateDto.getIdCondominio() == -1) {
+      Long idCondominio = usuarioUpdateDto.getIdCondominio();
+
+      if (idCondominio != null && idCondominio == -1L) {
           usuario.setCondominio(null);
-      } else if (usuarioUpdateDto.getIdCondominio() != null) {
-         Condominio condominio = (Condominio)this.condominioRepository.findById(usuarioUpdateDto.getIdCondominio()).orElseThrow(() -> new EntityNotFoundException("Condomínio não encontrado com ID: " + usuarioUpdateDto.getIdCondominio()));
+         } else if (idCondominio != null) {
+         Condominio condominio = (Condominio)this.condominioRepository.findById(idCondominio).orElseThrow(() -> new EntityNotFoundException("Condomínio não encontrado com ID: " + idCondominio));
          usuario.setCondominio(condominio);
       }
       

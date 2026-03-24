@@ -28,7 +28,7 @@ export class AuthService {
         localStorage.setItem('bloco', response.bloco || '');
         localStorage.setItem('vaga', response.vaga || '');
         localStorage.setItem('condominio', response.condominio ? response.condominio.nomeCondominio : '');
-        localStorage.setItem('token', response.reset_token);
+        localStorage.setItem('token', response.token);
         this.loggedIn.next(true);
       })
     );

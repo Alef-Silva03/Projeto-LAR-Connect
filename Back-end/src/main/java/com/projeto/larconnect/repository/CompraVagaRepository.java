@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CompraVagaRepository extends JpaRepository<CompraVaga, Long> {
@@ -24,4 +25,6 @@ public interface CompraVagaRepository extends JpaRepository<CompraVaga, Long> {
     List<CompraVaga> findByDataCompraBetween(@Param("inicio") LocalDateTime inicio, @Param("fim") LocalDateTime fim);
     
     boolean existsByVagaIdAndStatus(Long vagaId, StatusCompra status);
+
+    Optional<CompraVaga> findFirstByVagaIdAndStatusOrderByDataCompraDesc(Long vagaId, StatusCompra status);
 }

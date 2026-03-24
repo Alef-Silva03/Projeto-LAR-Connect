@@ -1,8 +1,5 @@
 package com.projeto.larconnect.dto;
 
-import com.projeto.larconnect.model.Condominio;
-import com.projeto.larconnect.model.Usuario;
-
 public class LoginResponseDTO {
     private Long id;
     private String nome;
@@ -14,15 +11,14 @@ public class LoginResponseDTO {
     private String apartamento;
     private String bloco;
     private String vaga;
-    private Condominio condominio;
-	private String token;
+    private CondominioResponseDTO condominio;
+    private String token;
 
-    // Default constructor
     public LoginResponseDTO() {}
 
-    // Constructor with all fields
-    public LoginResponseDTO(Long id, String nome, String email, String cpf, 
-                           String telefone, String perfil, String cargo, String apartamento, String bloco, String vaga, Condominio condominio, String token) {
+    public LoginResponseDTO(Long id, String nome, String email, String cpf,
+                            String telefone, String perfil, String cargo, String apartamento,
+                            String bloco, String vaga, CondominioResponseDTO condominio, String token) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -37,7 +33,6 @@ public class LoginResponseDTO {
         this.token = token;
     }
 
-	// Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -55,22 +50,22 @@ public class LoginResponseDTO {
 
     public String getPerfil() { return perfil; }
     public void setPerfil(String perfil) { this.perfil = perfil; }
-    
+
     public String getCargo() { return cargo; }
     public void setCargo(String cargo) { this.cargo = cargo; }
-    
+
     public String getApartamento() { return apartamento; }
     public void setApartamento(String apartamento) { this.apartamento = apartamento; }
-    
-	public String getBloco() {return bloco;}
-	public void setBloco(String bloco) {this.bloco = bloco;}
 
-	public String getVaga() {return vaga;}
-	public void setVaga(String vaga) {this.vaga = vaga;}
-	
-    public Condominio getCondominio() { return condominio; }
-    public void setCondominio(Condominio condominio) { this.condominio = condominio; }
-	
-    public String getToken() {return token;}
-	public void setToken(String token) {this.token = token;}
+    public String getBloco() { return bloco; }
+    public void setBloco(String bloco) { this.bloco = bloco; }
+
+    public String getVaga() { return vaga; }
+    public void setVaga(String vaga) { this.vaga = vaga; }
+
+    public CondominioResponseDTO getCondominio() { return condominio; }
+    public void setCondominio(CondominioResponseDTO condominio) { this.condominio = condominio; }
+
+    public String getToken() { return token; }
+    public void setToken(String token) { this.token = token; }
 }

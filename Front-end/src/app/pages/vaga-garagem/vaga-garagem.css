@@ -126,6 +126,10 @@ td {
     text-align: center;
 }
 
+.col-localizacao {
+    text-align: left;
+}
+
 td:first-child {
     border-radius: 14px 0 0 14px;
 }
@@ -135,10 +139,45 @@ td:last-child {
 }
 
 .vaga-id {
+    display: inline-block;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     color: #90e0ef;
     font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.vaga-meta {
+    color: #adb5bd !important;
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+.reserva-aviso {
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 193, 7, 0.04) 100%);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.reserva-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(255, 193, 7, 0.14);
+    color: #ffd166;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.reserva-texto {
+    color: #f1f5f9 !important;
+    font-size: 0.8rem;
+    margin-top: 8px;
 }
 
 .valor {
@@ -151,11 +190,13 @@ td:last-child {
     background: #00b4d8;
     color: #0d1b2a;
     border: none;
-    min-width: 124px;
-    padding: 10px 20px;
+    min-width: 136px;
+    min-height: 42px;
+    padding: 11px 22px;
     border-radius: 50px;
     font-weight: 800;
     font-size: 0.8rem;
+    letter-spacing: 0.04em;
     transition: 0.3s;
     box-shadow: 0 8px 18px rgba(0, 180, 216, 0.2);
 }
@@ -268,11 +309,37 @@ table td:last-child {
     align-items: center;
 }
 
-.text-muted {
-    color: #adb5bd !important;
-    font-size: 0.8rem;
-    margin-top: 6px;
-    line-height: 1.4;
+.acao-dupla {
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-aprovar {
+    background: linear-gradient(135deg, #2db84d 0%, #25a244 100%);
+    color: #fff;
+    min-width: 118px;
+    box-shadow: 0 10px 22px rgba(45, 184, 77, 0.22);
+}
+
+.btn-aprovar:hover:not(:disabled) {
+    background: linear-gradient(135deg, #38c95b 0%, #2db84d 100%);
+}
+
+.btn-recusar {
+    background: linear-gradient(135deg, #e63946 0%, #d62839 100%);
+    color: #fff;
+    min-width: 118px;
+    box-shadow: 0 10px 22px rgba(230, 57, 70, 0.2);
+}
+
+.btn-recusar:hover:not(:disabled) {
+    background: linear-gradient(135deg, #ef476f 0%, #e63946 100%);
+}
+
+.btn-minha-vaga:disabled {
+    background: #7bdff2;
+    color: #0d1b2a;
+    opacity: 0.95;
 }
 
 @media (max-width: 768px) {
@@ -287,5 +354,9 @@ table td:last-child {
 
     table {
         min-width: 760px;
+    }
+
+    .acao-dupla {
+        flex-wrap: nowrap;
     }
 }

@@ -5,9 +5,11 @@ import com.projeto.larconnect.dto.ElegibilidadeAnuncioVagaDTO;
 import com.projeto.larconnect.dto.VagaRequestDTO;
 import com.projeto.larconnect.dto.VagaResponseDTO;
 import com.projeto.larconnect.model.Condominio;
+import com.projeto.larconnect.model.StatusCompra;
 import com.projeto.larconnect.model.StatusVaga;
 import com.projeto.larconnect.model.Usuario;
 import com.projeto.larconnect.model.Vaga;
+import com.projeto.larconnect.repository.CompraVagaRepository;
 import com.projeto.larconnect.repository.CondominioRepository;
 import com.projeto.larconnect.repository.UsuarioRepository;
 import com.projeto.larconnect.repository.VagaRepository;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,14 +28,17 @@ public class VagaService {
     private final VagaRepository vagaRepository;
     private final CondominioRepository condominioRepository;
     private final UsuarioRepository usuarioRepository;
+    private final CompraVagaRepository compraVagaRepository;
 
     public VagaService(
             VagaRepository vagaRepository,
             CondominioRepository condominioRepository,
-            UsuarioRepository usuarioRepository) {
+            UsuarioRepository usuarioRepository,
+            CompraVagaRepository compraVagaRepository) {
         this.vagaRepository = vagaRepository;
         this.condominioRepository = condominioRepository;
         this.usuarioRepository = usuarioRepository;
+        this.compraVagaRepository = compraVagaRepository;
     }
 
     public List<VagaResponseDTO> listarTodas() {
@@ -106,6 +112,7 @@ public class VagaService {
         vaga.setDescricao(request.getDescricao());
         vaga.setPreco(request.getPreco());
         vaga.setCondominio(usuario.getCondominio());
+        vaga.setProprietario(usuario);
         vaga.setStatus(StatusVaga.DISPONIVEL);
 
         Vaga vagaSalva = vagaRepository.save(vaga);
@@ -147,7 +154,7 @@ public class VagaService {
         return montarElegibilidade(usuario);
     }
 
-    private Usuario getUsuarioAutenticado() {
+    public Usuario getUsuarioAutenticado() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication.getName() == null || "anonymousUser".equals(authentication.getName())) {
             throw new RuntimeException("Usuario nao autenticado");
@@ -155,6 +162,20 @@ public class VagaService {
 
         return usuarioRepository.findByEmailIgnoreCase(authentication.getName())
                 .orElseThrow(() -> new RuntimeException("Usuario nao encontrado"));
+    }
+
+    public Optional<Usuario> buscarProprietarioDaVaga(Vaga vaga) {
+        if (vaga.getProprietario() != null) {
+            return Optional.of(vaga.getProprietario());
+        }
+
+        if (vaga.getCondominio() == null) {
+            return Optional.empty();
+        }
+
+        return usuarioRepository.findByCondominioId(vaga.getCondominio().getId()).stream()
+                .filter(usuario -> vaga.getNumero().equalsIgnoreCase(usuario.getVaga()))
+                .findFirst();
     }
 
     private ElegibilidadeAnuncioVagaDTO montarElegibilidade(Usuario usuario) {
@@ -200,11 +221,18 @@ public class VagaService {
             dto.setCondominioId(vaga.getCondominio().getId());
             dto.setNomeCondominio(vaga.getCondominio().getNomeCondominio());
 
-            usuarioRepository.findByCondominioId(vaga.getCondominio().getId()).stream()
-                    .filter(usuario -> vaga.getNumero().equalsIgnoreCase(usuario.getVaga()))
-                    .findFirst()
-                    .ifPresent(usuario -> dto.setProprietario(usuario.getNome()));
+            buscarProprietarioDaVaga(vaga)
+                    .ifPresent(usuario -> {
+                        dto.setProprietario(usuario.getNome());
+                        dto.setProprietarioId(usuario.getId());
+                    });
         }
+
+        compraVagaRepository.findFirstByVagaIdAndStatusOrderByDataCompraDesc(vaga.getId(), StatusCompra.AGUARDANDO_PAGAMENTO)
+                .ifPresent(compra -> {
+                    dto.setReservaAtivaCompraId(compra.getId());
+                    dto.setNomeCompradorReserva(compra.getComprador().getNome());
+                });
 
         return dto;
     }

@@ -11,6 +11,9 @@ export interface Vaga {
   condominioId?: number;
   nomeCondominio?: string;
   proprietario?: string;
+  proprietarioId?: number;
+  reservaAtivaCompraId?: number;
+  nomeCompradorReserva?: string;
   dataCriacao?: string;
 }
 

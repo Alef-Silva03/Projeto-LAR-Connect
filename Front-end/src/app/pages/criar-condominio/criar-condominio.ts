@@ -14,11 +14,10 @@ import { CondominioRequest, CondominioResponse } from '../../models/condominio.m
   styleUrls: ['./criar-condominio.css']
 })
 export class CriarCondominio {
-
   condominio = {
     nomeCondominio: '',
     cep: '',
-    pais: 'Brasil', // Valor padrão
+    pais: 'Brasil',
     estado: '',
     cidade: '',
     logradouro: '',
@@ -28,32 +27,29 @@ export class CriarCondominio {
   };
 
   private apiUrl = 'http://localhost:8080/sindico/api/condominio/create';
-  
-  // Flag para controlar loading durante a busca do CEP
-  buscandoCep: boolean = false;
+  buscandoCep = false;
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private cdr: ChangeDetectorRef,
     private router: Router
   ) {}
 
-  /**
-   * @param cep
-   */
   buscarCep(cep: string): void {
     const cepNumerico = cep.replace(/\D/g, '');
     if (cepNumerico.length !== 8) {
       return;
     }
+
     this.buscandoCep = true;
     this.http.get<any>(`https://viacep.com.br/ws/${cepNumerico}/json/`).subscribe({
       next: (data) => {
         if (data.erro) {
-          alert('CEP não encontrado. Por favor, verifique o número digitado.');
+          alert('CEP nao encontrado. Por favor, verifique o numero digitado.');
           this.limparCamposEndereco();
           return;
         }
+
         this.condominio.logradouro = data.logradouro || '';
         this.condominio.cidade = data.localidade || '';
         this.condominio.estado = data.uf || '';
@@ -71,7 +67,7 @@ export class CriarCondominio {
       }
     });
   }
-  
+
   private limparCamposEndereco(): void {
     this.condominio.logradouro = '';
     this.condominio.cidade = '';
@@ -80,9 +76,6 @@ export class CriarCondominio {
     this.cdr.detectChanges();
   }
 
-  /**
-   * @param event
-   */
   aplicarMascaraCep(event: any): void {
     let cep = event.target.value.replace(/\D/g, '');
     if (cep.length > 5) {
@@ -99,43 +92,57 @@ export class CriarCondominio {
   }
 
   async salvarCondominio() {
-    // Validação básica antes de enviar
     if (!this.condominio.cep || this.condominio.cep.replace(/\D/g, '').length !== 8) {
-      alert('Por favor, preencha um CEP válido com 8 dígitos.');
+      alert('Por favor, preencha um CEP valido com 8 digitos.');
       return;
     }
-    if (!this.condominio.nomeCondominio || !this.condominio.pais || !this.condominio.estado || !this.condominio.cidade || !this.condominio.logradouro || 
-      !this.condominio.numeroCondominio || !this.condominio.blocos || !this.condominio.apartamentos) {
-        alert('Por favor, preencha todos os campos.');
-        return;
-      }
+
+    if (
+      !this.condominio.nomeCondominio ||
+      !this.condominio.pais ||
+      !this.condominio.estado ||
+      !this.condominio.cidade ||
+      !this.condominio.logradouro ||
+      !this.condominio.numeroCondominio ||
+      !this.condominio.blocos ||
+      !this.condominio.apartamentos
+    ) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
 
     this.criarCondominio(this.condominio).subscribe({
       next: async (res: CondominioResponse) => {
         const condominioCriado = res;
-        const email = localStorage.getItem("email");
-
+        const email = localStorage.getItem('email');
         const payload2 = { idCondominio: condominioCriado.id };
 
         const res2 = await fetch(`/api/usuarios/${email}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
           body: JSON.stringify(payload2),
         });
 
         if (!res2.ok) {
           const errorText = await res2.text();
-          console.error("Erro na atualização do usuário:", errorText);
+          console.error('Erro na atualizacao do usuario:', errorText);
         }
 
-        localStorage.setItem("condominio", condominioCriado.nomeCondominio);
-        alert("Condomínio criado com sucesso!");
-        window.location.href = "/dashboard";
+        const usuarioSalvo = localStorage.getItem('usuario');
+        if (usuarioSalvo) {
+          const usuarioAtualizado = JSON.parse(usuarioSalvo);
+          usuarioAtualizado.condominio = condominioCriado;
+          localStorage.setItem('usuario', JSON.stringify(usuarioAtualizado));
+        }
+
+        localStorage.setItem('condominio', condominioCriado.nomeCondominio);
+        alert('Condominio criado com sucesso!');
+        window.location.href = '/dashboard';
       },
       error: (err: any) => {
-        console.error('Erro ao criar condomínio', err);
-        alert('Erro ao criar condomínio. Verifique os dados e tente novamente.');
+        console.error('Erro ao criar condominio', err);
+        alert('Erro ao criar condominio. Verifique os dados e tente novamente.');
       }
     });
   }

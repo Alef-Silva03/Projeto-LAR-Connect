@@ -40,4 +40,12 @@ export class VagaService {
       observacoes: 'Compra iniciada pelo painel de vagas'
     }, { withCredentials: true });
   }
+
+  aprovarReserva(compraId: number): Observable<unknown> {
+    return this.http.post(`${this.compraApiUrl}/${compraId}/aprovar`, {}, { withCredentials: true });
+  }
+
+  recusarReserva(compraId: number): Observable<unknown> {
+    return this.http.post(`${this.compraApiUrl}/${compraId}/recusar`, {}, { withCredentials: true });
+  }
 }

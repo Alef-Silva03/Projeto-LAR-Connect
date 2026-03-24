@@ -37,6 +37,10 @@ public class Vaga {
     @ManyToOne
     @JoinColumn(name = "condominio_id")
     private Condominio condominio;
+
+    @ManyToOne
+    @JoinColumn(name = "proprietario_id")
+    private Usuario proprietario;
     
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao = LocalDateTime.now();
@@ -127,6 +131,14 @@ public class Vaga {
 
 	public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
+	}
+
+	public Usuario getProprietario() {
+		return proprietario;
+	}
+
+	public void setProprietario(Usuario proprietario) {
+		this.proprietario = proprietario;
 	}
     
 }
