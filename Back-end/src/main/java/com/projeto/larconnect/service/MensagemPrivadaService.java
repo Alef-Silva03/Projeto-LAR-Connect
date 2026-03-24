@@ -68,15 +68,6 @@ public class MensagemPrivadaService {
     
     private MensagemPrivadaResponseDTO convertToDTO(MensagemPrivada MensagemPrivada) {
         return new MensagemPrivadaResponseDTO(
-            MensagemPrivada.getId(), 
-            MensagemPrivada.getTipo(),
-            MensagemPrivada.getTitulo(),
-            MensagemPrivada.getAssunto(),
-            MensagemPrivada.getTexto(),
-            MensagemPrivada.getData(),
-            MensagemPrivada.getCondominio(),
-            MensagemPrivada.getAutor(),
-            MensagemPrivada.getDestinatario()
         );
     }
     

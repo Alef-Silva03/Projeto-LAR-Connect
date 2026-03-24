@@ -22,15 +22,6 @@
                 </div>
             </div>
 
-            @if (authService.getPerfil() == 'FUNCIONARIO'){
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="nav-pill-item" routerLink="/gestao-encomendas">
-                    <i class="bi bi-box-seam-fill"></i>
-                    <span>Gestão de Encomendas</span>
-                </div>
-            </div>
-            }
-
             @if (authService.getPerfil() != 'SINDICO'){
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="nav-pill-item" routerLink="/mensagem-ao-sindico">
@@ -115,7 +106,7 @@
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="nav-pill-item" routerLink="/enviar-mensagens">
                         <i class="bi bi-file-earmark-medical-fill"></i>
-                        <span style="font-size: 0.8rem;">Enviar Mensagens e Documentos a Moradores</span>
+                        <span>Enviar Mensagens a Moradores</span>
                     </div>
                 </div>
                 }

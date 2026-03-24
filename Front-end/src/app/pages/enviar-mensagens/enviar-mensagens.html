@@ -1,14 +1,14 @@
 <article class="container-fluid comunicacao-container">
     <div class="glass-card shadow-lg p-5 animate__animated animate__fadeIn">
         <header class="text-center mb-5">
-            <h1 class="text-gradient">ENVIAR MENSAGENS E DOCUMENTOS AOS MORADORES</h1>
-            <p class="subtitulo">Envie avisos, respostas ou boletos e outros documentos para os moradores do seu condomínio</p>
+            <h1 class="text-gradient">ENVIAR MENSAGENS AOS MORADORES</h1>
+            <p class="subtitulo">Envie avisos, respostas ou boletos para os moradores do seu condomínio</p>
         </header>
 
-        <form (ngSubmit)="enviarMensagem()" #comunicadoForm="ngForm" class="form-comunicacao">
+        <form (ngSubmit)="enviarMensagem()" #mensagemPrivadaForm="ngForm" class="form-comunicacao">
             <div class="mb-4">
-
-                <select name="destinatario" [(ngModel)]="mensagemPrivada.idDestinatario"  class="form-select-pill" required>
+                <select name="destinatario" [(ngModel)]="mensagemPrivada.idDestinatario" class="form-select-pill" required>
+                    <option value="" disabled selected>Selecione o morador</option>
                     <option *ngFor="let morador of moradores$ | async" [value]="morador.id">
                         {{ morador.nome }}
                     </option>
@@ -17,26 +17,13 @@
 
             <div class="mb-4">
                 <div class="pill-input-group mb-3">
-                    <input type="text" placeholder="Título da Mensagem" class="form-input-pill">
+                    <input type="text" name="titulo" [(ngModel)]="mensagemPrivada.titulo" placeholder="Título da Mensagem" class="form-input-pill" required>
                 </div>
-                <textarea class="form-textarea-pill pill-textarea w-100" rows="5" placeholder="Escreva aqui a sua mensagem"></textarea>
-            </div>
-
-            <div class="mb-5">
-                <label class="label-neon">Anexar Documentos (PDF, Imagens)</label>
-                <div class="upload-dropzone" (click)="fileInput.click()">
-                    <input type="file" #fileInput hidden (change)="onFileSelected($event)">
-                    <i class="bi bi-cloud-arrow-up display-4 text-cyan"></i>
-                    @if (!mensagemPrivada.arquivo){
-                        <p class="mt-2">Clique ou arraste ficheiros para aqui</p>
-                    } @else {
-                        <p class="mt-2 text-success"><strong>Selecionado:</strong> {{ mensagemPrivada.arquivo }}</p>
-                    }
-                </div>
+                <textarea name="texto" class="form-textarea-pill pill-textarea w-100" rows="5" [(ngModel)]="mensagemPrivada.texto" placeholder="Escreva aqui a sua mensagem" required></textarea>
             </div>
 
             <div class="text-center">
-                <button type="button" class="btn-neon-large w-100">
+                <button type="submit" class="btn-neon-large w-100">
                     <i class="bi bi-send-fill me-2"></i> ENVIAR MENSAGEM
                 </button>
             </div>

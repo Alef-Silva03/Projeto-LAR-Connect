@@ -7,7 +7,7 @@ public class MensagemPrivadaRequestDTO {
 	private String titulo;
 	private String assunto;
     private String texto;
-    private Usuario destinatario;
+    private long destinatario;
     
 	public String getTipo() {
 		return tipo;
@@ -33,10 +33,10 @@ public class MensagemPrivadaRequestDTO {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-	public Usuario getDestinatario() {
+	public long getDestinatario() {
 		return destinatario;
 	}
-	public void setDestinatario(Usuario destinatario) {
+	public void setDestinatario(long destinatario) {
 		this.destinatario = destinatario;
 	}
 
