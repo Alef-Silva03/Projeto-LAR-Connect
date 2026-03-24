@@ -23,7 +23,7 @@ public class Enquete {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String titulo;
     
     @Column(nullable = true, length = 1000) 
@@ -32,17 +32,17 @@ public class Enquete {
     @Column(nullable = true, length = 1000)
     private String opcao2;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int votosOpcao1;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int votosOpcao2;
     
     @CreatedDate
     @Column(name = "data", updatable = false)
     private LocalDateTime  data;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     private boolean ativo;
     
     @ManyToOne

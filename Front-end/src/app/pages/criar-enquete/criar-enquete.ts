@@ -81,8 +81,8 @@ enquetes: Enquete[] = [];
       alert('Enquete não encontrada');
       return;
     }
-
-    this.enqueteService.atualizarEnquete(enquete, { ativo: false }).subscribe({
+    enquete.ativo = false; // desativa a enquete
+    this.enqueteService.atualizarEnquete(enquete).subscribe({
       next: () => {
         alert('Enquete desativada com sucesso!');
         this.carregarEnquetes(); // atualiza a lista
@@ -96,7 +96,10 @@ enquetes: Enquete[] = [];
 
   registrarVoto(enquete: Enquete, opcao?: string): void {
     enquete.votoSelecionado = opcao;
-    this.enqueteService.atualizarEnquete(enquete, { votoSelecionado: opcao }).subscribe({
+    enquete.votosOpcao1 = opcao === 'opcao1' ? (enquete.votosOpcao1 || 0) + 1 : enquete.votosOpcao1 || 0;
+    enquete.votosOpcao2 = opcao === 'opcao2' ? (enquete.votosOpcao2 || 0) + 1 : enquete.votosOpcao2 || 0;
+    console.log(enquete.titulo);
+    this.enqueteService.atualizarEnquete(enquete).subscribe({
       next: () => {
         alert('Voto registrado com sucesso!');
         this.carregarEnquetes(); // atualiza a lista

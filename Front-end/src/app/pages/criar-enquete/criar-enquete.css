@@ -74,3 +74,125 @@
 label{
     font-size: 1.2rem;
 }
+
+.poll-card {
+    background: rgba(13, 27, 42, 0.75);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 25px;
+    color: #fff;
+    border: 1px solid rgba(0, 180, 216, 0.15);
+    transition: 0.3s;
+}
+
+.poll-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0, 180, 216, 0.2);
+}
+
+/* HEADER */
+.poll-date {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    color: #ff4d6d;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.btn-icon:hover {
+    transform: scale(1.2);
+}
+
+/* TITLE */
+.poll-title {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #00B4D8, #90E0EF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* STATUS */
+.badge-active {
+    background: rgba(0, 200, 150, 0.2);
+    color: #00ffa6;
+    padding: 6px 15px;
+    border-radius: 50px;
+}
+
+.badge-closed {
+    background: rgba(255, 77, 109, 0.2);
+    color: #ff4d6d;
+    padding: 6px 15px;
+    border-radius: 50px;
+}
+
+/* OPTIONS */
+.option-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option-card:hover {
+    background: rgba(0,180,216,0.15);
+}
+
+.option-card input {
+    margin-right: 10px;
+}
+
+.option-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* BUTTON */
+.btn-neon {
+    background: #00B4D8;
+    border: none;
+    border-radius: 50px;
+    padding: 12px;
+    font-weight: bold;
+    color: #0D1B2A;
+    transition: 0.3s;
+}
+
+.btn-neon:hover {
+    box-shadow: 0 0 25px rgba(0, 180, 216, 0.6);
+    transform: translateY(-2px);
+}
+
+/* RESULTS */
+.result-bar {
+    margin-bottom: 15px;
+}
+
+.bar {
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.fill {
+    height: 100%;
+    background: #00B4D8;
+}
+
+.fill.alt {
+    background: #90E0EF;
+}
