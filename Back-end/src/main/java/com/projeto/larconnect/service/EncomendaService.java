@@ -25,15 +25,12 @@ public class EncomendaService {
     @Transactional
     public Encomenda registrarRecebimento(EncomendaRequestDTO dto) {
         // 1. Localiza o morador no banco pelo Apartamento/Bloco
-        Usuario moradorObj = usuarioRepo.findByApartamentoAndBloco(dto.getApartamento(), dto.getBloco())
-            .orElseThrow(() -> new RuntimeException("Morador não encontrado no Apartamento " + dto.getApartamento()));
+        Usuario moradorObj = ((Usuario) usuarioRepo.findByNome(dto.getMoradorNome()));
 
         // 2. Registra a Encomenda
         Encomenda enc = new Encomenda();
-        enc.setApartamento(dto.getApartamento());
-        enc.setBloco(dto.getBloco());
         enc.setMorador(moradorObj.getNome());
-        enc.setDescricao("Encomenda recebida na portaria");
+        enc.setDescricao(dto.getDescricao());
         enc.setDataChegada(LocalDateTime.now());
         enc.setEntregue(false);
         

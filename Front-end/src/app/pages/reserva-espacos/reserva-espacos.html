@@ -95,7 +95,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let reserva of reservas" class="row-hover row">
+                            <tr *ngFor="let reserva of reservas" class="row-hover row align-items-center">
                                 <ng-container>
                                     @if (getEscolhaTabela() === 'churrasqueira' && reserva.local === 'churrasqueira') {
                                         <td class="nome-morador col">
@@ -122,7 +122,7 @@
                                             <td class="col">
                                                 
                                                 <button type="submit" (click)="excluirReserva(reserva.id)" class="btn-action-icon" title="Remover">
-                                                    <i class="bi bi-trash"></i>
+                                                    <i class="bi bi-trash icon-xl"></i>
                                                 </button>
                                             </td>
                                         } @else {

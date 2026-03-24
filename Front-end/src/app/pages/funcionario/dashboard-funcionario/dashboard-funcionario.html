@@ -14,33 +14,34 @@
         </header>
 
         <section class="row g-4 mb-5">
-            <div class="col-md-4">
-                <div class="card-acao-portaria" (click)="abrirModalAcesso('visitante')">
-                    <div class="icon-circle bg-cyan">
-                        <i class="bi bi-person-plus-fill"></i>
-                    </div>
-                    <h3>Liberar Visitante</h3>
-                    <p>Cadastro rápido de entrada</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-acao-portaria" (click)="abrirModalAcesso('prestador')">
-                    <div class="icon-circle bg-purple">
-                        <i class="bi bi-tools"></i>
-                    </div>
-                    <h3>Prestador Serviço</h3>
-                    <p>Empresas e técnicos</p>
-                </div>
-            </div>
             <div class="col-md-4" routerLink="/gestao-encomendas">
                 <div class="card-acao-portaria highlight-gold">
                     <div class="icon-circle bg-gold">
                         <i class="bi bi-box-seam"></i>
                     </div>
                     <h3>Encomendas</h3>
-                    <p>{{ encomendasPendentes }} pacotes para retirar</p>
+                    <p>Pacotes para retirar</p>
                 </div>
             </div>
+            <div class="col-md-4" routerLink="/chat">
+                <div class="card-acao-portaria" (click)="abrirModalAcesso('visitante')">
+                    <div class="icon-circle bg-cyan">
+                        <i class="bi bi-chat"></i>
+                    </div>
+                    <h3>Chat</h3>
+                    <p>Acesse o chat do condomínio</p>
+                </div>
+            </div>
+            <div class="col-md-4" routerLink="/caixa-entrada">
+                <div class="card-acao-portaria" (click)="abrirModalAcesso('prestador')">
+                    <div class="icon-circle bg-purple">
+                        <i class="bi bi-mailbox"></i>
+                    </div>
+                    <h3>Caixa de Entrada</h3>
+                    <p>Veja suas mensagens</p>
+                </div>
+            </div>
+
         </section>
 
         <!--<section class="monitor-acessos">

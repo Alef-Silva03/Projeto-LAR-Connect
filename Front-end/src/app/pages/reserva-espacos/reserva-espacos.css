@@ -82,8 +82,8 @@
     background: rgba(255, 255, 255, 0.05);
     border: none;
     color: #90E0EF;
-    width: 35px;
-    height: 35px;
+    width: 55px;
+    height: 45px;
     border-radius: 10px;
     transition: 0.3s;
     display: inline-flex;
@@ -213,6 +213,7 @@ background-color: #1B263B;
     font-size: 3rem;
     color: #90E0EF;
     text-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
+    width: 40px;
 }
 
 /* Indicador de Status LED */
@@ -336,11 +337,15 @@ background-color: #1B263B;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     text-align: center;
     font-weight: bold;
+    font-size: 1.4rem;
+    font-family: oswald
 }
 
-p {
+.table-modern td p {
     margin: 0;
+    font-family: oswald
 }
+
 
 /* Primeira célula com borda arredondada à esquerda */
 .table-modern tbody tr td:first-child {
@@ -393,7 +398,7 @@ p {
 
 /* Ícone de lixeira personalizado */
 .btn-action-icon i {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 }
 
 /* Ajuste para o container principal de reservas */
@@ -436,10 +441,10 @@ hr {
     padding: 15px 0;
     border-radius: 50px;
     font-weight: 800;
-    letter-spacing: 1px;
     transition: 0.3s;
     box-shadow: 0 5px 20px rgba(0, 180, 216, 0.4);
     width: 150px;
+    font-size: 1.1rem;
 }
 
 .btn-enviar-neon:hover {

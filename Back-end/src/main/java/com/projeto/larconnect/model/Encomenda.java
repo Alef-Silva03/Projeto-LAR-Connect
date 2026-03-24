@@ -18,8 +18,6 @@ public class Encomenda {
     
     private String morador; 
     private String descricao;
-    private String apartamento;
-    private String bloco;
     
     @CreatedDate
     private LocalDateTime dataChegada;
@@ -42,18 +40,6 @@ public class Encomenda {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-	public String getApartamento() {
-		return apartamento;
-	}
-	public void setApartamento(String apartamento) {
-		this.apartamento = apartamento;
-	}
-	public String getBloco() {
-		return bloco;
-	}
-	public void setBloco(String bloco) {
-		this.bloco = bloco;
 	}
 	public LocalDateTime getDataChegada() {
 		return dataChegada;

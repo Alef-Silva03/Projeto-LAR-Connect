@@ -13,10 +13,8 @@ import { gestaoEncomendasService } from '../../../services/gestao-encomendas';
 })
 export class GestaoEncomendas implements OnInit {
   novaEntrega = {
-    apartamento: '',
-    bloco: '',
-    moradorNome: '', 
-    descricao: 'Pacote/Correspondência'
+    moradorNome: '',
+    descricao: '',
   };
 
   encomendasPendentes: any[] = [];
@@ -35,17 +33,17 @@ export class GestaoEncomendas implements OnInit {
   }
 
   salvarEncomenda() {
-    if (this.novaEntrega.apartamento && this.novaEntrega.moradorNome) {
+    if (this.novaEntrega.descricao && this.novaEntrega.moradorNome) {
       this.gestaoEncomendasService.registrarEncomenda(this.novaEntrega).subscribe({
         next: () => {
-          alert(`Morador do apto ${this.novaEntrega.apartamento} foi notificado!`);
-          this.novaEntrega = { apartamento: '', bloco: '', moradorNome: '', descricao: 'Pacote/Correspondência' };
+          alert(`O morador ${this.novaEntrega.moradorNome} foi notificado!`);
+          this.novaEntrega = { moradorNome: '', descricao: '' };
           this.atualizarLista(); // Recarrega a prateleira
         },
-        error: () => alert("Erro ao salvar. Verifique se o morador está cadastrado com este apartamento/bloco.")
+        error: () => alert("Erro ao salvar. Verifique se o morador está cadastrado.")
       });
     } else {
-      alert("Preencha o Nome do Morador e o Apartamento!");
+      alert("Preencha o Nome do Morador e a Descrição!");
     }
   }
 

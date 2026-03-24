@@ -27,4 +27,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     // Este é o método que usamos para a busca do morador no registro de encomendas:
     Optional<Usuario> findByApartamentoAndBloco(String apartamento, String bloco);
+	Object findByNome(String moradorNome);
 }
