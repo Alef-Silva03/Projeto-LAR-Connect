@@ -91,4 +91,5 @@ public class MensagemPrivadaResponseDTO {
 	public Condominio getCondominio() {
 		return condominio;
 	}
+
 }

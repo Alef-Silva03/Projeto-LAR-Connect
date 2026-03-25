@@ -31,13 +31,13 @@ export class MensagemAoSindico {
       blocos: 0,
       apartamentos: 0
     },
+    idDestinatario: 0,
   };
 
   constructor(
     private mensagemPrivadaService: MensagemPrivadaService,
     public authService: AuthService,
   ) {}
-
   enviarMensagemAoSindico(): void {
     const usuarioString = localStorage.getItem('usuario');
     if (!usuarioString) {
@@ -52,10 +52,19 @@ export class MensagemAoSindico {
       return;
     }
 
-    this.mensagemPrivadaService.enviarMensagem(this.mensagemPrivada).subscribe({
+    const payload = {
+      tipo: this.mensagemPrivada.tipo,
+      titulo: this.mensagemPrivada.titulo,
+      assunto: this.mensagemPrivada.assunto,
+      texto: this.mensagemPrivada.texto,
+      condominio: this.mensagemPrivada.condominio,
+      idDestinatario: 0
+    };
+
+    this.mensagemPrivadaService.enviarMensagem(payload).subscribe({
       next: () => {
         alert('Mensagem enviada com sucesso!');
-        this.mensagemPrivada = { tipo: 'Mensagem ao Síndico', titulo: '', assunto: '', texto: '', condominio: this.mensagemPrivada.condominio }; // limpa formulário
+        this.mensagemPrivada = { tipo: 'Mensagem ao Síndico', titulo: '', assunto: '', texto: '', condominio: this.mensagemPrivada.condominio, idDestinatario: 0 }; // limpa formulário
       },
       error: (err) => {
         console.error('Erro ao enviar comunicado', err);
@@ -67,5 +76,4 @@ export class MensagemAoSindico {
     this.mensagemPrivada.assunto = ''
     this.mensagemPrivada.texto = ''
   }
-
-}
+  }
