@@ -26,12 +26,12 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/comunicados/api")
+@RequestMapping("/sindico/api/comunicados")
 public class ComunicadoController {
 	@Autowired
 	private ComunicadoService comunicadoService;
 	
-	@PostMapping("/comunicados/create")
+	@PostMapping("/create")
 	public ResponseEntity<ComunicadoResponseDTO> create(@Valid @RequestBody ComunicadoRequestDTO request) {
 	    Comunicado novoComunicado = comunicadoService.create(request);
         ComunicadoResponseDTO novoComunicadoDto = new ComunicadoResponseDTO();
@@ -43,7 +43,7 @@ public class ComunicadoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(novoComunicadoDto);
     }
 
-    @DeleteMapping("/comunicados/excluir/{id}")
+    @DeleteMapping("/excluir/{id}")
     public ResponseEntity<Void> excluirUsuario(@PathVariable Long id) {
         comunicadoService.excluirComunicado(id);
         return ResponseEntity.noContent().build();
