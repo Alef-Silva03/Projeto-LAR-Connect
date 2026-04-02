@@ -58,6 +58,7 @@ public class Condominio {
 	private long apartamentos;
 	
 	@OneToMany(mappedBy = "condominio", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Vaga> vagas = new ArrayList<>();
 	
     @OneToMany(mappedBy = "condominio")

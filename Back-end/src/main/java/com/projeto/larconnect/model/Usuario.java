@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(
    name = "usuario"
@@ -72,10 +74,12 @@ public class Usuario {
    )
    private List<CompraVaga> comprasVagas = new ArrayList();
    @ManyToOne
+   
    @JoinColumn(
       name = "idCondominio",
       referencedColumnName = "id"
    )
+   @JsonIgnore
    private Condominio condominio;
    @Column(
       name = "reset_token"

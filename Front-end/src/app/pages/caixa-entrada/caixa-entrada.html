@@ -16,7 +16,7 @@
 
         <section class="messages-list">
             <div *ngFor="let msg of mensagens" class="message-item-glass">
-                @if (authService.getCurrentUser()?.perfil == 'SINDICO' && msg.condominio.id == authService.getCurrentUser()?.condominio?.id  && msg.tipo == "MensagemAoSindico"){
+                @if (authService.getCurrentUser()?.perfil == 'SINDICO' && msg.tipo == "MensagemAoSindico"){
                     {{ increment() }}
                     <div class="d-flex align-items-start gap-3">
                         <div class="user-avatar">X</div>
@@ -37,18 +37,7 @@
                             </button>
                         </div>
                     </div>
-                } @else {
-                    @if (i == 0){
-                        <div class="message-item-glass">
-                            <div class="d-flex align-items-center gap-3">
-                                <div class="flex-grow-1">
-                                    <div class="d-flex justify-content-center">
-                                        <h3 class="mb-1 text-white fw-bold">Você não possui mensagens na sua caixa</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
+                
                 }
             </div>
         </section>

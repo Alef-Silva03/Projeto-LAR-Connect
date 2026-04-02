@@ -32,7 +32,7 @@ public class MensagemPrivada {
     @Column(nullable = true) 
     private String assunto;
 
-    @Column(nullable = false, length = 10000) 
+    @Column(nullable = false, length = 1000) 
     private String texto;
           
     @CreatedDate

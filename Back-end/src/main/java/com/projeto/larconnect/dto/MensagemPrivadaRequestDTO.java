@@ -6,6 +6,8 @@ public class MensagemPrivadaRequestDTO {
 	private String tipo;
 	private String titulo;
 	private String assunto;
+	
+	
     private String texto;
     private Usuario destinatario;
     
